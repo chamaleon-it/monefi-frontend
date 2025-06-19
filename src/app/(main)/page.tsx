@@ -10,7 +10,9 @@ import React from 'react'
 
 
 export const metadata:Metadata  = {
-  title:"Home | Monefi. | The smart choice for your finances."
+  title:"Home | Monefi. | The smart choice for your finances.",
+   description:
+    "Empower your financial journey with expert advice and tailored financial services. From life insurance and mortgage solutions to business insurance and personal loans, we provide the support you need to make informed decisions and achieve lasting financial security.",
 }
 
 export default function HomePage() {

@@ -37,7 +37,7 @@ const faqs = [
 ];
 
 const FAQLeftSection = () => {
-  const [selectedFaq, setSelectedFaq] = useState<number | null>(null);
+  const [selectedFaq, setSelectedFaq] = useState<number | null>(0);
 
   const toggleFaq = (id: number) => {
     setSelectedFaq(prev => (prev === id ? null : id));

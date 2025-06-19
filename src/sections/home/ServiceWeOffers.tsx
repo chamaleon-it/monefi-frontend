@@ -33,7 +33,7 @@ const Card = ({bg="black",title,href}:{bg:string,title:string,href:string}) =>{
         <div className={`aspect-[79/67] bg-monefi-${bg} rounded-4xl relative`}>
             <div className="absolute bottom-5 left-5 text-white space-y-5">
                 <p className='font-poppins font-bold text-2xl mac:text-4xl'>{title}</p>
-                <Link href={href} className='px-4 py-2 rounded-full border border-white text-xs mac:text-lg bg-black/20'>Learn more</Link>
+                <Link aria-label={title} title={title} href={href} className='px-4 py-2 rounded-full border border-white text-xs mac:text-lg bg-black/20'>Learn more</Link>
             </div>
             <div className="absolute h-full w-full bg-[url(/home/bg-waves.png)] bg-cover bg-center"></div>
         </div>
