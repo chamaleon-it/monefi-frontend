@@ -58,7 +58,7 @@ const TestimonialCard = memo(({ testimonial, index }: TestimonialCardProps) => (
         ? "bg-monefi-black text-white" 
         : "bg-monefi-off-white text-gray-900"
     }
-        ${testimonialData.length === index+1 && 'opacity-0' }
+        ${testimonialData.length === index+1 && 'lg:opacity-0' }
         `}
     role="article"
     aria-label={`Testimonial from ${testimonial.author}`}

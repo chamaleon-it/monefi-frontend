@@ -44,14 +44,14 @@ const FAQLeftSection = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 divide-y divide-[#0807081A] w-1/2">
+    <div className="flex flex-col gap-6 lg:gap-12 divide-y divide-[#0807081A] w-full lg:w-1/2">
       {faqs.map((faq) => (
         <div className="flex flex-col gap-3 pb-4" key={faq.id}>
           <div
             className="flex justify-between items-center cursor-pointer"
             onClick={() => toggleFaq(faq.id)}
           >
-            <h3 className="font-inter font-medium text-xl">{faq.question}</h3>
+            <h3 className="font-inter font-medium text-lg lg:text-xl">{faq.question}</h3>
             <motion.span
               className="text-monefi-pink text-3xl font-light font-poppins"
               animate={{ rotate: selectedFaq === faq.id ? 45 : 0 }}
