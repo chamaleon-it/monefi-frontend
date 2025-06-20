@@ -1,4 +1,5 @@
 import usePaths from "@/hooks/usePaths";
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -6,7 +7,8 @@ import React from "react";
 export default function Hero() {
   const paths = usePaths();
   return (
-    <section className="bg-monefi-black text-white h-[calc(100vh-150px)] pt-[70px] relative">
+    <>
+    <section className="bg-monefi-black text-white h-[calc(100vh-150px-50px)] pt-[70px] relative">
       <div className="max-w-[83%] mx-auto">
         <div className="flex justify-between flex-col lg:flex-row gap-20 lg:gap-0">
           <h1 className="font-poppins font-semibold text-[40px] mac:text-[60px] w-full lg:w-1/2">
@@ -30,7 +32,7 @@ export default function Hero() {
             <Link
               href={paths.auth.register}
               className="mt-7 px-6 py-4 rounded-full border font-poppins hover:scale-110 duration-400 hover:bg-monefi-pink hover:text-monefi-black mac:text-lg inline-block"
-            >
+              >
               Join Today
             </Link>
           </div>
@@ -48,7 +50,7 @@ export default function Hero() {
             height={330}
             alt="Life Insurance"
             className="object-cover mac:hidden"
-          />
+            />
           <Image
             src={"/home/hero/p1.png"}
             width={378}
@@ -68,14 +70,14 @@ export default function Hero() {
             height={200}
             alt="Mortgage"
             className="object-cover mac:hidden"
-          />
+            />
           <Image
             src={"/home/hero/p2.png"}
             width={288}
             height={200}
             alt="Mortgage"
             className="object-cover hidden mac:block"
-          />
+            />
         </div>
 
         <div className="relative w-[360px] mac:w-1/4 h-[541px] mac:h-[720px] rounded-t-full  bg-monefi-pink flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
@@ -88,14 +90,14 @@ export default function Hero() {
             height={330}
             alt="Business Insurance"
             className="object-cover mac:hidden"
-          />
+            />
           <Image
             src={"/home/hero/p3.png"}
             width={288}
             height={330}
             alt="Business Insurance"
             className="object-cover hidden mac:block"
-          />
+            />
         </div>
 
         <div className="relative w-[360px] mac:w-1/4 h-[450px] mac:h-[630px] rounded-t-full  bg-monefi-yellow flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
@@ -108,16 +110,25 @@ export default function Hero() {
             height={220}
             alt="Personal Loans"
             className="object-cover mac:hidden"
-          />
+            />
           <Image
             src={"/home/hero/p4.png"}
             width={288}
             height={220}
             alt="Personal Loans"
             className="object-cover hidden mac:block"
-          />
+            />
         </div>
       </div>
     </section>
+    <section className="h-[50px] flex justify-center items-end">
+        <Link href={'#section_services'} className="">
+        {/* <Image  src={'/home/hero/down-arrow.svg'} width={40} height={40} alt="Monefi. Down Arrow" className="animate-bounce"/> */}
+        <div className="w-[40px] h-[40px] rounded-full bg-monefi-pink animate-bounce flex justify-center items-center">
+            <ArrowDown strokeWidth={2.25} className="text-white"/>
+        </div>
+        </Link>
+    </section>
+            </>
   );
 }

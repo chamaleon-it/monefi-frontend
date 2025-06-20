@@ -6,7 +6,7 @@ export default function ServiceWeOffers() {
 
     const paths = usePaths()
   return (
-    <section className='bg-white'>
+    <section className='bg-white' id='section_services'>
         <div className="max-w-[95%] lg:max-w-[83%] mx-auto mb-24">
             <div className="text-center mt-24">
             <p className='text-monefi-green font-poppins font-bold uppercase mac:text-lg'>Our Services</p>
