@@ -10,7 +10,15 @@ export default function Hero() {
       <div className="max-w-[83%] mx-auto">
         <div className="flex justify-between flex-col lg:flex-row gap-20 lg:gap-0">
           <h1 className="font-poppins font-semibold text-[40px] mac:text-[60px] w-full lg:w-1/2">
-            The <span className="text-monefi-pink">smart choice</span> for{" "}
+            The <span className="text-monefi-pink">smar
+              <span className="relative inline-block">
+                t
+                <img src="/home/hero/text-decoration.png" className="absolute rotate-[30deg] -top-0 -right-4 mac:-right-5 min-w-[40px] mac:min-w-[55px] block" alt="" />
+                </span> choic
+                <span className="relative inline-block">e
+                                  <img src="/home/hero/text-decoration.png" className="absolute rotate-[160deg] bottom-1 mac:bottom-3 -right-3.5 min-w-[35px] block" alt="" />
+
+                  </span></span> for{" "}
             <br className="hidden lg:block" /> your finances.
           </h1>
           <div className="w-full lg:w-1/2">
@@ -30,7 +38,7 @@ export default function Hero() {
       </div>
 
       <div className="max-w-[81%] mx-auto absolute bottom-0 inset-x-0 hidden lg:flex items-end justify-center">
-        <div className="relative w-[360px] mac:w-1/4 h-[463px] mac:h-[643px] rounded-t-full  bg-monefi-off-white flex shrink-0 flex-col justify-end items-center cursor-pointer hover:duration-300 hover:border-x-4 hover:border-t-4 border-white">
+        <div className="relative w-[360px] mac:w-1/4 h-[463px] mac:h-[643px] rounded-t-full  bg-monefi-off-white flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
           <h2 className="absolute text-2xl mac:text-3xl text-monefi-black font-poppins font-bold bottom-[380px] mac:bottom-[500px] ">
             Life Insurance
           </h2>
@@ -50,7 +58,7 @@ export default function Hero() {
           />
         </div>
 
-        <div className="relative w-[360px] mac:w-1/4 h-[380px] mac:h-[559px] rounded-t-full  bg-monefi-blue flex shrink-0 flex-col justify-end items-center cursor-pointer hover:duration-300 hover:border-x-4 hover:border-t-4 border-white">
+        <div className="relative w-[360px] mac:w-1/4 h-[380px] mac:h-[559px] rounded-t-full  bg-monefi-blue flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
           <h2 className="absolute text-2xl mac:text-3xl text-monefi-black font-poppins font-bold bottom-[300px] mac:bottom-[440px]">
             Mortgage
           </h2>
@@ -70,7 +78,7 @@ export default function Hero() {
           />
         </div>
 
-        <div className="relative w-[360px] mac:w-1/4 h-[541px] mac:h-[720px] rounded-t-full  bg-monefi-pink flex shrink-0 flex-col justify-end items-center cursor-pointer hover:duration-300 hover:border-x-4 hover:border-t-4 border-white">
+        <div className="relative w-[360px] mac:w-1/4 h-[541px] mac:h-[720px] rounded-t-full  bg-monefi-pink flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
           <h2 className="absolute text-2xl mac:text-3xl text-monefi-black font-poppins font-bold bottom-[430px] mac:bottom-[550px]">
             Business Insurance
           </h2>
@@ -90,7 +98,7 @@ export default function Hero() {
           />
         </div>
 
-        <div className="relative w-[360px] mac:w-1/4 h-[450px] mac:h-[630px] rounded-t-full  bg-monefi-yellow flex shrink-0 flex-col justify-end items-center cursor-pointer hover:duration-300 hover:border-x-4 hover:border-t-4 border-white">
+        <div className="relative w-[360px] mac:w-1/4 h-[450px] mac:h-[630px] rounded-t-full  bg-monefi-yellow flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
           <h2 className="absolute text-2xl mac:text-3xl text-monefi-black font-poppins font-bold bottom-[370px] mac:bottom-[490px]">
             Personal Loans
           </h2>
