@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, A11y, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
+import Image from "next/image";
 
 // Mock testimonial data - replace with real data
 const testimonialData = [
@@ -15,28 +16,32 @@ const testimonialData = [
     content: "As a UI/UX designer, I can't imagine working without Curls Blocks anymore. The library's well-organized and extensive collection of components has saved me countless hours, enabling me to focus on the creative aspects of design.",
     author: "John Doe",
     role: "CEO, TechCorp",
-    rating: 5
+    rating: 5,
+    profileImage:"1.png"
   },
   {
     id: 2,
     content: "Curls Blocks has completely transformed the way we approach design at our company. The versatility and flexibility of the library have allowed us to create consistent and beautiful designs across all our platforms. Highly recommended!",
     author: "Jane Smith",
     role: "CFO, StartupInc",
-    rating: 5
+    rating: 5,
+    profileImage:"2.png"
   },
    {
     id: 3,
     content: "As a UI/UX designer, I can't imagine working without Curls Blocks anymore. The library's well-organized and extensive collection of components has saved me countless hours, enabling me to focus on the creative aspects of design.",
     author: "John Doe",
     role: "CEO, TechCorp",
-    rating: 5
+    rating: 5,
+    profileImage:"1.png"
   },
   {
     id: 4,
     content: "Curls Blocks has completely transformed the way we approach design at our company. The versatility and flexibility of the library have allowed us to create consistent and beautiful designs across all our platforms. Highly recommended!",
     author: "Jane Smith",
     role: "CFO, StartupInc",
-    rating: 5
+    rating: 5,
+    profileImage:"2.png"
   },
 ] as const;
 
@@ -46,7 +51,8 @@ interface TestimonialCardProps {
     content:string,
     author:string,
     role:string,
-    rating:number
+    rating:number,
+    profileImage:string
   };
   index: number;
 }
@@ -82,7 +88,8 @@ const TestimonialCard = memo(({ testimonial, index }: TestimonialCardProps) => (
       </blockquote>
     </div>
     
-    <footer>
+    <footer className="flex items-center gap-2.5">
+      <Image src={`/home/testimonials/${testimonial.profileImage}`} width={45} height={45} alt={testimonial.author + " Monefi."}/>
       <cite className="not-italic">
         <div className="font-semibold text-lg">{testimonial.author}</div>
         <div className={`text-sm ${index % 2 === 0 ? 'text-gray-300' : 'text-gray-600'}`}>

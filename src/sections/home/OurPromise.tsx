@@ -14,7 +14,7 @@ export default function OurPromise() {
                      </div>
                 <div className="hidden lg:block">
                     <Image src={'/home/our-promise.jpg'} width={620} height={1000} alt='Monefi Our Promise' className='rounded-tr-[96px] mac:hidden' priority/>
-                    <Image src={'/home/our-promise.jpg'} width={720} height={1000} alt='Monefi Our Promise' className='rounded-tr-[96px] hidden mac:block' priority/>
+                    <Image src={'/home/our-promise.jpg'} width={720} height={938} alt='Monefi Our Promise' className='rounded-tr-[96px] hidden mac:block' priority/>
                 </div>
         </div>
     </section>

@@ -50,6 +50,8 @@ export default function Hero() {
             height={330}
             alt="Life Insurance"
             className="object-cover mac:hidden"
+            priority
+            loading="eager"
             />
           <Image
             src={"/home/hero/p1.png"}
@@ -57,6 +59,8 @@ export default function Hero() {
             height={330}
             alt="Life Insurance"
             className="object-cover hidden mac:block"
+            priority
+            loading="eager"
           />
         </div>
 
@@ -70,6 +74,8 @@ export default function Hero() {
             height={200}
             alt="Mortgage"
             className="object-cover mac:hidden"
+            priority
+            loading="eager"
             />
           <Image
             src={"/home/hero/p2.png"}
@@ -77,6 +83,8 @@ export default function Hero() {
             height={200}
             alt="Mortgage"
             className="object-cover hidden mac:block"
+            priority
+            loading="eager"
             />
         </div>
 
@@ -90,6 +98,8 @@ export default function Hero() {
             height={330}
             alt="Business Insurance"
             className="object-cover mac:hidden"
+            priority
+            loading="eager"
             />
           <Image
             src={"/home/hero/p3.png"}
@@ -97,6 +107,8 @@ export default function Hero() {
             height={330}
             alt="Business Insurance"
             className="object-cover hidden mac:block"
+            priority
+            loading="eager"
             />
         </div>
 
@@ -110,6 +122,8 @@ export default function Hero() {
             height={220}
             alt="Personal Loans"
             className="object-cover mac:hidden"
+            priority
+            loading="eager"
             />
           <Image
             src={"/home/hero/p4.png"}
@@ -117,12 +131,14 @@ export default function Hero() {
             height={220}
             alt="Personal Loans"
             className="object-cover hidden mac:block"
+            priority
+            loading="eager"
             />
         </div>
       </div>
     </section>
     <section className="h-[50px] flex justify-center items-end">
-        <Link href={'#section_services'} className="">
+        <Link href={'#section_services'} aria-label="Services" title="Services">
         {/* <Image  src={'/home/hero/down-arrow.svg'} width={40} height={40} alt="Monefi. Down Arrow" className="animate-bounce"/> */}
         <div className="w-[40px] h-[40px] rounded-full bg-monefi-pink animate-bounce flex justify-center items-center">
             <ArrowDown strokeWidth={2.25} className="text-white"/>

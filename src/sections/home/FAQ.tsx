@@ -1,5 +1,6 @@
 import React from "react";
 import FAQLeftSection from "./FAQLeftSection";
+import { AtSign, Phone } from "lucide-react";
 
 export default function FAQ() {
   return (
@@ -11,11 +12,15 @@ export default function FAQ() {
                 <p className="font-poppins font-semibold text-2xl">Couldn’t find what <br /> you’re looking for?</p>
                     <div className="space-y-3 lg:space-y-6 mt-5 lg:mt-10">
                         <div className="flex gap-3 items-center">
-                            <div className="w-[50px] h-[50px] rounded-full bg-white/10"></div>
+                            <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
+                            <Phone fill="#fff" strokeWidth={0.75}/>
+                            </div>
                             <p className="font-poppins font-bold text-xl">+1-613-555-157</p>
                         </div>
                         <div className="flex gap-3 items-center">
-                            <div className="w-[50px] h-[50px] rounded-full bg-white/10"></div>
+                            <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
+                            <AtSign />
+                            </div>
                             <p className="font-inter font-medium text-xl">info@domain.com</p>
                         </div>
                     </div>
