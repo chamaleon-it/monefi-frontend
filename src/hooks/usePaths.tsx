@@ -10,6 +10,9 @@ export default function usePaths() {
     auth : {
     login: "/login",
     register: "/register",
+  },
+  dashboard:{
+    root:'/dashboard'
   }
   };
 

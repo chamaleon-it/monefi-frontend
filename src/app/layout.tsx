@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ReactLenis from "lenis/react";
 import Script from "next/script";
+import AuthProvider from "@/auth/AuthProvider";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -60,7 +61,7 @@ export default function RootLayout({
 
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <ReactLenis root />
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

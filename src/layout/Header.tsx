@@ -21,9 +21,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import LoginButton from "./LoginButton";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname()
+  const isDashboard = useMemo(() => pathname.includes('/dashboard'), [pathname])
   const paths = usePaths();
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -32,8 +36,9 @@ export default function Header() {
     setActiveDropdown((prev) => (prev === item ? null : item));
   };
 
+
   return (
-    <header className="bg-monefi-black pb-7 pt-[74px] sticky -top-11 z-50">
+    <header className={` pb-7  sticky  z-50 ${isDashboard ?"bg-white pt-7 top-0" : 'bg-monefi-black pt-[74px] -top-11'}`}>
       <div className="max-w-[83%] mx-auto flex justify-between items-center relative">
         {/* Logo */}
         <Link
@@ -42,14 +47,14 @@ export default function Header() {
           title="Monefi. Home Page"
         >
           <Image
-            src="/logo.png"
+            src={isDashboard ? "/logo-2.png" : "/logo.png"}
             width={164}
             height={40}
             alt="Monefi logo"
             className="hidden lg:block"
           />
           <Image
-            src="/logo.png"
+            src={isDashboard ? "/logo-2.png" : "/logo.png"}
             width={134}
             height={40}
             alt="Monefi logo"
@@ -58,7 +63,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation Links */}
-        <ul className="hidden lg:flex gap-8 font-inter text-white mac:text-lg relative">
+        <ul className={`hidden lg:flex gap-8 font-inter mac:text-lg relative ${isDashboard ? 'text-black' : "text-white"}`}>
           <li className="relative"   onMouseEnter={() => toggleDropdown("insurance")}
               onMouseLeave={()=>toggleDropdown(null)}>
             <button
@@ -315,12 +320,7 @@ export default function Header() {
         </ul>
 
         {/* Login Button */}
-        <Link
-          href={paths.auth.login}
-          className="px-6 py-3 rounded-full font-poppins bg-monefi-off-white text-monefi-black mac:text-lg"
-        >
-          Login
-        </Link>
+       <LoginButton isDashboard={isDashboard}/>
       </div>
     </header>
   );
