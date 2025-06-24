@@ -12,7 +12,10 @@ export default function usePaths() {
     register: "/register",
   },
   dashboard:{
-    root:'/dashboard'
+    root:'/dashboard',
+    admin:{
+        users:"/dashboard/admin/users"
+    }
   }
   };
 

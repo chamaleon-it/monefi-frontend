@@ -1,9 +1,11 @@
 "use client"
 
 import { useAuth } from '@/auth/useAuth'
+import { UserRoles } from '@/enum/user.enum'
 import usePaths from '@/hooks/usePaths'
 import Header from '@/layout/Header'
 import { CircleUser, LayoutDashboard, Settings } from 'lucide-react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import React, { useEffect } from 'react'
@@ -41,11 +43,11 @@ export default function DashboardLayout({children}:{children:React.ReactNode}) {
             </div>
             <p className='font-poppins text-lg font-medium'>Dashboard</p>
           </li>
-          <li className='flex flex-col lg:flex-row gap-5 items-center w-1/2 lg:w-auto'>
-            <div className="">
+          <li >
+            <Link href={user?.role === UserRoles.ADMIN ? paths.dashboard.admin.users : "#"} className='flex flex-col lg:flex-row gap-5 items-center w-1/2 lg:w-auto'>
               <CircleUser width={30} height={30} />
-            </div>
             <p className='font-poppins text-lg font-medium'>Profile</p>
+            </Link>
           </li>
           <li className='flex flex-col lg:flex-row gap-5 items-center w-1/2 lg:w-auto'>
             <div className="">

@@ -9,7 +9,7 @@ export default function Testimonials() {
        <div className="">
         <p className="uppercase text-lg font-poppins">Testimonials</p>
         <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8 whitespace-nowrap">What our <br /> customers say</h2>
-        <Image src={'/home/review.svg'} width={400} height={40} alt="Monefi Review Status"/>
+        <Image src={'/home/review.png'} width={400} height={40} alt="Monefi Review Status"/>
        </div>
 
        <TestimonialsSwiper />
