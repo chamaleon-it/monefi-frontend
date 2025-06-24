@@ -41,7 +41,7 @@ const Card = ({
 }) => {
   return (
     <div
-      className={`aspect-[79/67] rounded-4xl relative bg-monefi-${bg}`}
+      className={`aspect-[79/67] rounded-4xl relative bg-monefi-${bg} bg-cover bg-no-repeat bg-top`}
       style={{ backgroundImage: `url(/home/service-${bg}.png)` }}
     >
       <div className="absolute bottom-5 left-5 text-white space-y-5 z-10">

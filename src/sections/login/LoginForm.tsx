@@ -12,17 +12,21 @@ import { UserLoginZod } from "@/validator/user-login.zod"
 export default function LoginForm() {
  const {login,verify} = useAuth()
  
-   const {register,handleSubmit,formState:{errors,isSubmitting}} = useForm({
+   const {register,handleSubmit,formState:{errors,isSubmitting},setError} = useForm({
      resolver:zodResolver(UserLoginZod)
    })
  
  
    const onSubmit = handleSubmit(async(data)=>{
      try {
-   await login(data)
-   await verify()
+   const {status,error} = await login(data)
+   if(status === "success"){
+     await verify()
+   }else{
+    setError("root",{message:error})
+   }
      } catch (error) {
-       
+       console.log(error);
      }
    })
 
@@ -101,6 +105,12 @@ export default function LoginForm() {
               {errors.password && <p className="text-red-700 text-sm mt-2.5">{errors.password.message}</p>}
             </motion.div>
 
+ {errors.root && (
+              <p className="text-red-700 text-sm mt-2.5 text-center">
+                {errors.root.message}
+              </p>
+            )}
+
             {/* Submit Button */}
             <motion.button
               type="submit"
@@ -131,7 +141,7 @@ export default function LoginForm() {
             transition={{ duration: 0.4, delay: 0.5 }}
           >
             <p className="text-white/90 text-sm">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/register"
                 className="text-white font-semibold underline hover:no-underline transition-all duration-200"

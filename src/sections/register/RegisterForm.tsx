@@ -30,7 +30,9 @@ export default function RegisterForm() {
       } else {
         setError("root", { message: error });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return (

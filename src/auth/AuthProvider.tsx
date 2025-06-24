@@ -5,7 +5,8 @@ import {
   UserInterface,
 } from "@/interface/AuthProvider.interface";
 import api, { clearTokens, setTokens } from "@/services/api";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useCallback, useEffect,useState } from "react";
 
 export const authContext = React.createContext<
   undefined | AuthContextInterface
@@ -16,11 +17,12 @@ export default function AuthProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const [user, setUser] = useState<UserInterface | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const verify = useCallback(async ():Promise<void> => {
+  const verify = useCallback(async (): Promise<void> => {
     setLoading(true);
     try {
       const { data } = await api.get("/users/profile");
@@ -28,17 +30,21 @@ export default function AuthProvider({
       setUser({ id: _id, email, role, status });
       setIsAuthenticated(true);
     } catch (error) {
+      console.log(error);
     } finally {
       setLoading(false);
     }
   }, []);
 
   const login = useCallback(
-    async (data: { email: string; password: string }): Promise<{
+    async (data: {
+      email: string;
+      password: string;
+    }): Promise<{
       status: "success" | "failed";
       message?: string;
       error?: string;
-    }>  => {
+    }> => {
       try {
         const res = await api.post("/auth", data);
         setTokens(res.data.data.accessToken, res.data.data.refreshToken);
@@ -90,24 +96,24 @@ export default function AuthProvider({
 
   const logout = useCallback(async () => {
     try {
-    await  api.post('/auth/logout')
-    setIsAuthenticated(false)
-    setUser(null)
-      clearTokens()
-      verify()
+      await api.post("/auth/logout");
+      setIsAuthenticated(false);
+      setUser(null);
+      clearTokens();
+      router.replace("/");
     } catch (error) {
-      
+      console.log(error);
     }
   }, []);
 
-  const getNewToken = useCallback(async (refreshToken: string) => {}, []);
+  const getNewToken = useCallback(async (refreshToken: string) => {
+    console.log(refreshToken);
+  }, []);
 
   useEffect(() => {
     verify();
   }, []);
 
-
-  console.log(isAuthenticated);
   return (
     <authContext.Provider
       value={{
