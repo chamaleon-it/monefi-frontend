@@ -19,6 +19,11 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.admin.transactions,
       icon: "hugeicons:invoice",
     },
+     {
+      title: "New Bond",
+      path: paths.dashboard.admin.newBond,
+      icon: "mingcute:paper-fill",
+    },
     {
       title: "Bonds",
       path: paths.dashboard.admin.bonds,
@@ -49,33 +54,38 @@ export default function useDashboardLinks(): Links[] {
     },
     {
       title: "Transactions",
-      path: paths.dashboard.users.transactions,
+      path: paths.dashboard.user.transactions,
       icon: "hugeicons:invoice",
     },
     {
       title: "Trade Stock",
-      path: paths.dashboard.users.tradeStock,
+      path: paths.dashboard.user.tradeStock,
       icon: "ri:stock-fill",
     },
     {
       title: "Trade Crypto",
-      path: paths.dashboard.users.tradeCrypto,
+      path: paths.dashboard.user.tradeCrypto,
       icon: "mdi:bitcoin",
     },
     {
       title: "Bonds",
-      path: paths.dashboard.users.bonds,
+      path: paths.dashboard.user.bonds,
       icon: "mingcute:paper-fill",
     },
     {
       title: "Balance",
-      path: paths.dashboard.users.balance,
+      path: paths.dashboard.user.balance,
       icon: "game-icons:cash",
     },
     {
       title: "My Portfolio",
-      path: paths.dashboard.users.myPortfolio,
+      path: paths.dashboard.user.myPortfolio,
       icon: "zondicons:portfolio",
+    },
+    {
+      title: "Settings",
+      path: paths.dashboard.settings,
+      icon: "material-symbols:settings-rounded",
     },
   ];
 

@@ -4,7 +4,7 @@ import "./globals.css";
 import ReactLenis from "lenis/react";
 import Script from "next/script";
 import AuthProvider from "@/auth/AuthProvider";
-import { SWRProvider } from "@/src/providers/swr-provider";
+import { SWRProvider } from "@/providers/swr-provider";
 import  { Toaster } from 'react-hot-toast';
 
 const poppins = Poppins({

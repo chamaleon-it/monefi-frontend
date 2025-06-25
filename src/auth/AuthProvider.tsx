@@ -104,7 +104,7 @@ export default function AuthProvider({
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [router]);
 
   const getNewToken = useCallback(async (refreshToken: string) => {
     console.log(refreshToken);
@@ -112,7 +112,7 @@ export default function AuthProvider({
 
   useEffect(() => {
     verify();
-  }, []);
+  }, [verify]);
 
   return (
     <authContext.Provider

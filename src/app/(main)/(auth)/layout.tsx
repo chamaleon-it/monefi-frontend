@@ -15,7 +15,7 @@ export default function AuthLayout({children}:{children:React.ReactNode}) {
     if(isAuthenticated && !loading){
       router.replace(paths.dashboard.root)
     }
-  }, [isAuthenticated,loading])
+  }, [isAuthenticated,loading,paths.dashboard.root,router])
   
   if(isAuthenticated || loading) return null
 

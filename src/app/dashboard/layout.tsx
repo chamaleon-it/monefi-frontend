@@ -12,7 +12,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated, loading, user } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
   const paths = usePaths();
 
@@ -20,7 +20,7 @@ export default function DashboardLayout({
     if (!isAuthenticated && !loading) {
       router.replace(paths.home);
     }
-  }, [isAuthenticated, loading]);
+  }, [isAuthenticated, loading,paths.home,router]);
 
   if (!isAuthenticated || loading) return null;
 

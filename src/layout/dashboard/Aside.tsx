@@ -9,7 +9,7 @@ export default function Aside() {
   const { user } = useAuth();
   const links = useDashboardLinks();
   return (
-    <aside className="max-w-[400px] w-full p-5 bg-monefi-off-pink rounded-4xl lg:sticky lg:top-[150px]">
+    <aside className="max-w-[400px] w-full p-5 bg-monefi-off-pink rounded-4xl lg:sticky lg:top-[104px]">
       <div className="flex gap-5 items-center">
         <div className="">
           <CircleUser width={40} height={40} />
@@ -21,7 +21,7 @@ export default function Aside() {
       <div className="mt-8">
         <ul className="grid grid-cols-3 lg:grid-cols-1 gap-2.5 lg:gap-5">
           {links.map((link) => (
-            <li>
+            <li key={link.title}>
               <Link
                 href={link.path}
                 className="flex flex-col lg:flex-row gap-2.5 items-center"
@@ -29,7 +29,7 @@ export default function Aside() {
                 <div className="">
                   <Icon icon={link.icon} width={30} height={30} />
                 </div>
-                <p className="font-poppins text-lg font-medium">{link.title}</p>
+                <p className="font-poppins lg:text-lg font-medium">{link.title}</p>
               </Link>
             </li>
           ))}
