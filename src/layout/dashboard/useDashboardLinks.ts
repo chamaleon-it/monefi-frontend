@@ -19,7 +19,7 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.admin.transactions,
       icon: "hugeicons:invoice",
     },
-     {
+    {
       title: "New Bond",
       path: paths.dashboard.admin.newBond,
       icon: "mingcute:paper-fill",

@@ -1,56 +1,55 @@
-import type { MetadataRoute } from 'next'
- 
+import type { MetadataRoute } from "next";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://monefi.com',
+      url: "https://monefi.com",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: 'https://monefi.com/estate-planning',
+      url: "https://monefi.com/estate-planning",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: 'https://monefi.com/insurance',
+      url: "https://monefi.com/insurance",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: 'https://monefi.com/loans',
+      url: "https://monefi.com/loans",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: 'https://monefi.com/mortgages',
+      url: "https://monefi.com/mortgages",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: 'https://monefi.com/utilities',
+      url: "https://monefi.com/utilities",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
 
     {
-      url: 'https://monefi.com/login',
+      url: "https://monefi.com/login",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: 'https://monefi.com/register',
+      url: "https://monefi.com/register",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8,
     },
-   
-  ]
+  ];
 }

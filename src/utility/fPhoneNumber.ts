@@ -1,16 +1,16 @@
-import { CountryCode, parsePhoneNumberFromString } from 'libphonenumber-js';
+import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 
 export const fPhoneNumber = (
   phoneNumber: string,
   defaultCountry?: CountryCode, // explicitly type as CountryCode or undefined
-  international: boolean = true
+  international: boolean = true,
 ): string => {
-  if (!phoneNumber) return '';
+  if (!phoneNumber) return "";
 
   try {
     const phoneObj = parsePhoneNumberFromString(
       phoneNumber,
-      defaultCountry ?? 'IN'
+      defaultCountry ?? "IN",
     );
     if (!phoneObj) return phoneNumber;
 

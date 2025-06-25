@@ -1,30 +1,30 @@
-import configuration from '@/config/configuration';
-import axios, { AxiosError, AxiosRequestConfig, AxiosHeaders } from 'axios';
-import { parseCookies, setCookie, destroyCookie } from 'nookies';
-import type { GetServerSidePropsContext, NextPageContext } from 'next';
+import configuration from "@/config/configuration";
+import axios, { AxiosError, AxiosRequestConfig, AxiosHeaders } from "axios";
+import { parseCookies, setCookie, destroyCookie } from "nookies";
+import type { GetServerSidePropsContext, NextPageContext } from "next";
 
 type NookiesCtx = GetServerSidePropsContext | NextPageContext | undefined;
 
 const getTokens = (ctx?: NookiesCtx) => {
   const cookies = parseCookies(ctx);
   return {
-    accessToken: cookies.accessToken || '',
-    refreshToken: cookies.refreshToken || '',
+    accessToken: cookies.accessToken || "",
+    refreshToken: cookies.refreshToken || "",
   };
 };
 
 const setTokens = (
   accessToken: string,
   refreshToken: string,
-  ctx?: NookiesCtx
+  ctx?: NookiesCtx,
 ) => {
-  setCookie(ctx, 'accessToken', accessToken, { path: '/' });
-  setCookie(ctx, 'refreshToken', refreshToken, { path: '/' });
+  setCookie(ctx, "accessToken", accessToken, { path: "/" });
+  setCookie(ctx, "refreshToken", refreshToken, { path: "/" });
 };
 
 const clearTokens = (ctx?: NookiesCtx) => {
-  destroyCookie(ctx, 'accessToken');
-  destroyCookie(ctx, 'refreshToken');
+  destroyCookie(ctx, "accessToken");
+  destroyCookie(ctx, "refreshToken");
 };
 
 const api = axios.create({
@@ -41,7 +41,7 @@ api.interceptors.request.use(
       }
 
       if (config.headers instanceof AxiosHeaders) {
-        config.headers.set('Authorization', `Bearer ${accessToken}`);
+        config.headers.set("Authorization", `Bearer ${accessToken}`);
       } else {
         (config.headers as Record<string, string>).Authorization =
           `Bearer ${accessToken}`;
@@ -50,7 +50,7 @@ api.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 let isRefreshing = false;
@@ -64,7 +64,7 @@ let failedQueue: FailedQueueItem[] = [];
 
 const processQueue = (err: AxiosError | null, token: string | null = null) => {
   failedQueue.forEach(({ resolve, reject }) =>
-    err ? reject(err) : resolve(token as string)
+    err ? reject(err) : resolve(token as string),
   );
   failedQueue = [];
 };
@@ -72,7 +72,7 @@ const processQueue = (err: AxiosError | null, token: string | null = null) => {
 api.interceptors.response.use(
   (response) => response,
   async (
-    error: AxiosError & { config?: AxiosRequestConfig & { _retry?: boolean } }
+    error: AxiosError & { config?: AxiosRequestConfig & { _retry?: boolean } },
   ) => {
     const originalRequest = error.config;
 
@@ -90,7 +90,7 @@ api.interceptors.response.use(
           }
 
           if (originalRequest.headers instanceof AxiosHeaders) {
-            originalRequest.headers.set('Authorization', `Bearer ${token}`);
+            originalRequest.headers.set("Authorization", `Bearer ${token}`);
           } else {
             (originalRequest.headers as Record<string, string>).Authorization =
               `Bearer ${token}`;
@@ -108,7 +108,7 @@ api.interceptors.response.use(
 
         const res = await axios.post(
           `${configuration().backendURL}/auth/refresh`,
-          { refreshToken }
+          { refreshToken },
         );
 
         const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
@@ -125,8 +125,8 @@ api.interceptors.response.use(
 
         if (originalRequest.headers instanceof AxiosHeaders) {
           originalRequest.headers.set(
-            'Authorization',
-            `Bearer ${newAccessToken}`
+            "Authorization",
+            `Bearer ${newAccessToken}`,
           );
         } else {
           (originalRequest.headers as Record<string, string>).Authorization =
@@ -145,7 +145,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
