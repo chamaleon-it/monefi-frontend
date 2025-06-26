@@ -1,6 +1,6 @@
 import getConfig from "@/config/configuration";
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import  { useCallback, useEffect, useState } from "react";
 
 
 const cryptoApi = axios.create({
@@ -26,7 +26,7 @@ export default function useGetPrice({
     setLoading(true)
     try {
       if (type === "stock") {
-        const {data} =await axios.get(`https://api.twelvedata.com/price?symbol=${symbol.toUpperCase()}&apikey=${getConfig().twelveDataApiKey}`)
+        const {data} =await stockApi.get(`/price?symbol=${symbol.toUpperCase()}&apikey=${getConfig().twelveDataApiKey}`)
         setPrice(parseFloat(data.price))
       }
       if (type === "crypto") {

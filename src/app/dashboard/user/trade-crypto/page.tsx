@@ -2,7 +2,7 @@
 
 import { topCrypto } from '@/data/top-crypto'
 import React, { useState } from 'react'
-import {AdvancedRealTimeChart, CryptoCoinsHeatmap, MarketOverview, StockHeatmap, StockMarket, SymbolInfo, Ticker, TickerTape} from 'react-ts-tradingview-widgets'
+import {AdvancedRealTimeChart, CryptoCoinsHeatmap, MarketOverview, StockMarket, SymbolInfo, Ticker, TickerTape} from 'react-ts-tradingview-widgets'
 import CryptoForm from './CryptoForm'
 
 export default function TradeCryptoPage() {
