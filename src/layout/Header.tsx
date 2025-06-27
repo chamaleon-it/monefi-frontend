@@ -38,7 +38,7 @@ export default function Header() {
 
 
   return (
-    <header className={` pb-7  sticky  z-50 ${isDashboard ?"bg-white pt-7 top-0" : 'bg-monefi-black pt-[74px] -top-11'}`}>
+    <header className={`sticky  z-50 ${isDashboard ?"bg-white py-3 top-0 border-b-[1px] border-black/30" : 'bg-monefi-black pb-7 pt-[74px] -top-11'}`}>
       <div className="max-w-[83%] mx-auto flex justify-between items-center relative">
         {/* Logo */}
         <Link

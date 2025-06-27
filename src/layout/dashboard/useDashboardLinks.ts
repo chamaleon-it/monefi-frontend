@@ -12,7 +12,7 @@ export default function useDashboardLinks(): Links[] {
     {
       title: "Dashboard",
       path: paths.dashboard.root,
-      icon: "material-symbols:dashboard-rounded",
+      icon: "ri:dashboard-line",
     },
     {
       title: "Transactions",
@@ -22,12 +22,12 @@ export default function useDashboardLinks(): Links[] {
     {
       title: "New Bond",
       path: paths.dashboard.admin.newBond,
-      icon: "mingcute:paper-fill",
+      icon: "mingcute:paper-line",
     },
     {
       title: "Bonds",
       path: paths.dashboard.admin.bonds,
-      icon: "mingcute:paper-fill",
+      icon: "mingcute:paper-line",
     },
     {
       title: "Investments",
@@ -37,12 +37,12 @@ export default function useDashboardLinks(): Links[] {
     {
       title: "Customers",
       path: paths.dashboard.admin.users,
-      icon: "ix:user-profile-filled",
+      icon: "iconamoon:profile-circle-duotone",
     },
     {
       title: "Settings",
       path: paths.dashboard.settings,
-      icon: "material-symbols:settings-rounded",
+      icon: "material-symbols:settings-outline",
     },
   ];
 
@@ -50,7 +50,7 @@ export default function useDashboardLinks(): Links[] {
     {
       title: "Dashboard",
       path: paths.dashboard.root,
-      icon: "material-symbols:dashboard-rounded",
+      icon: "ri:dashboard-line",
     },
     {
       title: "Transactions",
@@ -60,27 +60,27 @@ export default function useDashboardLinks(): Links[] {
     {
       title: "Trade Stock",
       path: paths.dashboard.user.tradeStock,
-      icon: "ri:stock-fill",
+      icon: "mingcute:stock-line",
     },
     {
       title: "Trade Crypto",
       path: paths.dashboard.user.tradeCrypto,
-      icon: "mdi:bitcoin",
+      icon: "bx:bitcoin",
     },
     {
       title: "Bonds",
       path: paths.dashboard.user.bonds,
-      icon: "mingcute:paper-fill",
+      icon: "mingcute:paper-line",
     },
     {
       title: "My Portfolio",
       path: paths.dashboard.user.myPortfolio,
-      icon: "zondicons:portfolio",
+      icon: "bytesize:portfolio",
     },
     {
       title: "Settings",
       path: paths.dashboard.settings,
-      icon: "material-symbols:settings-rounded",
+      icon: "material-symbols:settings-outline",
     },
   ];
 

@@ -58,7 +58,7 @@ export default function AdminDashboard() {
                 <h1 className="text-2xl font-bold text-monefi-black">Portfolio</h1>
               </div>
       
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <SummaryCard
                   label="Available Balance"
                   value={fCurrency(fullBalanceData?.data ?? 0)}

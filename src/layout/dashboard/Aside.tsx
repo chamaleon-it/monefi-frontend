@@ -9,7 +9,7 @@ export default function Aside() {
   const { user } = useAuth();
   const links = useDashboardLinks();
   return (
-    <aside className="max-w-[400px] w-full p-5 bg-monefi-off-pink rounded-4xl lg:sticky lg:top-[104px]">
+    <aside className="max-w-[400px] w-full p-5 bg-monefi-off-pink rounded-4xl mt-2.5">
       <div className="flex gap-5 items-center">
         <div className="">
           <CircleUser width={40} height={40} />

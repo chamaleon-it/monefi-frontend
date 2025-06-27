@@ -30,7 +30,7 @@ export default function DashboardLayout({
       <main className="min-h-[calc(100vh-150px)] max-w-[95%] lg:max-w-[83%] mx-auto">
         <div className="flex flex-col lg:flex-row items-start gap-10 w-full">
           <Aside />
-          <div className="max-w-full lg:max-w-[calc(100%-400px-40px)] w-full py-2.5">
+          <div className="max-w-full lg:max-w-[calc(100%-400px-40px)] w-full p-2.5">
             {children}
           </div>
         </div>
