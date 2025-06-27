@@ -178,13 +178,13 @@ const handleSwiperInit = useCallback((swiper: SwiperType) => {
     
     <div className="w-full lg:w-[43%] flex justify-end items-center gap-2.5"
     >
-      <button className="w-12 h-12 bg-monefi-black rounded-full flex justify-center items-center text-white"
+      <button className="w-12 h-12 bg-monefi-black rounded-full flex justify-center items-center text-white cursor-pointer"
       onClick={() => swiperRef.current?.slidePrev()}
     aria-label="Previous testimonial"
       >
         <ArrowLeft />
       </button>
-      <button className="w-12 h-12 bg-monefi-black rounded-full flex justify-center items-center text-white"
+      <button className="w-12 h-12 bg-monefi-black rounded-full flex justify-center items-center text-white cursor-pointer"
        onClick={() => swiperRef.current?.slideNext()}
     aria-label="Next testimonial"
       >
