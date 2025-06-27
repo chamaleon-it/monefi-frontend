@@ -2,12 +2,13 @@
 // TestimonialsSwiper.tsx
 "use client";
 
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback, useMemo, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, A11y, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // Mock testimonial data - replace with real data
 const testimonialData = [
@@ -108,9 +109,10 @@ export default function TestimonialsSwiper() {
     console.log(`Slide changed to: ${swiper.activeIndex}`);
   }, []);
 
-  const handleSwiperInit = useCallback((swiper: SwiperType) => {
-    console.log('Swiper initialized:', swiper);
-  }, []);
+const handleSwiperInit = useCallback((swiper: SwiperType) => {
+  swiperRef.current = swiper;
+  console.log('Swiper initialized:', swiper);
+}, []);
 
   const swiperConfig = useMemo(() => ({
     modules: [Mousewheel, A11y, Keyboard],
@@ -150,14 +152,22 @@ export default function TestimonialsSwiper() {
     }
   }), []);
 
+  const swiperRef = useRef<SwiperType | null>(null);
+
+
+
   return (
+
+
+    <div className="flex flex-col gap-2.5 w-full">
+
     <div className="w-full" role="region" aria-label="Customer testimonials">
       <Swiper
         {...swiperConfig}
         onSlideChange={handleSlideChange}
         onSwiper={handleSwiperInit}
         className="testimonials-swiper"
-      >
+        >
         {testimonialData.map((testimonial, index) => (
           <SwiperSlide key={testimonial.id} className="h-auto">
             <TestimonialCard testimonial={testimonial} index={index} />
@@ -165,5 +175,22 @@ export default function TestimonialsSwiper() {
         ))}
       </Swiper>
     </div>
+    
+    <div className="w-full lg:w-[43%] flex justify-end items-center gap-2.5"
+    >
+      <button className="w-12 h-12 bg-monefi-black rounded-full flex justify-center items-center text-white"
+      onClick={() => swiperRef.current?.slidePrev()}
+    aria-label="Previous testimonial"
+      >
+        <ArrowLeft />
+      </button>
+      <button className="w-12 h-12 bg-monefi-black rounded-full flex justify-center items-center text-white"
+       onClick={() => swiperRef.current?.slideNext()}
+    aria-label="Next testimonial"
+      >
+        <ArrowRight />
+      </button>
+    </div>
+        </div>
   );
 }
