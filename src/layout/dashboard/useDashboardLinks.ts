@@ -73,11 +73,6 @@ export default function useDashboardLinks(): Links[] {
       icon: "mingcute:paper-fill",
     },
     {
-      title: "Balance",
-      path: paths.dashboard.user.balance,
-      icon: "game-icons:cash",
-    },
-    {
       title: "My Portfolio",
       path: paths.dashboard.user.myPortfolio,
       icon: "zondicons:portfolio",

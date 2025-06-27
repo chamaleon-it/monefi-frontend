@@ -6,8 +6,7 @@ import useSWR from "swr"
 import { TransactionStatus } from "@/enum/transaction-status.enum"
 import { TradeAction } from "@/enum/trade-action.enum"
 import { InvestmentType } from "@/enum/investment-type.enum"
-import { fCurrency } from "@/utility/numberFormatters"
-import { fDateAndTime } from "@/utility/dateFormatters.ts"
+import TransactionRow from "./TransactionRow"
 
 interface Transaction {
   user:{
@@ -49,7 +48,7 @@ export default function TransactionsTable() {
     return `/transactions?${params.toString()}`
   }, [filter])
 
-  const { data, isLoading } = useSWR<TransactionApiResponse>(apiUrl,{revalidateOnFocus:true})
+  const { data, isLoading,mutate } = useSWR<TransactionApiResponse>(apiUrl,{revalidateOnFocus:true,revalidateOnMount:true})
 
   const transactions = data?.data ?? []
   const pagination = data?.pagination
@@ -132,27 +131,7 @@ export default function TransactionsTable() {
 
               {!isLoading && transactions.length > 0 && (
                 <>
-                  {transactions.map((tx, i) => (
-                    <tr key={tx._id} className="border-b bg-monefi-off-pink">
-                      <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
-                      <td className="py-3 px-4 text-sm">{tx.user.email}</td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">{tx.symbol}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{tx.quantity}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(tx.unitPrice)}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(tx.totalValue)}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{tx.tradeAction}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{tx.investmentType}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{fDateAndTime(tx.createdAt)}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{tx.status}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
-                        <div className="flex gap-2.5">
-
-                        <button className="px-2 py-1.5 rounded-md text-white bg-green-600">Complete</button>
-                        <button className="px-2 py-1.5 rounded-md text-white bg-red-600">Cancel</button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                  {transactions.map((tx, i) => <TransactionRow  filter={filter} i={i} tx={tx} key={tx._id} mutate={mutate}/>)}
                 </>
               )}
 

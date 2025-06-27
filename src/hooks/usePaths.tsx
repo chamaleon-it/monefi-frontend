@@ -26,7 +26,6 @@ export default function usePaths() {
         tradeStock: "/dashboard/user/trade-stock",
         tradeCrypto: "/dashboard/user/trade-crypto",
         bonds: "/dashboard/user/bonds",
-        balance: "/dashboard/user/balance",
         myPortfolio: "/dashboard/user/my-portfolio",
       },
     },
