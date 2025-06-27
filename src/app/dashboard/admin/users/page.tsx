@@ -4,6 +4,7 @@ import { UserStatus } from "@/enum/user-status.enum"
 import type { UserRoles } from "@/enum/user.enum"
 import api from "@/services/api"
 import { fAgo, fDateAndTime } from "@/utility/dateFormatters.ts"
+import { fCurrency } from "@/utility/numberFormatters"
 import { useState, useMemo } from "react"
 import toast from "react-hot-toast"
 import useSWR from "swr"
@@ -14,7 +15,8 @@ interface User {
   role: UserRoles
   status: UserStatus
   lastLogin: Date
-  createdAt: Date
+  createdAt: Date,
+  balance:number
 }
 
 interface Pagination {
@@ -150,6 +152,9 @@ export default function UsersPage() {
       <td className="py-2.5 text-center">
         <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
       </td>
+      <td className="py-2.5 text-center">
+        <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
+      </td>
     </tr>
   )
 
@@ -199,6 +204,7 @@ export default function UsersPage() {
                 <th className="py-4 px-4 text-left">SL.No</th>
                 <th className="py-4 px-4 text-left">Email Address</th>
                 <th className="py-4 px-4 text-left">Status</th>
+                <th className="py-4 px-4 text-left">Balance</th>
                 <th className="py-4 px-4 text-left">Registration Date</th>
                 <th className="py-4 px-4 text-left">Last Login</th>
                 <th className="py-4 px-4 text-left">Actions</th>
@@ -237,6 +243,7 @@ export default function UsersPage() {
                           {user.status}
                         </span>
                       </td>
+                      <td className="py-3 px-4 text-gray-600">{fCurrency(user.balance)}</td>
                       <td className="py-3 px-4 text-gray-600">{fDateAndTime(user.createdAt)}</td>
                       <td className="py-3 px-4 text-gray-600">{user.lastLogin ? fAgo(user.lastLogin) : "Never"}</td>
                       <td className="py-3 px-4">
