@@ -1,23 +1,10 @@
 "use client";
 
 import usePaths from "@/hooks/usePaths";
-import {
-  ChevronDown,
-  Home,
-  Car,
-  Calculator,
-  User,
-  GraduationCap,
-  Lightbulb,
-  Zap,
-  Droplets,
-  Wifi,
-  Headphones,
-  HelpCircle,
-} from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import LoginButton from "./LoginButton";
 import { usePathname } from "next/navigation";
 
@@ -26,11 +13,7 @@ export default function Header() {
   const isDashboard = useMemo(() => pathname.includes('/dashboard'), [pathname])
   const paths = usePaths();
 
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const toggleDropdown = (item: string | null) => {
-    setActiveDropdown((prev) => (prev === item ? null : item));
-  };
 
 
   return (
@@ -60,100 +43,31 @@ export default function Header() {
 
         {/* Navigation Links */}
         <ul className={`hidden lg:flex gap-8 font-inter mac:text-lg relative ${isDashboard ? 'text-black' : "text-white"}`}>
-          <li className="relative"   onMouseEnter={() => toggleDropdown("insurance")}
-              onMouseLeave={()=>toggleDropdown(null)}>
+          <li className="relative"   
+              >
                 
             <Link href={paths.insurance}><button className="flex gap-0.5 items-center cursor-pointer">Insurance</button></Link>
           </li>
 
           <li className="relative"
-            onMouseEnter={() => toggleDropdown("loans")}
-              onMouseLeave={()=>toggleDropdown(null)}
-          >
+           
+          ><Link href={paths.loans}>
             <button
             
               className="flex gap-0.5 items-center cursor-pointer"
             >
-              Loans <ChevronDown width={20} />
+              loan Types 
             </button>
-            {activeDropdown === "loans" && (
-              <>
-              <div className="absolute top-full h-2 left-0  w-[400px]"></div>
-              <div className="absolute top-full mt-2 left-0 grid grid-cols-2 gap-6 p-6 bg-white text-black rounded-b-2xl shadow-lg z-50 w-[400px]">
-                <div>
-                  <h4 className="font-semibold mb-2">Loan Types</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <Link
-                        href="/loans/personal"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <User className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Personal Loan
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/loans/home"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Home className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Home Loan
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/loans/auto"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Car className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Auto Loan
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/loans/student"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <GraduationCap className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Student Loan
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Loan Tools</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <Link
-                        href="/tools/loan-calculator"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Calculator className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Loan Calculator
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/resources/loan-tips"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Lightbulb className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Loan Tips
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              </>
-            )}
+            </Link>
           </li>
-
+ <li>
+            <Link href={paths.resources}>Resources</Link>
+          </li>
           <li>
             <Link href={paths.mortgages}>Mortgages</Link>
           </li>
 
-          <li className="relative" onMouseEnter={() => toggleDropdown("utilities")}
+          {/* <li className="relative" onMouseEnter={() => toggleDropdown("utilities")}
               onMouseLeave={()=>toggleDropdown(null)}>
             <button
               
@@ -223,10 +137,10 @@ export default function Header() {
               </div>
               </>
             )}
-          </li>
+          </li> */}
 
           <li>
-            <Link href={paths.estatePlanning}>Estate Planning</Link>
+            <Link href={paths.financialplanning}>Financial Planning</Link>
           </li>
         </ul>
 

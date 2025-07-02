@@ -1,46 +1,46 @@
 "use client";
 
-import { Box, Search, Settings, Sparkles } from "lucide-react";
+import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
-export function Insurance_Solutions() {
+export function Section2() {
   return (
     <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
-      <h1 className="text-white text-4xl text-center py-10">Why You Need Life Insurance</h1>
+      <h1 className="text-white text-4xl text-center py-10">What You’ll Find in Our Resources Hub</h1>
     <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Income Replacement"
-        description="Ensure your family can meet day-to-day living costs—mortgage or rent, utilities, groceries—even if you’re no longer there to provide."
+        title="Financial Guides"
+        description="Straightforward guides that break down complex topics—from understanding credit scores to navigating pensions and investment terms."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Debt & Liability Coverage"
-        description="  Pay off outstanding loans, credit-card balances, or long-term debts without forcing your family to shoulder the burden."
+        title="Calculators & Tools"
+        description="Interactive tools to help you budget smarter, estimate loan repayments, forecast mortgage costs, and more."
       />
 
-      {/* <GridItem
+      <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="You should buy Aceternity UI Pro"
-        description="It's the best money you'll ever spend"
-      /> */}
+        title="FAQs & Help Centre"
+        description="Quick answers to the most common questions our customers ask—available 24/7 for instant clarity."
+      />
 
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Education & Milestone Funding"
-        description="  Lock in the funds needed to send children to college, cover wedding expenses, or support other future milestones."
+        title="Glossary of Financial Terms"
+        description="Confused by jargon? Our glossary simplifies everything from APR to equity release."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Estate Planning & Inheritance"
-        description="Leave a tax-efficient legacy that can be used for wealth transfer, charitable gifting, or smoothing estate-settlement costs."
+        title="Monefi Blog (Coming Soon)"
+        description="Stay up-to-date with the latest tips, trends, and financial insights written by our in-house experts."
       />
     </ul>
     </div>

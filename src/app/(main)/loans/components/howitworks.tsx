@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
-import { StickyScroll } from "../components/ui/sticky-scroll-reveal";
 import Image from "next/image";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 
 const content = [
   {
-    title: "Tailored Advice",
+    title: "Apply online in minutes",
     description:
-      "   Our specialists take time to understand your financial goals and recommend the right policy structure.",
+      "",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
         Collaborative Editing
@@ -16,9 +16,9 @@ const content = [
     ),
   },
   {
-    title: "Competitive Rates",
+    title: "Get matched with suitable lenders",
     description:
-      "We leverage our network of top insurers to secure you market-leading premiums.",
+      "",
     content: (
       <div className="flex h-full w-full items-center justify-center text-white">
         <Image
@@ -32,9 +32,9 @@ const content = [
     ),
   },
   {
-    title: "Hassle-Free Application",
+    title: "Choose your offer ",
     description:
-      "   Simplified underwriting and digital policy management make it easy to apply and review your cover.",
+      "  Choose your offer and complete your application",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
         Version control
@@ -42,9 +42,9 @@ const content = [
     ),
   },
   {
-    title: "Ongoing Support",
+    title: "Funds transferred ",
     description:
-      "   From policy questions to claim assistance, our dedicated team stands by you every step of the way.",
+      " Funds transferred directly to your account once approved",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
         Running out of content
@@ -52,7 +52,7 @@ const content = [
     ),
   },
 ];
-export function Whychoose() {
+export function Howitwork() {
   return (
     <div className="w-full bg-monefi-black py-[120px] space-y-10 font-poppins" data-lenis-prevent>
       <div className="py-10 text-center text-4xl">

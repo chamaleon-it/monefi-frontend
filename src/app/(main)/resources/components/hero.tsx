@@ -9,12 +9,13 @@ export function HeroSection() {
       <div className="container mx-auto max-w-6xl text-center space-y-5">
 
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight px-4">
-          Life  <span style={{ color: "#ec709a" }}>Insurance</span>
+          Resources – Knowledge That  <br />  <span style={{ color: "#ec709a" }}>Empowers</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         Protecting the financial future of your loved ones is one of the most important decisions you can make. Life insurance provides a guaranteed benefit in the event of death, helping cover expenses and maintain your family’s standard of living. At Monefi, we offer flexible life insurance solutions designed to fit every stage of life and every budget.
+         At Monefi, we believe informed decisions lead to better outcomes. That&apos;s why we&apos;ve built a dedicated Resources section—your one-stop destination for financial education, guidance, and tools to help you take charge of your future.
         </p>
+        <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">Whether you&apos;re exploring mortgages, comparing insurance options, or planning your next big life step, this is where clarity begins.</p>
                <motion.div
           initial={{
             opacity: 0,
@@ -40,4 +41,5 @@ export function HeroSection() {
     </section>
   )
 }
+
 

@@ -3,6 +3,8 @@ export default function usePaths() {
     home: "/",
     aboutUs: "/about-us",
     insurance: "/insurance",
+    resources:"/resources",
+    financialplanning:"/financial-planning",
     loans: "/loans",
     mortgages: "/mortgages",
     utilities: "/utilities",
