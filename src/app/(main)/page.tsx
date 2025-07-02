@@ -1,6 +1,6 @@
 import FAQ from '@/sections/home/FAQ'
 import Hero from '@/sections/home/Hero'
-import LatestNews from '@/sections/home/LatestNews'
+// import LatestNews from '@/sections/home/LatestNews'
 import Mission from '@/sections/home/Mission'
 import OurPromise from '@/sections/home/OurPromise'
 import ServiceWeOffers from '@/sections/home/ServiceWeOffers'
