@@ -6,33 +6,33 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     id: 0,
-    question: "Can I cancel my subscription at any time?",
+    question: "What is the difference between life insurance and income protection?",
     answer:
-      "Yes, you can cancel your subscription at any time from your account settings.",
+      "Life insurance provides a lump-sum payout to your loved ones if you pass away during the policy term. Income protection, on the other hand, pays you a monthly income if you’re unable to work due to illness or injury—helping you cover bills and maintain your lifestyle while you recover.",
   },
   {
     id: 1,
-    question: "Can I postpone or skip a delivery?",
+    question: "Will applying for a loan or mortgage with Monefi affect my credit score?",
     answer:
-      "Absolutely! You can manage your deliveries through your dashboard easily.",
+      "No—when you first apply, we only perform a soft credit check, which does not impact your credit score. A hard credit check will only be conducted once you choose a lender and move forward with your application.",
   },
   {
     id: 2,
-    question: "How long will it take to see the results?",
+    question: "Can I get financial advice even if I don’t have a lot to invest?",
     answer:
-      "Results vary, but most users see changes within 2-4 weeks of consistent use.",
+      "Absolutely. At Monefi, we believe everyone deserves quality financial guidance—no matter their income or assets. Whether you're just starting out or building wealth, our advisers offer personalised support tailored to your goals and budget.",
   },
   {
     id: 3,
-    question: "What is your return policy?",
+    question: "How long does it take to get approved for a loan or mortgage?",
     answer:
-      "We offer a 30-day return policy on all products, no questions asked.",
+      "This varies by lender and product, but many personal loans can be approved within 24–48 hours. Mortgage approvals typically take 2–4 weeks, depending on your documentation and the property involved. Our advisers will keep you informed every step of the way.",
   },
   {
     id: 4,
-    question: "How long will my order take to arrive?",
+    question: "What happens if I want to cancel my insurance policy?",
     answer:
-      "Orders are processed within 1-2 business days and usually arrive within 5 days.",
+      "Most policies come with a 14-day cooling-off period, during which you can cancel without penalty. If you cancel after that, there may be fees or loss of cover. Always speak with a Monefi adviser first—we'll explain your rights clearly and help you avoid unnecessary costs.",
   },
 ];
 

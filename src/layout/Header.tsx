@@ -1,152 +1,191 @@
-"use client";
+"use client"
 
-import usePaths from "@/hooks/usePaths";
-
-import Image from "next/image";
-import Link from "next/link";
-import { useMemo } from "react";
-import LoginButton from "./LoginButton";
-import { usePathname } from "next/navigation";
+import usePaths from "@/hooks/usePaths"
+import Image from "next/image"
+import Link from "next/link"
+import { useMemo, useState } from "react"
+import LoginButton from "./LoginButton"
+import { usePathname } from "next/navigation"
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Menu, X } from "lucide-react"
 
 export default function Header() {
   const pathname = usePathname()
-  const isDashboard = useMemo(() => pathname.includes('/dashboard'), [pathname])
-  const paths = usePaths();
+  const isDashboard = useMemo(() => pathname.includes("/dashboard"), [pathname])
+  const paths = usePaths()
+  const [isOpen, setIsOpen] = useState(false)
 
-
-
+  const navigationItems = [
+    { href: paths.insurance, label: "Insurance" },
+    { href: paths.loans, label: "Loan Types" },
+    { href: paths.resources, label: "Resources" },
+    { href: paths.mortgages, label: "Mortgages" },
+    { href: paths.financialplanning, label: "Financial Planning" },
+  ]
 
   return (
-    <header className={`sticky  z-50 ${isDashboard ?"bg-white py-3 top-0 border-b-[1px] border-black/30" : 'bg-monefi-black pb-7 pt-[74px] -top-11'}`}>
-      <div className="max-w-[83%] mx-auto flex justify-between items-center relative">
-        {/* Logo */}
-        <Link
-          href={paths.home}
-          aria-label="Home Page"
-          title="Monefi. Home Page"
-        >
-          <Image
-            src={isDashboard ? "/logo-2.png" : "/logo.png"}
-            width={164}
-            height={40}
-            alt="Monefi logo"
-            className="hidden lg:block"
-          />
-          <Image
-            src={isDashboard ? "/logo-2.png" : "/logo.png"}
-            width={134}
-            height={40}
-            alt="Monefi logo"
-            className="lg:hidden"
-          />
-        </Link>
+    <header
+      className={`sticky z-50 transition-all duration-300 ${
+        isDashboard
+          ? "bg-white/95 backdrop-blur-md py-4 top-0 border-b border-gray-200/50 shadow-sm"
+          : "bg-monefi-black/95 backdrop-blur-md pb-8 pt-8 lg:pt-20 -top-1 lg:-top-11 border-b border-white/10"
+      }`}
+    >
+      <div className="mac:max-w-[83%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link
+            href={paths.home}
+            aria-label="Home Page"
+            title="Monefi. Home Page"
+            className="flex-shrink-0 transition-transform hover:scale-105 duration-200"
+          >
+            <Image
+              src={isDashboard ? "/logo-2.png" : "/logo.png"}
+              width={164}
+              height={40}
+              alt="Monefi logo"
+              className="hidden sm:block"
+            />
+            <Image
+              src={isDashboard ? "/logo-2.png" : "/logo.png"}
+              width={120}
+              height={30}
+              alt="Monefi logo"
+              className="sm:hidden"
+            />
+          </Link>
 
-        {/* Navigation Links */}
-        <ul className={`hidden lg:flex gap-8 font-inter mac:text-lg relative ${isDashboard ? 'text-black' : "text-white"}`}>
-          <li className="relative"   
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            <ul className="flex items-center space-x-1">
+              {navigationItems.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href}>
+                    <button
+                      className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 hover:scale-105 mac:text-lg ${
+                        isDashboard
+                          ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                          : "text-white/90 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Desktop Login Button */}
+          <div className="hidden lg:flex items-center ml-8">
+            <LoginButton isDashboard={isDashboard} />
+          </div>
+
+          {/* Mobile Menu */}
+          <div className="lg:hidden flex items-center space-x-3">
+            {/* Mobile Login Button */}
+            <div className="block">
+              <LoginButton isDashboard={isDashboard} />
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                {/* <Button
+                  variant="ghost"
+                  size="icon"
+                  className={`relative  rounded-lg transition-all duration-200 hover:scale-105 ${
+                    isDashboard
+                      ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                      : "text-white hover:text-white hover:bg-white/10"
+                  }`}
+                > */}
+                  <Menu   width={30} height={30} className={`relative  rounded-lg transition-all duration-200 hover:scale-105 ${
+                    isDashboard
+                      ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                      : "text-white hover:text-white hover:bg-white/10"
+                  }`}/>
+                 
+                {/* </Button> */}
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className={`w-full sm:w-[400px] p-0 border-0 ${isDashboard ? "bg-white" : "bg-monefi-black"}`}
               >
-                
-            <Link href={paths.insurance}><button className="flex gap-0.5 items-center cursor-pointer">Insurance</button></Link>
-          </li>
+                <div className="flex flex-col h-full">
+                  {/* Mobile Menu Header */}
+                  <div
+                    className={`flex items-center justify-between p-6 border-b ${
+                      isDashboard ? "border-gray-200" : "border-white/10"
+                    }`}
+                  >
+                    <Link
+                      href={paths.home}
+                      onClick={() => setIsOpen(false)}
+                      aria-label="Home Page"
+                      className="transition-transform hover:scale-105 duration-200"
+                    >
+                      <Image
+                        src={isDashboard ? "/logo-2.png" : "/logo.png"}
+                        width={140}
+                        height={35}
+                        alt="Monefi logo"
+                      />
+                    </Link>
+                    <SheetClose asChild>
 
-          <li className="relative"
-           
-          ><Link href={paths.loans}>
-            <button
-            
-              className="flex gap-0.5 items-center cursor-pointer"
-            >
-              loan Types 
-            </button>
-            </Link>
-          </li>
- <li>
-            <Link href={paths.resources}>Resources</Link>
-          </li>
-          <li>
-            <Link href={paths.mortgages}>Mortgages</Link>
-          </li>
+                  
+                      <X onClick={() => setIsOpen(false)} width={30} height={30} className={` rounded-lg shrink-0 cursor-pointer ${
+                        isDashboard
+                        ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                        : "text-white hover:text-white hover:bg-white/10"
+                        }`} />
+                    
+                      </SheetClose>
+                  </div>
 
-          {/* <li className="relative" onMouseEnter={() => toggleDropdown("utilities")}
-              onMouseLeave={()=>toggleDropdown(null)}>
-            <button
-              
-              className="flex gap-0.5 items-center cursor-pointer"
-            >
-              Utilities <ChevronDown width={20} />
-            </button>
-            {activeDropdown === "utilities" && (
-              <>
-              <div className="absolute top-full h-2 left-0  w-[400px]"></div>
-              <div className="absolute top-full mt-2 left-0 grid grid-cols-2 gap-6 p-6 bg-white text-black rounded-b-2xl shadow-lg z-50 w-[400px]">
-                <div>
-                  <h4 className="font-semibold mb-2">Services</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <Link
-                        href="/utilities/electricity"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Zap className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Electricity
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/utilities/water"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Droplets className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Water
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/utilities/internet"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Wifi className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Internet
-                      </Link>
-                    </li>
-                  </ul>
+                  {/* Mobile Navigation Links */}
+                  <nav className="flex-1 p-6">
+                    <ul className="space-y-2">
+                      {navigationItems.map((item, index) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setIsOpen(false)}
+                            className={`block px-4 py-3 rounded-lg font-medium text-base transition-all duration-200 hover:scale-[1.02] ${
+                              isDashboard
+                                ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                                : "text-white/90 hover:text-white hover:bg-white/10"
+                            }`}
+                            style={{
+                              animationDelay: `${index * 50}ms`,
+                            }}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+
+                  {/* Mobile Menu Footer */}
+                  <div className={`p-6 border-t ${isDashboard ? "border-gray-200" : "border-white/10"}`}>
+                    <div className="space-y-4">
+                      <div className="sm:hidden">
+                        <LoginButton isDashboard={isDashboard} />
+                      </div>
+                      <div className={`text-xs text-center ${isDashboard ? "text-gray-500" : "text-white/60"}`}>
+                        © {new Date().getFullYear()} Monefi. All rights reserved.
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Help & Support</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <Link
-                        href="/contact"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Headphones className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Customer Support
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/faqs"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <HelpCircle className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        FAQs
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              </>
-            )}
-          </li> */}
-
-          <li>
-            <Link href={paths.financialplanning}>Financial Planning</Link>
-          </li>
-        </ul>
-
-        {/* Login Button */}
-       <LoginButton isDashboard={isDashboard}/>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
       </div>
     </header>
-  );
+  )
 }

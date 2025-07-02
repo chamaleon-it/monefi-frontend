@@ -17,7 +17,8 @@
   --color-monefi-yellow:#F9EB9F;
   --breakpoint-mac:2000px;
   --color-monefi-green:#647E4E;
-  --color-monefi-off-pink:#FFE7EF
+  --color-monefi-off-pink:#FFE7EF;
+  --breakpoint-mac:125rem
 }
 
 @media (prefers-color-scheme: dark) {
