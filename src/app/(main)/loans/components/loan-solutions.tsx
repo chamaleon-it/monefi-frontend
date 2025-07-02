@@ -1,46 +1,47 @@
 "use client";
 
-import { Box, Search, Settings, Sparkles } from "lucide-react";
+import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
-export function Insurance_Solutions() {
+export function Loan_Solutions() {
   return (
     <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
-      <h1 className="text-white text-4xl text-center py-10">Why You Need Life Insurance</h1>
+      <h1 className="text-white text-4xl text-center py-10">Explore Our Loan Solutions</h1>
+      <p className="text-white font-poppins text-lg text-center ">We offer a wide range of loans, each designed to suit different needs and lifestyles. Our  application process is quick, <br /> our guidance is clear, and our support is personal.</p>
     <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Income Replacement"
-        description="Ensure your family can meet day-to-day living costs—mortgage or rent, utilities, groceries—even if you’re no longer there to provide."
+        title="Personal Loans"
+        description="Flexible loans for almost any purpose—whether it's a dream holiday, a home upgrade, or a financial reset."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Debt & Liability Coverage"
-        description="  Pay off outstanding loans, credit-card balances, or long-term debts without forcing your family to shoulder the burden."
+        title="Car Finance"
+        description=" Drive away with confidence. Choose from Hire Purchase (HP), Personal Contract Purchase (PCP), or personal car loans—all with competitive rates and clear terms."
       />
 
-      {/* <GridItem
+      <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="You should buy Aceternity UI Pro"
-        description="It's the best money you'll ever spend"
-      /> */}
+        title="Debt Consolidation Loans"
+        description="Combine multiple debts into one manageable monthly payment. Simplify your finances and potentially reduce your interest burden."
+      />
 
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Education & Milestone Funding"
-        description="  Lock in the funds needed to send children to college, cover wedding expenses, or support other future milestones."
+        title="Home Improvement Loans"
+        description=" Transform your home with funding that fits your budget. No equity needed."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Estate Planning & Inheritance"
-        description="Leave a tax-efficient legacy that can be used for wealth transfer, charitable gifting, or smoothing estate-settlement costs."
+        title="Bad Credit Loans (subject to availability)"
+        description="Life happens—we’re here to help. We work with lenders who consider a range of credit histories."
       />
     </ul>
     </div>

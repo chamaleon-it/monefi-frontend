@@ -9,11 +9,11 @@ export function HeroSection() {
       <div className="container mx-auto max-w-6xl text-center space-y-5">
 
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight px-4">
-          Life  <span style={{ color: "#ec709a" }}>Insurance</span>
+          Loan Types &lsquo; Finance That Fits <br />  <span style={{ color: "#ec709a" }}>Your Life</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         Protecting the financial future of your loved ones is one of the most important decisions you can make. Life insurance provides a guaranteed benefit in the event of death, helping cover expenses and maintain your family’s standard of living. At Monefi, we offer flexible life insurance solutions designed to fit every stage of life and every budget.
+         Whether you&apos;re planning a big purchase, consolidating debt, or need quick access to funds, Monefi makes borrowing simple, transparent, and tailored to you. We partner with trusted UK lenders to bring you competitive loan options—without the confusion or hard sales.
         </p>
                <motion.div
           initial={{
@@ -40,4 +40,5 @@ export function HeroSection() {
     </section>
   )
 }
+
 

@@ -1,17 +1,17 @@
 import React from 'react'
 import { HeroSection } from './components/hero'
-import { Mortgage_Services } from './components/mortgage-services'
+import { Section2 } from './components/section2'
 import Section3 from './components/section3'
-import { Works } from './components/works'
+import { Section4 } from './components/section4'
 import FAQ from '@/sections/home/FAQ'
 
-export default function MortgagesPage() {
+export default function Resourcespage() {
   return (
     <main>
       <HeroSection/>
-      <Mortgage_Services/>
+      <Section2/>
       <Section3/>
-      <Works/>
+      <Section4/>
       <FAQ/>
     </main>
   )

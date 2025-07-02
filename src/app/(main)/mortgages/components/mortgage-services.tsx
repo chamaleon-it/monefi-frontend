@@ -1,46 +1,46 @@
 "use client";
 
-import { Box, Search, Settings, Sparkles } from "lucide-react";
+import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
-export function Insurance_Solutions() {
+export function Mortgage_Services() {
   return (
     <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
-      <h1 className="text-white text-4xl text-center py-10">Why You Need Life Insurance</h1>
+      <h1 className="text-white text-4xl text-center py-10">Explore Our Mortgage Services</h1>
     <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Income Replacement"
-        description="Ensure your family can meet day-to-day living costs—mortgage or rent, utilities, groceries—even if you’re no longer there to provide."
+        title="First-Time Buyer Mortgages"
+        description="Step onto the property ladder with ease. We'll guide you through every step and help you access competitive deals, even with a small deposit."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Debt & Liability Coverage"
-        description="  Pay off outstanding loans, credit-card balances, or long-term debts without forcing your family to shoulder the burden."
+        title="Remortgaging"
+        description=" Time for a better rate? Reduce your monthly payments, release equity, or consolidate debt with remortgage options that work for you."
       />
 
-      {/* <GridItem
+      <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="You should buy Aceternity UI Pro"
-        description="It's the best money you'll ever spend"
-      /> */}
+        title="Buy-to-Let Mortgages"
+        description="Looking to invest in property? Discover tailored solutions for landlords and investors—whether you're buying your first rental or expanding a portfolio."
+      />
 
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Education & Milestone Funding"
-        description="  Lock in the funds needed to send children to college, cover wedding expenses, or support other future milestones."
+        title="Help-to-Buy & Shared Ownership (where available)"
+        description="Explore government-backed schemes that can make homeownership more affordable."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Estate Planning & Inheritance"
-        description="Leave a tax-efficient legacy that can be used for wealth transfer, charitable gifting, or smoothing estate-settlement costs."
+        title="Bad Credit Mortgages (subject to eligibility)"
+        description="We understand life doesn’t always go to plan. We work with lenders who look beyond your credit score."
       />
     </ul>
     </div>
