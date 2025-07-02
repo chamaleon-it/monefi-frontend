@@ -27,12 +27,12 @@ export default function WhyYouNeedSection() {
               <p className="font-poppins text-xs mt-2">Flexible premiums and adjustable benefit amounts Cash value accounts linked to interest rates Potential to borrow against policy  Savers who want policy flexibility</p>
             </div>
           </div>
-          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/home/news/3.jpg)] bg-cover overflow-hidden">
+          {/* <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/home/news/3.jpg)] bg-cover overflow-hidden">
             <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white bg-gradient-to-t from-black to-transparent ">
               <h3 className="font-inter font-medium text-3xl">Iterate</h3>
               <p className="font-poppins text-xs mt-2">Introducing our revolutionary developer matchmaking services.</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

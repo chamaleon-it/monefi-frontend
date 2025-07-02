@@ -23,7 +23,7 @@ export default function HomePage() {
    <Mission/>
    <OurPromise/>
    <Testimonials/>
-   <LatestNews/>
+   {/* <LatestNews/> */}
    <FAQ/>
    </main>
   )
