@@ -249,7 +249,7 @@ export default function ApplicationTable() {
               {!isLoading && applications.length === 0 && (
                 <tr>
                   <td colSpan={5} className="text-center py-10 text-gray-500">
-                    No bonds found.
+                    No applications found.
                   </td>
                 </tr>
               )}
