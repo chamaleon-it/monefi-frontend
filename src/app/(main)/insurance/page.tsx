@@ -1,14 +1,20 @@
 import React from 'react'
 
-import { WhyYouNeedSection } from './components/why-you-need'
-import { HeroSection } from './components/hero'
+import {  HeroSection } from './components/hero'
+import New from './components/new'
+import { Whychoose } from './components/whychoose'
+import { Insurance_Solutions } from './components/insurance-solutions'
+
+
 
 
 export default function InsurancePage() {
   return (
     <main>
       <HeroSection/>
-      <WhyYouNeedSection/>
+      <Insurance_Solutions/>
+      <New/>
+     <Whychoose/>
     </main>
   )
 }

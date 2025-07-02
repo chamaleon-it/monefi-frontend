@@ -3,12 +3,8 @@
 import usePaths from "@/hooks/usePaths";
 import {
   ChevronDown,
-  Heart,
-  Cross,
   Home,
   Car,
-  FileText,
-  BarChart3,
   Calculator,
   User,
   GraduationCap,
@@ -66,93 +62,8 @@ export default function Header() {
         <ul className={`hidden lg:flex gap-8 font-inter mac:text-lg relative ${isDashboard ? 'text-black' : "text-white"}`}>
           <li className="relative"   onMouseEnter={() => toggleDropdown("insurance")}
               onMouseLeave={()=>toggleDropdown(null)}>
-            <button
-            
-              className="flex gap-0.5 items-center cursor-pointer"
-            >
-              {" "}
-              Insurance <ChevronDown width={20} />
-            </button>
-            {activeDropdown === "insurance" && (
-              <>
-              <div className="absolute top-full h-2 left-0  w-[400px]"></div>
-              <div className="absolute top-full mt-2 left-0 grid grid-cols-2 gap-6 p-6 bg-white text-black rounded-b-2xl shadow-lg z-50 w-[400px]">
-                <div>
-                  <h4 className="font-semibold mb-2">Insurance Types</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <Link
-                        href="/insurance/life"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Heart className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Life Insurance
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/insurance/health"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Cross className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Health Insurance
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/insurance/home"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Home className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Home Insurance
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/insurance/vehicle"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Car className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Vehicle Insurance
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Resources</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <Link
-                        href="/resources/claims"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <FileText className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Claim Guide
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/resources/policies"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <BarChart3 className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Compare Policies
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/contact"
-                        className="flex items-center text-gray-500 hover:text-blue-600 group"
-                      >
-                        <Calculator className="w-3 h-3 me-2 text-gray-400 group-hover:text-blue-600" />
-                        Get a Quote
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              </>
-            )}
+                
+            <Link href={paths.insurance}><button className="flex gap-0.5 items-center cursor-pointer">Insurance</button></Link>
           </li>
 
           <li className="relative"
