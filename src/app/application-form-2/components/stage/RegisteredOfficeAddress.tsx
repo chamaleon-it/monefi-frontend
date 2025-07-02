@@ -26,7 +26,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, company: { ...prev.company, address: e.target.value } }))
           }
-          value={formData.company.address}
+          value={formData.company?.address}
         />
         <input
           type="text"
@@ -35,7 +35,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, company: { ...prev.company, streetName: e.target.value } }))
           }
-          value={formData.company.streetName}
+          value={formData.company?.streetName}
         />
         <input
           type="text"
@@ -44,7 +44,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, company: { ...prev.company, town: e.target.value } }))
           }
-          value={formData.company.town}
+          value={formData.company?.town}
         />
         <input
           type="text"
@@ -53,7 +53,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, company: { ...prev.company, region: e.target.value } }))
           }
-          value={formData.company.region}
+          value={formData.company?.region}
         />
         <input
           type="text"
@@ -62,7 +62,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, company: { ...prev.company, postcode: e.target.value } }))
           }
-          value={formData.company.postcode}
+          value={formData.company?.postcode}
         />
         <input
           type="text"
@@ -71,7 +71,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, company: { ...prev.company, country: e.target.value } }))
           }
-          value={formData.company.country}
+          value={formData.company?.country}
         />
       </div>
 
@@ -85,7 +85,7 @@ export default function RegisteredOfficeAddress({ setStage, formData, setFormDat
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
-           if(!formData.company.address || !formData.company.streetName || !formData.company.town || !formData.company.region || !formData.company.postcode || !formData.company.country) {
+           if(!formData.company?.address || !formData.company?.streetName || !formData.company?.town || !formData.company?.region || !formData.company?.postcode || !formData.company?.country) {
               toast.error("Please fill in all address fields.");
               return;
             }
