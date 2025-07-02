@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormDataType, StageType } from '../Form';
+import toast from 'react-hot-toast';
 
 
 
@@ -23,7 +24,7 @@ export default function CompanyCategory({formData,setFormData,setStage}: Props) 
             <label
               key={type}
               className={`cursor-pointer px-4 py-2 rounded-md border ${
-                formData.company.category === type
+                formData.company?.category === type
                   ? "bg-monefi-black text-monefi-off-white border-monefi-black"
                   : "border-monefi-off-white text-monefi-off-white"
               }`}
@@ -32,7 +33,7 @@ export default function CompanyCategory({formData,setFormData,setStage}: Props) 
                 type="radio"
                 name="accountType"
                 value={type}
-                checked={formData.company.category === type}
+                checked={formData.company?.category === type}
                 onChange={() => {
                   setFormData((prev) => ({
                     ...prev,
@@ -58,6 +59,10 @@ export default function CompanyCategory({formData,setFormData,setStage}: Props) 
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
+            if(!formData.company?.category){
+              toast.error("Select any category")
+              return
+            }
             setStage("Company Registered Address");
           }}
         >

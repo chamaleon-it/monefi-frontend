@@ -25,9 +25,9 @@ export default function JointDetails({
         <select
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,title:e.target.value} }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, title: e.target.value } }))
           }
-          value={formData.jointHolder.title}
+          value={formData?.jointHolder?.title}
         >
           <option className="bg-monefi-pink" value="">
             Title
@@ -62,7 +62,7 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,firstName:e.target.value} }))
           }
-          value={formData.jointHolder.firstName}
+          value={formData?.jointHolder?.firstName}
         />
         <input
           type="text"
@@ -71,7 +71,7 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,lastName:e.target.value} }))
           }
-          value={formData.jointHolder.lastName}
+          value={formData?.jointHolder?.lastName}
         />
         <input
           type="date"
@@ -80,7 +80,7 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,dateOfBirth:e.target.value} }))
           }
-          value={formData.jointHolder.dateOfBirth}
+          value={formData?.jointHolder?.dateOfBirth}
         />
         <input
           type="text"
@@ -89,7 +89,7 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,occupation:e.target.value} }))
           }
-          value={formData.jointHolder.occupation}
+          value={formData?.jointHolder?.occupation}
         />
         <input
           type="text"
@@ -101,7 +101,7 @@ export default function JointDetails({
               jointHolder:{...prev.jointHolder,occupationCategory:e.target.value}
             }))
           }
-          value={formData.jointHolder.occupationCategory}
+          value={formData?.jointHolder?.occupationCategory}
         />
        
 
@@ -112,7 +112,7 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,homePhone:e.target.value} }))
           }
-          value={formData.jointHolder.homePhone}
+          value={formData?.jointHolder?.homePhone}
         />
         <input
           type="text"
@@ -121,7 +121,7 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,mobilePhone:e.target.value} }))
           }
-          value={formData.jointHolder.mobilePhone}
+          value={formData?.jointHolder?.mobilePhone}
         />
         
       </div>
@@ -136,35 +136,35 @@ export default function JointDetails({
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
-            if (!formData.jointHolder.title) {
+            if (!formData?.jointHolder?.title) {
               toast.error("Please select a title");
               return;
             }
-            if (!formData.jointHolder.firstName) {
+            if (!formData?.jointHolder?.firstName) {
               toast.error("Please enter your first name");
               return;
             }
-            if (!formData.jointHolder.lastName) {
+            if (!formData?.jointHolder?.lastName) {
               toast.error("Please enter your last name");
               return;
             }
-            if (!formData.jointHolder.dateOfBirth) {
+            if (!formData?.jointHolder?.dateOfBirth) {
               toast.error("Please enter your date of birth");
               return;
             }
-            if (!formData.jointHolder.occupation) {
+            if (!formData?.jointHolder?.occupation) {
               toast.error("Please enter your occupation");
               return;
             }
-            if (!formData.jointHolder.occupationCategory) {
+            if (!formData?.jointHolder?.occupationCategory) {
               toast.error("Please enter your occupation category");
               return;
             }
-            if (!formData.jointHolder.homePhone) {
+            if (!formData?.jointHolder?.homePhone) {
               toast.error("Please enter your home phone");
               return;
             }
-            if (!formData.jointHolder.mobilePhone) {
+            if (!formData?.jointHolder?.mobilePhone) {
               toast.error("Please enter your mobile phone");
               return;
             }

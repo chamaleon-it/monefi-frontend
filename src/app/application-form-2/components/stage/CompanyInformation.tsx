@@ -32,7 +32,7 @@ export default function CompanyInformation({
               company: { ...prev.company, name: e.target.value },
             }))
           }
-          value={formData.company.name}
+          value={formData.company?.name}
         />
         <div className="col-span-full flex flex-col gap-2.5">
             <p className="font-semibold text-white">Select Company Type</p>
@@ -40,7 +40,7 @@ export default function CompanyInformation({
             <label
               key={type}
               className={`cursor-pointer px-4 py-2 rounded-md border ${
-                formData.company.companyType === type
+                formData.company?.companyType === type
                   ? "bg-monefi-black text-monefi-off-white border-monefi-black"
                   : "border-monefi-off-white text-monefi-off-white"
               }`}
@@ -49,7 +49,7 @@ export default function CompanyInformation({
                 type="radio"
                 name="accountType"
                 value={type}
-                checked={formData.company.companyType === type}
+                checked={formData.company?.companyType === type}
                 onChange={() => {
                   setFormData((prev) => ({
                     ...prev,
@@ -77,7 +77,7 @@ export default function CompanyInformation({
               company: { ...prev.company, companyNumber: e.target.value },
             }))
           }
-          value={formData.company.companyNumber}
+          value={formData.company?.companyNumber}
         />
         <input
           type="text"
@@ -89,7 +89,7 @@ export default function CompanyInformation({
               company: { ...prev.company, taxCode: e.target.value },
             }))
           }
-          value={formData.company.taxCode}
+          value={formData.company?.taxCode}
         />
 
         <div className="col-span-full flex flex-col gap-2.5">
@@ -98,7 +98,7 @@ export default function CompanyInformation({
             <label
               key={type}
               className={`cursor-pointer px-4 py-2 rounded-md border ${
-                formData.company.taxCodeExemption === type
+                formData.company?.taxCodeExemption === type
                   ? "bg-monefi-black text-monefi-off-white border-monefi-black"
                   : "border-monefi-off-white text-monefi-off-white"
               }`}
@@ -107,7 +107,7 @@ export default function CompanyInformation({
                 type="radio"
                 name="accountType"
                 value={type}
-                checked={formData.company.taxCodeExemption === type}
+                checked={formData.company?.taxCodeExemption === type}
                 onChange={() => {
                   setFormData((prev) => ({
                     ...prev,
@@ -134,7 +134,7 @@ export default function CompanyInformation({
               company: { ...prev.company, dateOfRegistration: e.target.value },
             }))
           }
-          value={formData.company.dateOfRegistration}
+          value={formData.company?.dateOfRegistration}
         />
 
          <input
@@ -147,7 +147,7 @@ export default function CompanyInformation({
               company: { ...prev.company, natureOfBusiness: e.target.value },
             }))
           }
-          value={formData.company.natureOfBusiness}
+          value={formData.company?.natureOfBusiness}
         />
 
 
@@ -167,7 +167,7 @@ export default function CompanyInformation({
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
             // Validate address fields before proceeding
-            if (!formData.company.name || !formData.company.companyNumber || !formData.company.taxCode || !formData.company.dateOfRegistration || !formData.company.natureOfBusiness) {
+            if (!formData.company?.name ||!formData.company.companyType || !formData.company?.companyNumber || !formData.company?.taxCode || !formData.company.taxCodeExemption || !formData.company?.dateOfRegistration || !formData.company?.natureOfBusiness) {
               toast.error("Please fill in all address fields.");
               return;
             }

@@ -40,33 +40,33 @@ export type StageType =
 export interface FormDataType {
   email: string;
   accountType: "Individual" | "Joint" | "Company";
-  company: {
-    name: string;
-    companyType: "Public" | "Proprietary";
-    companyNumber: string;
-    taxCode: string;
-    taxCodeExemption: "Yes" | "No";
-    dateOfRegistration: string;
-    natureOfBusiness: string;
-    category:
+  company?: {
+    name?: string;
+    companyType?: "Public" | "Proprietary";
+    companyNumber?: string;
+    taxCode?: string;
+    taxCodeExemption?: "Yes" | "No";
+    dateOfRegistration?: string;
+    natureOfBusiness?: string;
+    category?:
        "Limited Company"
       | "Publicly Listed Company"
       | "Majority owned subsidiary of a listed company"
       | "Regulated company"
       | "None of the above";
-    address: string;
-    streetName: string;
-    town: string;
-    region: string;
-    postcode: string;
-    country: string;
-    companyTaxInformation:
+    address?: string;
+    streetName?: string;
+    town?: string;
+    region?: string;
+    postcode?: string;
+    country?: string;
+    companyTaxInformation?:
       "Financial Institution"
       | "Public Listed Company, Majority owned subsidiary of a Public Listed Company or a Registered Charity"
       | " Active Non-Financial Entity (NFE)"
       | "None of the above";
   
-    companyOwnership: "Yes" | "No";
+    companyOwnership?: "Yes" | "No";
   };
   title: string;
   firstName: string;
@@ -84,21 +84,21 @@ export interface FormDataType {
   town: string;
   region: string;
   postcode: string;
-  jointHolder: {
-    title: string;
-    firstName: string;
-    lastName: string;
-    dateOfBirth: string;
-    occupation: string;
-    occupationCategory: string;
-    homePhone: string;
-    mobilePhone: string;
-    country: string;
-    houseNumberOrName: string;
-    streetName: string;
-    town: string;
-    region: string;
-    postcode: string;
+  jointHolder?: {
+    title?: string;
+    firstName?: string;
+    lastName?: string;
+    dateOfBirth?: string;
+    occupation?: string;
+    occupationCategory?: string;
+    homePhone?: string;
+    mobilePhone?: string;
+    country?: string;
+    houseNumberOrName?: string;
+    streetName?: string;
+    town?: string;
+    region?: string;
+    postcode?: string;
   };
   identityVerification:
      "International travel document"
@@ -115,12 +115,12 @@ export interface FormDataType {
   bankAccount:
      "Provide Existing Bank Account Details"
     | "Email Existing Bank Account Details";
-  bankAccountDetails: {
-    bankName: string;
-    branchName: string;
-    accountName: string;
-    bic_swift: string;
-    iban: string;
+  bankAccountDetails?: {
+    bankName?: string;
+    branchName?: string;
+    accountName?: string;
+    bic_swift?: string;
+    iban?: string;
   };
   nextOfKinName: {
     name: string;
@@ -135,24 +135,6 @@ export default function Form() {
   const [formData, setFormData] = useState<FormDataType>({
     email: "test@gmail.com",
     accountType: "Individual",
-    company: {
-      name: "",
-      companyType: "Public",
-      companyNumber: "",
-      taxCode: "",
-      taxCodeExemption: "No",
-      dateOfRegistration: "",
-      natureOfBusiness: "",
-      category: "Limited Company",
-      companyTaxInformation: "None of the above",
-      address: "",
-      streetName: "",
-      town: "",
-      region: "",
-      postcode: "",
-      country: "",
-      companyOwnership: "No",
-    },
     title: "",
     firstName: "",
     lastName: "",
@@ -169,33 +151,10 @@ export default function Form() {
     town: "",
     region: "",
     postcode: "",
-    jointHolder: {
-      title: "",
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      occupation: "",
-      occupationCategory: "",
-      homePhone: "",
-      mobilePhone: "",
-      country: "",
-      houseNumberOrName: "",
-      streetName: "",
-      town: "",
-      region: "",
-      postcode: "",
-    },
     identityVerification: "Email Identification",
     proofOfAddress: "Email Proof of Address",
     purposeOfAccount: "Savings",
     bankAccount: "Email Existing Bank Account Details",
-    bankAccountDetails: {
-      bankName: "",
-      branchName: "",
-      accountName: "",
-      bic_swift: "",
-      iban: "",
-    },
     nextOfKinName: {
       name: "",
       homePhone: "",
@@ -213,6 +172,14 @@ export default function Form() {
       </div>
       {stage === "Start" && (
         <Start
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+
+       {stage === "Account type" && (
+        <AccountType
           setStage={setStage}
           formData={formData}
           setFormData={setFormData}
@@ -259,13 +226,7 @@ export default function Form() {
         />
       )}
 
-      {stage === "Account type" && (
-        <AccountType
-          setStage={setStage}
-          formData={formData}
-          setFormData={setFormData}
-        />
-      )}
+     
       {stage === "Individual details" && (
         <IndividualDetails
           setStage={setStage}
@@ -331,7 +292,7 @@ export default function Form() {
         />
       )}
       {stage === "Application Form Completed" && (
-        <ApplicationFormCompleted setStage={setStage} formData={formData} />
+        <ApplicationFormCompleted  formData={formData} />
       )}
     </div>
   );

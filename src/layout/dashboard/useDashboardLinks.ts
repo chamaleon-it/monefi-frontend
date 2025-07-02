@@ -39,6 +39,11 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.admin.users,
       icon: "iconamoon:profile-circle-duotone",
     },
+      {
+      title: "Applications",
+      path: paths.dashboard.admin.applications,
+      icon: "mdi:form-outline",
+    },
     {
       title: "Settings",
       path: paths.dashboard.settings,

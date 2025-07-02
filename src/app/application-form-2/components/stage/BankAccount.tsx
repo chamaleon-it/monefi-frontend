@@ -53,7 +53,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           type="text"
           placeholder="Bank Name"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          value={formData.bankAccountDetails.bankName}
+          value={formData?.bankAccountDetails?.bankName}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
@@ -66,7 +66,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           type="text"
           placeholder="Branch"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          value={formData.bankAccountDetails.branchName}
+          value={formData?.bankAccountDetails?.branchName}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
@@ -79,7 +79,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           type="text"
           placeholder="Account Name"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white col-span-full"
-          value={formData.bankAccountDetails.accountName}
+          value={formData?.bankAccountDetails?.accountName}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
@@ -92,7 +92,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           type="text"
           placeholder="BIC/Swift"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          value={formData.bankAccountDetails.bic_swift}
+          value={formData?.bankAccountDetails?.bic_swift}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
@@ -105,7 +105,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           type="text"
           placeholder="IBAN"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          value={formData.bankAccountDetails.iban}
+          value={formData?.bankAccountDetails?.iban}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
@@ -127,7 +127,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
             if(formData.bankAccount === "Provide Existing Bank Account Details"){
-              if(!formData.bankAccountDetails.bankName || !formData.bankAccountDetails.branchName || !formData.bankAccountDetails.accountName || !formData.bankAccountDetails.bic_swift || !formData.bankAccountDetails.iban){
+              if(!formData?.bankAccountDetails?.bankName || !formData?.bankAccountDetails?.branchName || !formData?.bankAccountDetails?.accountName || !formData?.bankAccountDetails?.bic_swift || !formData?.bankAccountDetails?.iban){
                toast.error("Please fill in all the bank account details.");
                 return;
               }
