@@ -1,5 +1,6 @@
 import React from "react";
 import { FormDataType, StageType } from "../Form";
+import toast from "react-hot-toast";
 
 interface AddressProps {
   setStage: React.Dispatch<React.SetStateAction<StageType>>;
@@ -56,7 +57,15 @@ export default function NextOfKin({ setStage,formData,setFormData }: AddressProp
         </button>
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
-          onClick={() => setStage("Application Form Completed")}
+          onClick={() => {
+            if(!formData.nextOfKinName.name ||
+              !formData.nextOfKinName.homePhone ||
+              !formData.nextOfKinName.mobilePhone ||
+              !formData.nextOfKinName.email) {
+              toast.error("Please fill in all Next of Kin fields.");
+              return;
+            }
+            setStage("Application Form Completed")}}
         >
           Next
         </button>

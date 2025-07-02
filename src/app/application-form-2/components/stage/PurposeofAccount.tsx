@@ -9,7 +9,7 @@ interface AccountTypeProps {
 
 export default function PurposeofAccount({ setStage,formData,setFormData }: AccountTypeProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overscroll-auto">
+    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overflow-scroll">
       <h2 className="text-2xl font-semibold">Purpose of Account</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we

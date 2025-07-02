@@ -11,52 +11,148 @@ import PurposeofAccount from "./stage/PurposeofAccount";
 import BankAccount from "./stage/BankAccount";
 import NextOfKin from "./stage/NextOfKin";
 import ApplicationFormCompleted from "./stage/ApplicationFormCompleted";
+import JointDetails from "./stage/JointDetails";
+import JointAddress from "./stage/JointAddress";
+import CompanyInformation from "./stage/CompanyInformation";
+import CompanyCategory from "./stage/CompanyCategory";
+import RegisteredOfficeAddress from "./stage/RegisteredOfficeAddress";
+import CompanyTaxInformation from "./stage/CompanyTaxInformation";
+import CompanyOwnership from "./stage/CompanyOwnership";
 
-export type StageType = "Start" | "Account type" | "Individual details" | "Address" | "Identity Verification" | "Proof of Address" | "Purpose of Account" | "Bank Account"  | "Next of Kin" | "Application Form Completed";
+export type StageType =
+  "Start"
+  | "Account type"
+  | "Company Information"
+  | "Company Category"
+  | "Company Registered Address"
+  | "Company Tax Information"
+  |"Company Ownership"
+  | "Individual details"
+  | "Address"
+  | "Joint details"
+  | "Joint address"
+  | "Identity Verification"
+  | "Proof of Address"
+  | "Purpose of Account"
+  | "Bank Account"
+  | "Next of Kin"
+  | "Application Form Completed";
 export interface FormDataType {
-    email:string;
-    accountType:"Individual" | "Joint" | "Company";
+  email: string;
+  accountType: "Individual" | "Joint" | "Company";
+  company: {
+    name: string;
+    companyType: "Public" | "Proprietary";
+    companyNumber: string;
+    taxCode: string;
+    taxCodeExemption: "Yes" | "No";
+    dateOfRegistration: string;
+    natureOfBusiness: string;
+    category:
+       "Limited Company"
+      | "Publicly Listed Company"
+      | "Majority owned subsidiary of a listed company"
+      | "Regulated company"
+      | "None of the above";
+    address: string;
+    streetName: string;
+    town: string;
+    region: string;
+    postcode: string;
+    country: string;
+    companyTaxInformation:
+      "Financial Institution"
+      | "Public Listed Company, Majority owned subsidiary of a Public Listed Company or a Registered Charity"
+      | " Active Non-Financial Entity (NFE)"
+      | "None of the above";
+  
+    companyOwnership: "Yes" | "No";
+  };
+  title: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  occupation: string;
+  occupationCategory: string;
+  homePhone: string;
+  mobilePhone: string;
+  password: string;
+  confirmPassword: string;
+  country: string;
+  houseNumberOrName: string;
+  streetName: string;
+  town: string;
+  region: string;
+  postcode: string;
+  jointHolder: {
     title: string;
     firstName: string;
     lastName: string;
     dateOfBirth: string;
     occupation: string;
-    occupationCategory:string;
+    occupationCategory: string;
     homePhone: string;
     mobilePhone: string;
-    password: string;
-    confirmPassword: string;
     country: string;
     houseNumberOrName: string;
     streetName: string;
-    town:string;
+    town: string;
     region: string;
     postcode: string;
-    identityVerification: "International travel document" | "Driving Licence" | "Email Identification"
-    proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
-    purposeOfAccount: "Savings" | "Growth" | "Income" | "Retirement" | "Business account" | "Other";
-    bankAccount:"Provide Existing Bank Account Details" | "Email Existing Bank Account Details";
-    bankAccountDetails: {
-            bankName: string;
-            branchName: string;
-            accountName: string;
-            bic_swift: string;
-            iban: string;
-    }
-    nextOfKinName:{
-        name: string;
-        homePhone: string;
-        mobilePhone: string;
-        email: string;
-    };
+  };
+  identityVerification:
+     "International travel document"
+    | "Driving Licence"
+    | "Email Identification";
+  proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
+  purposeOfAccount:
+     "Savings"
+    | "Growth"
+    | "Income"
+    | "Retirement"
+    | "Business account"
+    | "Other";
+  bankAccount:
+     "Provide Existing Bank Account Details"
+    | "Email Existing Bank Account Details";
+  bankAccountDetails: {
+    bankName: string;
+    branchName: string;
+    accountName: string;
+    bic_swift: string;
+    iban: string;
+  };
+  nextOfKinName: {
+    name: string;
+    homePhone: string;
+    mobilePhone: string;
+    email: string;
+  };
 }
-
 
 export default function Form() {
   const [stage, setStage] = useState<StageType>("Start");
   const [formData, setFormData] = useState<FormDataType>({
     email: "test@gmail.com",
     accountType: "Individual",
+    company: {
+      name: "",
+      companyType: "Public",
+      companyNumber: "",
+      taxCode: "",
+      taxCodeExemption: "No",
+      dateOfRegistration: "",
+      natureOfBusiness: "",
+      category: "Limited Company",
+      companyTaxInformation: "None of the above",
+      address: "",
+      streetName: "",
+      town: "",
+      region: "",
+      postcode: "",
+      country: "",
+      companyOwnership: "No",
+    },
     title: "",
     firstName: "",
     lastName: "",
@@ -73,6 +169,22 @@ export default function Form() {
     town: "",
     region: "",
     postcode: "",
+    jointHolder: {
+      title: "",
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      occupation: "",
+      occupationCategory: "",
+      homePhone: "",
+      mobilePhone: "",
+      country: "",
+      houseNumberOrName: "",
+      streetName: "",
+      town: "",
+      region: "",
+      postcode: "",
+    },
     identityVerification: "Email Identification",
     proofOfAddress: "Email Proof of Address",
     purposeOfAccount: "Savings",
@@ -82,14 +194,14 @@ export default function Form() {
       branchName: "",
       accountName: "",
       bic_swift: "",
-      iban: ""
+      iban: "",
     },
-    nextOfKinName:{
-      name:"",
-      homePhone:"",
-      mobilePhone:"",
-      email:""
-    }
+    nextOfKinName: {
+      name: "",
+      homePhone: "",
+      mobilePhone: "",
+      email: "",
+    },
   });
 
   return (
@@ -99,34 +211,128 @@ export default function Form() {
           Apply for an Online <br /> Account in minutes
         </h1>
       </div>
-      {stage === "Start" && <Start setStage={setStage} formData={formData} setFormData={setFormData}/>}
-      {
-        stage === "Account type" && <AccountType setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Individual details" && <IndividualDetails setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Address" && <Address setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Identity Verification" && <IdentityVerification setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Proof of Address" && <ProofofAddress setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Purpose of Account" && <PurposeofAccount setStage={setStage} formData={formData} setFormData={setFormData} />
-      }
-      {
-        stage === "Bank Account" && <BankAccount setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Next of Kin" && <NextOfKin setStage={setStage} formData={formData} setFormData={setFormData}/>
-      }
-      {
-        stage === "Application Form Completed" && <ApplicationFormCompleted setStage={setStage} formData={formData}/>
-      }
+      {stage === "Start" && (
+        <Start
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+
+      {stage === "Company Information" && (
+        <CompanyInformation
+          formData={formData}
+          setFormData={setFormData}
+          setStage={setStage}
+        />
+      )}
+
+      {stage === "Company Category" && (
+        <CompanyCategory
+          formData={formData}
+          setFormData={setFormData}
+          setStage={setStage}
+        />
+      )}
+
+      {stage === "Company Registered Address" && (
+        <RegisteredOfficeAddress
+          formData={formData}
+          setFormData={setFormData}
+          setStage={setStage}
+        />
+      )}
+
+       {stage === "Company Tax Information" && (
+        <CompanyTaxInformation
+          formData={formData}
+          setFormData={setFormData}
+          setStage={setStage}
+        />
+      )}
+
+      {stage === "Company Ownership" && (
+        <CompanyOwnership
+          formData={formData}
+          setFormData={setFormData}
+          setStage={setStage}
+        />
+      )}
+
+      {stage === "Account type" && (
+        <AccountType
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Individual details" && (
+        <IndividualDetails
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+
+      {stage === "Address" && (
+        <Address
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Joint details" && (
+        <JointDetails
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Joint address" && (
+        <JointAddress
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Identity Verification" && (
+        <IdentityVerification
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Proof of Address" && (
+        <ProofofAddress
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Purpose of Account" && (
+        <PurposeofAccount
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Bank Account" && (
+        <BankAccount
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Next of Kin" && (
+        <NextOfKin
+          setStage={setStage}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+      {stage === "Application Form Completed" && (
+        <ApplicationFormCompleted setStage={setStage} formData={formData} />
+      )}
     </div>
   );
 }

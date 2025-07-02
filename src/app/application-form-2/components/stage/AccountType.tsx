@@ -57,7 +57,13 @@ export default function AccountType({
         </button>
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
-          onClick={() => setStage("Individual details")}
+          onClick={() =>{
+            if(formData.accountType === "Company") {
+              setStage("Company Information");
+            } else {
+              setStage("Individual details")
+            }
+            }}
         >
           Next
         </button>

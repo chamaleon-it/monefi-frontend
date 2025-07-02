@@ -8,7 +8,7 @@ interface AddressProps {
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
 }
 
-export default function Address({
+export default function JointAddress({
   setStage,
   formData,
   setFormData,
@@ -16,7 +16,7 @@ export default function Address({
   return (
     <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5">
       <h2 className="text-2xl font-semibold">
-        Residential address information
+        Residential address information (Joint)
       </h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
@@ -29,9 +29,9 @@ export default function Address({
           placeholder="Country"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, country: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, country: e.target.value } }))
           }
-          value={formData.country}
+          value={formData.jointHolder.country}
         />
         <input
           type="text"
@@ -40,53 +40,53 @@ export default function Address({
           onChange={(e) =>
             setFormData((prev) => ({
               ...prev,
-              houseNumberOrName: e.target.value,
+              jointHolder: { ...prev.jointHolder, houseNumberOrName: e.target.value },
             }))
           }
-          value={formData.houseNumberOrName}
+          value={formData.jointHolder.houseNumberOrName}
         />
         <input
           type="text"
           placeholder="Street Name"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, streetName: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, streetName: e.target.value } }))
           }
-          value={formData.streetName}
+          value={formData.jointHolder.streetName}
         />
         <input
           type="text"
           placeholder="Town"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, town: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, town: e.target.value } }))
           }
-          value={formData.town}
+          value={formData.jointHolder.town}
         />
         <input
           type="text"
           placeholder="County/Region"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, region: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, region: e.target.value } }))
           }
-          value={formData.region}
+          value={formData.jointHolder.region}
         />
         <input
           type="text"
           placeholder="Postcode"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, postcode: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, postcode: e.target.value } }))
           }
-          value={formData.postcode}
+          value={formData.jointHolder.postcode}
         />
       </div>
 
       <div className="flex justify-between items-start">
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-monefi-off-white rounded-md"
-          onClick={() => setStage("Individual details")}
+          onClick={() => setStage("Joint details")}
         >
           Previous
         </button>
@@ -95,21 +95,17 @@ export default function Address({
           onClick={() => {
             // Validate address fields before proceeding
             if (
-              !formData.country ||
-              !formData.houseNumberOrName ||
-              !formData.streetName ||
-              !formData.town ||
-              !formData.region ||
-              !formData.postcode
+              !formData.jointHolder.country ||
+              !formData.jointHolder.houseNumberOrName ||
+              !formData.jointHolder.streetName ||
+              !formData.jointHolder.town ||
+              !formData.jointHolder.region ||
+              !formData.jointHolder.postcode
             ) {
               toast.error("Please fill in all address fields.");
               return;
             }
-            if (formData.accountType === "Joint") {
-              setStage("Joint details");
-            } else {
-              setStage("Identity Verification");
-            }
+            setStage("Identity Verification");
           }}
         >
           Next

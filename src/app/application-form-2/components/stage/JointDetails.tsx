@@ -8,14 +8,14 @@ interface AccountTypeProps {
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
 }
 
-export default function IndividualDetails({
+export default function JointDetails({
   setStage,
   formData,
   setFormData,
 }: AccountTypeProps) {
   return (
     <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overflow-scroll">
-      <h2 className="text-2xl font-semibold">Personal Information</h2>
+      <h2 className="text-2xl font-semibold">Personal Information (Joint)</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
         are happy to help. Simply contact us on 1111111111 or email
@@ -25,9 +25,9 @@ export default function IndividualDetails({
         <select
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, title: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,title:e.target.value} }))
           }
-          value={formData.title}
+          value={formData.jointHolder.title}
         >
           <option className="bg-monefi-pink" value="">
             Title
@@ -60,36 +60,36 @@ export default function IndividualDetails({
           placeholder="First Name"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, firstName: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,firstName:e.target.value} }))
           }
-          value={formData.firstName}
+          value={formData.jointHolder.firstName}
         />
         <input
           type="text"
           placeholder="Last Name"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, lastName: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,lastName:e.target.value} }))
           }
-          value={formData.lastName}
+          value={formData.jointHolder.lastName}
         />
         <input
           type="date"
           placeholder="Date of Birth"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white accent-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, dateOfBirth: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,dateOfBirth:e.target.value} }))
           }
-          value={formData.dateOfBirth}
+          value={formData.jointHolder.dateOfBirth}
         />
         <input
           type="text"
           placeholder="Occupation"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, occupation: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,occupation:e.target.value} }))
           }
-          value={formData.occupation}
+          value={formData.jointHolder.occupation}
         />
         <input
           type="text"
@@ -98,117 +98,79 @@ export default function IndividualDetails({
           onChange={(e) =>
             setFormData((prev) => ({
               ...prev,
-              occupationCategory: e.target.value,
+              jointHolder:{...prev.jointHolder,occupationCategory:e.target.value}
             }))
           }
-          value={formData.occupationCategory}
+          value={formData.jointHolder.occupationCategory}
         />
-        <div className=""></div>
+       
 
         <input
           type="text"
           placeholder="Home Phone"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, homePhone: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,homePhone:e.target.value} }))
           }
-          value={formData.homePhone}
+          value={formData.jointHolder.homePhone}
         />
         <input
           type="text"
           placeholder="Mobile Phone"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, mobilePhone: e.target.value }))
+            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,mobilePhone:e.target.value} }))
           }
-          value={formData.mobilePhone}
+          value={formData.jointHolder.mobilePhone}
         />
-        <input
-          type="text"
-          placeholder="Password"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, password: e.target.value }))
-          }
-          value={formData.password}
-        />
-        <input
-          type="text"
-          placeholder="Confirm Password"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              confirmPassword: e.target.value,
-            }))
-          }
-          value={formData.confirmPassword}
-        />
+        
       </div>
 
       <div className="flex justify-between items-start">
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-monefi-off-white rounded-md"
-          onClick={() =>{
-            if(formData.accountType === "Company") {
-             setStage("Company Ownership")
-            }
-            else {
-              setStage("Account type");
-            }
-          }}
+          onClick={() => setStage("Address")}
         >
           Previous
         </button>
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
-            if (!formData.title) {
+            if (!formData.jointHolder.title) {
               toast.error("Please select a title");
               return;
             }
-            if (!formData.firstName) {
+            if (!formData.jointHolder.firstName) {
               toast.error("Please enter your first name");
               return;
             }
-            if (!formData.lastName) {
+            if (!formData.jointHolder.lastName) {
               toast.error("Please enter your last name");
               return;
             }
-            if (!formData.dateOfBirth) {
+            if (!formData.jointHolder.dateOfBirth) {
               toast.error("Please enter your date of birth");
               return;
             }
-            if (!formData.occupation) {
+            if (!formData.jointHolder.occupation) {
               toast.error("Please enter your occupation");
               return;
             }
-            if (!formData.occupationCategory) {
+            if (!formData.jointHolder.occupationCategory) {
               toast.error("Please enter your occupation category");
               return;
             }
-            if (!formData.homePhone) {
+            if (!formData.jointHolder.homePhone) {
               toast.error("Please enter your home phone");
               return;
             }
-            if (!formData.mobilePhone) {
+            if (!formData.jointHolder.mobilePhone) {
               toast.error("Please enter your mobile phone");
               return;
             }
-            if (!formData.password) {
-              toast.error("Please enter your password");
-              return;
-            }
-            if (!formData.confirmPassword) {
-              toast.error("Please confirm your password");
-              return;
-            }
-            if (formData.password !== formData.confirmPassword) {
-              toast.error("Passwords do not match");
-              return;
-            }
+           
             // If all validations pass, proceed to the next stage
-            setStage("Address");
+            setStage("Joint address");
           }}
         >
           Next
