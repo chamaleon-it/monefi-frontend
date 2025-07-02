@@ -300,7 +300,7 @@ export default function ApplicationTable() {
       )}
 
       {selectedApplication && (
-        <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex items-center justify-center z-50" data-lenis-prevent>
           <div className="bg-white rounded-xl p-6 max-w-3xl w-full mx-4 shadow-xl overflow-y-auto max-h-[90vh] space-y-4 overflow-auto">
             <div className="flex justify-between items-center border-b pb-2">
               <h2 className="text-xl font-semibold text-gray-900">
