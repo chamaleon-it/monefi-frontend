@@ -4,7 +4,7 @@ export default function WhyYouNeedSection() {
   return (
     <section>
       <div className="max-w-[95%] lg:max-w-[83%] mx-auto py-[25px] lg:py-[50px] border-b border-monefi-off-white">
-        <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8 whitespace-nowrap text-center">
+        <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8  text-center">
            Our Life Insurance Solutions<span className="text-monefi-pink">:</span>
         </h2>
         <div className="flex flex-wrap lg:flex-row justify-center items-center gap-2 lg:gap-7 mt-10 lg:mt-20">
