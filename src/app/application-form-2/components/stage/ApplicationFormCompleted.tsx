@@ -1,16 +1,15 @@
 import React, { useCallback } from "react";
-import { FormDataType, StageType } from "../Form";
+import { FormDataType } from "../Form";
 import toast from "react-hot-toast";
 import api from "@/services/api";
 import { useRouter } from "next/navigation";
 import usePaths from "@/hooks/usePaths";
 
 interface StartProps {
-  setStage: React.Dispatch<React.SetStateAction<StageType>>;
   formData: FormDataType;
 }
 
-export default function ApplicationFormCompleted({ setStage,formData }: StartProps) {
+export default function ApplicationFormCompleted({ formData }: StartProps) {
   const router = useRouter()
   const paths = usePaths()
 
@@ -27,7 +26,7 @@ export default function ApplicationFormCompleted({ setStage,formData }: StartPro
         console.log(error);
       }
     },
-    [],
+    [paths.home,router],
   )
   
   return (

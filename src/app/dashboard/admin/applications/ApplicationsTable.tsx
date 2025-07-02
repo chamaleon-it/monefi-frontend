@@ -161,7 +161,7 @@ export default function ApplicationTable() {
   const [selectedApplication, setSelectedApplication] =
     useState<Application | null>(null);
 
-  const closeModal = () => setSelectedApplication(null);
+  
 
   const SkeletonRow = () => (
     <tr className="animate-pulse">
@@ -538,7 +538,9 @@ export default function ApplicationTable() {
                     );
                     mutate()
                     setSelectedApplication(null);
-                  } catch (error) {}
+                  } catch (error) {
+                    console.log(error);
+                  }
                 }}
                 className="px-4 py-2 text-sm font-medium text-white bg-monefi-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
               >

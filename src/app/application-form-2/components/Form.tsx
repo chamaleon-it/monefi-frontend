@@ -292,7 +292,7 @@ export default function Form() {
         />
       )}
       {stage === "Application Form Completed" && (
-        <ApplicationFormCompleted setStage={setStage} formData={formData} />
+        <ApplicationFormCompleted  formData={formData} />
       )}
     </div>
   );
