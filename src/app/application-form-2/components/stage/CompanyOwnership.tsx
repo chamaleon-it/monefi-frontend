@@ -26,7 +26,7 @@ export default function CompanyOwnership({
             <label
               key={type}
               className={`cursor-pointer px-4 py-2 rounded-md border ${
-                formData.company.companyOwnership === type
+                formData.company?.companyOwnership === type
                   ? "bg-monefi-black text-monefi-off-white border-monefi-black"
                   : "border-monefi-off-white text-monefi-off-white"
               }`}
@@ -35,7 +35,7 @@ export default function CompanyOwnership({
                 type="radio"
                 name="accountType"
                 value={type}
-                checked={formData.company.companyOwnership === type}
+                checked={formData.company?.companyOwnership === type}
                 onChange={() => {
                   setFormData((prev) => ({
                     ...prev,
@@ -63,8 +63,8 @@ export default function CompanyOwnership({
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
             // Validate address fields before proceeding
-            if (!formData.company.name || !formData.company.companyNumber || !formData.company.taxCode || !formData.company.dateOfRegistration || !formData.company.natureOfBusiness) {
-              toast.error("Please fill in all address fields.");
+            if (!formData.company?.companyOwnership) {
+              toast.error("Select any options.");
               return;
             }
             setStage("Individual details");

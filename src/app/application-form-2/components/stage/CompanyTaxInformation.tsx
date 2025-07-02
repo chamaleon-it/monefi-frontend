@@ -1,5 +1,6 @@
 import React from 'react'
 import { FormDataType, StageType } from '../Form';
+import toast from 'react-hot-toast';
 
 
 
@@ -28,7 +29,7 @@ export default function CompanyTaxInformation({formData,setFormData,setStage}: P
             <label
               key={type}
               className={`cursor-pointer px-4 py-2 rounded-md border ${
-                formData.company.companyTaxInformation === type
+                formData.company?.companyTaxInformation === type
                   ? "bg-monefi-black text-monefi-off-white border-monefi-black"
                   : "border-monefi-off-white text-monefi-off-white"
               }`}
@@ -37,7 +38,7 @@ export default function CompanyTaxInformation({formData,setFormData,setStage}: P
                 type="radio"
                 name="accountType"
                 value={type}
-                checked={formData.company.companyTaxInformation === type}
+                checked={formData.company?.companyTaxInformation === type}
                 onChange={() => {
                   setFormData((prev) => ({
                     ...prev,
@@ -66,7 +67,10 @@ export default function CompanyTaxInformation({formData,setFormData,setStage}: P
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
-        
+        if(!formData.company?.companyTaxInformation){
+          toast.error("Select any tax information")
+          return
+        }
             setStage("Company Ownership");
           }}
         >

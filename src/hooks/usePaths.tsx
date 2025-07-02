@@ -20,6 +20,7 @@ export default function usePaths() {
         bonds: "/dashboard/admin/bonds",
         investments: "/dashboard/admin/investments",
         users: "/dashboard/admin/users",
+        applications:'/dashboard/admin/applications'
       },
       user: {
         transactions: "/dashboard/user/transactions",

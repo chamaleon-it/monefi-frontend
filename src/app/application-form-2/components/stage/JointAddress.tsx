@@ -31,7 +31,7 @@ export default function JointAddress({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, country: e.target.value } }))
           }
-          value={formData.jointHolder.country}
+          value={formData?.jointHolder?.country}
         />
         <input
           type="text"
@@ -43,7 +43,7 @@ export default function JointAddress({
               jointHolder: { ...prev.jointHolder, houseNumberOrName: e.target.value },
             }))
           }
-          value={formData.jointHolder.houseNumberOrName}
+          value={formData?.jointHolder?.houseNumberOrName}
         />
         <input
           type="text"
@@ -52,7 +52,7 @@ export default function JointAddress({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, streetName: e.target.value } }))
           }
-          value={formData.jointHolder.streetName}
+          value={formData?.jointHolder?.streetName}
         />
         <input
           type="text"
@@ -61,7 +61,7 @@ export default function JointAddress({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, town: e.target.value } }))
           }
-          value={formData.jointHolder.town}
+          value={formData?.jointHolder?.town}
         />
         <input
           type="text"
@@ -70,7 +70,7 @@ export default function JointAddress({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, region: e.target.value } }))
           }
-          value={formData.jointHolder.region}
+          value={formData?.jointHolder?.region}
         />
         <input
           type="text"
@@ -79,7 +79,7 @@ export default function JointAddress({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, postcode: e.target.value } }))
           }
-          value={formData.jointHolder.postcode}
+          value={formData?.jointHolder?.postcode}
         />
       </div>
 
@@ -95,12 +95,12 @@ export default function JointAddress({
           onClick={() => {
             // Validate address fields before proceeding
             if (
-              !formData.jointHolder.country ||
-              !formData.jointHolder.houseNumberOrName ||
-              !formData.jointHolder.streetName ||
-              !formData.jointHolder.town ||
-              !formData.jointHolder.region ||
-              !formData.jointHolder.postcode
+              !formData?.jointHolder?.country ||
+              !formData?.jointHolder?.houseNumberOrName ||
+              !formData?.jointHolder?.streetName ||
+              !formData?.jointHolder?.town ||
+              !formData?.jointHolder?.region ||
+              !formData?.jointHolder?.postcode
             ) {
               toast.error("Please fill in all address fields.");
               return;
