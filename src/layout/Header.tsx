@@ -18,7 +18,7 @@ export default function Header() {
   const navigationItems = [
     { href: paths.insurance, label: "Insurance" },
     { href: paths.loans, label: "Loan Types" },
-    { href: paths.resources, label: "Resources" },
+    // { href: paths.resources, label: "Resources" },
     { href: paths.mortgages, label: "Mortgages" },
     { href: paths.financialplanning, label: "Financial Planning" },
   ]

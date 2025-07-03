@@ -12,36 +12,36 @@ export function Loan_Solutions() {
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Personal Loans"
-        description="Flexible loans for almost any purpose—whether it's a dream holiday, a home upgrade, or a financial reset."
+        title=" Personal & Lifestyle Loans"
+        description="Whether it’s a dream holiday, wedding, or financial reset, our personal loans are designed to support life’s important moments—with simple terms and fast approval."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Car Finance"
-        description=" Drive away with confidence. Choose from Hire Purchase (HP), Personal Contract Purchase (PCP), or personal car loans—all with competitive rates and clear terms."
+        description="Get behind the wheel with tailored car financing options. Choose from Hire Purchase (HP), Personal Contract Purchase (PCP), or straightforward car loans—whatever suits your journey."
       />
 
-      <GridItem
+      {/* <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Debt Consolidation Loans"
         description="Combine multiple debts into one manageable monthly payment. Simplify your finances and potentially reduce your interest burden."
-      />
+      /> */}
 
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Home Improvement Loans"
-        description=" Transform your home with funding that fits your budget. No equity needed."
+        title="Debt Consolidation Loans"
+        description="Simplify your finances by combining multiple debts into one easy-to-manage payment. Reduce stress and potentially save on interest with a smart consolidation strategy."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Bad Credit Loans (subject to availability)"
-        description="Life happens—we’re here to help. We work with lenders who consider a range of credit histories."
+        title=" Home & Credit Repair Loans"
+        description="From home improvements to rebuilding your credit profile, we work with lenders who offer options for a variety of financial situations—including those with less-than-perfect credit."
       />
     </ul>
     </div>

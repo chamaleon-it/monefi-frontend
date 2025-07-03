@@ -10,9 +10,13 @@ const content = [
     description:
       "   Our specialists take time to understand your financial goals and recommend the right policy structure.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Collaborative Editing
-      </div>
+       <Image
+          src="/insurance/4.jpeg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
     ),
   },
   {
@@ -22,7 +26,7 @@ const content = [
     content: (
       <div className="flex h-full w-full items-center justify-center text-white">
         <Image
-          src="/linear.webp"
+          src="/insurance/5.jpeg"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -36,9 +40,13 @@ const content = [
     description:
       "   Simplified underwriting and digital policy management make it easy to apply and review your cover.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
-        Version control
-      </div>
+       <Image
+          src="/insurance/6.jpeg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
     ),
   },
   {
@@ -46,9 +54,13 @@ const content = [
     description:
       "   From policy questions to claim assistance, our dedicated team stands by you every step of the way.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Running out of content
-      </div>
+       <Image
+          src="/insurance/7.jpeg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
     ),
   },
 ];

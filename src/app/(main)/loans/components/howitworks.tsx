@@ -10,9 +10,13 @@ const content = [
     description:
       "",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Collaborative Editing
-      </div>
+     <Image
+          src="/loan-type/5.jpeg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
     ),
   },
   {
@@ -22,7 +26,7 @@ const content = [
     content: (
       <div className="flex h-full w-full items-center justify-center text-white">
         <Image
-          src="/linear.webp"
+          src="/loan-type/6.jpeg"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -36,9 +40,13 @@ const content = [
     description:
       "  Choose your offer and complete your application",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
-        Version control
-      </div>
+      <Image
+          src="/loan-type/7.jpeg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
     ),
   },
   {
@@ -46,9 +54,13 @@ const content = [
     description:
       " Funds transferred directly to your account once approved",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Running out of content
-      </div>
+     <Image
+          src="/loan-type/8.jpeg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
     ),
   },
 ];

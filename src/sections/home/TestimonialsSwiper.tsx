@@ -14,33 +14,33 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 const testimonialData = [
   {
     id: 1,
-    content: "As a UI/UX designer, I can't imagine working without Curls Blocks anymore. The library's well-organized and extensive collection of components has saved me countless hours, enabling me to focus on the creative aspects of design.",
-    author: "John Doe",
-    role: "CEO, TechCorp",
+    content: "As a first-time buyer, I was nervous about getting a mortgage. Monefi walked me through everything, explained the terms clearly, and helped me secure a great deal. I never felt rushed or pressured—just supported.",
+    author: "Sarah M.",
+    role: "Manchester",
     rating: 5,
     profileImage:"1.png"
   },
   {
     id: 2,
-    content: "Curls Blocks has completely transformed the way we approach design at our company. The versatility and flexibility of the library have allowed us to create consistent and beautiful designs across all our platforms. Highly recommended!",
-    author: "Jane Smith",
-    role: "CFO, StartupInc",
+    content: "I’ve worked with other brokers before, but Monefi felt different. They really listened to my situation and helped me set up life insurance and savings goals that worked for me. It felt personal and professional at the same time.",
+    author: "David L.",
+    role: "Birmingham",
     rating: 5,
     profileImage:"2.png"
   },
    {
     id: 3,
-    content: "As a UI/UX designer, I can't imagine working without Curls Blocks anymore. The library's well-organized and extensive collection of components has saved me countless hours, enabling me to focus on the creative aspects of design.",
-    author: "John Doe",
-    role: "CEO, TechCorp",
+    content: "After struggling with debt for years, I reached out to Monefi. They helped me consolidate my loans into one manageable payment and even gave me budgeting tips that I still use. I finally feel in control again.",
+    author: "Rebecca K.",
+    role: "Leeds",
     rating: 5,
     profileImage:"1.png"
   },
   {
     id: 4,
-    content: "Curls Blocks has completely transformed the way we approach design at our company. The versatility and flexibility of the library have allowed us to create consistent and beautiful designs across all our platforms. Highly recommended!",
-    author: "Jane Smith",
-    role: "CFO, StartupInc",
+    content: "I reached out for investment planning and expected lots of jargon and sales talk. Instead, I got a warm, honest adviser who took the time to educate me and build a plan that felt right. Truly refreshing.",
+    author: "Emily T.",
+    role: "Bristol",
     rating: 5,
     profileImage:"2.png"
   },
@@ -90,7 +90,7 @@ const TestimonialCard = memo(({ testimonial, index }: TestimonialCardProps) => (
     </div>
     
     <footer className="flex items-center gap-2.5">
-      <Image src={`/home/testimonials/${testimonial.profileImage}`} width={45} height={45} alt={testimonial.author + " Monefi."}/>
+      {/* <Image src={`/home/testimonials/${testimonial.profileImage}`} width={45} height={45} alt={testimonial.author + " Monefi."}/> */}
       <cite className="not-italic">
         <div className="font-semibold text-lg">{testimonial.author}</div>
         <div className={`text-sm ${index % 2 === 0 ? 'text-gray-300' : 'text-gray-600'}`}>

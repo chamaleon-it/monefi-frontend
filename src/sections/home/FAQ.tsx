@@ -20,7 +20,7 @@ export default function FAQ() {
                 <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
                   <Phone fill="#fff" strokeWidth={0.75} />
                 </div>
-                <p className="font-poppins font-bold text-xl">+1-613-555-157</p>
+                <p className="font-poppins font-bold text-xl">02080028761</p>
               </div>
               <div className="flex gap-3 items-center">
                 <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
