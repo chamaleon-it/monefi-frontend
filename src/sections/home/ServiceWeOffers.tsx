@@ -16,11 +16,11 @@ export default function ServiceWeOffers() {
           </h2>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-[1360px] mac:max-w-full mx-auto mt-16">
-          <Card bg="pink" title="Life Insurance" href={paths.insurance} />
+          <Card bg="pink" title="Financial Planning" href={paths.financialplanning} />
+          <Card bg="black" title="Life Insurance" href={paths.insurance} />
           <Card bg="black" title="Mortgages" href={paths.mortgages} />
           <Card bg="black" title="Personal Loans" href={paths.loans} />
           <Card bg="black" title="Car Insurace" href={paths.insurance} />
-          <Card bg="black" title="Business Insurance" href={paths.insurance} />
           <Card bg="black" title="Secured Loans" href={paths.loans} />
           <Card bg="black" title="Business Loans" href={paths.loans} />
           <Card bg="black" title="Home Insurance" href={paths.insurance} />

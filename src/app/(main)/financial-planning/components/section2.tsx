@@ -7,40 +7,34 @@ export function Section2() {
   return (
     <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
       <h1 className="text-white text-4xl text-center py-10">Our Financial Planning Services</h1>
-    <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
+    <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-2 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Investment Strategy"
-        description="Grow your wealth with purpose. We’ll help you build a diversified investment portfolio aligned with your risk tolerance, time horizon, and long-term goals."
+        title="Investment & Retirement Strategy"
+        description="Grow your wealth and prepare for life after work. We’ll design a tailored plan that balances your investment goals with your retirement needs—so you can build and enjoy your future with confidence."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Retirement Plannings"
-        description="Get ready for life after work. From pensions to lifetime savings, we’ll create a personalised roadmap so you can retire with confidence and comfort."
-      />
-
-      <GridItem
-        area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
-        icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Estate & Legacy Planning"
-        description="Leave a legacy, not confusion. Our team helps you protect your assets, minimise inheritance tax, and pass your wealth on according to your wishes."
+        description="Leave a lasting impact. Our team helps you protect your assets, minimise inheritance tax, and pass on your wealth in line with your wishes—securely and clearly."
       />
 
+      
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Tax Efficiency"
-        description="Make your money work smarter. We help you structure your finances to legally reduce tax liabilities—maximising what you keep and grow."
+        title="Tax Efficiency & Smart Structuring"
+        description="Make every pound work harder. We’ll help you legally reduce tax liabilities by making the most of your allowances, savings vehicles, and income strategies."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Life Goals & Problem Solving"
-        description="Buying a home, starting a family, launching a business? Whatever your next step, we’ll build a financial plan that makes it achievable."
+        title="Life Goals & Financial Problem Solving"
+        description="From buying a home to launching a business or managing debt, we create practical, flexible plans that turn real-life goals into financial success stories."
       />
     </ul>
     </div>

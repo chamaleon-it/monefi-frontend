@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 export function HeroSection() {
   return (
-    <section className="py-16 md:py-24 flex justify-center items-center font-poppins px-4 h-[calc(100vh-150px)] bg-monefi-off-white">
+    <section className="py-16 md:py-24 flex justify-center items-center font-poppins px-4 min-h-[calc(100vh-150px)] bg-monefi-off-white">
       <div className="container mx-auto max-w-6xl text-center space-y-5">
 
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight px-4">

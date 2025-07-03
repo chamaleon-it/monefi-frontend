@@ -11,36 +11,36 @@ export function Mortgage_Services() {
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
         icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="First-Time Buyer Mortgages"
-        description="Step onto the property ladder with ease. We'll guide you through every step and help you access competitive deals, even with a small deposit."
+        title=" First-Time Buyer & Help-to-Buy"
+        description="Confidently take your first step into homeownership with expert guidance and access to schemes like Help-to-Buy and Shared Ownership for easier, affordable entry."
       />
 
       <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Remortgaging"
-        description=" Time for a better rate? Reduce your monthly payments, release equity, or consolidate debt with remortgage options that work for you."
+        description="Looking for a better deal? We can help you switch to a more competitive rate, reduce your monthly payments, consolidate debt, or release equity to fund other goals."
       />
 
-      <GridItem
+      {/* <GridItem
         area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Buy-to-Let Mortgages"
         description="Looking to invest in property? Discover tailored solutions for landlords and investors—whether you're buying your first rental or expanding a portfolio."
-      />
+      /> */}
 
       <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
         icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Help-to-Buy & Shared Ownership (where available)"
-        description="Explore government-backed schemes that can make homeownership more affordable."
+        title="Buy-to-Let Mortgages"
+        description="Thinking of becoming a landlord or growing your property portfolio? We offer mortgage options specifically designed for investors, whether you’re new to the market or an experienced landlord."
       />
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Bad Credit Mortgages (subject to eligibility)"
-        description="We understand life doesn’t always go to plan. We work with lenders who look beyond your credit score."
+        title="Specialist & Adverse Credit Mortgages"
+        description="We understand life isn’t always straightforward. Our lenders consider applicants with less-than-perfect credit and unique circumstances to help you find a solution that fits."
       />
     </ul>
     </div>
