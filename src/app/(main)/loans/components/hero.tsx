@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "motion/react";
+// import { motion } from "motion/react";
 
 
 export function HeroSection() {
@@ -15,7 +15,7 @@ export function HeroSection() {
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
          Whether you&apos;re planning a big purchase, consolidating debt, or need quick access to funds, Monefi makes borrowing simple, transparent, and tailored to you. We partner with trusted UK lenders to bring you competitive loan options—without the confusion or hard sales.
         </p>
-               <motion.div
+               {/* <motion.div
           initial={{
             opacity: 0,
           }}
@@ -34,7 +34,7 @@ export function HeroSection() {
           <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
             Contact Support
           </button>
-        </motion.div>
+        </motion.div> */}
       </div>
   
     </section>
