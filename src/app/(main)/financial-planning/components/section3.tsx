@@ -14,7 +14,7 @@ export default function Section3() {
               <p className="font-poppins text-xs mt-2"></p>
             </div>
           </div>
-          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/financial-planning/2.jpeg)] overflow-hidden">
+          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/financial-planning/2.jpeg)] bg-cover overflow-hidden">
             <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white">
               <h3 className="font-inter font-medium text-3xl">Tailored strategies for every stage of life</h3>
               <p className="font-poppins text-xs mt-2"></p>
