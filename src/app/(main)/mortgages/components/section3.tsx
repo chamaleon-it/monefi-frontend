@@ -10,8 +10,8 @@ export default function Section3() {
         <div className="flex flex-wrap lg:flex-row justify-center items-center gap-2 lg:gap-7 mt-10 lg:mt-20">
           <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mb-14 bg-[url(/mortgage/1.jpeg)] bg-cover overflow-hidden">
             <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white bg-gradient-to-t from-black to-transparent ">
-              <h3 className="font-inter font-medium text-xl lg:text-3xl">Whole-of-market </h3>
-              <p className="font-poppins text-xs mt-2">access – we search a wide panel of lenders</p>
+              <h3 className="font-inter font-medium text-xl lg:text-3xl">Whole-of-market access</h3>
+              <p className="font-poppins text-xs mt-2"> we search a wide panel of lenders</p>
             </div>
           </div>
           <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/mortgage/2.jpeg)] bg-cover overflow-hidden">
