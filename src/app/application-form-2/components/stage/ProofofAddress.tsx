@@ -13,7 +13,7 @@ interface AccountTypeProps {
 
 export default function ProofofAddress({ setStage,formData,setFormData }: AccountTypeProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5">
+    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overflow-auto">
       <h2 className="text-2xl font-semibold">Proof of Address</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
@@ -37,7 +37,7 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
                 value={type}
                 checked={formData.proofOfAddress === type}
                 onChange={()=>{
-                  setFormData(prev=>({...prev, proofOfAddress: type as "Utility Bill" | "Driving Licence" | "Email Proof of Address"}));
+                  setFormData(prev=>({...prev, proofOfAddress: type as "Utility Bill" | "Driving Licence" | "Email Proof of Address",proofOfAddressFile:""}));
                 }}
                 className="hidden"
               />

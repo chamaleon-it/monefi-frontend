@@ -10,7 +10,7 @@ interface AccountTypeProps {
 
 export default function BankAccount({ setStage,formData,setFormData }: AccountTypeProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5">
+    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overflow-auto">
       <h2 className="text-2xl font-semibold">Existing Bank Account</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
