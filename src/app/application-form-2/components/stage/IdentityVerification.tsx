@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { FormDataType, StageType } from "../Form";
-import { ImageUp, Upload } from "lucide-react";
+import { ImageUp } from "lucide-react";
 import toast from "react-hot-toast";
 import api from "@/services/api";
 import getConfig from "@/config/configuration";
@@ -99,7 +99,7 @@ const UploadIdentity = ({formData,setFormData}:{formData: FormDataType,setFormDa
         }
       }
     },
-    [],
+    [setFormData],
   )
   
 
