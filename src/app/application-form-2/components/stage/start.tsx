@@ -21,7 +21,7 @@ export default function Start({ setStage, formData, setFormData }: StartProps) {
       <input
         type="email"
         className="px-3 py-2 border rounded-md"
-        placeholder="Enter your email address"
+        placeholder="Enter your email"
         onChange={(e) =>
           setFormData((prev) => ({ ...prev, email: e.target.value }))
         }

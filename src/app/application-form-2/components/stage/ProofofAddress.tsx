@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { FormDataType, StageType } from "../Form";
+import toast from "react-hot-toast";
+import api from "@/services/api";
+import { ImageUp } from "lucide-react";
+import getConfig from "@/config/configuration";
 
 interface AccountTypeProps {
   setStage: React.Dispatch<React.SetStateAction<StageType>>;
@@ -13,7 +17,7 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
       <h2 className="text-2xl font-semibold">Proof of Address</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 1111111111 or email
+        are happy to help. Simply contact us on 02080028761 or email
         info@monefi.co.uk
       </p>
       <div className="flex flex-col gap-5">
@@ -43,6 +47,8 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
         )}
       </div>
 
+      {formData.proofOfAddress !== "Email Proof of Address" && <UploadProof formData={formData} setFormData={setFormData} />}
+
       <div className="flex justify-between items-start">
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-monefi-off-white rounded-md"
@@ -52,11 +58,58 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
         </button>
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
-          onClick={() => setStage("Purpose of Account")}
+          
+          onClick={() => {
+            if(formData.proofOfAddress !== "Email Proof of Address"){
+                if(!formData.proofOfAddressFile){
+                  toast.error("Please upload file.")
+                  return
+                }
+            }
+
+              setStage("Purpose of Account")
+            
+          }
+          }
         >
           Next
         </button>
       </div>
     </div>
   );
+}
+
+
+const UploadProof = ({formData,setFormData}:{formData: FormDataType,setFormData: React.Dispatch<React.SetStateAction<FormDataType>>}) =>{
+
+  const upload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const form = new FormData()
+      if(!e.target.files?.length){
+        toast.error("Please select any files.")
+      }else{
+        form.append('file',e.target.files[0])
+        try {
+          const {data} =  await toast.promise(api.post('/uploads',form),{
+              loading:"File is uploading...",
+              error:"Somthing is error, please try again.",
+              success:"file upload is successfull"
+            })
+         setFormData(prev=>({...prev,proofOfAddressFile:data.data}))
+        } catch (error) {
+          throw error
+        }
+      }
+    },
+    [],
+  )
+  
+
+  return( <div className="border p-5 rounded-md border-monefi-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
+          <input type="file" className="absolute h-full w-full opacity-0 inset-0" onChange={upload}  />
+     
+         {formData.proofOfAddressFile ? <img width={200} height={200} src={getConfig().backendURL + formData.proofOfAddressFile} alt="" /> : <ImageUp width={50} height={50} className="text-monefi-off-white"/>}
+          <p className="text-monefi-off-white">Upload {formData.proofOfAddress}</p>
+        </div>
+        )
 }

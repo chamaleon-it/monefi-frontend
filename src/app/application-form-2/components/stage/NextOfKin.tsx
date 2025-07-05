@@ -14,7 +14,7 @@ export default function NextOfKin({ setStage,formData,setFormData }: AddressProp
       <h2 className="text-2xl font-semibold">Next Of Kin</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 1111111111 or email
+        are happy to help. Simply contact us on 02080028761 or email
         info@monefi.co.uk
       </p>
       <div className="grid grid-cols-2 gap-5">

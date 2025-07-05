@@ -18,7 +18,7 @@ export default function CompanyOwnership({
       <h2 className="text-2xl font-semibold">Company Ownership</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 1111111111 or email
+        are happy to help. Simply contact us on 02080028761 or email
         info@monefi.co.uk
       </p>
        <div className="col-span-full flex flex-col gap-5">

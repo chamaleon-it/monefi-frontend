@@ -14,7 +14,7 @@ export default function Stage2({ form }: PropsType) {
         Account Type
       </h2>
       <p className="text-sm">
-        If you need our assistance to complete the account opening process we are happy to help. Simply contact us on 1111111111 or email info@monefi.co.uk.
+        If you need our assistance to complete the account opening process we are happy to help. Simply contact us on 02080028761 or email info@monefi.co.uk.
       </p>
 
       {/* Account Type Options */}
