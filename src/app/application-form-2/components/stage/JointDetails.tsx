@@ -18,7 +18,7 @@ export default function JointDetails({
       <h2 className="text-2xl font-semibold">Personal Information (Joint)</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 1111111111 or email
+        are happy to help. Simply contact us on 02080028761 or email
         info@monefi.co.uk
       </p>
       <div className="grid lg:grid-cols-2 gap-5">
@@ -73,15 +73,18 @@ export default function JointDetails({
           }
           value={formData?.jointHolder?.lastName}
         />
+        <div className="w-full">
+<label htmlFor="" className="text-monefi-off-white text-sm">Date Of Birth</label>
         <input
           type="date"
           placeholder="Date of Birth"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white accent-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white accent-monefi-off-white w-full"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,dateOfBirth:e.target.value} }))
           }
           value={formData?.jointHolder?.dateOfBirth}
         />
+        </div>
         <input
           type="text"
           placeholder="Occupation"

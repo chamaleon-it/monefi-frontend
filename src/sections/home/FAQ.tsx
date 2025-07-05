@@ -39,8 +39,8 @@ export default function FAQ() {
       </div>
       <div className="grid grid-cols-1 border-t  container mx-auto p-5 gap-10 py-5">
         <div className="space-y-5">
-          <p className="text-lg">Copyright © {new Date().getFullYear()}Monefi Limited</p>
-          <p className="text-lg leading-8">Monefi Limited is authorised and regulated by the Financial Conduct Authority, with firm reference no. 938387. Registered in england and Wales with company no. 12857853 and with registered offices at Burton Varley Ltd Suite 3, 2nd Floor, Didsbury House, 748-754 Wilmslow Road, Manchester, England, M20 2DW</p>
+          <p className="text-lg">Copyright © {new Date().getFullYear()} Monefi Limited</p>
+          <p className="text-lg leading-8">Monefi Limited is authorised and regulated by the Financial Conduct Authority, with firm reference no. 938387. Registered in England and Wales with company no. 12857853 and with registered offices at Burton Varley Ltd Suite 3, 2nd Floor, Didsbury House, 748-754 Wilmslow Road, Manchester, England, M20 2DW</p>
         
         </div>
         {/* <div className="flex items-end justify-end">

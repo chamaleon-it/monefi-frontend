@@ -18,7 +18,7 @@ export default function CompanyInformation({
       <h2 className="text-2xl font-semibold">Company Information</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 1111111111 or email
+        are happy to help. Simply contact us on 02080028761 or email
         info@monefi.co.uk
       </p>
       <div className="grid lg:grid-cols-2 gap-5">
@@ -123,11 +123,12 @@ export default function CompanyInformation({
             </label>
           ))}
         </div>
-
+<div className="w-full">
+<label htmlFor="" className="text-monefi-off-white text-sm">Date of Registration</label>
         <input
           type="date"
           placeholder="Date of Registration"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white w-full"
           onChange={(e) =>
             setFormData((prev) => ({
               ...prev,
@@ -136,7 +137,7 @@ export default function CompanyInformation({
           }
           value={formData.company?.dateOfRegistration}
         />
-
+</div>
          <input
           type="text"
           placeholder="Nature of Business"

@@ -104,7 +104,9 @@ export interface FormDataType {
      "International travel document"
     | "Driving Licence"
     | "Email Identification";
+    identityVerificationFile:string,
   proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
+  proofOfAddressFile:string,
   purposeOfAccount:
      "Savings"
     | "Growth"
@@ -133,7 +135,7 @@ export interface FormDataType {
 export default function Form() {
   const [stage, setStage] = useState<StageType>("Start");
   const [formData, setFormData] = useState<FormDataType>({
-    email: "test@gmail.com",
+    email: "",
     accountType: "Individual",
     title: "",
     firstName: "",
@@ -152,7 +154,9 @@ export default function Form() {
     region: "",
     postcode: "",
     identityVerification: "Email Identification",
+    identityVerificationFile:"",
     proofOfAddress: "Email Proof of Address",
+    proofOfAddressFile:"",
     purposeOfAccount: "Savings",
     bankAccount: "Email Existing Bank Account Details",
     nextOfKinName: {
