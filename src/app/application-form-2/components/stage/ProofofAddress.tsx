@@ -101,7 +101,7 @@ const UploadProof = ({formData,setFormData}:{formData: FormDataType,setFormData:
         }
       }
     },
-    [],
+    [setFormData],
   )
   
 
