@@ -18,7 +18,7 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
         are happy to help. Simply contact us on 02080028761 or email
-        info@monefi.co.uk
+        hello@monefi.co.uk
       </p>
       <div className="flex flex-col gap-5">
         {["Utility Bill", "Driving Licence", "Email Proof of Address"].map(
