@@ -27,7 +27,7 @@ export default function FAQ() {
                   <AtSign />
                 </div>
                 <p className="font-inter font-medium text-xl">
-                  info@monefi.co.uk
+                  hello@monefi.co.uk
                 </p>
               </div>
             </div>
