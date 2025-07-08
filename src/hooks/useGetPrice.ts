@@ -27,11 +27,12 @@ export default function useGetPrice({
     try {
       if (type === "stock") {
         const {data} =await stockApi.get(`/price?symbol=${symbol.toUpperCase()}&apikey=${getConfig().twelveDataApiKey}`)
-        setPrice(parseFloat(data.price))
+        console.log(parseFloat(data.price) * getConfig().exchangeRateUSDtoGBP);
+        setPrice(parseFloat(data.price) * getConfig().exchangeRateUSDtoGBP)
       }
       if (type === "crypto") {
         const {data} = await cryptoApi.get(`/price?ids=${symbol}&vs_currencies=usd`)
-        setPrice(data[symbol].usd)
+        setPrice(data[symbol].usd*getConfig().exchangeRateUSDtoGBP)
       }
     } catch (error) {
       setError("Something went wrong while fetching the price.");
