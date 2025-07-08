@@ -1,8 +1,8 @@
 // Format number as currency (default: USD)
 export const fCurrency = (
   amount: number,
-  currency: string = "USD",
-  locale: string = "en-US",
+  currency: string = "GBP",
+  locale: string = "en-GB"
 ): string => {
   return new Intl.NumberFormat(locale, {
     style: "currency",
@@ -10,6 +10,7 @@ export const fCurrency = (
     maximumFractionDigits: 2,
   }).format(amount);
 };
+
 
 // Format large number with commas (e.g., 1,000,000)
 export const fDigit = (number: number, locale: string = "en-US"): string => {
