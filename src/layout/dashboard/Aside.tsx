@@ -29,7 +29,7 @@ export default function Aside() {
                 <div className="">
                   <Icon icon={link.icon} width={30} height={30} />
                 </div>
-                <p className="font-poppins lg:text-lg font-medium">{link.title}</p>
+                <p className="font-poppins text-sm lg:text-lg font-medium whitespace-nowrap">{link.title}</p>
               </Link>
             </li>
           ))}
