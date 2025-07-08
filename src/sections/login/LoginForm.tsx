@@ -134,7 +134,7 @@ export default function LoginForm() {
           </form>
 
           {/* Register Link */}
-          <motion.div
+          {/* <motion.div
             className="mt-6 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -149,7 +149,7 @@ export default function LoginForm() {
                 Sign up here
               </Link>
             </p>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         {/* Footer */}
