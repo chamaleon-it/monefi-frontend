@@ -12,7 +12,7 @@ export default function TradeStockPage() {
     <div className='flex flex-col gap-2.5 pointer-events-none'>
         <TickerTape colorTheme="light" />
         <Ticker colorTheme="light" />
-        <select name="" id="" className='w-[400px] h-14 px-5 rounded-3xl border border-white/30 bg-transparent pointer-events-auto' onChange={e=>setSymbol(e.target.value)} value={symbol}>
+        <select name="" id="" className='w-[400px] h-14 px-5 rounded-xl border-2 border-monefi-off-pink bg-monefi-off-pink  pointer-events-auto font-semibold' onChange={e=>setSymbol(e.target.value)} value={symbol}>
             {topStock.map(e=>(<option key={e.symbol} className='text-black' value={e.symbol}>{e.name}</option>))}
           </select>
         <SymbolInfo colorTheme="light" autosize symbol={symbol}/>
