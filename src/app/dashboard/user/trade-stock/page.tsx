@@ -16,7 +16,7 @@ export default function TradeStockPage() {
             {topStock.map(e=>(<option key={e.symbol} className='text-black' value={e.symbol}>{e.name}</option>))}
           </select>
         <SymbolInfo colorTheme="light" autosize symbol={symbol}/>
-        <div className="grid grid-cols-4 gap-2.5">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2.5">
             <div className="col-span-3 w-full relative">
             <AdvancedRealTimeChart allow_symbol_change={false} theme="light" symbol={symbol} width={"100%"} height={500}/>
             </div>
