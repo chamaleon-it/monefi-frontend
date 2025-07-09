@@ -90,27 +90,27 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
         />
         <input
           type="text"
-          placeholder="BIC/Swift"
+          placeholder="Account Number"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          value={formData?.bankAccountDetails?.bic_swift}
+          value={formData?.bankAccountDetails?.accountNumber}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
               ...prev.bankAccountDetails,
-              bic_swift: e.target.value
+              accountNumber: e.target.value
             }
           }))}
         />
         <input
           type="text"
-          placeholder="IBAN"
+          placeholder="Sort Code"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
-          value={formData?.bankAccountDetails?.iban}
+          value={formData?.bankAccountDetails?.sortCode}
           onChange={(e) => setFormData(prev => ({
             ...prev,
             bankAccountDetails: {
               ...prev.bankAccountDetails,
-              iban: e.target.value
+              sortCode: e.target.value
             }
           }))}
         />
@@ -127,7 +127,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
             if(formData.bankAccount === "Provide Existing Bank Account Details"){
-              if(!formData?.bankAccountDetails?.bankName || !formData?.bankAccountDetails?.branchName || !formData?.bankAccountDetails?.accountName || !formData?.bankAccountDetails?.bic_swift || !formData?.bankAccountDetails?.iban){
+              if(!formData?.bankAccountDetails?.bankName || !formData?.bankAccountDetails?.branchName || !formData?.bankAccountDetails?.accountName || !formData?.bankAccountDetails?.accountNumber || !formData?.bankAccountDetails?.sortCode){
                toast.error("Please fill in all the bank account details.");
                 return;
               }

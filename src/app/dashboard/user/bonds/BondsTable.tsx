@@ -5,14 +5,14 @@ import useSWR from "swr"
 import { fDateAndTime } from "@/utility/dateFormatters.ts"
 import { CouponFrequency } from "@/enum/coupon-frequency.enum"
 import { CouponType } from "@/enum/coupon-type.enum"
-import { fCurrency } from "@/utility/numberFormatters"
+// import { fCurrency } from "@/utility/numberFormatters"
 import { fName } from "@/utility/fName"
 
 interface Bond {
   _id: string
   name: string
   isin: string
-  unitPrice: number
+  // unitPrice: number
   couponType: CouponType
   couponFrequency: CouponFrequency
   meturityDate: string
@@ -107,7 +107,7 @@ export default function BondsPage() {
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">ISIN</th>
-                <th className="py-3 px-4">Unit Price</th>
+                {/* <th className="py-3 px-4">Unit Price</th> */}
                 <th className="py-3 px-4">Coupon Type</th>
                 <th className="py-3 px-4">Frequency</th>
                 <th className="py-3 px-4">Maturity</th>
@@ -126,7 +126,7 @@ export default function BondsPage() {
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">{fName(bond.name)}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(bond.unitPrice)}</td>
+                      {/* <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(bond.unitPrice)}</td> */}
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponType}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponFrequency}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{fDateAndTime(bond.meturityDate)}</td>

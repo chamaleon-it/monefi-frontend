@@ -121,8 +121,8 @@ export interface FormDataType {
     bankName?: string;
     branchName?: string;
     accountName?: string;
-    bic_swift?: string;
-    iban?: string;
+    accountNumber?: string;
+    sortCode?: string;
   };
   nextOfKinName: {
     name: string;
