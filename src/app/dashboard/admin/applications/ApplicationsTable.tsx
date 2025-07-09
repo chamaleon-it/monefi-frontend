@@ -6,6 +6,7 @@ import { fDateAndTime } from "@/utility/dateFormatters.ts";
 import { fName } from "@/utility/fName";
 import toast from "react-hot-toast";
 import api from "@/services/api";
+import getConfig from "@/config/configuration";
 
 interface Application {
   email: string;
@@ -74,7 +75,9 @@ interface Application {
     | "International travel document"
     | "Driving Licence"
     | "Email Identification";
+    identityVerificationFile:"",
   proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
+  proofOfAddressFile:""
   purposeOfAccount:
     | "Savings"
     | "Growth"
@@ -89,8 +92,8 @@ interface Application {
     bankName?: string;
     branchName?: string;
     accountName?: string;
-    bic_swift?: string;
-    iban?: string;
+    accountNumber?: string;
+    sortCode?: string;
   };
   nextOfKinName: {
     name: string;
@@ -353,10 +356,18 @@ export default function ApplicationTable() {
                 <strong>Identity Verification:</strong>{" "}
                 {selectedApplication.identityVerification}
               </p>
+              {selectedApplication.identityVerification !== "Email Identification" &&<p>
+                <strong>Identity File:</strong>{" "}
+               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.identityVerificationFile} target="_blank" rel="noopener noreferrer">View File`</a>
+              </p>}
               <p>
                 <strong>Proof of Address:</strong>{" "}
                 {selectedApplication.proofOfAddress}
               </p>
+               {selectedApplication.proofOfAddress !== "Email Proof of Address" &&<p>
+                <strong>Proof of Address File:</strong>{" "}
+               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.proofOfAddressFile} target="_blank" rel="noopener noreferrer">View File`</a>
+              </p>}
               <p>
                 <strong>Purpose of Account:</strong>{" "}
                 {selectedApplication.purposeOfAccount}
@@ -377,12 +388,12 @@ export default function ApplicationTable() {
                 {selectedApplication.bankAccountDetails?.accountName}
               </p>
               <p>
-                <strong>BIC/SWIFT:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.bic_swift}
+                <strong>Account Number:</strong>{" "}
+                {selectedApplication.bankAccountDetails?.accountNumber}
               </p>
               <p>
-                <strong>IBAN:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.iban}
+                <strong>Sort Code:</strong>{" "}
+                {selectedApplication.bankAccountDetails?.sortCode}
               </p>
             </div>
 
