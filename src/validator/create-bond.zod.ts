@@ -18,7 +18,7 @@ export const CreateBondZod = z.object({
   couponType: z.nativeEnum(CouponType, {
     errorMap: () => ({ message: "Select a valid coupon type." }),
   }),
-  meturityDate: z.string().nonempty("Maturity date is required."),
+  meturityDate: z.string().optional(),
   isPublic: z.boolean().optional(),
 });
 
