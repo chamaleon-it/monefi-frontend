@@ -131,7 +131,7 @@ export default function CreateBond() {
               <input
                 {...register("annualCouponRate", { valueAsNumber: true })}
                 type="number"
-                step="0.01"
+                step="0.001"
                 placeholder="e.g., 6.5"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
               />
@@ -149,7 +149,7 @@ export default function CreateBond() {
               <input
                 {...register("unitPrice", { valueAsNumber: true })}
                 type="number"
-                step="0.01"
+                step="0.001"
                 placeholder="e.g., 1000"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
               />

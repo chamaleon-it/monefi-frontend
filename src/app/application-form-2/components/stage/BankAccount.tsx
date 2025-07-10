@@ -64,7 +64,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
         />
         <input
           type="text"
-          placeholder="Branch"
+          placeholder="Branch (Optional)"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
           value={formData?.bankAccountDetails?.branchName}
           onChange={(e) => setFormData(prev => ({
@@ -127,7 +127,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
           onClick={() => {
             if(formData.bankAccount === "Provide Existing Bank Account Details"){
-              if(!formData?.bankAccountDetails?.bankName || !formData?.bankAccountDetails?.branchName || !formData?.bankAccountDetails?.accountName || !formData?.bankAccountDetails?.accountNumber || !formData?.bankAccountDetails?.sortCode){
+              if(!formData?.bankAccountDetails?.bankName || !formData?.bankAccountDetails?.accountName || !formData?.bankAccountDetails?.accountNumber || !formData?.bankAccountDetails?.sortCode){
                toast.error("Please fill in all the bank account details.");
                 return;
               }
