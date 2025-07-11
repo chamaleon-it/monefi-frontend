@@ -11,7 +11,7 @@ export default function FAQ() {
           <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8">
             Frequently <br /> Asked Questions
           </h2>
-          <div className="bg-monefi-pink w-full lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
+          <div className="bg-monefi-pink w-full hidden lg:block lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
             <p className="font-poppins font-semibold text-2xl">
               Couldn’t find what <br /> you’re looking for?
             </p>
@@ -36,6 +36,28 @@ export default function FAQ() {
         </div>
 
         <FAQLeftSection />
+        <div className="bg-monefi-pink w-full block lg:hidden lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
+            <p className="font-poppins font-semibold text-2xl">
+              Couldn’t find what <br /> you’re looking for?
+            </p>
+            <div className="space-y-3 lg:space-y-6 mt-5 lg:mt-10">
+              <div className="flex gap-3 items-center">
+                <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
+                  <Phone fill="#fff" strokeWidth={0.75} />
+                </div>
+                <p className="font-poppins font-bold text-xl">02080028761</p>
+              </div>
+              <div className="flex gap-3 items-center">
+                <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
+                  <AtSign />
+                </div>
+                <p className="font-inter font-medium text-xl">
+                  hello@monefi.co.uk
+                </p>
+              </div>
+            </div>
+            <Image src={'/home/circle.png'} width={144} height={144} alt="Circle" className="absolute bottom-0 right-0" />
+          </div>
       </div>
       <div className="grid grid-cols-1 border-t  container mx-auto p-5 gap-10 py-5">
         <div className="space-y-5">
