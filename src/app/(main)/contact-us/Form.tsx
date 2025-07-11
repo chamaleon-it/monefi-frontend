@@ -18,14 +18,16 @@ export default function Form() {
 
   const formSubmit = handleSubmit(async (data) => {
     try {
-        const res = await toast.promise(api.post('/contact-us',data),
+        await toast.promise(api.post('/contact-us',data),
     {
         loading:"We are sending your message.",
         error:"Oops, We have a issue with connections.",
         success:"You message is successfully received."
     }
     )
-    } catch (error) {}
+    } catch (error) {
+        console.log(error);
+    }
   });
   return (
     <form className="space-y-6" onSubmit={formSubmit}>
