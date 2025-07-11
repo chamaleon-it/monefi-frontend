@@ -2,6 +2,7 @@ export default function usePaths() {
   const path = {
     home: "/",
     aboutUs: "/about-us",
+    contactUs:'/contact-us',
     insurance: "/insurance",
     resources:"/resources",
     financialplanning:"/financial-planning",
