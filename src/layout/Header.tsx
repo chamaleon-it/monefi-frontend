@@ -31,7 +31,7 @@ export default function Header() {
       className={`sticky z-50 transition-all duration-300 ${
         isDashboard
           ? "bg-white/95 backdrop-blur-md py-4 top-0 border-b border-gray-200/50 shadow-sm"
-          : "bg-monefi-black/95 backdrop-blur-md pb-8 pt-8 lg:pt-20 -top-1 lg:-top-11 border-b border-white/10"
+          : "bg-monefi-black/95 backdrop-blur-md pb-4 pt-4 2xl:py-10  -top-1 border-b border-white/10"
       }`}
     >
       <div className="mac:max-w-[83%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

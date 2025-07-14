@@ -8,7 +8,7 @@ export default function Hero() {
   const paths = usePaths();
   return (
     <>
-      <section className="bg-monefi-black text-monefi-off-white h-[calc(100vh-150px-50px)] pt-[70px] lg:pt-0 relative bg-[url(/home/hero/m.jpeg)] lg:bg-[url(/home/hero/d.jpg)] bg-top bg-cover bg-no-repeat relative">
+      <section className="bg-monefi-black text-monefi-off-white h-[calc(100vh-50px-80px)] 2xl:h-[calc(100vh-50px-129px)] pt-[70px] lg:pt-0 relative bg-[url(/home/hero/m.jpeg)] lg:bg-[url(/home/hero/d.jpg)] bg-top bg-cover bg-no-repeat relative">
       <div className="bg-black/30 absolute inset-0 m-auto h-full w-full"></div>
         <div className="px-2.5 lg:px-0 container mx-auto h-full relative z-10">
           
