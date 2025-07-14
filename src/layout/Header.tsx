@@ -16,6 +16,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navigationItems = [
+     { href: paths.home, label: "Home" },
     { href: paths.insurance, label: "Insurance" },
     { href: paths.loans, label: "Loan Types" },
     // { href: paths.resources, label: "Resources" },

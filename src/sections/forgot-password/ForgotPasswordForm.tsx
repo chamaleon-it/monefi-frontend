@@ -4,30 +4,29 @@ import type React from "react"
 
 import { motion } from "framer-motion"
 // import Link from "next/link"
-import { useAuth } from "@/auth/useAuth"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { UserLoginZod } from "@/validator/user-login.zod"
-import Link from "next/link"
-import usePaths from "@/hooks/usePaths"
+import { ForgotPassswordZod } from "@/validator/forgot-password.zod"
+import toast from "react-hot-toast"
+import api from "@/services/api"
 
-export default function LoginForm() {
-  const {auth:{forgotPassword}} = usePaths()
- const {login,verify} = useAuth()
+
+export default function ForgotPasswordForm() {
+
  
-   const {register,handleSubmit,formState:{errors,isSubmitting},setError} = useForm({
-     resolver:zodResolver(UserLoginZod)
+   const {register,handleSubmit,formState:{errors,isSubmitting}} = useForm({
+     resolver:zodResolver(ForgotPassswordZod)
    })
  
  
    const onSubmit = handleSubmit(async(data)=>{
      try {
-   const {status,error} = await login(data)
-   if(status === "success"){
-     await verify()
-   }else{
-    setError("root",{message:error})
-   }
+      await toast.promise(api.post('/users/forgot-password',data),{
+        loading:"Sending password reset link to your email…",
+        success:"We’ve sent a password reset link to your email. Please note, the link will expire in 2 hours.",
+        error:(err)=>err.response.data.message
+      })
+ 
      } catch (error) {
        console.log(error);
      }
@@ -56,8 +55,8 @@ export default function LoginForm() {
         >
           {/* Form Header */}
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-            <p className="text-white/90 text-sm">Enter your credentials to access your account</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Forgot Password</h2>
+            <p className="text-white/90 text-sm">Enter your email to reset your password</p>
           </div>
 
           {/* Form */}
@@ -82,31 +81,7 @@ export default function LoginForm() {
             </motion.div>
 
             {/* Password Field */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <label htmlFor="password" className="text-white font-medium">
-                  Password
-                </label>
-                <Link
-                  href={forgotPassword}
-                  className="text-sm text-white/90 hover:text-white underline transition-colors duration-200"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <input
-                id="password"
-                type="password"
-               {...register("password")}
-                placeholder="Enter your password"
-                className="w-full px-4 py-3 bg-white/95 border border-white/20 rounded-lg text-[#232323] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
-              />
-              {errors.password && <p className="text-red-700 text-sm mt-2.5">{errors.password.message}</p>}
-            </motion.div>
+            
 
  {errors.root && (
               <p className="text-red-700 text-sm mt-2.5 text-center">
@@ -128,31 +103,15 @@ export default function LoginForm() {
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#EC709A] mr-2"></div>
-                  Signing in...
+                  Sending
                 </div>
               ) : (
-                "Sign In"
+                "Send Reset link"
               )}
             </motion.button>
           </form>
 
-          {/* Register Link */}
-          {/* <motion.div
-            className="mt-6 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-          >
-            <p className="text-white/90 text-sm">
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/register"
-                className="text-white font-semibold underline hover:no-underline transition-all duration-200"
-              >
-                Sign up here
-              </Link>
-            </p>
-          </motion.div> */}
+          
         </motion.div>
 
         {/* Footer */}

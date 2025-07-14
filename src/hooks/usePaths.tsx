@@ -13,6 +13,8 @@ export default function usePaths() {
     auth: {
       login: "/login",
       register: "/register",
+      forgotPassword:'/forgot-password',
+      resetPassword:"/reset-password"
     },
     dashboard: {
       root: "/dashboard",

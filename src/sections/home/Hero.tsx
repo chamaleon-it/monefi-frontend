@@ -8,55 +8,57 @@ export default function Hero() {
   const paths = usePaths();
   return (
     <>
-      <section className="bg-monefi-black text-white h-[calc(100vh-150px-50px)] pt-[70px] relative">
-        <div className="max-w-[83%] mx-auto">
-          <div className="flex justify-between flex-col lg:flex-row gap-20 lg:gap-0">
-            <h1 className="font-poppins font-semibold text-[40px] mac:text-[60px] w-full lg:w-1/2">
-              The{" "}
-              <span className="text-monefi-pink">
-                smar
-                <span className="relative inline-block">
-                  t
-                  <Image
-                    src="/home/hero/text-decoration.png"
-                    alt=""
-                    className="absolute rotate-[30deg] -top-0 -right-4 mac:-right-5 min-w-[40px] mac:min-w-[55px] block"
-                    width={55}
-                    height={55}
-                    priority
-                  />
+      <section className="bg-monefi-black text-monefi-off-white h-[calc(100vh-150px-50px)] pt-[70px] lg:pt-0 relative bg-[url(/home/hero/m.jpeg)] lg:bg-[url(/home/hero/d.jpg)] bg-top bg-cover bg-no-repeat relative">
+      <div className="bg-black/30 absolute inset-0 m-auto h-full w-full"></div>
+        <div className="px-2.5 lg:px-0 container mx-auto h-full relative z-10">
+          
+            <div className=" w-full lg:w-1/2 h-full flex  flex-col justify-between lg:justify-center pb-5">
+              <h1 className="font-poppins font-semibold text-[40px] mac:text-[60px]">
+                The{" "}
+                <span className="text-monefi-pink">
+                  smar
+                  <span className="relative inline-block">
+                    t
+                    <Image
+                      src="/home/hero/text-decoration.png"
+                      alt=""
+                      className="absolute rotate-[30deg] -top-0 -right-4 mac:-right-5 min-w-[40px] mac:min-w-[55px] block"
+                      width={55}
+                      height={55}
+                      priority
+                    />
+                  </span>{" "}
+                  choic
+                  <span className="relative inline-block">
+                    e
+                    <Image
+                      src="/home/hero/text-decoration.png"
+                      alt=""
+                      width={35}
+                      height={35}
+                      className="absolute rotate-[160deg] bottom-1 mac:bottom-3 -right-3.5 min-w-[35px] block"
+                    />
+                  </span>
                 </span>{" "}
-                choic
-                <span className="relative inline-block">
-                  e
-               <Image
-  src="/home/hero/text-decoration.png"
-  alt=""
-  width={35}
-  height={35}
-  className="absolute rotate-[160deg] bottom-1 mac:bottom-3 -right-3.5 min-w-[35px] block"
-/>
-                </span>
-              </span>{" "}
-              for <br className="hidden lg:block" /> your finances.
-            </h1>
-            <div className="w-full lg:w-1/2">
-              <p className="text-2xl mac:text-3xl font-poppins">
-                Empower your financial journey with{" "}
-                <span className="font-bold">Expert</span> <br /> guidance and{" "}
-                <span className="font-bold">Tailored</span> solutions.
-              </p>
-              <Link
-                href={paths.auth.login}
-                className="mt-7 px-6 py-4 rounded-full border font-poppins hover:scale-110 duration-400 hover:bg-monefi-pink hover:text-monefi-black mac:text-lg inline-block"
-              >
-                Join Today
-              </Link>
+                for <br className="hidden lg:block" /> your finances.
+              </h1>
+              <div className="mt-7 bg-black/50 lg:bg-transparent text-monefi-off-white lg:text-monefi-off-white rounded-xl lg:rounded-none p-2.5 lg:p-0">
+                <p className="text-2xl mac:text-3xl font-poppins">
+                  Empower your financial journey with{" "}
+                  <span className="font-bold">Expert</span> <br /> guidance and{" "}
+                  <span className="font-bold">Tailored</span> solutions.
+                </p>
+                <Link
+                  href={paths.auth.login}
+                  className="mt-7 px-6 py-4 rounded-full border font-poppins hover:scale-110 duration-400 hover:bg-monefi-pink hover:text-monefi-black mac:text-lg inline-block"
+                >
+                  Join Today
+                </Link>
+              </div>
             </div>
-          </div>
         </div>
 
-        <div className="max-w-[81%] mx-auto absolute bottom-0 inset-x-0 hidden lg:flex items-end justify-center">
+        {/* <div className="max-w-[81%] mx-auto absolute bottom-0 inset-x-0 hidden lg:flex items-end justify-center">
           <div className="relative w-[360px] mac:w-1/4 h-[463px] mac:h-[643px] rounded-t-full  bg-monefi-off-white flex shrink-0 flex-col justify-end items-center cursor-pointer duration-300 hover:border-x-4 hover:border-t-4 border-white">
             <h2 className="absolute text-2xl mac:text-3xl text-monefi-black font-poppins font-bold bottom-[380px] mac:bottom-[500px] ">
               Life Insurance
@@ -152,7 +154,7 @@ export default function Hero() {
               loading="eager"
             />
           </div>
-        </div>
+        </div> */}
       </section>
       <section className="h-[50px] flex justify-center items-end">
         <Link href={"#section_services"} aria-label="Services" title="Services">
