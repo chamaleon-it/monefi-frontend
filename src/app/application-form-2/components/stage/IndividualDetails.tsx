@@ -202,7 +202,7 @@ export default function IndividualDetails({
               toast.error("Please enter your password");
               return;
             }
-            if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(formData.password)){
+            if(!/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(formData.password)){
               toast.error("Password must be at least 8 characters, include one letter and one number");
               return
             }
