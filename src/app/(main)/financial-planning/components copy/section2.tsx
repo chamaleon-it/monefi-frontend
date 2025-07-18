@@ -6,41 +6,35 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 export function Section2() {
   return (
     <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
-      <h1 className="text-white text-4xl text-center py-10">Investment & Retirement Strategy</h1>
+      <h1 className="text-white text-4xl text-center py-10">Our Financial Planning Services</h1>
     <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-2 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
         area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-        icon={<></>}
-        title=""
-        description="We believe your financial journey should lead to a secure and fulfilling future. Our Investment and Retirement Strategy service is designed to help you grow your wealth while preparing for life after work with confidence."
+        icon={<Box className="h-4 w-4 text-white dark:text-neutral-400" />}
+        title="Investment & Retirement Strategy"
+        description="Grow your wealth and prepare for life after work. We’ll design a tailored plan that balances your investment goals with your retirement needs—so you can build and enjoy your future with confidence."
       />
 
-       <GridItem
+      <GridItem
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-        icon={<></>}
-        title=""
-        description="Whether you're just starting to build your portfolio or nearing retirement, our strategic approach ensures that your assets are working efficiently and sustainably."
+        icon={<Settings className="h-4 w-4 text-white dark:text-neutral-400" />}
+        title="Estate & Legacy Planning"
+        description="Leave a lasting impact. Our team helps you protect your assets, minimise inheritance tax, and pass on your wealth in line with your wishes—securely and clearly."
       />
 
-
-<GridItem
+      
+      <GridItem
         area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
-        icon={<></>}
-        title=""
-        
-        description="We take the time to understand your unique circumstances, ambitions, and risk tolerance to craft a personalised plan that aligns your investment objectives with your long-term retirement needs."
+        icon={<Sparkles className="h-4 w-4 text-white dark:text-neutral-400" />}
+        title="Tax Efficiency & Smart Structuring"
+        description="Make every pound work harder. We’ll help you legally reduce tax liabilities by making the most of your allowances, savings vehicles, and income strategies."
       />
-
-     
-
-      
-      
 
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-        icon={<></>}
-        title=""
-        description="From diversifying investments to managing risk and planning income streams for retirement, we provide clear, expert guidance every step of the way—so you can enjoy peace of mind today and financial freedom tomorrow."
+        icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
+        title="Life Goals & Financial Problem Solving"
+        description="From buying a home to launching a business or managing debt, we create practical, flexible plans that turn real-life goals into financial success stories."
       />
     </ul>
     </div>
