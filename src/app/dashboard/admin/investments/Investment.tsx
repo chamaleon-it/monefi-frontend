@@ -5,7 +5,7 @@ import { topStock } from "@/data/top-stock";
 import { CouponFrequency } from "@/enum/coupon-frequency.enum";
 import { CouponType } from "@/enum/coupon-type.enum";
 import { InvestmentType } from "@/enum/investment-type.enum";
-import { TransactionStatus } from "@/enum/transaction-status.enum";
+// import { TransactionStatus } from "@/enum/transaction-status.enum";
 import { UserStatus } from "@/enum/user-status.enum";
 import { UserRoles } from "@/enum/user.enum";
 import api from "@/services/api";
@@ -37,7 +37,7 @@ export default function Investment() {
 
   const submit = handleSubmit(async (data) => {
     try {
-      const {data:transactionData} = await toast.promise(api.post("/transactions/invest", data), {
+      await toast.promise(api.post("/transactions/invest", data), {
         loading: "Investing...",
         success: "Invested",
         error: "Failed to Invest.",
