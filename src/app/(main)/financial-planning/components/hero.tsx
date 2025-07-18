@@ -14,7 +14,7 @@ export function HeroSection() {
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
           We offer secure and safe bond investment opportunities through our
           extensive network of Tier 1–rated banks, trusted global corporations,
-          and government institutions. Whether you're looking for corporate
+          and government institutions. Whether you&apos;re looking for corporate
           bonds backed by leading companies or the stability of government
           bonds, we provide access to some of the most competitive and reliable
           rates in the market.

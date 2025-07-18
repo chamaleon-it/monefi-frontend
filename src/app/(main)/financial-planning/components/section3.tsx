@@ -33,7 +33,7 @@ export default function Section3() {
               We analyse your financial situation in detail to identify opportunities to optimise your income, investments, and assets—using all available allowances, tax-efficient savings vehicles, and proven income distribution strategies.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Whether you're a business owner, high earner, investor, or simply looking to make smarter financial decisions, we create bespoke solutions that align with current tax laws and your long-term goals.
+              Whether you&apos;re a business owner, high earner, investor, or simply looking to make smarter financial decisions, we create bespoke solutions that align with current tax laws and your long-term goals.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The result is a well-structured financial plan that supports sustainable growth while preserving more of your wealth for you and your future.
