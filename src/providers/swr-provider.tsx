@@ -25,6 +25,8 @@ export const SWRProvider: React.FC<SWRProviderProps> = ({ children }) => {
         revalidateOnFocus: true,
         dedupingInterval: 1000 * 60, // 1 minute
         shouldRetryOnError: true,
+        revalidateOnMount:true,
+        revalidateOnReconnect:true,
       }}
     >
       {children}

@@ -1,30 +1,22 @@
-"use client";
+"use client"
 
 // import { motion } from "motion/react";
+
 
 export function HeroSection() {
   return (
     <section className="py-16 md:py-24 flex justify-center items-center font-poppins px-4 min-h-[calc(100vh-150px)] bg-monefi-off-white">
       <div className="container mx-auto max-w-6xl text-center space-y-5">
+
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight px-4">
-          Secure Bond Investments with
-          <br /> <span style={{ color: "#ec709a" }}>Trusted Institutions</span>
+          Financial Planning – Secure  <br />  <span style={{ color: "#ec709a" }}>Tomorrow, Today</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-          We offer secure and safe bond investment opportunities through our
-          extensive network of Tier 1–rated banks, trusted global corporations,
-          and government institutions. Whether you're looking for corporate
-          bonds backed by leading companies or the stability of government
-          bonds, we provide access to some of the most competitive and reliable
-          rates in the market.
+         Planning your financial future shouldn&apos;t be overwhelming—it should be empowering. At Monefi, we help you take control of your money with clear, practical strategies tailored to your life goals, circumstances, and ambitions.
         </p>
-        <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-          Our focus is on helping you grow your wealth with low-risk,
-          high-quality fixed-income solutions—giving you confidence in your
-          financial future.
-        </p>
-        {/* <motion.div
+        <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">Whether you&apos;re just starting out or fine-tuning your long-term plans, our financial advisers are here to guide you through every step of your financial journey.</p>
+               {/* <motion.div
           initial={{
             opacity: 0,
           }}
@@ -45,6 +37,9 @@ export function HeroSection() {
           </button>
         </motion.div> */}
       </div>
+  
     </section>
-  );
+  )
 }
+
+

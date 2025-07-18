@@ -43,12 +43,12 @@ export default function Investment() {
         error: "Failed to Invest.",
       });
 
-      const id:string = transactionData?.data?._id as string
-       await toast.promise(api.patch('/transactions/status',{id,status:TransactionStatus.COMPLETED}),{
-                loading:"Transaction is updating...",
-                error:"Somthing is error, Please try again.",
-                success:"Transaction is updated."
-            })
+      // const id:string = transactionData?.data?._id as string
+      //  await toast.promise(api.patch('/transactions/status',{id,status:TransactionStatus.COMPLETED}),{
+      //           loading:"Transaction is updating...",
+      //           error:"Somthing is error, Please try again.",
+      //           success:"Transaction is updated."
+      //       })
 
       reset();
     } catch (error) {

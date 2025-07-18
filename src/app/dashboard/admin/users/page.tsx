@@ -16,7 +16,7 @@ interface User {
   status: UserStatus
   lastLogin: Date
   createdAt: Date,
-  balance:number
+  balance: number
 }
 
 interface Pagination {
@@ -53,7 +53,16 @@ export default function UsersPage() {
     user: null,
   })
 
-  // Memoize the API URL to prevent unnecessary re-renders
+  const [depositModal, setDepositModal] = useState<{
+    isOpen: boolean
+    user: User | null
+    amount: string
+  }>({
+    isOpen: false,
+    user: null,
+    amount: "",
+  })
+
   const apiUrl = useMemo(() => {
     const params = new URLSearchParams({
       page: filter.page.toString(),
@@ -72,7 +81,6 @@ export default function UsersPage() {
   const users = data?.data ?? []
   const pagination = data?.pagination
 
-  // Pagination handlers
   const handlePageChange = (newPage: number) => {
     setFilter((prev) => ({ ...prev, page: newPage }))
   }
@@ -95,18 +103,48 @@ export default function UsersPage() {
     try {
       await toast.promise(api.delete(`/users/${deleteConfirmation.user._id}`), {
         loading: "Deleting...!",
-        error: "Something is error, Please try again!",
+        error: "Something went wrong. Please try again!",
         success: "User deleted successfully",
       })
       await mutate()
       closeDeleteConfirmation()
     } catch (error) {
-      console.log(error);
-      // Error is handled by toast.promise
+      console.error(error)
     }
   }
 
-  // Generate page numbers for pagination
+  const openDepositModal = (user: User) => {
+    setDepositModal({ isOpen: true, user, amount: "" })
+  }
+
+  const closeDepositModal = () => {
+    setDepositModal({ isOpen: false, user: null, amount: "" })
+  }
+
+  const handleDeposit = async () => {
+    const amount = parseFloat(depositModal.amount)
+
+    if (!depositModal.user || isNaN(amount) || amount <= 0) {
+      toast.error("Please enter a valid deposit amount.")
+      return
+    }
+
+    try {
+      await toast.promise(
+        api.post(`/users/${depositModal.user._id}/deposit`, { amount }),
+        {
+          loading: "Depositing...",
+          success: res=>res.data.message,
+          error: error=>error.response.data.message,
+        }
+      )
+      await mutate()
+      closeDepositModal()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const getPageNumbers = () => {
     if (!pagination) return []
 
@@ -128,37 +166,16 @@ export default function UsersPage() {
     return pages
   }
 
-  // Skeleton Row Component
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-8 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-32 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-24 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-20 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
-      </td>
-      <td className="py-2.5 text-center">
-        <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
-      </td>
+      {Array(7).fill(null).map((_, i) => (
+        <td key={i} className="py-2.5 text-center">
+          <div className="h-4 bg-gray-300 rounded w-24 mx-auto"></div>
+        </td>
+      ))}
     </tr>
   )
 
-  // Error State
   if (error) {
     return (
       <div className="w-full">
@@ -186,7 +203,7 @@ export default function UsersPage() {
           <select
             value={filter.limit}
             onChange={(e) => handleLimitChange(Number(e.target.value))}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink focus:border-transparent"
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink"
           >
             <option value={10}>10 per page</option>
             <option value={25}>25 per page</option>
@@ -211,58 +228,47 @@ export default function UsersPage() {
               </tr>
             </thead>
             <tbody>
-              {/* Loading State */}
-              {isLoading && (
-                <>
-                  {Array.from({ length: filter.limit }, (_, index) => (
-                    <SkeletonRow key={index} />
-                  ))}
-                </>
-              )}
+              {isLoading && Array.from({ length: filter.limit }, (_, i) => <SkeletonRow key={i} />)}
 
-              {/* Data Rows */}
-              {!isLoading && users.length > 0 && (
-                <>
-                  {users.map((user, index) => (
-                    <tr
-                      key={user._id}
-                      className="hover:bg-white/50 transition-colors duration-150 border-b border-gray-100 last:border-b-0"
-                    >
-                      <td className="py-3 px-4 text-monefi-black">{(filter.page - 1) * filter.limit + index + 1}</td>
-                      <td className="py-3 px-4 text-monefi-black font-medium">{user.email}</td>
-
-                      <td className="py-3 px-4">
-                        <span
-                          className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full capitalize ${
-                            (user.status === UserStatus.ACTIVE && "bg-green-100 text-green-800") ||
-                            (user.status === UserStatus.INACTIVE && "bg-yellow-100 text-yellow-800") ||
-                            (user.status === UserStatus.DELETED && "bg-red-100 text-red-800") ||
-                            "bg-yellow-100 text-yellow-800"
-                          }`}
+              {!isLoading && users.length > 0 && users.map((user, index) => (
+                <tr key={user._id} className="hover:bg-white/50 border-b border-gray-100 last:border-b-0">
+                  <td className="py-3 px-4">{(filter.page - 1) * filter.limit + index + 1}</td>
+                  <td className="py-3 px-4 font-medium">{user.email}</td>
+                  <td className="py-3 px-4">
+                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full capitalize ${
+                      user.status === UserStatus.ACTIVE ? "bg-green-100 text-green-800" :
+                      user.status === UserStatus.INACTIVE ? "bg-yellow-100 text-yellow-800" :
+                      "bg-red-100 text-red-800"
+                    }`}>
+                      {user.status}
+                    </span>
+                  </td>
+                  <td className="py-3 px-4">{fCurrency(user.balance)}</td>
+                  <td className="py-3 px-4">{fDateAndTime(user.createdAt)}</td>
+                  <td className="py-3 px-4">{user.lastLogin ? fAgo(user.lastLogin) : "Never"}</td>
+                  <td className="py-3 px-4">
+                    <div className="flex gap-3">
+                      {user.status !== UserStatus.DELETED && (
+                        <button
+                          className="text-red-600 border rounded-md px-3 py-1 text-sm"
+                          onClick={() => openDeleteConfirmation(user)}
                         >
-                          {user.status}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4 text-gray-600">{fCurrency(user.balance)}</td>
-                      <td className="py-3 px-4 text-gray-600">{fDateAndTime(user.createdAt)}</td>
-                      <td className="py-3 px-4 text-gray-600">{user.lastLogin ? fAgo(user.lastLogin) : "Never"}</td>
-                      <td className="py-3 px-4">
-                        <div className="flex gap-2">
-                          
-                         {user.status !== UserStatus.DELETED && <button
-                            className="text-red-600 hover:text-red-800 text-sm font-medium"
-                            onClick={() => openDeleteConfirmation(user)}
-                          >
-                            Delete
-                          </button>}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </>
-              )}
+                          Delete
+                        </button>
+                      )}
+                      {user.status === UserStatus.ACTIVE && (
+                        <button
+                          className="text-green-600 border rounded-md px-3 py-1 text-sm"
+                          onClick={() => openDepositModal(user)}
+                        >
+                          Deposit Cash
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
 
-              {/* No Data State */}
               {!isLoading && users.length === 0 && (
                 <tr>
                   <td colSpan={7} className="py-12 text-center">
@@ -284,65 +290,29 @@ export default function UsersPage() {
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} results
           </div>
-
           <div className="flex items-center gap-2">
-            {/* Previous Button */}
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={pagination.page === 1}
-              className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-3 py-2 text-sm font-medium border rounded-lg"
             >
               Previous
             </button>
-
-            {/* Page Numbers */}
-            <div className="flex gap-1">
-              {pagination.page > 3 && (
-                <>
-                  <button
-                    onClick={() => handlePageChange(1)}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    1
-                  </button>
-                  {pagination.page > 4 && <span className="px-3 py-2 text-sm text-gray-400">...</span>}
-                </>
-              )}
-
-              {getPageNumbers().map((pageNum) => (
-                <button
-                  key={pageNum}
-                  onClick={() => handlePageChange(pageNum)}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
-                    pageNum === pagination.page
-                      ? "bg-monefi-pink text-white"
-                      : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
-                  }`}
-                >
-                  {pageNum}
-                </button>
-              ))}
-
-              {pagination.page < pagination.totalPage - 2 && (
-                <>
-                  {pagination.page < pagination.totalPage - 3 && (
-                    <span className="px-3 py-2 text-sm text-gray-400">...</span>
-                  )}
-                  <button
-                    onClick={() => handlePageChange(pagination.totalPage)}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    {pagination.totalPage}
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Next Button */}
+            {getPageNumbers().map((pageNum) => (
+              <button
+                key={pageNum}
+                onClick={() => handlePageChange(pageNum)}
+                className={`px-3 py-2 text-sm font-medium rounded-lg ${
+                  pageNum === pagination.page ? "bg-monefi-pink text-white" : "border"
+                }`}
+              >
+                {pageNum}
+              </button>
+            ))}
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={pagination.page === pagination.totalPage}
-              className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-3 py-2 text-sm font-medium border rounded-lg"
             >
               Next
             </button>
@@ -350,43 +320,39 @@ export default function UsersPage() {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      {/* Delete Modal */}
       {deleteConfirmation.isOpen && (
-        <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex items-center justify-center z-50 ">
-          <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4 shadow-xl">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">Delete User Account</h3>
-            </div>
-
-            <p className="text-gray-600 mb-6">
-              Are you sure you want to delete the account for{" "}
-              <span className="font-semibold text-gray-900">{deleteConfirmation.user?.email}</span>? This action cannot
-              be undone and will permanently remove all user data from the system.
+        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
+            <h3 className="text-lg font-semibold mb-4">Delete User</h3>
+            <p className="mb-6">
+              Are you sure you want to delete{" "}
+              <span className="font-medium">{deleteConfirmation.user?.email}</span>? This cannot be undone.
             </p>
+            <div className="flex justify-end gap-3">
+              <button onClick={closeDeleteConfirmation} className="px-4 py-2 bg-gray-100 rounded-lg">Cancel</button>
+              <button onClick={confirmDelete} className="px-4 py-2 bg-red-600 text-white rounded-lg">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
 
-            <div className="flex gap-3 justify-end">
-              <button
-                onClick={closeDeleteConfirmation}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors duration-200"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200"
-              >
-                Delete Account
-              </button>
+      {/* Deposit Modal */}
+      {depositModal.isOpen && (
+        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
+            <h3 className="text-lg font-semibold mb-4">Deposit Cash</h3>
+            <p className="mb-3">Enter amount to deposit for <strong>{depositModal.user?.email}</strong></p>
+            <input
+              type="number"
+              value={depositModal.amount}
+              onChange={(e) => setDepositModal((prev) => ({ ...prev, amount: e.target.value }))}
+              placeholder="Enter amount"
+              className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink"
+            />
+            <div className="flex justify-end gap-3">
+              <button onClick={closeDepositModal} className="px-4 py-2 bg-gray-100 rounded-lg">Cancel</button>
+              <button onClick={handleDeposit} className="px-4 py-2 bg-green-600 text-white rounded-lg">Deposit</button>
             </div>
           </div>
         </div>

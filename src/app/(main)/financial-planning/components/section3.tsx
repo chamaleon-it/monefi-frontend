@@ -1,40 +1,46 @@
-import React from "react";
+"use client"
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Section3() {
   return (
-    <section>
-      <div className="max-w-[95%] lg:max-w-[83%] mx-auto py-[25px] lg:py-[50px] border-b border-monefi-off-white">
-        <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8  text-center">
-          Why Work with Monefi?<span className="text-monefi-pink">:</span>
-        </h2>
-        <div className="flex flex-wrap lg:flex-row justify-center items-center gap-2 lg:gap-7 mt-10 lg:mt-20">
-          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mb-14 bg-[url(/financial-planning/1.jpeg)] bg-cover overflow-hidden">
-            <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white bg-gradient-to-t from-black to-transparent ">
-              <h3 className="font-inter font-medium text-xl lg:text-3xl">FCA-authorised advice you can trust </h3>
-              <p className="font-poppins text-xs mt-2"></p>
-            </div>
+    <section className="bg-monefi-off-white py-16 px-4 md:px-10">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-white shadow-xl rounded-2xl overflow-hidden"
+        >
+          <Image
+            src="/financial-planning/new/1.jpg"
+            alt="Tax Planning"
+            className="w-full h-96 object-cover object-top"
+            height={384}
+            width={1024}
+          />
+          <div className="p-8 space-y-6">
+            <h2 className="text-3xl font-bold text-gray-800 text-center">
+              Tax Efficiency & Smart Structuring
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
+              We understand that keeping more of what you earn is just as important as growing your wealth. Our Tax Efficiency and Smart Structuring service is designed to help you make every pound work harder by minimising unnecessary tax burdens in a legal and strategic way.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              We analyse your financial situation in detail to identify opportunities to optimise your income, investments, and assets—using all available allowances, tax-efficient savings vehicles, and proven income distribution strategies.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Whether you're a business owner, high earner, investor, or simply looking to make smarter financial decisions, we create bespoke solutions that align with current tax laws and your long-term goals.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              The result is a well-structured financial plan that supports sustainable growth while preserving more of your wealth for you and your future.
+            </p>
           </div>
-          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/financial-planning/2.jpeg)] bg-cover overflow-hidden">
-            <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white">
-              <h3 className="font-inter font-medium text-xl lg:text-3xl">Tailored strategies for every stage of life</h3>
-              <p className="font-poppins text-xs mt-2"></p>
-              {/* <button className="border px-4 py-2 rounded-3xl mt-4">Explore</button> */}
-            </div>
-          </div>
-          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mb-14 bg-[url(/financial-planning/3.jpeg)] bg-cover overflow-hidden">
-            <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white bg-gradient-to-t from-black to-transparent ">
-              <h3 className="font-inter font-medium text-xl lg:text-3xl">Transparent planning tools and regular progress reviews</h3>
-              <p className="font-poppins text-xs mt-2"></p>
-            </div>
-          </div>
-          <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mt-14 bg-[url(/financial-planning/4.jpeg)] bg-cover overflow-hidden">
-            <div className="absolute bottom-0 w-full p-4 lg:p-6 text-white bg-gradient-to-t from-black to-transparent ">
-              <h3 className="font-inter font-medium text-xl lg:text-3xl">Friendly, jargon-free advice from qualified professionals</h3>
-              <p className="font-poppins text-xs mt-2"></p>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }

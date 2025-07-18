@@ -44,7 +44,7 @@ export default function TransactionRow({
         try {
             await toast.promise(api.patch('/transactions/status',{id,status}),{
                 loading:"Transaction is updating...",
-                error:"Somthing is error, Please try again.",
+                error:err=>err.response.data.message,
                 success:"Transaction is updated."
             })
             mutate()
