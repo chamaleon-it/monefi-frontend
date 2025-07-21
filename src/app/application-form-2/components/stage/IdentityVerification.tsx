@@ -91,7 +91,7 @@ const UploadIdentity = ({formData,setFormData}:{formData: FormDataType,setFormDa
         try {
           const {data} =  await toast.promise(api.post('/uploads',form),{
               loading:"File is uploading...",
-              error:"Somthing is error, please try again.",
+              error:"Please upload files that are below 20 MB in size.",
               success:"file upload is successfull"
             })
          setFormData(prev=>({...prev,identityVerificationFile:data.data}))
