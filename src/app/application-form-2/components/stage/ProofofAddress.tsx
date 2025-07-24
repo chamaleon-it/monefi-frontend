@@ -3,7 +3,6 @@ import { FormDataType, StageType } from "../Form";
 import toast from "react-hot-toast";
 import api from "@/services/api";
 import { CheckCircle, ImageUp, Loader2 } from "lucide-react";
-import getConfig from "@/config/configuration";
 
 interface AccountTypeProps {
   setStage: React.Dispatch<React.SetStateAction<StageType>>;
@@ -120,6 +119,7 @@ const UploadProof = ({
         setFormData((prev) => ({ ...prev, proofOfAddressFile: data.data }))
         setUploadDone(true)
       } catch (error) {
+        console.log(error);
         setProgress(0)
       }
     },
