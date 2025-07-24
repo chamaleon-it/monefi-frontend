@@ -101,6 +101,7 @@ export default function AuthProvider({
       setUser(null);
       clearTokens();
       router.replace("/");
+      window.location.reload()
     } catch (error) {
       console.log(error);
     }
