@@ -3,7 +3,6 @@ import { FormDataType, StageType } from "../Form";
 import { CheckCircle, ImageUp } from "lucide-react";
 import toast from "react-hot-toast";
 import api from "@/services/api";
-import getConfig from "@/config/configuration";
 
 interface AccountTypeProps {
   setStage: React.Dispatch<React.SetStateAction<StageType>>;
@@ -119,6 +118,7 @@ const UploadIdentity = ({
         setFormData((prev) => ({ ...prev, identityVerificationFile: data.data }))
         setUploadDone(true)
       } catch (error) {
+        console.log(error);
         setProgress(0)
       }
     },
