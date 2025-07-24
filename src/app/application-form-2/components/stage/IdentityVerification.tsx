@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { FormDataType, StageType } from "../Form";
-import { ImageUp } from "lucide-react";
+import { CheckCircle, ImageUp } from "lucide-react";
 import toast from "react-hot-toast";
 import api from "@/services/api";
 import getConfig from "@/config/configuration";
@@ -79,36 +79,98 @@ export default function IdentityVerification({ setStage,formData,setFormData }: 
 }
 
 
-const UploadIdentity = ({formData,setFormData}:{formData: FormDataType,setFormData: React.Dispatch<React.SetStateAction<FormDataType>>}) =>{
+const UploadIdentity = ({
+  formData,
+  setFormData,
+}: {
+  formData: FormDataType
+  setFormData: React.Dispatch<React.SetStateAction<FormDataType>>
+}) => {
+  const [progress, setProgress] = useState<number>(0)
+  const [uploadDone, setUploadDone] = useState<boolean>(false)
 
   const upload = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const form = new FormData()
-      if(!e.target.files?.length){
+      if (!e.target.files?.length) {
         toast.error("Please select any files.")
-      }else{
-        form.append('file',e.target.files[0])
-        try {
-          const {data} =  await toast.promise(api.post('/uploads',form),{
-              loading:"File is uploading...",
-              error:"Please upload files that are below 20 MB in size.",
-              success:"file upload is successfull"
-            })
-         setFormData(prev=>({...prev,identityVerificationFile:data.data}))
-        } catch (error) {
-          throw error
-        }
+        return
+      }
+
+      form.append("file", e.target.files[0])
+      setProgress(0)
+      setUploadDone(false)
+
+      try {
+        const { data } = await toast.promise(
+          api.post("/uploads", form, {
+            onUploadProgress: (event) => {
+              const percent = Math.round((event.loaded * 100) / (event.total || 1))
+              setProgress(percent)
+            },
+          }),
+          {
+            loading: "Uploading...",
+            success: "File uploaded successfully!",
+            error: "Upload failed. Please try again.",
+          }
+        )
+
+        setFormData((prev) => ({ ...prev, identityVerificationFile: data.data }))
+        setUploadDone(true)
+      } catch (error) {
+        setProgress(0)
       }
     },
-    [setFormData],
+    [setFormData]
   )
-  
 
-  return( <div className="border p-5 rounded-md border-monefi-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
-          <input type="file" className="absolute h-full w-full opacity-0 inset-0" onChange={upload}  />
-     
-         {formData.identityVerificationFile ? <img width={200} height={200} src={getConfig().backendURL + formData.identityVerificationFile} alt="" /> : <ImageUp width={50} height={50} className="text-monefi-off-white"/>}
-          <p className="text-monefi-off-white">Upload {formData.identityVerification}</p>
-        </div>
-        )
+  return (
+    <div className="border p-5 rounded-md border-monefi-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
+      <input
+        type="file"
+        className="absolute h-full w-full opacity-0 inset-0 z-10 cursor-pointer"
+        onChange={upload}
+      />
+
+      {/* Status circle */}
+      <div className="flex items-center justify-center w-20 h-20 relative">
+        {uploadDone ? (
+          <CheckCircle className="text-green-500 w-10 h-10" />
+        ) : progress > 0 ? (
+          <>
+            <svg className="absolute w-full h-full">
+              <circle
+                cx="40"
+                cy="40"
+                r="35"
+                stroke="#ccc"
+                strokeWidth="5"
+                fill="none"
+              />
+              <circle
+                cx="40"
+                cy="40"
+                r="35"
+                stroke="#3b82f6"
+                strokeWidth="5"
+                fill="none"
+                strokeDasharray={2 * Math.PI * 35}
+                strokeDashoffset={2 * Math.PI * 35 * (1 - progress / 100)}
+                strokeLinecap="round"
+                transform="rotate(-90 40 40)"
+              />
+            </svg>
+            <span className="text-white font-medium z-10">{progress}%</span>
+          </>
+        ) : (
+          <ImageUp width={50} height={50} className="text-monefi-off-white" />
+        )}
+      </div>
+
+      <p className="text-monefi-off-white">
+        Upload {formData.identityVerification}
+      </p>
+    </div>
+  )
 }
