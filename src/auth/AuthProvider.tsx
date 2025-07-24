@@ -24,8 +24,8 @@ export default function AuthProvider({
     setLoading(true);
     try {
       const { data } = await api.get("/users/profile");
-      const { _id, email, role, status } = data.data;
-      setUser({ id: _id, email, role, status });
+      const { _id, email, role, status,name } = data.data;
+      setUser({ id: _id, email, role, status,name });
       setIsAuthenticated(true);
     } catch (error) {
       console.log(error);

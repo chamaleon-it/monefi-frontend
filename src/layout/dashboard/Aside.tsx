@@ -15,7 +15,7 @@ export default function Aside() {
           <CircleUser width={40} height={40} />
         </div>
         <h2 className="capitalize font-poppins font-medium text-2xl">
-          Hi, {user?.email.split("@")[0]}
+          Hi, {user?.name || user?.email.split("@")[0]}
         </h2>
       </div>
       <div className="mt-8">

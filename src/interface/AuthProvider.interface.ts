@@ -6,6 +6,7 @@ export interface UserInterface {
   role: UserRoles;
   id: string;
   status: UserStatus;
+  name?:string
 }
 
 export interface AuthContextInterface {
