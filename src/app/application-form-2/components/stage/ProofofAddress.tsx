@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { FormDataType, StageType } from "../Form";
 import toast from "react-hot-toast";
 import api from "@/services/api";
-import { CheckCircle, ImageUp, Loader2 } from "lucide-react";
+import { CheckCircle, ImageUp } from "lucide-react";
 
 interface AccountTypeProps {
   setStage: React.Dispatch<React.SetStateAction<StageType>>;
