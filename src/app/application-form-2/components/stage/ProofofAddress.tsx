@@ -46,7 +46,18 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
         )}
       </div>
 
-      {formData.proofOfAddress !== "Email Proof of Address" && <UploadProof formData={formData} setFormData={setFormData} />}
+      {formData.proofOfAddress !== "Email Proof of Address" &&
+      <>
+       <UploadProof formData={formData} setFormData={setFormData} />
+
+      </>
+       }
+
+{formData.proofOfAddress !== "Email Proof of Address" && formData.proofOfAddress === "Driving Licence" &&
+      <>
+       <UploadBackProof formData={formData} setFormData={setFormData} />
+      </>
+       }
 
       <div className="flex justify-between items-start">
         <button
@@ -170,6 +181,102 @@ const UploadProof = ({
       </div>
 
       <p className="text-monefi-off-white">Upload {formData.proofOfAddress}</p>
+    </div>
+  )
+}
+
+
+const UploadBackProof = ({
+  formData,
+  setFormData,
+}: {
+  formData: FormDataType
+  setFormData: React.Dispatch<React.SetStateAction<FormDataType>>
+}) => {
+  const [progress, setProgress] = useState<number>(0)
+  const [uploadDone, setUploadDone] = useState<boolean>(false)
+
+  const upload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const form = new FormData()
+      if (!e.target.files?.length) {
+        toast.error("Please select any files.")
+        return
+      }
+
+      form.append("file", e.target.files[0])
+      setProgress(0)
+      setUploadDone(false)
+
+      try {
+        const { data } = await toast.promise(
+          api.post("/uploads", form, {
+            onUploadProgress: (event) => {
+              const percent = Math.round((event.loaded * 100) / (event.total || 1))
+              setProgress(percent)
+            },
+          }),
+          {
+            loading: "Uploading...",
+            success: "File uploaded successfully!",
+            error: "Upload failed. Please try again.",
+          }
+        )
+
+        setFormData((prev) => ({ ...prev, backProofOfAddressFile: data.data }))
+        setUploadDone(true)
+      } catch (error) {
+        console.log(error);
+        setProgress(0)
+      }
+    },
+    [setFormData]
+  )
+
+  return (
+    <div className="border p-5 rounded-md border-monefi-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
+      <input
+        type="file"
+        className="absolute h-full w-full opacity-0 inset-0 z-10 cursor-pointer"
+        onChange={upload}
+      />
+
+      {/* Progress or success indicator */}
+      <div className="flex items-center justify-center w-20 h-20 relative">
+        {uploadDone ? (
+          <CheckCircle className="text-green-500 w-10 h-10" />
+        ) : progress > 0 ? (
+          <>
+            <svg className="absolute w-full h-full">
+              <circle
+                cx="40"
+                cy="40"
+                r="35"
+                stroke="#ccc"
+                strokeWidth="5"
+                fill="none"
+              />
+              <circle
+                cx="40"
+                cy="40"
+                r="35"
+                stroke="#3b82f6"
+                strokeWidth="5"
+                fill="none"
+                strokeDasharray={2 * Math.PI * 35}
+                strokeDashoffset={2 * Math.PI * 35 * (1 - progress / 100)}
+                strokeLinecap="round"
+                transform="rotate(-90 40 40)"
+              />
+            </svg>
+            <span className="text-white font-medium z-10">{progress}%</span>
+          </>
+        ) : (
+          <ImageUp width={50} height={50} className="text-monefi-off-white" />
+        )}
+      </div>
+
+      <p className="text-monefi-off-white">Upload Back of {formData.proofOfAddress}</p>
     </div>
   )
 }

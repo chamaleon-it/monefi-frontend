@@ -105,8 +105,10 @@ export interface FormDataType {
     | "Driving Licence"
     | "Email Identification";
     identityVerificationFile:string,
+    backIdentityVerificationFile?:string
   proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
   proofOfAddressFile:string,
+  backProofOfAddressFile?:string,
   purposeOfAccount:
      "Savings"
     | "Growth"
