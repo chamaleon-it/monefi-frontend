@@ -75,9 +75,11 @@ interface Application {
     | "International travel document"
     | "Driving Licence"
     | "Email Identification";
-    identityVerificationFile:"",
+    identityVerificationFile:string,
+      backIdentityVerificationFile?:string,
   proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
-  proofOfAddressFile:""
+  proofOfAddressFile:string
+  backProofOfAddressFile?:string
   purposeOfAccount:
     | "Savings"
     | "Growth"
@@ -304,7 +306,7 @@ export default function ApplicationTable() {
 
       {selectedApplication && (
         <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex items-center justify-center z-50" data-lenis-prevent>
-          <div className="bg-white rounded-xl p-6 max-w-3xl w-full mx-4 shadow-xl overflow-y-auto max-h-[90vh] space-y-4 overflow-auto">
+          <div className="bg-white rounded-xl p-6 max-w-4xl w-full mx-4 shadow-xl overflow-y-auto max-h-[90vh] space-y-4 overflow-auto">
             <div className="flex justify-between items-center border-b pb-2">
               <h2 className="text-xl font-semibold text-gray-900">
                 Application Details
@@ -358,7 +360,11 @@ export default function ApplicationTable() {
               </p>
               {selectedApplication.identityVerification !== "Email Identification" &&<p>
                 <strong>Identity File:</strong>{" "}
-               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.identityVerificationFile} target="_blank" rel="noopener noreferrer">View File`</a>
+                <div className="flex gap-2.5">
+
+               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.identityVerificationFile} target="_blank" rel="noopener noreferrer">View File</a>
+                {selectedApplication.backIdentityVerificationFile && <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.backIdentityVerificationFile} target="_blank" rel="noopener noreferrer">View Back File</a>}
+                </div>
               </p>}
               <p>
                 <strong>Proof of Address:</strong>{" "}
@@ -366,7 +372,11 @@ export default function ApplicationTable() {
               </p>
                {selectedApplication.proofOfAddress !== "Email Proof of Address" &&<p>
                 <strong>Proof of Address File:</strong>{" "}
-               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.proofOfAddressFile} target="_blank" rel="noopener noreferrer">View File`</a>
+                <div className="flex gap-2.5">
+
+               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.proofOfAddressFile} target="_blank" rel="noopener noreferrer">View File</a>
+              {selectedApplication.backProofOfAddressFile && <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.backProofOfAddressFile} target="_blank" rel="noopener noreferrer">View Back File</a>}
+                </div>
               </p>}
               <p>
                 <strong>Purpose of Account:</strong>{" "}
