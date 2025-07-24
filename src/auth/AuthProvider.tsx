@@ -5,7 +5,6 @@ import {
   UserInterface,
 } from "@/interface/AuthProvider.interface";
 import api, { clearTokens, setTokens } from "@/services/api";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect,useState } from "react";
 
 export const authContext = React.createContext<
@@ -17,7 +16,6 @@ export default function AuthProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
   const [user, setUser] = useState<UserInterface | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -104,7 +102,7 @@ export default function AuthProvider({
     } catch (error) {
       console.log(error);
     }
-  }, [router]);
+  }, []);
 
   const getNewToken = useCallback(async (refreshToken: string) => {
     console.log(refreshToken);
