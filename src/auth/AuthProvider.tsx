@@ -100,8 +100,7 @@ export default function AuthProvider({
       setIsAuthenticated(false);
       setUser(null);
       clearTokens();
-      router.replace("/");
-      window.location.reload()
+      window.location.href = "/"
     } catch (error) {
       console.log(error);
     }
