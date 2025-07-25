@@ -1,3 +1,4 @@
+import { useAuth } from "@/auth/useAuth";
 import { InvestmentType } from "@/enum/investment-type.enum";
 import { TradeAction } from "@/enum/trade-action.enum";
 import { TransactionStatus } from "@/enum/transaction-status.enum";
@@ -7,6 +8,7 @@ import React from "react";
 import useSWR from "swr";
 
 export default function UserDashboard() {
+  const {user} = useAuth()
   const { data: portfolioData } = useSWR<{
     message: string;
     data: {
@@ -31,11 +33,6 @@ export default function UserDashboard() {
   }>("/transactions");
 
   const transaction = transactionData?.data ?? []
-
-  const { data: userData } = useSWR<{
-    message: string;
-    data: { balance: number };
-  }>("/users/profile", { revalidateOnFocus: true, revalidateOnMount: true });
 
   const portfolio = portfolioData?.data ?? [];
 
@@ -64,7 +61,7 @@ export default function UserDashboard() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <SummaryCard
             label="Available Balance"
-            value={fCurrency(userData?.data.balance ?? 0)}
+            value={fCurrency(user?.balance ?? 0)}
           />
           <SummaryCard
             label="Purchase Stock Value"

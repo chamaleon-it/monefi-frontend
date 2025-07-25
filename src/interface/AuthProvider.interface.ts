@@ -6,7 +6,8 @@ export interface UserInterface {
   role: UserRoles;
   id: string;
   status: UserStatus;
-  name?:string
+  name?:string;
+  balance:number;
 }
 
 export interface AuthContextInterface {

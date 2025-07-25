@@ -222,14 +222,14 @@ export default function ApplicationTable() {
                         {(filter.page - 1) * filter.limit + i + 1}
                       </td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        <div className="flex flex-col gap-1">
-                          <p>
+                        <div className="flex flex-col">
+                          <p className="font-bold">
                             {" "}
                             {fName(
                               `${application.title} ${application.firstName} ${application.lastName}`
                             )}
                           </p>
-                          <p>{application.email}</p>
+                          <p className="text-sm">{application.email}</p>
                         </div>
                       </td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">

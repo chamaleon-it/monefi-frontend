@@ -12,6 +12,7 @@ import useSWR from "swr"
 interface User {
   _id: string
   email: string
+  name?:string
   role: UserRoles
   status: UserStatus
   lastLogin: Date
@@ -233,7 +234,10 @@ export default function UsersPage() {
               {!isLoading && users.length > 0 && users.map((user, index) => (
                 <tr key={user._id} className="hover:bg-white/50 border-b border-gray-100 last:border-b-0">
                   <td className="py-3 px-4">{(filter.page - 1) * filter.limit + index + 1}</td>
-                  <td className="py-3 px-4 font-medium">{user.email}</td>
+                  <td className="py-3 px-4 font-medium">
+                    <p className="font-bold">{user.name}</p>
+                    <p className="text-sm">{user.email}</p>
+                    </td>
                   <td className="py-3 px-4">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full capitalize ${
                       user.status === UserStatus.ACTIVE ? "bg-green-100 text-green-800" :
