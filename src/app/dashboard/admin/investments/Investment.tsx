@@ -83,6 +83,7 @@ export default function Investment() {
     data: {
       _id: string;
       email: string;
+      name:string;
       role: UserRoles;
       status: UserStatus;
       lastLogin: Date;
@@ -135,7 +136,7 @@ export default function Investment() {
                   (user) =>
                     user.role === UserRoles.USER && (
                       <option key={user._id} value={user._id}>
-                        {user.email}
+                        {user.name || user?.email}
                       </option>
                     )
                 )}

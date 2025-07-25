@@ -69,6 +69,35 @@ export default function RegisterForm() {
           {/* Form */}
           <form className="space-y-5" onSubmit={onSubmit}>
             {/* Email Field */}
+
+
+
+      <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+            >
+              <label
+                htmlFor="fullname"
+                className="block text-white font-medium mb-2"
+              >
+                Full Name
+              </label>
+              <input
+                id="fullname"
+                type="text"
+                {...register("name")}
+                placeholder="Enter your full name"
+                className="w-full px-4 py-3 bg-white/95 border border-white/20 rounded-lg text-[#232323] placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
+              />
+              {errors.name && (
+                <p className="text-red-700 text-sm mt-2.5">
+                  {errors.name.message}
+                </p>
+              )}
+            </motion.div>
+
+
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -200,7 +229,7 @@ export default function RegisterForm() {
           transition={{ duration: 0.6, delay: 0.7 }}
         >
           <p className="text-gray-500 text-sm">
-            Secure • Trusted • FDIC Insured
+            Trusted • Secure • Built for Investors
           </p>
         </motion.div>
       </div>

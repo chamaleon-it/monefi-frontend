@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const UserRegistrationZod = z
   .object({
+    name:z.string().nonempty("Full name is required.").min(4,"Full name should contain at least 4 characters."),
     email: z
       .string({ required_error: "Email is required" })
       .email("Please enter a valid email address"),

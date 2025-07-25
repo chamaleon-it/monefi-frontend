@@ -11,6 +11,7 @@ import TransactionRow from "./TransactionRow"
 interface Transaction {
   user:{
     email:string,
+    name?:string,
     _id:string
   }
   _id: string

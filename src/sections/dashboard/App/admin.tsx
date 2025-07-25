@@ -30,6 +30,7 @@ export default function AdminDashboard() {
     data:{
        _id: string
         email: string
+        name:string
         role: UserRoles
         status: UserStatus
         lastLogin: Date
@@ -181,7 +182,7 @@ export default function AdminDashboard() {
               <thead>
                 <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
                  <th className="py-4 px-4 text-left">SL.No</th>
-                <th className="py-4 px-4 text-left">Email Address</th>
+                <th className="py-4 px-4 text-left">User</th>
                 <th className="py-4 px-4 text-left">Status</th>
                 <th className="py-4 px-4 text-left">Balance</th>
                 <th className="py-4 px-4 text-left">Registration Date</th>
@@ -197,7 +198,10 @@ export default function AdminDashboard() {
                                          className="bg-monefi-off-pink transition-colors duration-150 border-b border-gray-100 last:border-b-0"
                                        >
                                          <td className="py-3 px-4 text-monefi-black">{ index + 1}</td>
-                                         <td className="py-3 px-4 text-monefi-black font-medium">{user.email}</td>
+                                         <td className="py-3 px-4 text-monefi-black font-medium">
+                                          <p className="font-bold">{user?.name}</p>
+                                          <p className="text-sm">{user.email}</p>
+                                          </td>
                    
                                          <td className="py-3 px-4">
                                            <span

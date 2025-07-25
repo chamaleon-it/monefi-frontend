@@ -11,6 +11,7 @@ interface Transaction {
   user: {
     email: string;
     _id: string;
+    name?:string
   };
   _id: string;
   symbol: string;
@@ -61,7 +62,10 @@ export default function TransactionRow({
         <td className="py-3 px-4 text-sm">
           {(filter.page - 1) * filter.limit + i + 1}
         </td>
-        <td className="py-3 px-4 text-sm">{tx.user.email}</td>
+        <td className="py-3 px-4 text-sm">
+          <p className="font-bold">{tx.user?.name}</p>
+          <p className="text-sm">{tx.user.email}</p>
+          </td>
         <td className="py-3 px-4 text-sm font-medium text-gray-800">
           {tx.symbol}
         </td>

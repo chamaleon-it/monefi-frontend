@@ -162,7 +162,7 @@ export default function LoginForm() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <p className="text-gray-500 text-sm">Secure • Trusted • FDIC Insured</p>
+          <p className="text-gray-500 text-sm">Trusted • Secure • Built for Investors</p>
         </motion.div>
       </div>
     </div>

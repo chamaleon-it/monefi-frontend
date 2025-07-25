@@ -1,11 +1,14 @@
 "use client";
 
+import { useAuth } from "@/auth/useAuth";
 import { InvestmentType } from "@/enum/investment-type.enum";
 import { fDateAndTime } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
+import BondsRow from "./BondsRow";
 
 export default function TransactionsTable() {
+  const { user } = useAuth();
   const { data: portfolioData, isLoading } = useSWR<{
     message: string;
     data: {
@@ -20,11 +23,6 @@ export default function TransactionsTable() {
       createdAt: Date;
     }[];
   }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
-
-  const { data: userData } = useSWR<{
-    message: string;
-    data: { balance: number };
-  }>("/users/profile", { revalidateOnFocus: true, revalidateOnMount: true });
 
   const portfolio = portfolioData?.data ?? [];
 
@@ -41,6 +39,16 @@ export default function TransactionsTable() {
   const bondValue = portfolio.reduce(
     (a, b) => (b.investmentType === InvestmentType.BOND ? a + b.totalValue : a),
     0
+  );
+
+  const bonds = portfolio.filter(
+    (tx) => tx.investmentType === InvestmentType.BOND
+  );
+  const crypto = portfolio.filter(
+    (tx) => tx.investmentType === InvestmentType.CRYPTO
+  );
+  const stock = portfolio.filter(
+    (tx) => tx.investmentType === InvestmentType.STOCK
   );
 
   const SkeletonRow = () => (
@@ -62,7 +70,7 @@ export default function TransactionsTable() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <SummaryCard
           label="Available Balance"
-          value={fCurrency(userData?.data.balance ?? 0)}
+          value={fCurrency(user?.balance ?? 0)}
         />
         <SummaryCard
           label="Purchase Stock Value"
@@ -77,6 +85,57 @@ export default function TransactionsTable() {
           value={fCurrency(bondValue)}
         />
       </div>
+{bonds.length !== 0 && <>
+      <h1 className="text-xl font-bold text-monefi-black">Bonds</h1>
+
+      <div className="bg-white rounded-xl shadow overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full whitespace-nowrap">
+            <thead>
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                <th className="py-3 px-4">#</th>
+                <th className="py-3 px-4">Symbol</th>
+                <th className="py-3 px-4">Quantity</th>
+                <th className="py-3 px-4">Unit Price</th>
+                <th className="py-3 px-4">Total Value</th>
+                <th className="py-3 px-4">Investment</th>
+                <th className="py-3 px-4">Date</th>
+                <th className="py-3 px-4">Annual Coupon Rate</th>
+                <th className="py-3 px-4">Coupon Frequency</th>
+                <th className="py-3 px-4">Coupon Type</th>
+                <th className="py-3 px-4">Meturity Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading &&
+                Array.from({ length: 10 }).map((_, i) => (
+                  <SkeletonRow key={i} />
+                ))}
+
+              {!isLoading && portfolio.length > 0 && (
+                <>
+                  {bonds
+                    .map((tx, i) => (
+                      <BondsRow key={tx._id} i={i} tx={tx} />
+                    ))}
+                </>
+              )}
+
+              {!isLoading && portfolio.length === 0 && (
+                <tr>
+                  <td colSpan={9} className="text-center py-10 text-gray-500">
+                    No transactions found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+              </>}
+
+{stock.length !== 0 && <>
+      <h1 className="text-xl font-bold text-monefi-black">Stock</h1>
 
       <div className="bg-white rounded-xl shadow overflow-hidden">
         <div className="overflow-x-auto">
@@ -100,30 +159,31 @@ export default function TransactionsTable() {
 
               {!isLoading && portfolio.length > 0 && (
                 <>
-                  {portfolio.map((tx, i) => (
-                    <tr key={tx._id} className="border-b bg-monefi-off-pink">
-                      <td className="py-3 px-4 text-sm">{i + 1}</td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        {tx.symbol}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
-                        {tx.quantity}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
-                        {fCurrency(tx.unitPrice)}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
-                        {fCurrency(tx.totalValue)}
-                      </td>
+                  {stock
+                    .map((tx, i) => (
+                      <tr key={tx._id} className="border-b bg-monefi-off-pink">
+                        <td className="py-3 px-4 text-sm">{i + 1}</td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          {tx.symbol}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.quantity}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fCurrency(tx.unitPrice)}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fCurrency(tx.totalValue)}
+                        </td>
 
-                      <td className="py-3 px-4 text-sm text-gray-600">
-                        {tx.investmentType}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
-                        {fDateAndTime(tx.createdAt)}
-                      </td>
-                    </tr>
-                  ))}
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.investmentType}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fDateAndTime(tx.createdAt)}
+                        </td>
+                      </tr>
+                    ))}
                 </>
               )}
 
@@ -138,6 +198,74 @@ export default function TransactionsTable() {
           </table>
         </div>
       </div>
+</>}
+
+{crypto.length !== 0 && <>
+
+      <h1 className="text-xl font-bold text-monefi-black"> Crypto</h1>
+
+      <div className="bg-white rounded-xl shadow overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                <th className="py-3 px-4">#</th>
+                <th className="py-3 px-4">Symbol</th>
+                <th className="py-3 px-4">Quantity</th>
+                <th className="py-3 px-4">Unit Price</th>
+                <th className="py-3 px-4">Total Value</th>
+                <th className="py-3 px-4">Investment</th>
+                <th className="py-3 px-4">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading &&
+                Array.from({ length: 10 }).map((_, i) => (
+                  <SkeletonRow key={i} />
+                ))}
+
+              {!isLoading && portfolio.length > 0 && (
+                <>
+                  {crypto
+                    .map((tx, i) => (
+                      <tr key={tx._id} className="border-b bg-monefi-off-pink">
+                        <td className="py-3 px-4 text-sm">{i + 1}</td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          {tx.symbol}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.quantity}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fCurrency(tx.unitPrice)}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fCurrency(tx.totalValue)}
+                        </td>
+
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.investmentType}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fDateAndTime(tx.createdAt)}
+                        </td>
+                      </tr>
+                    ))}
+                </>
+              )}
+
+              {!isLoading && portfolio.length === 0 && (
+                <tr>
+                  <td colSpan={9} className="text-center py-10 text-gray-500">
+                    No transactions found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </>}
     </div>
   );
 }
