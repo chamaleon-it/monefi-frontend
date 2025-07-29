@@ -53,7 +53,7 @@ export default function BondsRow({ tx, i }: Props) {
         {fDateAndTime(tx.createdAt)}
       </td>
       <td className="py-3 px-4 text-sm text-gray-600">
-        {bond?.annualCouponRate && fPercentage(bond?.annualCouponRate / 100)}
+        {bond?.annualCouponRate} %
       </td>
       <td className="py-3 px-4 text-sm text-gray-600">
         {bond?.couponFrequency}
