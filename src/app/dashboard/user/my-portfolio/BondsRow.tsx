@@ -1,4 +1,4 @@
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import React from "react";
 import useSWR from "swr";
@@ -50,7 +50,7 @@ export default function BondsRow({ tx, i }: Props) {
 
       <td className="py-3 px-4 text-sm text-gray-600">{tx.investmentType}</td>
       <td className="py-3 px-4 text-sm text-gray-600">
-        {fDateAndTime(tx.createdAt)}
+        {fDate(tx.createdAt)}
       </td>
       <td className="py-3 px-4 text-sm text-gray-600">
         {bond?.annualCouponRate} %
@@ -60,7 +60,7 @@ export default function BondsRow({ tx, i }: Props) {
       </td>
       <td className="py-3 px-4 text-sm text-gray-600">{bond?.couponType}</td>
       <td className="py-3 px-4 text-sm text-gray-600">
-        {bond?.meturityDate ? fDateAndTime(bond?.meturityDate) : "-"}
+        {bond?.meturityDate ? fDate(bond?.meturityDate) : "-"}
       </td>
     </tr>
   );
