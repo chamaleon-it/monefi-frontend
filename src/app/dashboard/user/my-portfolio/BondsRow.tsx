@@ -1,5 +1,5 @@
 import { fDateAndTime } from "@/utility/dateFormatters.ts";
-import { fCurrency, fPercentage } from "@/utility/numberFormatters";
+import { fCurrency } from "@/utility/numberFormatters";
 import React from "react";
 import useSWR from "swr";
 
