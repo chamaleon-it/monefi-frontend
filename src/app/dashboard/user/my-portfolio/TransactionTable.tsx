@@ -103,7 +103,7 @@ export default function TransactionsTable() {
                 <th className="py-3 px-4">Annual Coupon Rate</th>
                 <th className="py-3 px-4">Coupon Frequency</th>
                 <th className="py-3 px-4">Coupon Type</th>
-                <th className="py-3 px-4">Meturity Date</th>
+                <th className="py-3 px-4">Maturity Date Date</th>
               </tr>
             </thead>
             <tbody>
