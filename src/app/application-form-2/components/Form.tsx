@@ -76,8 +76,8 @@ export interface FormDataType {
   occupationCategory: string;
   homePhone: string;
   mobilePhone: string;
-  password: string;
-  confirmPassword: string;
+  // password: string;
+  // confirmPassword: string;
   country: string;
   houseNumberOrName: string;
   streetName: string;
@@ -147,8 +147,8 @@ export default function Form() {
     occupationCategory: "",
     homePhone: "",
     mobilePhone: "",
-    password: "",
-    confirmPassword: "",
+    // password: "",
+    // confirmPassword: "",
     country: "",
     houseNumberOrName: "",
     streetName: "",

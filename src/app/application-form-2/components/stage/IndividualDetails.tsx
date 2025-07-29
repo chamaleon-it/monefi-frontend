@@ -126,7 +126,7 @@ export default function IndividualDetails({
           }
           value={formData.mobilePhone}
         />
-        <input
+        {/* <input
           type="text"
           placeholder="Password"
           className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
@@ -146,7 +146,7 @@ export default function IndividualDetails({
             }))
           }
           value={formData.confirmPassword}
-        />
+        /> */}
       </div>
 
       <div className="flex justify-between items-start">
@@ -198,22 +198,22 @@ export default function IndividualDetails({
               toast.error("Please enter your mobile phone");
               return;
             }
-            if (!formData.password) {
-              toast.error("Please enter your password");
-              return;
-            }
-            if(!/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(formData.password)){
-              toast.error("Password must be at least 8 characters, include one letter and one number");
-              return
-            }
-            if (!formData.confirmPassword) {
-              toast.error("Please confirm your password");
-              return;
-            }
-            if (formData.password !== formData.confirmPassword) {
-              toast.error("Passwords do not match");
-              return;
-            }
+            // if (!formData.password) {
+            //   toast.error("Please enter your password");
+            //   return;
+            // }
+            // if(!/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(formData.password)){
+            //   toast.error("Password must be at least 8 characters, include one letter and one number");
+            //   return
+            // }
+            // if (!formData.confirmPassword) {
+            //   toast.error("Please confirm your password");
+            //   return;
+            // }
+            // if (formData.password !== formData.confirmPassword) {
+            //   toast.error("Passwords do not match");
+            //   return;
+            // }
             // If all validations pass, proceed to the next stage
             setStage("Address");
           }}
