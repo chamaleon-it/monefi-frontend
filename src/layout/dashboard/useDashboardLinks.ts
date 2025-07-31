@@ -35,11 +35,16 @@ export default function useDashboardLinks(): Links[] {
       icon: "ant-design:stock-outlined",
     },
     {
+      title: "All Portfolio",
+      path: paths.dashboard.admin.allPortfolio,
+      icon: "bytesize:portfolio",
+    },
+    {
       title: "Customers",
       path: paths.dashboard.admin.users,
       icon: "iconamoon:profile-circle-duotone",
     },
-      {
+    {
       title: "Applications",
       path: paths.dashboard.admin.applications,
       icon: "mdi:form-outline",
