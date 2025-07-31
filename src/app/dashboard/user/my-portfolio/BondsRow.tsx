@@ -50,9 +50,7 @@ export default function BondsRow({ tx, i }: Props) {
       </td>
 
       <td className="py-3 px-4 text-sm text-gray-600">{tx.investmentType}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
-        {tx.buyBack}
-      </td>
+      <td className="py-3 px-4 text-sm text-gray-600">{tx.buyBack}</td>
       <td className="py-3 px-4 text-sm text-gray-600">{fDate(tx.createdAt)}</td>
       <td className="py-3 px-4 text-sm text-gray-600">
         {bond?.annualCouponRate} %
