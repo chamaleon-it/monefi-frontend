@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="px-2.5 lg:px-0 container mx-auto h-full relative z-10">
           
             <div className=" w-full lg:w-1/2 h-full flex  flex-col justify-between lg:justify-center pb-5">
-              <h1 className="font-poppins font-semibold text-[40px] mac:text-[60px]">
+              <h1 className="font-poppins font-semibold text-4xl md:text-[40px] mac:text-[60px]">
                 The{" "}
                 <span className="text-monefi-pink">
                   smar
@@ -43,7 +43,7 @@ export default function Hero() {
                 for <br className="hidden lg:block" /> your finances.
               </h1>
               <div className="mt-7 bg-black/50 lg:bg-transparent text-monefi-off-white lg:text-monefi-off-white rounded-xl lg:rounded-none p-2.5 lg:p-0">
-                <p className="text-2xl mac:text-3xl font-poppins">
+                <p className="text-xl md:text-2xl mac:text-3xl font-poppins">
                   Empower your financial journey with{" "}
                   <span className="font-bold">Expert</span> <br /> guidance and{" "}
                   <span className="font-bold">Tailored</span> solutions.
