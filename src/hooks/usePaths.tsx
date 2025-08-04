@@ -2,10 +2,10 @@ export default function usePaths() {
   const path = {
     home: "/",
     aboutUs: "/about-us",
-    contactUs:'/contact-us',
+    contactUs: "/contact-us",
     insurance: "/insurance",
-    resources:"/resources",
-    financialplanning:"/financial-planning",
+    resources: "/resources",
+    financialplanning: "/financial-planning",
     loans: "/loans",
     mortgages: "/mortgages",
     utilities: "/utilities",
@@ -13,19 +13,20 @@ export default function usePaths() {
     auth: {
       login: "/login",
       register: "/register",
-      forgotPassword:'/forgot-password',
-      resetPassword:"/reset-password"
+      forgotPassword: "/forgot-password",
+      resetPassword: "/reset-password",
     },
     dashboard: {
       root: "/dashboard",
       settings: "/dashboard/settings",
       admin: {
         transactions: "/dashboard/admin/transactions",
-        newBond:'/dashboard/admin/bonds/new',
+        newBond: "/dashboard/admin/bonds/new",
         bonds: "/dashboard/admin/bonds",
         investments: "/dashboard/admin/investments",
+        allPortfolio: "/dashboard/admin/all-portfolio",
         users: "/dashboard/admin/users",
-        applications:'/dashboard/admin/applications'
+        applications: "/dashboard/admin/applications",
       },
       user: {
         transactions: "/dashboard/user/transactions",

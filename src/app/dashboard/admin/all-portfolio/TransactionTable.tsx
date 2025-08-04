@@ -9,7 +9,11 @@ import BondsRow from "./BondsRow";
 
 export default function TransactionsTable() {
   const { user } = useAuth();
-  const { data: portfolioData, isLoading } = useSWR<{
+  const {
+    data: portfolioData,
+    isLoading,
+    mutate: portfolioMutate,
+  } = useSWR<{
     message: string;
     data: {
       _id: string;
@@ -22,6 +26,10 @@ export default function TransactionsTable() {
       transaction: string;
       createdAt: Date;
       buyBack: null | "Yes" | "No";
+      user: {
+        name: string;
+        email: string;
+      };
     }[];
   }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
 
@@ -65,7 +73,7 @@ export default function TransactionsTable() {
   return (
     <div className="w-full space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">My Portfolio</h1>
+        <h1 className="text-2xl font-bold text-monefi-black">All Portfolio</h1>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -96,6 +104,7 @@ export default function TransactionsTable() {
                 <thead>
                   <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
                     <th className="py-3 px-4">#</th>
+                    <th className="py-3 px-4">User</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
@@ -118,7 +127,12 @@ export default function TransactionsTable() {
                   {!isLoading && portfolio.length > 0 && (
                     <>
                       {bonds.map((tx, i) => (
-                        <BondsRow key={tx._id} i={i} tx={tx} />
+                        <BondsRow
+                          key={tx._id}
+                          i={i}
+                          tx={tx}
+                          portfolioMutate={portfolioMutate}
+                        />
                       ))}
                     </>
                   )}
@@ -150,6 +164,7 @@ export default function TransactionsTable() {
                 <thead>
                   <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
                     <th className="py-3 px-4">#</th>
+                    <th className="py-3 px-4">User</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
@@ -172,6 +187,10 @@ export default function TransactionsTable() {
                           className="border-b bg-monefi-off-pink"
                         >
                           <td className="py-3 px-4 text-sm">{i + 1}</td>
+                          <td className="py-3 px-4 font-medium">
+                            <p className="font-bold">{tx.user.name}</p>
+                            <p className="text-sm">{tx.user.email}</p>
+                          </td>
                           <td className="py-3 px-4 text-sm font-medium text-gray-800">
                             {tx.symbol}
                           </td>
@@ -223,6 +242,7 @@ export default function TransactionsTable() {
                 <thead>
                   <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
                     <th className="py-3 px-4">#</th>
+                    <th className="py-3 px-4">User</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
@@ -245,6 +265,10 @@ export default function TransactionsTable() {
                           className="border-b bg-monefi-off-pink"
                         >
                           <td className="py-3 px-4 text-sm">{i + 1}</td>
+                          <td className="py-3 px-4 font-medium">
+                            <p className="font-bold">{tx.user.name}</p>
+                            <p className="text-sm">{tx.user.email}</p>
+                          </td>
                           <td className="py-3 px-4 text-sm font-medium text-gray-800">
                             {tx.symbol}
                           </td>
