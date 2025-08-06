@@ -1,5 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import getConfig from "@/config/configuration";
 import api from "@/services/api";
 import { fDate } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
@@ -21,6 +22,7 @@ interface Props {
       email: string;
       name: string;
     };
+    certificate?: string | null;
   };
   i: number;
   portfolioMutate: () => void;
@@ -43,6 +45,36 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
   }>(`/bonds/${tx.symbol}`);
 
   const bond = data?.data;
+
+  const uploadCertificate = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const form = new FormData();
+    if (!e.target.files?.length) {
+      toast.error("Please select any files.");
+      return;
+    }
+
+    form.append("file", e.target.files[0]);
+
+    try {
+      const { data } = await toast.promise(api.post("/uploads", form), {
+        loading: "Uploading...",
+        success: "File uploaded successfully!",
+        error: "Upload failed. Please try again.",
+      });
+      const file = data.data;
+      const body = {
+        file,
+        id: tx._id,
+      };
+      await toast.promise(api.patch("/portfolio/update_certificate", body), {
+        loading: "Updating the certificate...",
+        success: ({ data }) => data.message,
+      });
+      portfolioMutate();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <tr className="border-b bg-monefi-off-pink">
       <td className="py-3 px-4 text-sm">{i + 1}</td>
@@ -96,6 +128,29 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
             <Label htmlFor="r2">No</Label>
           </div>
         </RadioGroup>
+      </td>
+      <td className="py-3 px-4 text-sm text-gray-600">
+        <div className="flex gap-2.5 items-center justify-center">
+          <div className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer relative">
+            <input
+              type="file"
+              className="absolute h-full w-full inset-0 mx-auto z-10 opacity-0 cursor-pointer"
+              onChange={uploadCertificate}
+            />
+           {tx.certificate ? "Re Upload" :  "Upload"}
+          </div>
+
+          {tx?.certificate && (
+            <a
+              href={getConfig().backendURL + tx.certificate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer"
+            >
+              View
+            </a>
+          )}
+        </div>
       </td>
       <td className="py-3 px-4 text-sm text-gray-600">{fDate(tx.createdAt)}</td>
       <td className="py-3 px-4 text-sm text-gray-600">
