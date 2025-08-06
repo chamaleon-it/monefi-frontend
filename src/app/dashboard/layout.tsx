@@ -27,7 +27,7 @@ export default function DashboardLayout({
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-150px)] max-w-[95%] lg:max-w-[83%] mx-auto">
+      <main className="min-h-[calc(100vh-150px)] max-w-[95%] lg:max-w-[85%] mx-auto">
         <div className="flex flex-col lg:flex-row items-start gap-10 w-full">
           <Aside />
           <div className="max-w-full lg:max-w-[calc(100%-400px-40px)] w-full p-2.5">

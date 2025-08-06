@@ -22,6 +22,7 @@ export default function TransactionsTable() {
       transaction: string;
       createdAt: Date;
       buyBack: null | "Yes" | "No";
+      certificate?: string | null;
     }[];
   }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
 
@@ -102,6 +103,7 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Total Value</th>
                     <th className="py-3 px-4">Investment</th>
                     <th className="py-3 px-4">Buyback</th>
+                    <th className="py-3 px-4">Certificate</th>
                     <th className="py-3 px-4">Date</th>
                     <th className="py-3 px-4">Annual Coupon Rate</th>
                     <th className="py-3 px-4">Coupon Frequency</th>

@@ -26,6 +26,7 @@ export default function TransactionsTable() {
       transaction: string;
       createdAt: Date;
       buyBack: null | "Yes" | "No";
+      certificate?:string | null;
       user: {
         name: string;
         email: string;
@@ -111,6 +112,7 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Total Value</th>
                     <th className="py-3 px-4">Investment</th>
                     <th className="py-3 px-4">Buyback</th>
+                    <th className="py-3 px-4">Upload Certificate</th>
                     <th className="py-3 px-4">Date</th>
                     <th className="py-3 px-4">Annual Coupon Rate</th>
                     <th className="py-3 px-4">Coupon Frequency</th>
