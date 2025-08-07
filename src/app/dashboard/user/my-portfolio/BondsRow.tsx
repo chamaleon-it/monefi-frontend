@@ -3,6 +3,7 @@ import { fDate } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import React from "react";
 import useSWR from "swr";
+import InterestView from "./InterestView";
 
 interface Props {
   tx: {
@@ -15,6 +16,11 @@ interface Props {
     createdAt: Date;
     buyBack: null | "Yes" | "No";
     certificate?: string | null;
+    interest:{
+        date:Date,
+        amount:number,
+        _id:string,
+      }[];
   };
   i: number;
 }
@@ -51,8 +57,11 @@ export default function BondsRow({ tx, i }: Props) {
         {fCurrency(tx.totalValue)}
       </td>
 
-      <td className="py-3 px-4 text-sm text-gray-600">{tx.investmentType}</td>
+     
       <td className="py-3 px-4 text-sm text-gray-600">{tx.buyBack}</td>
+          <td className="py-3 px-4 text-sm text-gray-600">
+          <InterestView tx={tx}/>
+          </td>
       <td className="py-3 px-4 text-sm text-gray-600">
         {tx?.certificate ? (
           <a

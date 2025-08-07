@@ -7,6 +7,7 @@ import { fCurrency } from "@/utility/numberFormatters";
 import React from "react";
 import toast from "react-hot-toast";
 import useSWR from "swr";
+import InterestUpdate from "./InterestUpdate";
 
 interface Props {
   tx: {
@@ -23,6 +24,11 @@ interface Props {
       name: string;
     };
     certificate?: string | null;
+     interest:{
+        date:Date,
+        amount:number,
+        _id:string,
+      }[];
   };
   i: number;
   portfolioMutate: () => void;
@@ -94,7 +100,6 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
         {fCurrency(tx.totalValue)}
       </td>
 
-      <td className="py-3 px-4 text-sm text-gray-600">{tx.investmentType}</td>
       <td className="py-3 px-4 text-sm text-gray-600">
         <RadioGroup
           className="flex gap-5"
@@ -129,6 +134,11 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
           </div>
         </RadioGroup>
       </td>
+
+      <td className="py-3 px-4 text-sm text-gray-600">
+        <InterestUpdate tx={tx} portfolioMutate={portfolioMutate} />
+      </td>
+
       <td className="py-3 px-4 text-sm text-gray-600">
         <div className="flex gap-2.5 items-center justify-center">
           <div className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer relative">
@@ -137,7 +147,7 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
               className="absolute h-full w-full inset-0 mx-auto z-10 opacity-0 cursor-pointer"
               onChange={uploadCertificate}
             />
-           {tx.certificate ? "Re Upload" :  "Upload"}
+            {tx.certificate ? "Re Upload" : "Upload"}
           </div>
 
           {tx?.certificate && (

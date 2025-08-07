@@ -23,6 +23,11 @@ export default function TransactionsTable() {
       createdAt: Date;
       buyBack: null | "Yes" | "No";
       certificate?: string | null;
+      interest:{
+        date:Date,
+        amount:number,
+        _id:string,
+      }[];
     }[];
   }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
 
@@ -101,8 +106,8 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Investment</th>
                     <th className="py-3 px-4">Buyback</th>
+                    <th className="py-3 px-4">View Interest</th>
                     <th className="py-3 px-4">Certificate</th>
                     <th className="py-3 px-4">Date</th>
                     <th className="py-3 px-4">Annual Coupon Rate</th>
@@ -156,7 +161,6 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Investment</th>
                     <th className="py-3 px-4">Date</th>
                   </tr>
                 </thead>
@@ -185,10 +189,6 @@ export default function TransactionsTable() {
                           </td>
                           <td className="py-3 px-4 text-sm text-gray-600">
                             {fCurrency(tx.totalValue)}
-                          </td>
-
-                          <td className="py-3 px-4 text-sm text-gray-600">
-                            {tx.investmentType}
                           </td>
                           <td className="py-3 px-4 text-sm text-gray-600">
                             {fDateAndTime(tx.createdAt)}
@@ -229,7 +229,6 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Investment</th>
                     <th className="py-3 px-4">Date</th>
                   </tr>
                 </thead>
@@ -258,10 +257,6 @@ export default function TransactionsTable() {
                           </td>
                           <td className="py-3 px-4 text-sm text-gray-600">
                             {fCurrency(tx.totalValue)}
-                          </td>
-
-                          <td className="py-3 px-4 text-sm text-gray-600">
-                            {tx.investmentType}
                           </td>
                           <td className="py-3 px-4 text-sm text-gray-600">
                             {fDateAndTime(tx.createdAt)}
