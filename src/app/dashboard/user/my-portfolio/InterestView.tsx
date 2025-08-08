@@ -47,7 +47,7 @@ interface Props {
 export default function InterestView({ tx }: Props) {
 
 
-  const totalInterest = useMemo(() => tx.interest.reduce((a,b)=>a+b.amount,0), [tx.interest.length])
+  const totalInterest = useMemo(() => tx.interest.reduce((a,b)=>a+b.amount,0), [tx.interest])
 
 
 
