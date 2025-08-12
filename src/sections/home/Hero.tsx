@@ -49,7 +49,7 @@ export default function Hero() {
                   <span className="font-bold">Tailored</span> solutions.
                 </p>
                 <Link
-                  href={paths.auth.login}
+                  href={paths.contactUs}
                   className="mt-7 px-6 py-4 rounded-full border font-poppins hover:scale-110 duration-400 hover:bg-monefi-pink hover:text-monefi-black mac:text-lg inline-block"
                 >
                   Join Today
