@@ -67,7 +67,8 @@ export default function TransactionRow({
           <p className="text-sm">{tx.user.email}</p>
           </td>
         <td className="py-3 px-4 text-sm font-medium text-gray-800">
-          {tx.symbol}
+          <p className="font-bold"> {tx.name}</p>
+                          <p className="text-sm">{tx.symbol}</p>
         </td>
         <td className="py-3 px-4 text-sm text-gray-600">{tx.quantity}</td>
         <td className="py-3 px-4 text-sm text-gray-600">

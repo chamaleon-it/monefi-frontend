@@ -8,7 +8,7 @@ import React from "react";
 import useSWR from "swr";
 
 export default function UserDashboard() {
-  const {user} = useAuth()
+  const { user } = useAuth();
   const { data: portfolioData } = useSWR<{
     message: string;
     data: {
@@ -17,7 +17,7 @@ export default function UserDashboard() {
     }[];
   }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
 
-  const { data: transactionData,isLoading } = useSWR<{
+  const { data: transactionData, isLoading } = useSWR<{
     data: {
       _id: string;
       symbol: string;
@@ -32,7 +32,7 @@ export default function UserDashboard() {
     }[];
   }>("/transactions");
 
-  const transaction = transactionData?.data ?? []
+  const transaction = transactionData?.data ?? [];
 
   const portfolio = portfolioData?.data ?? [];
 
@@ -78,63 +78,63 @@ export default function UserDashboard() {
         </div>
       </div>
 
-<div className="space-y-2.5">
-    <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-monefi-black">My Recent Transactions</h1>
+      <div className="space-y-2.5">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-monefi-black">
+            My Recent Transactions
+          </h1>
         </div>
 
-      <div className="bg-white rounded-xl shadow overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
-                      <th className="py-3 px-4">#</th>
-                      <th className="py-3 px-4">Symbol</th>
-                      <th className="py-3 px-4">Quantity</th>
-                      <th className="py-3 px-4">Unit Price</th>
-                      <th className="py-3 px-4">Total Value</th>
-                      <th className="py-3 px-4">Action</th>
-                      <th className="py-3 px-4">Investment</th>
-                      <th className="py-3 px-4">Date</th>
-                      <th className="py-3 px-4">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  
-      
-                    {!isLoading && transaction.length > 0 && (
-                      <>
-                        {transaction.map((tx, i) => (
-                          <tr key={tx._id} className="border-b bg-monefi-off-pink">
-                            <td className="py-3 px-4 text-sm">
-                              { i + 1}
-                            </td>
-                            <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                              {tx.symbol}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {tx.quantity}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {fCurrency(tx.unitPrice)}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {fCurrency(tx.totalValue)}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {tx.tradeAction}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {tx.investmentType}
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {fDateAndTime(tx.createdAt)}
-                            </td>
-                            <td className={`py-3 px-4 text-xs`}>
-                              <p
-                                className={`
+        <div className="bg-white rounded-xl shadow overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                  <th className="py-3 px-4">#</th>
+                  <th className="py-3 px-4">Symbol</th>
+                  <th className="py-3 px-4">Quantity</th>
+                  <th className="py-3 px-4">Unit Price</th>
+                  <th className="py-3 px-4">Total Value</th>
+                  <th className="py-3 px-4">Action</th>
+                  <th className="py-3 px-4">Investment</th>
+                  <th className="py-3 px-4">Date</th>
+                  <th className="py-3 px-4">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {!isLoading && transaction.length > 0 && (
+                  <>
+                    {transaction.map((tx, i) => (
+                      <tr key={tx._id} className="border-b bg-monefi-off-pink">
+                        <td className="py-3 px-4 text-sm">{i + 1}</td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          <p className="font-bold"> {tx.name}</p>
+                          <p className="text-sm">{tx.symbol}</p>
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.quantity}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fCurrency(tx.unitPrice)}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fCurrency(tx.totalValue)}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.tradeAction}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {tx.investmentType}
+                        </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                          {fDateAndTime(tx.createdAt)}
+                        </td>
+                        <td className={`py-3 px-4 text-xs`}>
+                          <p
+                            className={`
                                         ${
-                                          (tx.status === TransactionStatus.PENDING &&
+                                          (tx.status ===
+                                            TransactionStatus.PENDING &&
                                             "text-yellow-800 bg-yellow-400") ||
                                           (tx.status ===
                                             TransactionStatus.COMPLETED &&
@@ -146,27 +146,27 @@ export default function UserDashboard() {
                                         px-1 py-0.5 rounded-full
                                         text-center
                                             `}
-                              >
-                                {tx.status}
-                              </p>
-                            </td>
-                          </tr>
-                        ))}
-                      </>
-                    )}
-      
-                    {transaction.length === 0 && (
-                      <tr>
-                        <td colSpan={9} className="text-center py-10 text-gray-500">
-                          No transactions found.
+                          >
+                            {tx.status}
+                          </p>
                         </td>
                       </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            </div>
+                    ))}
+                  </>
+                )}
+
+                {transaction.length === 0 && (
+                  <tr>
+                    <td colSpan={9} className="text-center py-10 text-gray-500">
+                      No transactions found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

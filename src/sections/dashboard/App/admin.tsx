@@ -109,7 +109,9 @@ export default function AdminDashboard() {
                       <tr key={tx._id} className="border-b bg-monefi-off-pink">
                         <td className="py-3 px-4 text-sm">{i + 1}</td>
                         <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                          {tx.symbol}
+                          <p className="font-bold"> {tx.name}</p>
+                  <p className="text-sm">{tx.symbol}</p>
+                          
                         </td>
                         <td className="py-3 px-4 text-sm text-gray-600">
                           {tx.quantity}
