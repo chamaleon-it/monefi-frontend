@@ -78,14 +78,14 @@ export default function InterestView({ tx }: Props) {
 
  <div>
                   <p className="text-sm font-medium text-muted-foreground">
-                    Total Investment
+                    Initial Investment
                   </p>
                   <p className="text-2xl font-bold">{fCurrency(tx.totalValue)}</p>
                 </div>
 
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">
-                    Total Interest
+                    Interest Accrued
                   </p>
                   <p className="text-2xl font-bold ">
                     {fCurrency(totalInterest)}
@@ -93,7 +93,7 @@ export default function InterestView({ tx }: Props) {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">
-                    Capital Return
+                    Value at Maturity
                   </p>
                   <p className="text-2xl font-bold text-emerald-600">{fCurrency(totalInterest + tx.totalValue)}</p>
                 </div>
