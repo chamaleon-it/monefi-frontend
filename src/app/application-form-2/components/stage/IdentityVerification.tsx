@@ -16,7 +16,7 @@ export default function IdentityVerification({ setStage,formData,setFormData }: 
       <h2 className="text-2xl font-semibold">Identity Verification</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 02080028761 or email
+        are happy to help. Simply contact us on 0208 002 8761 or email
         hello@monefi.co.uk
       </p>
       <div className="flex flex-col gap-5">
