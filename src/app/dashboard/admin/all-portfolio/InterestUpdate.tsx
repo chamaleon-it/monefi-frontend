@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Trash2, Plus, Calendar, DollarSign } from "lucide-react";
+import { Trash2, Plus, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -221,7 +221,7 @@ export default function InterestUpdate({ tx,portfolioMutate }: Props) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="amount" className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4" />
+                      <p className="text-emerald-500 text-xl">£</p>
                       Amount
                     </Label>
                     <Input
