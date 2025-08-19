@@ -68,7 +68,7 @@ export default function BondsRow({ tx, i }: Props) {
             href={getConfig().backendURL + tx.certificate}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer"
+            className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer w-[120px] h-9 flex justify-center items-center text-center"
           >
             View
           </a>

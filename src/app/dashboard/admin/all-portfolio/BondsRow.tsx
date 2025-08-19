@@ -141,7 +141,7 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
 
       <td className="py-3 px-4 text-sm text-gray-600">
         <div className="flex gap-2.5 items-center justify-center">
-          <div className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer relative">
+          <div className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer w-[120px] h-9 flex justify-center items-center text-center relative">
             <input
               type="file"
               className="absolute h-full w-full inset-0 mx-auto z-10 opacity-0 cursor-pointer"
@@ -155,7 +155,7 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
               href={getConfig().backendURL + tx.certificate}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer"
+              className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer w-[120px] h-9 flex justify-center items-center text-center"
             >
               View
             </a>
