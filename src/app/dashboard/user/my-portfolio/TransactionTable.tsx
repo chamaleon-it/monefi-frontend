@@ -18,8 +18,11 @@ export default function TransactionsTable() {
       quantity: number;
       unitPrice: number;
       totalValue: number;
+      transaction:{
+        createdAt:Date,
+        
+      },
       investmentType: InvestmentType;
-      transaction: string;
       createdAt: Date;
       buyBack: null | "Yes" | "No";
       certificate?: string | null;

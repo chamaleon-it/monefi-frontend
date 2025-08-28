@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/auth/useAuth";
 import { InvestmentType } from "@/enum/investment-type.enum";
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDate, fDateAndTime } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
@@ -23,7 +23,9 @@ export default function TransactionsTable() {
       unitPrice: number;
       totalValue: number;
       investmentType: InvestmentType;
-      transaction: string;
+    transaction:{
+      createdAt:Date
+    }
       createdAt: Date;
       buyBack: null | "Yes" | "No";
       certificate?:string | null;
@@ -211,7 +213,7 @@ export default function TransactionsTable() {
                           </td>
 
                           <td className="py-3 px-4 text-sm text-gray-600">
-                            {fDateAndTime(tx.createdAt)}
+                            {fDate(tx.createdAt)}
                           </td>
                         </tr>
                       ))}

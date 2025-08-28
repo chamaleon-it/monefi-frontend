@@ -3,7 +3,7 @@ import { TradeAction } from "@/enum/trade-action.enum";
 import { TransactionStatus } from "@/enum/transaction-status.enum";
 import { UserStatus } from "@/enum/user-status.enum";
 import { UserRoles } from "@/enum/user.enum";
-import { fAgo, fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fAgo, fDate, fDateAndTime } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import React from "react";
 import useSWR from "swr";
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
                           {tx.investmentType}
                         </td>
                         <td className="py-3 px-4 text-sm text-gray-600">
-                          {fDateAndTime(tx.createdAt)}
+                          {fDate(tx.createdAt)}
                         </td>
                         <td className={`py-3 px-4 text-xs`}>
                           <p
