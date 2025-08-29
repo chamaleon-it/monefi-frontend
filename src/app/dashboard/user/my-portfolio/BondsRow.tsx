@@ -12,6 +12,10 @@ interface Props {
     quantity: number;
     unitPrice: number;
     totalValue: number;
+    transaction:{
+      createdAt:Date
+      buyBackDate?:Date | null
+    }
     investmentType: string;
     createdAt: Date;
     buyBack: null | "Yes" | "No";
@@ -59,6 +63,9 @@ export default function BondsRow({ tx, i }: Props) {
 
      
       <td className="py-3 px-4 text-sm text-gray-600">{tx.buyBack}</td>
+        <td className="py-3 px-4 text-sm text-gray-600">
+          {tx.transaction.buyBackDate ? fDate(tx.transaction.buyBackDate) : "-"}
+        </td>
           <td className="py-3 px-4 text-sm text-gray-600">
           <InterestView tx={tx}/>
           </td>
@@ -76,7 +83,7 @@ export default function BondsRow({ tx, i }: Props) {
           "-"
         )}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">{fDate(tx.createdAt)}</td>
+      <td className="py-3 px-4 text-sm text-gray-600">{fDate(tx.transaction.createdAt)}</td>
       <td className="py-3 px-4 text-sm text-gray-600">
         {bond?.annualCouponRate} %
       </td>

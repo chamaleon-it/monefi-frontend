@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/auth/useAuth";
 import { InvestmentType } from "@/enum/investment-type.enum";
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDate, fDateAndTime } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
@@ -23,14 +23,17 @@ export default function TransactionsTable() {
       unitPrice: number;
       totalValue: number;
       investmentType: InvestmentType;
-      transaction: string;
+      transaction: {
+        createdAt: Date;
+          buyBackDate?:Date | null;
+      };
       createdAt: Date;
       buyBack: null | "Yes" | "No";
-      certificate?:string | null;
-      interest:{
-        date:Date,
-        amount:number,
-        _id:string,
+      certificate?: string | null;
+      interest: {
+        date: Date;
+        amount: number;
+        _id: string;
       }[];
       user: {
         name: string;
@@ -116,7 +119,8 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
                     <th className="py-3 px-4">Buyback</th>
-                     <th className="py-3 px-4">Interest</th>
+                    <th className="py-3 px-4">Buyback Date</th>
+                    <th className="py-3 px-4">Interest</th>
                     <th className="py-3 px-4">Upload Certificate</th>
                     <th className="py-3 px-4">Date</th>
                     <th className="py-3 px-4">Annual Coupon Rate</th>
@@ -211,7 +215,7 @@ export default function TransactionsTable() {
                           </td>
 
                           <td className="py-3 px-4 text-sm text-gray-600">
-                            {fDateAndTime(tx.createdAt)}
+                            {fDate(tx.createdAt)}
                           </td>
                         </tr>
                       ))}
