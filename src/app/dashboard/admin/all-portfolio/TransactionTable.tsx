@@ -23,16 +23,17 @@ export default function TransactionsTable() {
       unitPrice: number;
       totalValue: number;
       investmentType: InvestmentType;
-    transaction:{
-      createdAt:Date
-    }
+      transaction: {
+        createdAt: Date;
+          buyBackDate?:Date | null;
+      };
       createdAt: Date;
       buyBack: null | "Yes" | "No";
-      certificate?:string | null;
-      interest:{
-        date:Date,
-        amount:number,
-        _id:string,
+      certificate?: string | null;
+      interest: {
+        date: Date;
+        amount: number;
+        _id: string;
       }[];
       user: {
         name: string;
@@ -118,7 +119,8 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
                     <th className="py-3 px-4">Buyback</th>
-                     <th className="py-3 px-4">Interest</th>
+                    <th className="py-3 px-4">Buyback Date</th>
+                    <th className="py-3 px-4">Interest</th>
                     <th className="py-3 px-4">Upload Certificate</th>
                     <th className="py-3 px-4">Date</th>
                     <th className="py-3 px-4">Annual Coupon Rate</th>

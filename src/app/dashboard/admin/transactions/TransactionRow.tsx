@@ -126,6 +126,8 @@ export default function TransactionRow({
           </p>
         </td>
         <td className="py-3 px-4 text-sm text-gray-600">
+          <div className="flex gap-2.5">
+
           {tx.status === TransactionStatus.PENDING && (
             <div className="flex gap-2.5">
               <button
@@ -133,7 +135,7 @@ export default function TransactionRow({
                 onClick={() =>
                   updateStatus(tx._id, TransactionStatus.COMPLETED)
                 }
-              >
+                >
                 Complete
               </button>
               <button
@@ -141,7 +143,7 @@ export default function TransactionRow({
                 onClick={() =>
                   updateStatus(tx._id, TransactionStatus.CANCELLED)
                 }
-              >
+                >
                 Cancel
               </button>
             </div>
@@ -149,9 +151,10 @@ export default function TransactionRow({
           <button
             className="px-2 py-1.5 rounded-md text-white bg-green-600"
             onClick={() => setShowDateModal(true)}
-          >
+            >
             Change Transaction Date
           </button>
+            </div>
           {showDateModal && (
             <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
               <div className="bg-white p-8 rounded-lg shadow-lg min-w-[340px]">

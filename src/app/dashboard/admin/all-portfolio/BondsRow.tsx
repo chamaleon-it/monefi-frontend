@@ -18,6 +18,7 @@ interface Props {
     totalValue: number;
      transaction:{
       createdAt:Date
+      buyBackDate?:Date | null
     },
     investmentType: string;
     createdAt: Date;
@@ -137,6 +138,10 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
           </div>
         </RadioGroup>
       </td>
+
+  <td className="py-3 px-4 text-sm text-gray-600">
+    {tx.transaction.buyBackDate ? fDate(tx.transaction.buyBackDate) : "-"}
+  </td>
 
       <td className="py-3 px-4 text-sm text-gray-600">
         <InterestUpdate tx={tx} portfolioMutate={portfolioMutate} />

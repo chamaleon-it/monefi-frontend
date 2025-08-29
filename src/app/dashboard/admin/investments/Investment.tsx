@@ -261,6 +261,20 @@ export default function Investment() {
                 {fCurrency(((unitPrice as number) * quantity) as number) ?? ""}
               </div>
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Buy Back Date
+              </label>
+              <input
+                type="date"
+                placeholder="e.g., 20"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                {...register("buyBackDate")}
+              />
+              {errors.quantity && <p className="text-sm text-red-500">{errors.quantity.message}</p>}
+            </div>
+
           </div>
         </div>
 
