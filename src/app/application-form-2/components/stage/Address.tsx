@@ -20,7 +20,7 @@ export default function Address({
       </h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 0208 002 8761 or email
+        are happy to help. Simply contact us on  020 8002 8761 / 016 1563 0904 or email
         hello@monefi.co.uk
       </p>
       <div className="grid lg:grid-cols-2 gap-5">

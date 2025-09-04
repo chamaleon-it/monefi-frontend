@@ -16,7 +16,7 @@ export default function CompanyCategory({formData,setFormData,setStage}: Props) 
       <h2 className="text-2xl font-semibold">Company Category</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on 0208 002 8761 or email
+        are happy to help. Simply contact us on  020 8002 8761 / 016 1563 0904 or email
         hello@monefi.co.uk
       </p>
       <div className="col-span-full flex flex-col gap-5">

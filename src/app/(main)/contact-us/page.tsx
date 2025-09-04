@@ -72,10 +72,10 @@ export default function ContactUsContent() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
                     <p className="text-gray-600 mb-3 leading-relaxed">Our customer support team is available.</p>
                     <a
-                      href="tel:0208 002 8761"
+                      href="tel: 020 8002 8761 / 016 1563 0904"
                       className="text-monefi-pink font-semibold text-lg transition-colors"
                     >
-                      020 8002 8761
+                      020 8002 8761 / 016 1563 0904
                     </a>
                   </div>
                 </div>
