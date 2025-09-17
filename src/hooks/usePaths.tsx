@@ -34,6 +34,7 @@ export default function usePaths() {
         tradeCrypto: "/dashboard/user/trade-crypto",
         bonds: "/dashboard/user/bonds",
         myPortfolio: "/dashboard/user/my-portfolio",
+        kyc: "/dashboard/user/kyc",
       },
     },
   };
