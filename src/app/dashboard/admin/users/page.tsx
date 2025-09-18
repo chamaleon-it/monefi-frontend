@@ -27,6 +27,7 @@ interface User {
     proof: string;
     file: string;
   };
+  kycStatus: "Not submitted" | "Pending" | "Completed" | "Expired" | "Rejected";
 }
 
 interface Pagination {
@@ -243,7 +244,9 @@ export default function UsersPage() {
                 <th className="py-4 px-4 text-left">Balance</th>
                 <th className="py-4 px-4 text-left">Registration Date</th>
                 <th className="py-4 px-4 text-left">Last Login</th>
-                 <th className="py-4 px-4 text-left">KYC</th>
+                <th className="py-4 px-4 text-left">KYC Status</th>
+                <th className="py-4 px-4 text-left">KYC</th>
+                <th className="py-4 px-4 text-left">KYC Actions</th>
                 <th className="py-4 px-4 text-left">Actions</th>
               </tr>
             </thead>
@@ -287,13 +290,109 @@ export default function UsersPage() {
                     <td className="py-3 px-4">
                       {user.lastLogin ? fAgo(user.lastLogin) : "Never"}
                     </td>
+                    <td className="py-3 px-4">
+                      <p className={`px-1 py-0.5 border rounded-md text-xs capitalize text-center 
+                        ${user.kycStatus === "Not submitted" && "bg-yellow-300"} 
+                         ${user.kycStatus === "Pending" && "bg-yellow-300"} 
+                         ${user.kycStatus === "Completed" && "bg-green-400"}
+                          ${user.kycStatus === "Expired" && "bg-red-400"}
+                           ${user.kycStatus === "Rejected" && "bg-red-400"}
+                       `}>
+                      {user.kycStatus}
+                      </p>
+                      </td>
                     <td>
-                      <div className="flex gap-2">
-
-                      {user?.identityVerification?.file && <a className="text-green-600 border rounded-md px-3 py-1 text-sm" target="_blank" rel="noopener noreferrer" href={getConfig().backendURL + user.identityVerification.file}> {user.identityVerification.proof}</a>}
-                       {user?.proofOfAddress?.file && <a className="text-green-600 border rounded-md px-3 py-1 text-sm" target="_blank" rel="noopener noreferrer"href={getConfig().backendURL + user.proofOfAddress.file}> {user.proofOfAddress.proof}</a>}
+                      <div className="flex gap-2 flex-col">
+                        {user?.identityVerification?.file && (
+                          <a
+                            className="text-green-600 border rounded-md px-3 py-1 text-sm"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={
+                              getConfig().backendURL +
+                              user.identityVerification.file
+                            }
+                          >
+                            {" "}
+                            {user.identityVerification.proof}
+                          </a>
+                        )}
+                        {user?.proofOfAddress?.file && (
+                          <a
+                            className="text-green-600 border rounded-md px-3 py-1 text-sm"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={
+                              getConfig().backendURL + user.proofOfAddress.file
+                            }
+                          >
+                            {" "}
+                            {user.proofOfAddress.proof}
+                          </a>
+                        )}
                       </div>
                     </td>
+
+                    <td className="py-3 px-4">
+                      {user.kycStatus === "Pending" && (
+                        <div className="flex gap-2 flex-col">
+                          <button
+                            className="text-green-600 border rounded-md px-3 py-1 text-sm cursor-pointer"
+                            onClick={async () => {
+                              try {
+                                const payload = {
+                                  status: "Completed",
+                                  id: user._id,
+                                };
+
+                                await toast.promise(
+                                  api.post("/users/update_status", payload),
+                                  {
+                                    loading: "KYC status is updating...!",
+                                    success: ({ data }) => data.message,
+                                    error: ({ response }) =>
+                                      response.data.message,
+                                  }
+                                );
+                                mutate();
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            }}
+                          >
+                            Completed
+                          </button>
+
+                          <button
+                            className="text-red-600 border rounded-md px-3 py-1 text-sm cursor-pointer"
+                            onClick={async () => {
+                              try {
+                                const payload = {
+                                  status: "Rejected",
+                                  id: user._id,
+                                };
+
+                                await toast.promise(
+                                  api.post("/users/update_status", payload),
+                                  {
+                                    loading: "KYC status is updating...!",
+                                    success: ({ data }) => data.message,
+                                    error: ({ response }) =>
+                                      response.data.message,
+                                  }
+                                );
+                                mutate();
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            }}
+                          >
+                            Rejected
+                          </button>
+                        </div>
+                      )}
+                    </td>
+
                     <td className="py-3 px-4">
                       <div className="flex gap-3">
                         {user.status !== UserStatus.DELETED && (
