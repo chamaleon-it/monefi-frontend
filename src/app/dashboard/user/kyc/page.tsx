@@ -17,11 +17,9 @@ import { Separator } from "@/components/ui/separator";
 import {
   FileText,
   Upload,
-  Trash2,
   Home,
   Shield,
   CheckCircle2,
-  X,
   Info,
   Loader2,
   Clock,
@@ -30,7 +28,6 @@ import {
 import clsx from "clsx";
 import toast from "react-hot-toast";
 import api from "@/services/api";
-import { useRouter } from "next/navigation";
 import useSWR from "swr";
 
 type DocKind = "address" | "identity";
@@ -52,7 +49,6 @@ export default function KycPage() {
     data: "Not submitted" | "Pending" | "Completed" | "Expired" | "Rejected";
   }>("/users/kyc_status");
   const kycStatus = kycStatusData?.data || "Not submitted";
-  const router = useRouter();
   // form state
   const [addressProof, setAddressProof] = useState<string>("");
   const [identityProof, setIdentityProof] = useState<string>("");
@@ -87,10 +83,6 @@ export default function KycPage() {
     }
   }
 
-  function removeFile(kind: DocKind) {
-    if (kind === "address") setAddressUpload(null);
-    if (kind === "identity") setIdentityUpload(null);
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -278,7 +270,7 @@ export default function KycPage() {
                     kind="address"
                     current={addressUpload}
                     onFile={(f) => validateAndSet("address", f)}
-                    onRemove={() => removeFile("address")}
+
                   />
                 )}
               </div>
@@ -327,7 +319,7 @@ export default function KycPage() {
                     kind="identity"
                     current={identityUpload}
                     onFile={(f) => validateAndSet("identity", f)}
-                    onRemove={() => removeFile("identity")}
+
                   />
                 )}
               </div>
@@ -357,12 +349,10 @@ function UploadBlock({
   kind,
   current,
   onFile,
-  onRemove,
 }: {
   kind: DocKind;
   current: string | null;
   onFile: (file: File | null) => void;
-  onRemove: () => void;
 }) {
   const inputId = `${kind}-upload`;
 
