@@ -87,6 +87,11 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.user.myPortfolio,
       icon: "bytesize:portfolio",
     },
+     {
+      title: "KYC",
+      path: paths.dashboard.user.kyc,
+      icon: "mingcute:user-search-line",
+    },
     {
       title: "Settings",
       path: paths.dashboard.settings,
