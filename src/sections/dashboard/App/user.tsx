@@ -64,15 +64,15 @@ export default function UserDashboard() {
             value={fCurrency(user?.balance ?? 0)}
           />
           <SummaryCard
-            label="Purchase Stock Value"
+            label="Stock Value"
             value={fCurrency(stockValue)}
           />
           <SummaryCard
-            label="Purchased Crypto Value"
+            label="Crypto Value"
             value={fCurrency(cryptoValue)}
           />
           <SummaryCard
-            label="Purchased Bond Value"
+            label="Bond Value"
             value={fCurrency(bondValue)}
           />
         </div>

@@ -65,15 +65,15 @@ export default function AdminDashboard() {
                   value={fCurrency(fullBalanceData?.data ?? 0)}
                 />
                 <SummaryCard
-                  label="Purchase Stock Value"
+                  label="Stock Value"
                   value={fCurrency(portfolioStatistics?.data.stockValue ?? 0)}
                 />
                 <SummaryCard
-                  label="Purchased Crypto Value"
+                  label="Crypto Value"
                   value={fCurrency(portfolioStatistics?.data.cryptoValue ??0)}
                 />
                 <SummaryCard
-                  label="Purchased Bond Value"
+                  label="Bond Value"
                   value={fCurrency(portfolioStatistics?.data.bondValue ?? 0)}
                 />
               </div>
