@@ -132,7 +132,7 @@ export default function BondsPage() {
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(bond.unitPrice)}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponType}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond.annualCouponRate || "-"}</td>
+                      <td className="py-3 px-4 text-sm text-gray-600">{bond.annualCouponRate ? `${bond.annualCouponRate} %`  : "-"}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponFrequency}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond?.meturityDate && fDateAndTime(bond.meturityDate)}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{fBoolean(bond.isPublic,"Public","Private")}</td>
