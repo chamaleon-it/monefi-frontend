@@ -124,7 +124,7 @@ export default function BondsPage() {
                   {bonds.map((bond, i) => (
                     <tr key={bond._id} className="border-b bg-monefi-off-pink">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">{fName(bond.name)}</td>
+                      <td className="py-3 px-4 text-sm font-medium text-gray-800">{bond.name}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
                       {/* <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(bond.unitPrice)}</td> */}
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponType}</td>
