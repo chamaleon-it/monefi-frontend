@@ -13,6 +13,7 @@ interface Bond {
   isin: string
   // unitPrice: number
   couponType: CouponType
+  annualCouponRate:number
   couponFrequency: CouponFrequency
   meturityDate: string
   createdAt: string
@@ -108,6 +109,7 @@ export default function BondsPage() {
                 <th className="py-3 px-4">ISIN</th>
                 {/* <th className="py-3 px-4">Unit Price</th> */}
                 <th className="py-3 px-4">Coupon Type</th>
+                   <th className="py-3 px-4">Annual Coupon Rate</th>
                 <th className="py-3 px-4">Frequency</th>
                 <th className="py-3 px-4">Maturity</th>
               </tr>
@@ -127,6 +129,7 @@ export default function BondsPage() {
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
                       {/* <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(bond.unitPrice)}</td> */}
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponType}</td>
+                        <td className="py-3 px-4 text-sm text-gray-600">{bond.annualCouponRate || "-"}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponFrequency}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{fDateAndTime(bond.meturityDate)}</td>
                     </tr>
