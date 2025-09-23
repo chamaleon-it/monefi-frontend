@@ -109,7 +109,7 @@ export default function BondsPage() {
                 <th className="py-3 px-4">ISIN</th>
                 {/* <th className="py-3 px-4">Unit Price</th> */}
                 <th className="py-3 px-4">Coupon Type</th>
-                   <th className="py-3 px-4">Annual Coupon Rate</th>
+                   <th className="py-3 px-4">Coupon Rate</th>
                 <th className="py-3 px-4">Frequency</th>
                 <th className="py-3 px-4">Maturity</th>
               </tr>
