@@ -7,7 +7,7 @@ import { TransactionStatus } from "@/enum/transaction-status.enum";
 import { TradeAction } from "@/enum/trade-action.enum";
 import { InvestmentType } from "@/enum/investment-type.enum";
 import { fCurrency } from "@/utility/numberFormatters";
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters.ts";
 
 interface Transaction {
   _id: string;
@@ -132,7 +132,7 @@ export default function TransactionsTable() {
               {!isLoading && transactions.length > 0 && (
                 <>
                   {transactions.map((tx, i) => (
-                    <tr key={tx._id} className="border-b bg-monefi-off-pink">
+                    <tr key={tx._id} className="border-b bg-monefi-off-pink whitespace-nowrap">
                       <td className="py-3 px-4 text-sm">
                         {(filter.page - 1) * filter.limit + i + 1}
                       </td>
@@ -159,7 +159,7 @@ export default function TransactionsTable() {
                         {tx.investmentType}
                       </td>
                       <td className="py-3 px-4 text-sm text-gray-600">
-                        {fDateAndTime(tx.createdAt)}
+                        {fDate(tx.createdAt)}
                       </td>
                       <td className={`py-3 px-4 text-xs`}>
                         <p
