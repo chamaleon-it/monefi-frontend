@@ -19,6 +19,7 @@ interface Transaction {
   name: string
   quantity: number
   unitPrice: number
+  annualCouponRate?: number;
   totalValue: number
   tradeAction: TradeAction
   investmentType: InvestmentType
@@ -115,6 +116,7 @@ export default function TransactionsTable() {
                 <th className="py-3 px-4">User</th>
                 <th className="py-3 px-4">Symbol</th>
                 <th className="py-3 px-4">Quantity</th>
+                 <th className="py-3 px-4">Coupon Rate</th>
                 <th className="py-3 px-4">Unit Price</th>
                 <th className="py-3 px-4">Total Value</th>
                 <th className="py-3 px-4">Action</th>

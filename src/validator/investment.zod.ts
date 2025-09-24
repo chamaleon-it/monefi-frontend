@@ -36,5 +36,11 @@ export const InvestmentZod = z.object({
       invalid_type_error: "Quantity must be a number",
     })
     .positive("Quantity must be a positive number"),
+    annualCouponRate: z.coerce
+    .number({
+      required_error: "Quantity is required",
+      invalid_type_error: "Quantity must be a number",
+    })
+    .positive("Quantity must be a positive number"),
   buyBackDate: z.string().optional(),
 });

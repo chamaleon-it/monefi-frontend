@@ -23,6 +23,7 @@ interface Transaction {
   investmentType: InvestmentType;
   status: TransactionStatus;
   createdAt: string;
+  annualCouponRate?:number;
 }
 
 export default function TransactionRow({
@@ -96,6 +97,9 @@ export default function TransactionRow({
           <p className="text-sm">{tx.symbol}</p>
         </td>
         <td className="py-3 px-4 text-sm text-gray-600">{tx.quantity}</td>
+         <td className="py-3 px-4 text-sm text-gray-600">
+                        {tx.annualCouponRate ? `${tx.annualCouponRate} %` : "-"}
+                      </td>
         <td className="py-3 px-4 text-sm text-gray-600">
           {fCurrency(tx.unitPrice)}
         </td>

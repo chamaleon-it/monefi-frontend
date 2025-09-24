@@ -26,12 +26,13 @@ export default function Investment() {
     setValue,
     handleSubmit,
     watch,
-    reset
+    reset,
   } = useForm({
     resolver: zodResolver(InvestmentZod),
     defaultValues: {
       investmentType: InvestmentType.STOCK,
       quantity: 0,
+      annualCouponRate: 0,
     },
   });
 
@@ -43,20 +44,20 @@ export default function Investment() {
         error: "Failed to Invest.",
       });
 
-      // const id:string = transactionData?.data?._id as string
-      //  await toast.promise(api.patch('/transactions/status',{id,status:TransactionStatus.COMPLETED}),{
-      //           loading:"Transaction is updating...",
-      //           error:"Somthing is error, Please try again.",
-      //           success:"Transaction is updated."
-      //       })
-
       reset();
     } catch (error) {
       let err: string | [string] = "Something went wrong.";
-      if (error && typeof error === "object" && (error as AxiosError).isAxiosError) {
+      if (
+        error &&
+        typeof error === "object" &&
+        (error as AxiosError).isAxiosError
+      ) {
         err =
-          ((error as AxiosError).response?.data as {message:[string] |string})?.message ||
-          "Something went wrong.";
+          (
+            (error as AxiosError).response?.data as {
+              message: [string] | string;
+            }
+          )?.message || "Something went wrong.";
       }
       const message = typeof err === "string" ? err : err[0];
       setError("root", { message });
@@ -75,6 +76,7 @@ export default function Investment() {
       meturityDate: string;
       createdAt: string;
       isPublic: boolean;
+      annualCouponRate: number;
     }[];
   }>("/bonds?page=1&limit=2000");
 
@@ -83,7 +85,7 @@ export default function Investment() {
     data: {
       _id: string;
       email: string;
-      name:string;
+      name: string;
       role: UserRoles;
       status: UserStatus;
       lastLogin: Date;
@@ -95,7 +97,6 @@ export default function Investment() {
   const invermentType = watch("investmentType");
   const unitPrice = watch("unitPrice");
   const quantity = watch("quantity");
-
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
@@ -123,14 +124,21 @@ export default function Investment() {
                   </option>
                 ))}
               </select>
-              {errors.investmentType && <p className="text-sm text-red-500">{errors.investmentType.message}</p>}
+              {errors.investmentType && (
+                <p className="text-sm text-red-500">
+                  {errors.investmentType.message}
+                </p>
+              )}
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 User
               </label>
-              <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]" {...register("user")}>
+              <select
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                {...register("user")}
+              >
                 <option value="">Select user</option>
                 {userData?.data.map(
                   (user) =>
@@ -141,7 +149,9 @@ export default function Investment() {
                     )
                 )}
               </select>
-              {errors.user && <p className="text-sm text-red-500">{errors.user.message}</p>}
+              {errors.user && (
+                <p className="text-sm text-red-500">{errors.user.message}</p>
+              )}
             </div>
           </div>
 
@@ -161,14 +171,18 @@ export default function Investment() {
                     setValue("name", stock?.name ?? "");
                   }}
                 >
-                    <option value="">Select Stock</option>
+                  <option value="">Select Stock</option>
                   {topStock.map((e) => (
                     <option value={e.name} key={e.name}>
                       {e.name}
                     </option>
                   ))}
                 </select>
-                {errors.symbol && <p className="text-sm text-red-500">{errors.symbol.message}</p>}
+                {errors.symbol && (
+                  <p className="text-sm text-red-500">
+                    {errors.symbol.message}
+                  </p>
+                )}
               </div>
             )}
 
@@ -187,14 +201,18 @@ export default function Investment() {
                     setValue("name", crypto?.name ?? "");
                   }}
                 >
-                    <option value="">Select Crypto</option>
+                  <option value="">Select Crypto</option>
                   {topCrypto.map((e) => (
                     <option value={e.name} key={e.name}>
                       {e.name}
                     </option>
                   ))}
                 </select>
-                {errors.symbol && <p className="text-sm text-red-500">{errors.symbol.message}</p>}
+                {errors.symbol && (
+                  <p className="text-sm text-red-500">
+                    {errors.symbol.message}
+                  </p>
+                )}
               </div>
             )}
 
@@ -203,25 +221,30 @@ export default function Investment() {
                 <label className="block text-sm font-medium text-gray-700">
                   Select Bond
                 </label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
-                onChange={(e) => {
+                <select
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                  onChange={(e) => {
                     const bond = bondData?.data.find(
                       (ts) => ts.name === e.target.value
                     );
                     setValue("symbol", bond?.isin ?? "");
                     setValue("name", bond?.name ?? "");
-                    setValue("unitPrice",bond?.unitPrice ?? 0)
+                    setValue("unitPrice", bond?.unitPrice ?? 0);
+                    setValue("annualCouponRate", bond?.annualCouponRate ?? 0);
                   }}
                 >
-
-                    <option value="">Select Bond</option>
+                  <option value="">Select Bond</option>
                   {bondData?.data.map((e) => (
                     <option value={e.name} key={e.name}>
                       {e.name}
                     </option>
                   ))}
                 </select>
-                {errors.symbol && <p className="text-sm text-red-500">{errors.symbol.message}</p>}
+                {errors.symbol && (
+                  <p className="text-sm text-red-500">
+                    {errors.symbol.message}
+                  </p>
+                )}
               </div>
             )}
 
@@ -235,7 +258,11 @@ export default function Investment() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
                 {...register("unitPrice")}
               />
-              {errors.unitPrice && <p className="text-sm text-red-500">{errors.unitPrice.message}</p>}
+              {errors.unitPrice && (
+                <p className="text-sm text-red-500">
+                  {errors.unitPrice.message}
+                </p>
+              )}
             </div>
           </div>
 
@@ -250,7 +277,11 @@ export default function Investment() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
                 {...register("quantity")}
               />
-              {errors.quantity && <p className="text-sm text-red-500">{errors.quantity.message}</p>}
+              {errors.quantity && (
+                <p className="text-sm text-red-500">
+                  {errors.quantity.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -272,9 +303,12 @@ export default function Investment() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
                 {...register("buyBackDate")}
               />
-              {errors.quantity && <p className="text-sm text-red-500">{errors.quantity.message}</p>}
+              {errors.quantity && (
+                <p className="text-sm text-red-500">
+                  {errors.quantity.message}
+                </p>
+              )}
             </div>
-
           </div>
         </div>
 

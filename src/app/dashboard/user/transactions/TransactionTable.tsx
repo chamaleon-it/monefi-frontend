@@ -20,6 +20,7 @@ interface Transaction {
   investmentType: InvestmentType;
   status: TransactionStatus;
   createdAt: string;
+  annualCouponRate?: number;
 }
 
 interface Pagination {
@@ -113,6 +114,7 @@ export default function TransactionsTable() {
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Symbol</th>
                 <th className="py-3 px-4">Quantity</th>
+                <th className="py-3 px-4">Coupon Rate</th>
                 <th className="py-3 px-4">Unit Price</th>
                 <th className="py-3 px-4">Total Value</th>
                 <th className="py-3 px-4">Action</th>
@@ -140,6 +142,9 @@ export default function TransactionsTable() {
                       </td>
                       <td className="py-3 px-4 text-sm text-gray-600">
                         {tx.quantity}
+                      </td>
+                        <td className="py-3 px-4 text-sm text-gray-600">
+                        {tx.annualCouponRate ? `${tx.annualCouponRate} %` : "-"}
                       </td>
                       <td className="py-3 px-4 text-sm text-gray-600">
                         {fCurrency(tx.unitPrice)}
