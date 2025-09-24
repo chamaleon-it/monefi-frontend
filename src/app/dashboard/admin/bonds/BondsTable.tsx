@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import useSWR from "swr"
-import { fDateAndTime } from "@/utility/dateFormatters.ts"
+import { fDate } from "@/utility/dateFormatters.ts"
 import { CouponFrequency } from "@/enum/coupon-frequency.enum"
 import { CouponType } from "@/enum/coupon-type.enum"
 import { fCurrency } from "@/utility/numberFormatters"
@@ -105,7 +105,7 @@ export default function BondsPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink whitespace-nowrap">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">ISIN</th>
@@ -126,7 +126,7 @@ export default function BondsPage() {
               {!isLoading && bonds.length > 0 && (
                 <>
                   {bonds.map((bond, i) => (
-                    <tr key={bond._id} className="border-b bg-monefi-off-pink">
+                    <tr key={bond._id} className="border-b bg-monefi-off-pink whitespace-nowrap">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">{bond.name}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
@@ -134,7 +134,7 @@ export default function BondsPage() {
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponType}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.annualCouponRate ? `${bond.annualCouponRate} %`  : "-"}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.couponFrequency}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond?.meturityDate && fDateAndTime(bond.meturityDate)}</td>
+                      <td className="py-3 px-4 text-sm text-gray-600">{bond?.meturityDate && fDate(bond.meturityDate)}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{fBoolean(bond.isPublic,"Public","Private")}</td>
                     </tr>
                   ))}
