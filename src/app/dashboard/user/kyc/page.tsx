@@ -32,12 +32,6 @@ import useSWR from "swr";
 
 type DocKind = "address" | "identity";
 
-const ACCEPTED_MIME = [
-  "application/pdf",
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-];
 const MAX_SIZE_MB = 10;
 
 export default function KycPage() {
@@ -60,9 +54,7 @@ export default function KycPage() {
     if (!f) return;
     let err: string | null = null;
 
-    if (!ACCEPTED_MIME.includes(f.type)) {
-      err = "Only PDF, JPG, PNG, or WEBP are allowed.";
-    }
+
     if (!err && f.size > MAX_SIZE_MB * 1024 * 1024) {
       err = `Max file size is ${MAX_SIZE_MB} MB.`;
     }
@@ -366,7 +358,7 @@ function UploadBlock({
               {current ? "File uploaded successfully" : "Upload document"}
             </div>
             <p className="text-xs text-slate-500">
-              Accepted: PDF, JPG, PNG, WEBP — Max 10MB
+              Accepted: Max 10MB
             </p>
           </div>
         </div>
@@ -376,7 +368,6 @@ function UploadBlock({
             <Input
               id={inputId}
               type="file"
-              accept=".pdf,.jpg,.jpeg,.png,.webp"
               className="absolute inset-0 w-full h-full opacity-0"
               onChange={(e) => onFile(e.target.files?.[0] ?? null)}
             />
