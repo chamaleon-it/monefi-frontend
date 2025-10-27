@@ -5,7 +5,7 @@ export default function usePaths() {
     contactUs: "/contact-us",
     insurance: "/insurance",
     resources: "/resources",
-    financialplanning: "/financial-planning",
+    // financialplanning: "/financial-planning",
     loans: "/loans",
     mortgages: "/mortgages",
     utilities: "/utilities",

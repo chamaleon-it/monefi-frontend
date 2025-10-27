@@ -21,7 +21,7 @@ export default function Header() {
     { href: paths.loans, label: "Loan Types" },
     // { href: paths.resources, label: "Resources" },
     { href: paths.mortgages, label: "Mortgages" },
-    { href: paths.financialplanning, label: "Financial Planning" },
+    // { href: paths.financialplanning, label: "Financial Planning" },
      { href: paths.aboutUs, label: "About Us" },
       { href: paths.contactUs, label: "Contact Us" },
   ]

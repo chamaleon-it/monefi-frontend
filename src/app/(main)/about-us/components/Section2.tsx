@@ -7,7 +7,7 @@ const services = [
     { title: "Personal and Business Loans" },
     { title: "Mortgages" },
     { title: "Wealth Management" },
-    { title: "Financial Planning" },
+    // { title: "Financial Planning" },
 ];
 
 export function Section2() {
