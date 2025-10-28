@@ -23,15 +23,15 @@ export default function Header() {
   const paths = usePaths();
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigationItems = [
-    { href: paths.home, label: "Home" },
-    { href: paths.insurance, label: "Insurance" },
-    { href: paths.loans, label: "Loan Types" },
-    // { href: paths.resources, label: "Resources" },
-    { href: paths.mortgages, label: "Mortgages" },
-    // { href: paths.financialplanning, label: "Financial Planning" },
-    { href: paths.aboutUs, label: "About Us" },
-    { href: paths.contactUs, label: "Contact Us" },
+  const navigationItems:{href:string,label:string}[] = [
+    // { href: paths.home, label: "Home" },
+    // { href: paths.insurance, label: "Insurance" },
+    // { href: paths.loans, label: "Loan Types" },
+    // // { href: paths.resources, label: "Resources" },
+    // { href: paths.mortgages, label: "Mortgages" },
+    // // { href: paths.financialplanning, label: "Financial Planning" },
+    // { href: paths.aboutUs, label: "About Us" },
+    // { href: paths.contactUs, label: "Contact Us" },
   ];
 
   return (

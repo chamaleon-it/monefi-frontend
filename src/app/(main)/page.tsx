@@ -1,5 +1,6 @@
 import FAQ from '@/sections/home/FAQ'
 import Hero from '@/sections/home/Hero'
+import MaintenanceBanner from '@/sections/home/MaintenanceBanner'
 // import LatestNews from '@/sections/home/LatestNews'
 import Mission from '@/sections/home/Mission'
 import OurPromise from '@/sections/home/OurPromise'
@@ -25,6 +26,7 @@ export default function HomePage() {
    <Testimonials/>
    {/* <LatestNews/> */}
    <FAQ/>
+   <MaintenanceBanner/>
    </main>
   )
 }
