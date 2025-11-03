@@ -4,7 +4,7 @@ import usePaths from "@/hooks/usePaths";
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-// import LoginButton from "./LoginButton";
+import LoginButton from "./LoginButton";
 import { usePathname } from "next/navigation";
 import {
   Sheet,
@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   const pathname = usePathname();
@@ -24,24 +25,24 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems:{href:string,label:string}[] = [
-    // { href: paths.home, label: "Home" },
-    // { href: paths.insurance, label: "Insurance" },
-    // { href: paths.loans, label: "Loan Types" },
-    // // { href: paths.resources, label: "Resources" },
-    // { href: paths.mortgages, label: "Mortgages" },
-    // // { href: paths.financialplanning, label: "Financial Planning" },
-    // { href: paths.aboutUs, label: "About Us" },
-    // { href: paths.contactUs, label: "Contact Us" },
+    { href: paths.home, label: "Home" },
+    { href: paths.insurance, label: "Insurance" },
+    { href: paths.loans, label: "Loan Types" },
+    // { href: paths.resources, label: "Resources" },
+    { href: paths.mortgages, label: "Mortgages" },
+    { href: paths.financialplanning, label: "Financial Planning" },
+    { href: paths.aboutUs, label: "About Us" },
+    { href: paths.contactUs, label: "Contact Us" },
   ];
 
   return (
     <>
-      <div className="bg-monefi-black text-center py-2.5 text-white sticky z-50 top-0">
+      {/* <div className="bg-monefi-black text-center py-2.5 text-white sticky z-50 top-0">
         {" "}
         🚧 Website is currently under maintenance.{" "}
-      </div>
+      </div> */}
       <header
-        className={`sticky z-40 top-11 transition-all duration-300 ${
+        className={`sticky z-40 top-0 transition-all duration-300 ${
           isDashboard
             ? "bg-white/95 backdrop-blur-md py-4 top-0 border-b border-gray-200/50 shadow-sm"
             : "bg-monefi-black/95 backdrop-blur-md pb-4 pt-4 2xl:py-10  -top-1 border-b border-white/10"
@@ -95,20 +96,20 @@ export default function Header() {
 
             {/* Desktop Login Button */}
             <div className="hidden lg:flex items-center ml-8">
-              {/* <LoginButton isDashboard={isDashboard} /> */}
+              <LoginButton isDashboard={isDashboard} />
             </div>
 
             {/* Mobile Menu */}
             <div className="lg:hidden flex items-center space-x-3">
               {/* Mobile Login Button */}
               <div className="block">
-                {/* <LoginButton isDashboard={isDashboard} /> */}
+                <LoginButton isDashboard={isDashboard} />
               </div>
 
               {/* Mobile Menu Toggle */}
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
-                  {/* <Button
+                  <Button
                   variant="ghost"
                   size="icon"
                   className={`relative  rounded-lg transition-all duration-200 hover:scale-105 ${
@@ -116,7 +117,7 @@ export default function Header() {
                       ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
                       : "text-white hover:text-white hover:bg-white/10"
                   }`}
-                > */}
+                >
                   <Menu
                     width={30}
                     height={30}
@@ -127,7 +128,7 @@ export default function Header() {
                     }`}
                   />
 
-                  {/* </Button> */}
+                  </Button>
                 </SheetTrigger>
                 <SheetContent
                   side="right"
