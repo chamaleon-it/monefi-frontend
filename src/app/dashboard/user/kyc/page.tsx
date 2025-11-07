@@ -186,7 +186,7 @@ export default function KycPage() {
           <div className="p-5 flex items-start gap-3">
             <Info className="h-5 w-5 mt-0.5 text-slate-500" />
             <p className="text-sm text-slate-700">
-              Need assistance? Call <b>020 8002 8761</b> / <b>016 1563 0904</b>{" "}
+              Need assistance? Call <b>020 8002 8761</b>{" "}
               or email <b>hello@monefi.co.uk</b>
             </p>
           </div>
