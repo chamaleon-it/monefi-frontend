@@ -289,7 +289,7 @@ export default function Investment() {
                 Total Value
               </label>
               <div className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]">
-                {fCurrency(((unitPrice as number) * quantity) as number) ?? ""}
+                {fCurrency(((unitPrice as number) * (quantity as number)) as number) ?? ""}
               </div>
             </div>
 
