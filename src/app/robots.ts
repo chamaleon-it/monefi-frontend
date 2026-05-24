@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/dashboard/",
     },
-    sitemap: "https://monefi.com/sitemap.xml",
+    sitemap: "https://bakerjonesholdings.com/sitemap.xml",
   };
 }

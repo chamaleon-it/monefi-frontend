@@ -14,43 +14,43 @@ export default function IndividualDetails({
   setFormData,
 }: AccountTypeProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overflow-scroll">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-bakerjonesholdings-black flex flex-col gap-5 overflow-scroll">
       <h2 className="text-2xl font-semibold">Personal Information</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
         are happy to help. Simply contact us on  020 8002 8761 or email
-        hello@monefi.co.uk
+        hello@bakerjonesholdings.com
       </p>
       <div className="grid lg:grid-cols-2 gap-5">
         <select
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, title: e.target.value }))
           }
           value={formData.title}
         >
-          <option className="bg-monefi-pink" value="">
+          <option className="bg-bakerjonesholdings-pink" value="">
             Title
           </option>
-          <option className="bg-monefi-pink" value="Mr">
+          <option className="bg-bakerjonesholdings-pink" value="Mr">
             Mr
           </option>
-          <option className="bg-monefi-pink" value="Mrs">
+          <option className="bg-bakerjonesholdings-pink" value="Mrs">
             Mrs
           </option>
-          <option className="bg-monefi-pink" value="Miss">
+          <option className="bg-bakerjonesholdings-pink" value="Miss">
             Miss
           </option>
-          <option className="bg-monefi-pink" value="Ms">
+          <option className="bg-bakerjonesholdings-pink" value="Ms">
             Ms
           </option>
-          <option className="bg-monefi-pink" value="Dr">
+          <option className="bg-bakerjonesholdings-pink" value="Dr">
             Dr
           </option>
-          <option className="bg-monefi-pink" value="Prof">
+          <option className="bg-bakerjonesholdings-pink" value="Prof">
             Prof
           </option>
-          <option className="bg-monefi-pink" value="Other">
+          <option className="bg-bakerjonesholdings-pink" value="Other">
             Other
           </option>
         </select>
@@ -58,7 +58,7 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="First Name"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, firstName: e.target.value }))
           }
@@ -67,18 +67,18 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="Last Name"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, lastName: e.target.value }))
           }
           value={formData.lastName}
         />
         <div className="w-full">
-<label htmlFor="" className="text-monefi-off-white text-sm">Date Of Birth</label>
+<label htmlFor="" className="text-bakerjonesholdings-off-white text-sm">Date Of Birth</label>
         <input
           type="date"
           placeholder="Date of Birth"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white accent-monefi-off-white w-full"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white accent-bakerjonesholdings-off-white w-full"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, dateOfBirth: e.target.value }))
           }
@@ -88,7 +88,7 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="Occupation"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, occupation: e.target.value }))
           }
@@ -97,7 +97,7 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="Occupation Category"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({
               ...prev,
@@ -111,7 +111,7 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="Home Phone"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, homePhone: e.target.value }))
           }
@@ -120,7 +120,7 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="Mobile Phone"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, mobilePhone: e.target.value }))
           }
@@ -129,7 +129,7 @@ export default function IndividualDetails({
         {/* <input
           type="text"
           placeholder="Password"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, password: e.target.value }))
           }
@@ -138,7 +138,7 @@ export default function IndividualDetails({
         <input
           type="text"
           placeholder="Confirm Password"
-          className="border-b outline-none px-2 py-1 border-monefi-off-white text-monefi-off-white"
+          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
             setFormData((prev) => ({
               ...prev,
@@ -151,7 +151,7 @@ export default function IndividualDetails({
 
       <div className="flex justify-between items-start">
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-monefi-off-white rounded-md"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-bakerjonesholdings-off-white rounded-md"
           onClick={() =>{
             if(formData.accountType === "Company") {
              setStage("Company Ownership")
@@ -164,7 +164,7 @@ export default function IndividualDetails({
           Previous
         </button>
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-bakerjonesholdings-pink bg-bakerjonesholdings-black"
           onClick={() => {
             if (!formData.title) {
               toast.error("Please select a title");

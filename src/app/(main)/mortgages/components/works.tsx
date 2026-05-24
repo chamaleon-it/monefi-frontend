@@ -72,7 +72,7 @@ const content = [
 ];
 export function Works() {
   return (
-    <div className="w-full bg-monefi-black py-[120px] space-y-10 font-poppins" data-lenis-prevent>
+    <div className="w-full bg-bakerjonesholdings-black py-[120px] space-y-10 font-poppins" data-lenis-prevent>
       <div className="py-10 text-center text-4xl">
       <h1 className="text-white">How It Works</h1>
       </div>

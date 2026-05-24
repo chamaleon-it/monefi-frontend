@@ -10,20 +10,20 @@ export default function Stage3({ form }: PropsType) {
 
   return (
     <div className="space-y-5 max-w-2xl shadow-2xl p-5 rounded-xl">
-      <h2 className="text-3xl font-semibold text-monefi-pink">
+      <h2 className="text-3xl font-semibold text-bakerjonesholdings-pink">
         Personal Information
       </h2>
       <p className="text-sm">
-        Monefi will use the information below to electronically verify the
+        Baker Jones Holding will use the information below to electronically verify the
         identity of Investors, Trustees, Directors and Authorised Signatories
-        where possible. Monefi may request certified ID where this is not
+        where possible. Baker Jones Holding may request certified ID where this is not
         possible. For company accounts at least two Directors’ or Authorised
         Signatories’ details are required, with the exception of Sole Director
         companies.
       </p>
 
       <div className="space-y-2.5 w-full shadow-2xl p-2.5 rounded-xl">
-        <h3 className="text-lg font-semibold text-monefi-pink">
+        <h3 className="text-lg font-semibold text-bakerjonesholdings-pink">
           Individual details
         </h3>
 
@@ -85,7 +85,7 @@ export default function Stage3({ form }: PropsType) {
       </div>
 
       <div className="space-y-2.5 w-full shadow-2xl p-2.5 rounded-xl">
-        <h3 className="text-lg font-semibold text-monefi-pink">
+        <h3 className="text-lg font-semibold text-bakerjonesholdings-pink">
           Residential address information
         </h3>
         <div className="flex flex-col gap-1.5">
@@ -132,7 +132,7 @@ export default function Stage3({ form }: PropsType) {
       </div>
 
        <div className="space-y-2.5 w-full shadow-2xl p-2.5 rounded-xl">
-        <h3 className="text-lg font-semibold text-monefi-pink">
+        <h3 className="text-lg font-semibold text-bakerjonesholdings-pink">
           Contact Details
         </h3>
 
@@ -177,7 +177,7 @@ export default function Stage3({ form }: PropsType) {
 
       <div className="flex justify-between items-center pt-4">
         <button
-          className="px-4 py-1.5 rounded-md shadow bg-monefi-black text-monefi-pink font-medium"
+          className="px-4 py-1.5 rounded-md shadow bg-bakerjonesholdings-black text-bakerjonesholdings-pink font-medium"
           onClick={gotoPreviousStage}
         >
           Previous
@@ -186,7 +186,7 @@ export default function Stage3({ form }: PropsType) {
           disabled={!false}
           className={`px-4 py-1.5 rounded-md shadow font-medium ${
             false
-              ? "bg-monefi-pink text-monefi-black cursor-pointer"
+              ? "bg-bakerjonesholdings-pink text-bakerjonesholdings-black cursor-pointer"
               : "bg-gray-300 text-gray-600 cursor-not-allowed"
           }`}
           onClick={gotoNextStage}

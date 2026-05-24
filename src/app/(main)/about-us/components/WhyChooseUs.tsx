@@ -35,7 +35,7 @@ const reasons = [
         icon: <FaChartLine className="text-primary text-3xl mb-4" />,
         title: "Commitment to Growth",
         description:
-            "MONEFI has grown rapidly, expanding our services and reach. Our growth reflects our clients’ trust and our commitment to high-quality guidance.",
+            "bakerjonesholdings has grown rapidly, expanding our services and reach. Our growth reflects our clients’ trust and our commitment to high-quality guidance.",
     },
 ];
 
@@ -43,7 +43,7 @@ const WhyChooseUs: React.FC = () => (
     <section className="why-choose-us-section py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-3xl font-bold text-center mb-8 text-primary">
-                Why Choose MONEFI?
+                Why Choose bakerjonesholdings?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {reasons.map((reason, idx) => (

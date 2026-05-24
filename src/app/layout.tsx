@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Monefi. | The smart choice for your finances.",
+  title: "Baker Jones Holding. | The smart choice for your finances.",
   description:
     "Empower your financial journey with expert advice and tailored financial services. From life insurance and mortgage solutions to business insurance and personal loans, we provide the support you need to make informed decisions and achieve lasting financial security.",
   icons: {
@@ -49,11 +49,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Monefi.",
-              url: "https://www.monefi.com",
+              name: "Baker Jones Holding.",
+              url: "https://www.bakerjonesholdings.com",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://www.monefi.com/search?q={search_term_string}",
+                target: "https://www.bakerjonesholdings.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),

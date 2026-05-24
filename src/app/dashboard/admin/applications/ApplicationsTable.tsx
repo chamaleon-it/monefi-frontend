@@ -181,11 +181,11 @@ export default function ApplicationTable() {
   return (
     <div className="w-full space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">Applications</h1>
+        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Applications</h1>
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-monefi-pink"
+          className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bakerjonesholdings-pink"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -197,7 +197,7 @@ export default function ApplicationTable() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">Type</th>
@@ -216,7 +216,7 @@ export default function ApplicationTable() {
                   {applications.map((application, i) => (
                     <tr
                       key={application._id}
-                      className="border-b bg-monefi-off-pink"
+                      className="border-b bg-bakerjonesholdings-off-pink"
                     >
                       <td className="py-3 px-4 text-sm">
                         {(filter.page - 1) * filter.limit + i + 1}
@@ -285,7 +285,7 @@ export default function ApplicationTable() {
                 onClick={() => handlePageChange(num)}
                 className={`px-3 py-2 text-sm rounded-md border ${
                   num === pagination.page
-                    ? "bg-monefi-pink text-white"
+                    ? "bg-bakerjonesholdings-pink text-white"
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >
@@ -563,14 +563,14 @@ export default function ApplicationTable() {
                     console.log(error);
                   }
                 }}
-                className="px-4 py-2 text-sm font-medium text-white bg-monefi-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
+                className="px-4 py-2 text-sm font-medium text-white bg-bakerjonesholdings-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
               >
                 Delete
               </button>
 
               <button
                 onClick={() => setSelectedApplication(null)}
-                className="px-4 py-2 text-sm font-medium text-white bg-monefi-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
+                className="px-4 py-2 text-sm font-medium text-white bg-bakerjonesholdings-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
               >
                 Close
               </button>

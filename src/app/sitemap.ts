@@ -3,50 +3,50 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://monefi.com",
+      url: "https://bakerjonesholdings.com",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: "https://monefi.com/estate-planning",
+      url: "https://bakerjonesholdings.com/estate-planning",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://monefi.com/insurance",
+      url: "https://bakerjonesholdings.com/insurance",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://monefi.com/loans",
+      url: "https://bakerjonesholdings.com/loans",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://monefi.com/mortgages",
+      url: "https://bakerjonesholdings.com/mortgages",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://monefi.com/utilities",
+      url: "https://bakerjonesholdings.com/utilities",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
 
     {
-      url: "https://monefi.com/login",
+      url: "https://bakerjonesholdings.com/login",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: "https://monefi.com/register",
+      url: "https://bakerjonesholdings.com/register",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

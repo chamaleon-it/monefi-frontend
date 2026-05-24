@@ -61,7 +61,7 @@ export default function CryptoForm({ symbol }: { symbol: string }) {
   }
 
   return (
-    <div className="w-full bg-monefi-off-pink shadow-lg rounded-2xl p-4 space-y-2.5 border border-gray-200 pointer-events-auto">
+    <div className="w-full bg-bakerjonesholdings-off-pink shadow-lg rounded-2xl p-4 space-y-2.5 border border-gray-200 pointer-events-auto">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-gray-500">Crypto Name</p>
@@ -116,7 +116,7 @@ export default function CryptoForm({ symbol }: { symbol: string }) {
       <div className="pt-2">
         <button
           type="button"
-          className="w-full h-11 bg-monefi-pink hover:bg-monefi-pink/80 text-white font-medium text-sm rounded-md transition duration-200"
+          className="w-full h-11 bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/80 text-white font-medium text-sm rounded-md transition duration-200"
           onClick={buy}
         >
           Buy Stock

@@ -12,12 +12,12 @@ interface AccountTypeProps {
 
 export default function ProofofAddress({ setStage,formData,setFormData }: AccountTypeProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5  text-monefi-black flex flex-col gap-5 overflow-auto">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-bakerjonesholdings-black flex flex-col gap-5 overflow-auto">
       <h2 className="text-2xl font-semibold">Proof of Address</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
         are happy to help. Simply contact us on  020 8002 8761 or email
-        hello@monefi.co.uk
+        hello@bakerjonesholdings.com
       </p>
       <div className="flex flex-col gap-5">
         {["Utility Bill", "Driving Licence", "Email Proof of Address"].map(
@@ -26,8 +26,8 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
               key={type}
               className={`cursor-pointer px-4 py-2 rounded-md border ${
                 formData.proofOfAddress === type
-                  ? "bg-monefi-black text-monefi-off-white border-monefi-black"
-                  : "border-monefi-off-white text-monefi-off-white"
+                  ? "bg-bakerjonesholdings-black text-bakerjonesholdings-off-white border-bakerjonesholdings-black"
+                  : "border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
               }`}
             >
               <input
@@ -61,13 +61,13 @@ export default function ProofofAddress({ setStage,formData,setFormData }: Accoun
 
       <div className="flex justify-between items-start">
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-monefi-off-white rounded-md"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-bakerjonesholdings-off-white rounded-md"
           onClick={() => setStage("Identity Verification")}
         >
           Previous
         </button>
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-monefi-pink bg-monefi-black"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-bakerjonesholdings-pink bg-bakerjonesholdings-black"
           
           onClick={() => {
             if(formData.proofOfAddress !== "Email Proof of Address"){
@@ -138,7 +138,7 @@ const UploadProof = ({
   )
 
   return (
-    <div className="border p-5 rounded-md border-monefi-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
+    <div className="border p-5 rounded-md border-bakerjonesholdings-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
       <input
         type="file"
         className="absolute h-full w-full opacity-0 inset-0 z-10 cursor-pointer"
@@ -176,11 +176,11 @@ const UploadProof = ({
             <span className="text-white font-medium z-10">{progress}%</span>
           </>
         ) : (
-          <ImageUp width={50} height={50} className="text-monefi-off-white" />
+          <ImageUp width={50} height={50} className="text-bakerjonesholdings-off-white" />
         )}
       </div>
 
-      <p className="text-monefi-off-white">Upload {formData.proofOfAddress}</p>
+      <p className="text-bakerjonesholdings-off-white">Upload {formData.proofOfAddress}</p>
     </div>
   )
 }
@@ -234,7 +234,7 @@ const UploadBackProof = ({
   )
 
   return (
-    <div className="border p-5 rounded-md border-monefi-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
+    <div className="border p-5 rounded-md border-bakerjonesholdings-off-white relative cursor-pointer flex flex-col justify-center items-center gap-5">
       <input
         type="file"
         className="absolute h-full w-full opacity-0 inset-0 z-10 cursor-pointer"
@@ -272,11 +272,11 @@ const UploadBackProof = ({
             <span className="text-white font-medium z-10">{progress}%</span>
           </>
         ) : (
-          <ImageUp width={50} height={50} className="text-monefi-off-white" />
+          <ImageUp width={50} height={50} className="text-bakerjonesholdings-off-white" />
         )}
       </div>
 
-      <p className="text-monefi-off-white">Upload Back of {formData.proofOfAddress}</p>
+      <p className="text-bakerjonesholdings-off-white">Upload Back of {formData.proofOfAddress}</p>
     </div>
   )
 }

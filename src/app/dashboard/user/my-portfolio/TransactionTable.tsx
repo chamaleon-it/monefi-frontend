@@ -74,7 +74,7 @@ export default function TransactionsTable() {
   return (
     <div className="w-full space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">My Portfolio</h1>
+        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">My Portfolio</h1>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -97,13 +97,13 @@ export default function TransactionsTable() {
       </div>
       {bonds.length !== 0 && (
         <>
-          <h1 className="text-xl font-bold text-monefi-black">Bonds</h1>
+          <h1 className="text-xl font-bold text-bakerjonesholdings-black">Bonds</h1>
 
           <div className="bg-white rounded-xl shadow overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full whitespace-nowrap">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
@@ -153,13 +153,13 @@ export default function TransactionsTable() {
 
       {stock.length !== 0 && (
         <>
-          <h1 className="text-xl font-bold text-monefi-black">Stock</h1>
+          <h1 className="text-xl font-bold text-bakerjonesholdings-black">Stock</h1>
 
           <div className="bg-white rounded-xl shadow overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
@@ -179,7 +179,7 @@ export default function TransactionsTable() {
                       {stock.map((tx, i) => (
                         <tr
                           key={tx._id}
-                          className="border-b bg-monefi-off-pink"
+                          className="border-b bg-bakerjonesholdings-off-pink"
                         >
                           <td className="py-3 px-4 text-sm">{i + 1}</td>
                           <td className="py-3 px-4 text-sm font-medium text-gray-800">
@@ -221,13 +221,13 @@ export default function TransactionsTable() {
 
       {crypto.length !== 0 && (
         <>
-          <h1 className="text-xl font-bold text-monefi-black"> Crypto</h1>
+          <h1 className="text-xl font-bold text-bakerjonesholdings-black"> Crypto</h1>
 
           <div className="bg-white rounded-xl shadow overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
@@ -247,7 +247,7 @@ export default function TransactionsTable() {
                       {crypto.map((tx, i) => (
                         <tr
                           key={tx._id}
-                          className="border-b bg-monefi-off-pink"
+                          className="border-b bg-bakerjonesholdings-off-pink"
                         >
                           <td className="py-3 px-4 text-sm">{i + 1}</td>
                           <td className="py-3 px-4 text-sm font-medium text-gray-800">
@@ -291,8 +291,8 @@ export default function TransactionsTable() {
 }
 
 const SummaryCard = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-monefi-off-pink rounded-xl p-4 shadow-sm">
-    <p className="text-sm text-monefi-dark-gray font-medium">{label}</p>
-    <p className="text-xl font-semibold text-monefi-black mt-1">{value}</p>
+  <div className="bg-bakerjonesholdings-off-pink rounded-xl p-4 shadow-sm">
+    <p className="text-sm text-bakerjonesholdings-dark-gray font-medium">{label}</p>
+    <p className="text-xl font-semibold text-bakerjonesholdings-black mt-1">{value}</p>
   </div>
 );

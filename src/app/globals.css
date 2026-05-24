@@ -10,14 +10,14 @@
   --color-foreground: var(--foreground);
   --font-poppins: var(--font-poppins-mono);
   --font-inter:var(--font-inter-mono);
-  --color-monefi-black:#232323;
-  --color-monefi-pink:#EC709A;
-  --color-monefi-off-white:#ECEDDA;
-  --color-monefi-blue:#86BBD8;
-  --color-monefi-yellow:#F9EB9F;
+  --color-bakerjonesholdings-black:#232323;
+  --color-bakerjonesholdings-pink:#012A62;
+  --color-bakerjonesholdings-off-white:#ECEDDA;
+  --color-bakerjonesholdings-blue:#86BBD8;
+  --color-bakerjonesholdings-yellow:#F9EB9F;
   --breakpoint-mac:2000px;
-  --color-monefi-green:#647E4E;
-  --color-monefi-off-pink:#FFE7EF;
+  --color-bakerjonesholdings-green:#647E4E;
+  --color-bakerjonesholdings-off-pink:#4995fc;
   --breakpoint-mac:125rem
 }
 

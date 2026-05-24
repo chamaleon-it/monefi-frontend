@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function Section3() {
   return (
-    <section className="bg-monefi-off-white py-16 px-4 md:px-10">
+    <section className="bg-bakerjonesholdings-off-white py-16 px-4 md:px-10">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

@@ -37,7 +37,7 @@ export default function Header() {
 
   return (
     <>
-      {/* <div className="bg-monefi-black text-center py-2.5 text-white sticky z-50 top-0">
+      {/* <div className="bg-bakerjonesholdings-black text-center py-2.5 text-white sticky z-50 top-0">
         {" "}
         🚧 Website is currently under maintenance.{" "}
       </div> */}
@@ -45,7 +45,7 @@ export default function Header() {
         className={`sticky z-40 top-0 transition-all duration-300 ${
           isDashboard
             ? "bg-white/95 backdrop-blur-md py-4 top-0 border-b border-gray-200/50 shadow-sm"
-            : "bg-monefi-black/95 backdrop-blur-md pb-4 pt-4 2xl:py-10  -top-1 border-b border-white/10"
+            : "bg-bakerjonesholdings-black/95 backdrop-blur-md pb-4 pt-4 2xl:py-10  -top-1 border-b border-white/10"
         }`}
       >
         <div className="mac:max-w-[83%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,21 +54,21 @@ export default function Header() {
             <Link
               href={paths.home}
               aria-label="Home Page"
-              title="Monefi. Home Page"
+              title="Baker Jones Holding. Home Page"
               className="flex-shrink-0 transition-transform hover:scale-105 duration-200"
             >
               <Image
                 src={isDashboard ? "/logo-2.png" : "/logo.png"}
                 width={164}
                 height={40}
-                alt="Monefi logo"
+                alt="Baker Jones Holding logo"
                 className="hidden sm:block"
               />
               <Image
                 src={isDashboard ? "/logo-2.png" : "/logo.png"}
                 width={120}
                 height={30}
-                alt="Monefi logo"
+                alt="Baker Jones Holding logo"
                 className="sm:hidden"
               />
             </Link>
@@ -133,7 +133,7 @@ export default function Header() {
                 <SheetContent
                   side="right"
                   className={`w-full sm:w-[400px] p-0 border-0 ${
-                    isDashboard ? "bg-white" : "bg-monefi-black"
+                    isDashboard ? "bg-white" : "bg-bakerjonesholdings-black"
                   }`}
                 >
                   <div className="flex flex-col h-full">
@@ -153,7 +153,7 @@ export default function Header() {
                           src={isDashboard ? "/logo-2.png" : "/logo.png"}
                           width={140}
                           height={35}
-                          alt="Monefi logo"
+                          alt="Baker Jones Holding logo"
                         />
                       </Link>
                       <SheetClose asChild>
@@ -209,7 +209,7 @@ export default function Header() {
                             isDashboard ? "text-gray-500" : "text-white/60"
                           }`}
                         >
-                          © {new Date().getFullYear()} Monefi. All rights
+                          © {new Date().getFullYear()} Baker Jones Holding. All rights
                           reserved.
                         </div>
                       </div>

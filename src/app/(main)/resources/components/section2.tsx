@@ -5,7 +5,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 export function Section2() {
   return (
-    <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
+    <div className="bg-bakerjonesholdings-black py-[25px] lg:py-[100px] font-poppins">
       <h1 className="text-white text-4xl text-center py-10">What You’ll Find in Our Resources Hub</h1>
     <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
       <GridItem
@@ -39,7 +39,7 @@ export function Section2() {
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Monefi Blog (Coming Soon)"
+        title="Baker Jones Holding Blog (Coming Soon)"
         description="Stay up-to-date with the latest tips, trends, and financial insights written by our in-house experts."
       />
     </ul>

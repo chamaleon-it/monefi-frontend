@@ -12,7 +12,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Start({ setStage, formData, setFormData }: StartProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-monefi-pink py-10 px-5 flex flex-col items-center justify-center gap-5 text-monefi-black">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5 flex flex-col items-center justify-center gap-5 text-bakerjonesholdings-black">
       <h2 className="text-2xl font-semibold">Account Application</h2>
       <p className="text-center">
         Please enter your registered email address <br /> below and click start
@@ -28,7 +28,7 @@ export default function Start({ setStage, formData, setFormData }: StartProps) {
         value={formData.email || ""}
       />
       <button
-        className="text-monefi-pink px-4 py-2 rounded-lg bg-monefi-black hover:px-5 duration-200 cursor-pointer hover:opacity-90"
+        className="text-bakerjonesholdings-pink px-4 py-2 rounded-lg bg-bakerjonesholdings-black hover:px-5 duration-200 cursor-pointer hover:opacity-90"
         onClick={() => {
           if (emailRegex.test(formData.email || "")) {
             setStage("Account type");

@@ -5,7 +5,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 export function Loan_Solutions() {
   return (
-    <div className="bg-monefi-black py-[25px] lg:py-[100px] font-poppins">
+    <div className="bg-bakerjonesholdings-black py-[25px] lg:py-[100px] font-poppins">
       <h1 className="text-white text-4xl text-center py-10">Explore Our Loan Solutions</h1>
       <p className="text-white font-poppins text-lg text-center ">We offer a wide range of loans, each designed to suit different needs and lifestyles. Our  application process is quick, <br /> our guidance is clear, and our support is personal.</p>
     <ul className="grid container mx-auto py-10 grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
@@ -72,7 +72,7 @@ const GridItem = ({area,icon,title,description}: GridItemProps) => {
               {icon}
             </div>
             <div className="space-y-3">
-              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-monefi-pink md:text-2xl/[1.875rem]">
+              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-bakerjonesholdings-pink md:text-2xl/[1.875rem]">
                 {title}
               </h3>
               <h2 className="font-sans text-sm/[1.125rem] text-white md:text-base/[1.375rem] dark:text-neutral-400 [&_b]:md:font-semibold [&_strong]:md:font-semibold">

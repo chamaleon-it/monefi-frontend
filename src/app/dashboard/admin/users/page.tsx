@@ -218,12 +218,12 @@ export default function UsersPage() {
     <div className="w-full space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">Customers</h1>
+        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Customers</h1>
         <div className="flex items-center gap-4">
           <select
             value={filter.limit}
             onChange={(e) => handleLimitChange(Number(e.target.value))}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink"
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink"
           >
             <option value={10}>10 per page</option>
             <option value={25}>25 per page</option>
@@ -233,11 +233,11 @@ export default function UsersPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-monefi-off-pink rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-bakerjonesholdings-off-pink rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full whitespace-nowrap">
             <thead>
-              <tr className="font-inter font-medium border-b border-monefi-black">
+              <tr className="font-inter font-medium border-b border-bakerjonesholdings-black">
                 <th className="py-4 px-4 text-left">SL.No</th>
                 <th className="py-4 px-4 text-left">Email Address</th>
                 <th className="py-4 px-4 text-left">Status</th>
@@ -456,7 +456,7 @@ export default function UsersPage() {
                 onClick={() => handlePageChange(pageNum)}
                 className={`px-3 py-2 text-sm font-medium rounded-lg ${
                   pageNum === pagination.page
-                    ? "bg-monefi-pink text-white"
+                    ? "bg-bakerjonesholdings-pink text-white"
                     : "border"
                 }`}
               >
@@ -520,7 +520,7 @@ export default function UsersPage() {
                 setDepositModal((prev) => ({ ...prev, amount: e.target.value }))
               }
               placeholder="Enter amount"
-              className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink"
+              className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink"
             />
             <div className="flex justify-end gap-3">
               <button

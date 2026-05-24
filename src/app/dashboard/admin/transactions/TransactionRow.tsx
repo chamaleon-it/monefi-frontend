@@ -84,7 +84,7 @@ export default function TransactionRow({
 
   return (
     <>
-      <tr className="border-b bg-monefi-off-pink">
+      <tr className="border-b bg-bakerjonesholdings-off-pink">
         <td className="py-3 px-4 text-sm">
           {(filter.page - 1) * filter.limit + i + 1}
         </td>

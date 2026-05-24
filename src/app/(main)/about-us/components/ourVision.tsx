@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 
-const visionText = `At MONEFI, we believe that financial success isn’t just about numbers – it’s about empowering people. We want to help our clients take control of their financial futures by offering customized solutions that support their short-term needs and long-term goals. Through education, thoughtful planning, and innovative services, we are here to help you build a secure and prosperous future.`;
+const visionText = `At bakerjonesholdings, we believe that financial success isn’t just about numbers – it’s about empowering people. We want to help our clients take control of their financial futures by offering customized solutions that support their short-term needs and long-term goals. Through education, thoughtful planning, and innovative services, we are here to help you build a secure and prosperous future.`;
 
 export default function OurVision() {
     return (
@@ -13,8 +13,8 @@ export default function OurVision() {
         >
             {/* Decorative Gradient Overlay */}
             <div className="absolute inset-0 pointer-events-none z-0">
-                <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-gradient-to-br from-monefi-primary/30 to-purple-700/20 rounded-full blur-3xl opacity-60" />
-                <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tr from-monefi-primary/20 to-white/10 rounded-full blur-2xl opacity-40" />
+                <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-gradient-to-br from-bakerjonesholdings-primary/30 to-purple-700/20 rounded-full blur-3xl opacity-60" />
+                <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tr from-bakerjonesholdings-primary/20 to-white/10 rounded-full blur-2xl opacity-40" />
             </div>
 
             <motion.div
@@ -27,12 +27,12 @@ export default function OurVision() {
                 {/* Decorative Icon */}
                 
                 <motion.h2
-                    className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white via-monefi-primary to-white bg-clip-text text-transparent tracking-tight drop-shadow-lg"
+                    className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-white via-bakerjonesholdings-primary to-white bg-clip-text text-transparent tracking-tight drop-shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.7 }}
                 >
-                    Our Vision: <span className="text-monefi-primary">A Future of Financial Empowerment</span>
+                    Our Vision: <span className="text-bakerjonesholdings-primary">A Future of Financial Empowerment</span>
                 </motion.h2>
                 <motion.p
                     className="text-xl md:text-2xl text-gray-100 leading-relaxed font-light mb-2"

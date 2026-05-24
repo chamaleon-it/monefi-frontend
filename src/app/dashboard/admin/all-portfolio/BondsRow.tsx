@@ -86,7 +86,7 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
     }
   };
   return (
-    <tr className="border-b bg-monefi-off-pink">
+    <tr className="border-b bg-bakerjonesholdings-off-pink">
       <td className="py-3 px-4 text-sm">{i + 1}</td>
       <td className="py-3 px-4 font-medium">
         <p className="font-bold">{tx.user.name}</p>

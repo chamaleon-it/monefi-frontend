@@ -94,11 +94,11 @@ export default function TransactionsTable() {
   return (
     <div className="w-full space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">Transactions</h1>
+        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Transactions</h1>
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink"
+          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -110,7 +110,7 @@ export default function TransactionsTable() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Symbol</th>
                 <th className="py-3 px-4">Quantity</th>
@@ -132,7 +132,7 @@ export default function TransactionsTable() {
               {!isLoading && transactions.length > 0 && (
                 <>
                   {transactions.map((tx, i) => (
-                    <tr key={tx._id} className="border-b bg-monefi-off-pink whitespace-nowrap">
+                    <tr key={tx._id} className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
                       <td className="py-3 px-4 text-sm">
                         {(filter.page - 1) * filter.limit + i + 1}
                       </td>
@@ -219,7 +219,7 @@ export default function TransactionsTable() {
                 onClick={() => handlePageChange(num)}
                 className={`px-3 py-2 text-sm rounded-md border ${
                   num === pagination.page
-                    ? "bg-monefi-pink text-white"
+                    ? "bg-bakerjonesholdings-pink text-white"
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >

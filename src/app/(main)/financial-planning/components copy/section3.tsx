@@ -3,9 +3,9 @@ import React from "react";
 export default function Section3() {
   return (
     <section>
-      <div className="max-w-[95%] lg:max-w-[83%] mx-auto py-[25px] lg:py-[50px] border-b border-monefi-off-white">
+      <div className="max-w-[95%] lg:max-w-[83%] mx-auto py-[25px] lg:py-[50px] border-b border-bakerjonesholdings-off-white">
         <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8  text-center">
-          Why Work with Monefi?<span className="text-monefi-pink">:</span>
+          Why Work with Baker Jones Holding?<span className="text-bakerjonesholdings-pink">:</span>
         </h2>
         <div className="flex flex-wrap lg:flex-row justify-center items-center gap-2 lg:gap-7 mt-10 lg:mt-20">
           <div className="relative w-[49%] lg:w-[300px] h-[270px] lg:h-[420px] rounded-4xl lg:mb-14 bg-[url(/financial-planning/1.jpeg)] bg-cover overflow-hidden">

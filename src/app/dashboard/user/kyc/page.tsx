@@ -171,7 +171,7 @@ export default function KycPage() {
       <div className="w-full space-y-6">
         {/* Header */}
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-monefi-black flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-bakerjonesholdings-black flex items-center gap-2">
             <Shield className="h-6 w-6" />
             Know Your Customer (KYC)
           </h1>
@@ -187,7 +187,7 @@ export default function KycPage() {
             <Info className="h-5 w-5 mt-0.5 text-slate-500" />
             <p className="text-sm text-slate-700">
               Need assistance? Call <b>020 8002 8761</b>{" "}
-              or email <b>hello@monefi.co.uk</b>
+              or email <b>hello@bakerjonesholdings.com</b>
             </p>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function KycPage() {
           <div className="flex items-center justify-between px-5 py-4">
             <div className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              <h2 className="text-lg font-semibold text-monefi-black">
+              <h2 className="text-lg font-semibold text-bakerjonesholdings-black">
                 Verification Details
               </h2>
             </div>
@@ -223,7 +223,7 @@ export default function KycPage() {
             <section className="rounded-2xl border border-slate-100 bg-slate-50/40 p-5">
               <div className="flex items-center gap-2 mb-4">
                 <Home className="h-5 w-5" />
-                <h3 className="text-base font-semibold text-monefi-black">
+                <h3 className="text-base font-semibold text-bakerjonesholdings-black">
                   Proof of Address
                 </h3>
               </div>
@@ -272,7 +272,7 @@ export default function KycPage() {
             <section className="rounded-2xl border border-slate-100 bg-slate-50/40 p-5">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="h-5 w-5" />
-                <h3 className="text-base font-semibold text-monefi-black">
+                <h3 className="text-base font-semibold text-bakerjonesholdings-black">
                   Identity Verification
                 </h3>
               </div>
@@ -325,7 +325,7 @@ export default function KycPage() {
               disabled={!addressUpload || !identityUpload}
               className={clsx(
                 "font-semibold text-black",
-                "bg-monefi-off-pink hover:bg-monefi-off-pink"
+                "bg-bakerjonesholdings-off-pink hover:bg-bakerjonesholdings-off-pink"
               )}
             >
               Submit

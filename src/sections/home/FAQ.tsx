@@ -11,7 +11,7 @@ export default function FAQ() {
           <h2 className="font-poppins font-semibold text-4xl lg:text-6xl mt-6 mb-8">
             Frequently <br /> Asked Questions
           </h2>
-          <div className="bg-monefi-pink w-full hidden lg:block lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
+          <div className="bg-bakerjonesholdings-pink w-full hidden lg:block lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
             <p className="font-poppins font-semibold text-2xl">
               Couldn’t find what <br /> you’re looking for?
             </p>
@@ -27,7 +27,7 @@ export default function FAQ() {
                   <AtSign />
                 </div>
                 <p className="font-inter font-medium text-xl">
-                  hello@monefi.co.uk
+                  hello@bakerjonesholdings.com
                 </p>
               </div>
             </div>
@@ -36,7 +36,7 @@ export default function FAQ() {
         </div>
 
         <FAQLeftSection />
-        <div className="bg-monefi-pink w-full block lg:hidden lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
+        <div className="bg-bakerjonesholdings-pink w-full block lg:hidden lg:w-[497px] rounded-4xl mt-8 p-6 lg:p-12 text-white relative">
             <p className="font-poppins font-semibold text-2xl">
               Couldn’t find what <br /> you’re looking for?
             </p>
@@ -52,7 +52,7 @@ export default function FAQ() {
                   <AtSign />
                 </div>
                 <p className="font-inter font-medium text-xl">
-                  hello@monefi.co.uk
+                  hello@bakerjonesholdings.com
                 </p>
               </div>
             </div>
@@ -61,12 +61,12 @@ export default function FAQ() {
       </div>
       <div className="grid grid-cols-1 border-t  container mx-auto p-5 gap-10 py-5">
         <div className="space-y-5">
-          <p className="text-lg">Copyright © {new Date().getFullYear()} Monefi Limited</p>
-          <p className="text-lg leading-8">Monefi Limited is authorised and regulated by the Financial Conduct Authority, with firm reference no. 938387. Registered in England and Wales with company no. 12857853 and with registered offices at Burton Varley Ltd Suite 3, 2nd Floor, Didsbury House, 748-754 Wilmslow Road, Manchester, England, M20 2DW</p>
+          <p className="text-lg">Copyright © {new Date().getFullYear()} Baker Jones Holding</p>
+          <p className="text-lg leading-8">Baker Jones Holding is authorised and regulated by the Financial Conduct Authority, with firm reference no. 938387. Registered in England and Wales with company no. 12857853 and with registered offices at Burton Varley Ltd Suite 3, 2nd Floor, Didsbury House, 748-754 Wilmslow Road, Manchester, England, M20 2DW</p>
         
         </div>
         {/* <div className="flex items-end justify-end">
-          <p className="text-lg">Copyright © {new Date().getFullYear()}Monefi Limited</p>
+          <p className="text-lg">Copyright © {new Date().getFullYear()}Baker Jones Holding</p>
         </div> */}
       </div>
     </section>

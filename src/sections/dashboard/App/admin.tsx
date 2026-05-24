@@ -56,7 +56,7 @@ export default function AdminDashboard() {
 
        <div className="space-y-2.5">
               <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold text-monefi-black">Portfolio</h1>
+                <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Portfolio</h1>
               </div>
       
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
 
       <div className="space-y-2.5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-monefi-black">
+          <h1 className="text-2xl font-bold text-bakerjonesholdings-black">
             Recent Transactions
           </h1>
         </div>
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                   <th className="py-3 px-4">#</th>
                   <th className="py-3 px-4">Symbol</th>
                   <th className="py-3 px-4">Quantity</th>
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
                 {!isLoading && transaction.length > 0 && (
                   <>
                     {transaction.map((tx, i) => (
-                      <tr key={tx._id} className="border-b bg-monefi-off-pink">
+                      <tr key={tx._id} className="border-b bg-bakerjonesholdings-off-pink">
                         <td className="py-3 px-4 text-sm">{i + 1}</td>
                         <td className="py-3 px-4 text-sm font-medium text-gray-800">
                           <p className="font-bold"> {tx.name}</p>
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
 
       <div className="space-y-2.5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-monefi-black">
+          <h1 className="text-2xl font-bold text-bakerjonesholdings-black">
             New Users
           </h1>
         </div>
@@ -182,7 +182,7 @@ export default function AdminDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                  <th className="py-4 px-4 text-left">SL.No</th>
                 <th className="py-4 px-4 text-left">User</th>
                 <th className="py-4 px-4 text-left">Status</th>
@@ -197,10 +197,10 @@ export default function AdminDashboard() {
                       {users.map((user, index) => (
                                        <tr
                                          key={user._id}
-                                         className="bg-monefi-off-pink transition-colors duration-150 border-b border-gray-100 last:border-b-0"
+                                         className="bg-bakerjonesholdings-off-pink transition-colors duration-150 border-b border-gray-100 last:border-b-0"
                                        >
-                                         <td className="py-3 px-4 text-monefi-black">{ index + 1}</td>
-                                         <td className="py-3 px-4 text-monefi-black font-medium">
+                                         <td className="py-3 px-4 text-bakerjonesholdings-black">{ index + 1}</td>
+                                         <td className="py-3 px-4 text-bakerjonesholdings-black font-medium">
                                           <p className="font-bold">{user?.name}</p>
                                           <p className="text-sm">{user.email}</p>
                                           </td>
@@ -244,8 +244,8 @@ export default function AdminDashboard() {
 
 
 const SummaryCard = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-monefi-off-pink rounded-xl p-4 shadow-sm">
-    <p className="text-sm text-monefi-dark-gray font-medium">{label}</p>
-    <p className="text-xl font-semibold text-monefi-black mt-1">{value}</p>
+  <div className="bg-bakerjonesholdings-off-pink rounded-xl p-4 shadow-sm">
+    <p className="text-sm text-bakerjonesholdings-dark-gray font-medium">{label}</p>
+    <p className="text-xl font-semibold text-bakerjonesholdings-black mt-1">{value}</p>
   </div>
 );

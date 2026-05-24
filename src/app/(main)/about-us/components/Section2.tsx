@@ -28,7 +28,7 @@ export function Section2() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                    At MONEFI, we specialize in a wide range of financial services, including:
+                    At bakerjonesholdings, we specialize in a wide range of financial services, including:
                 </motion.p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                     {services.map((service, idx) => (
@@ -40,9 +40,9 @@ export function Section2() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 + idx * 0.1, duration: 0.5 }}
                         >
-                            <span className="flex items-center justify-center h-12 w-12 rounded-full bg-monefi-pink/10">
+                            <span className="flex items-center justify-center h-12 w-12 rounded-full bg-bakerjonesholdings-pink/10">
                                 <svg
-                                    className="h-6 w-6 text-monefi-pink"
+                                    className="h-6 w-6 text-bakerjonesholdings-pink"
                                     fill="none"
                                     stroke="currentColor"
                                     strokeWidth={2.5}
@@ -63,7 +63,7 @@ export function Section2() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                 >
                     As a forward-thinking financial services provider, we pride ourselves on our ability to offer personalized solutions that address the unique needs of each client. Whether you’re an individual looking for a mortgage to buy your first home, a business in need of financing to expand, or someone planning for a secure future,{" "}
-                    <span className="text-monefi-pink font-semibold">MONEFI</span> is here to guide you every step of the way.
+                    <span className="text-bakerjonesholdings-pink font-semibold">bakerjonesholdings</span> is here to guide you every step of the way.
                 </motion.p>
             </div>
         </section>

@@ -87,11 +87,11 @@ export default function BondsPage() {
   return (
     <div className="w-full space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">Bonds</h1>
+        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Bonds</h1>
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-monefi-pink"
+          className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bakerjonesholdings-pink"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -103,7 +103,7 @@ export default function BondsPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink whitespace-nowrap">
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink whitespace-nowrap">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">ISIN</th>
@@ -123,7 +123,7 @@ export default function BondsPage() {
               {!isLoading && bonds.length > 0 && (
                 <>
                   {bonds.map((bond, i) => (
-                    <tr key={bond._id} className="border-b bg-monefi-off-pink whitespace-nowrap">
+                    <tr key={bond._id} className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">{bond.name}</td>
                       <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
@@ -170,7 +170,7 @@ export default function BondsPage() {
                 onClick={() => handlePageChange(num)}
                 className={`px-3 py-2 text-sm rounded-md border ${
                   num === pagination.page
-                    ? "bg-monefi-pink text-white"
+                    ? "bg-bakerjonesholdings-pink text-white"
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >

@@ -55,7 +55,7 @@ export default function UserDashboard() {
     <div className="space-y-5">
       <div className="space-y-2.5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-monefi-black">My Portfolio</h1>
+          <h1 className="text-2xl font-bold text-bakerjonesholdings-black">My Portfolio</h1>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -80,7 +80,7 @@ export default function UserDashboard() {
 
       <div className="space-y-2.5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-monefi-black">
+          <h1 className="text-2xl font-bold text-bakerjonesholdings-black">
             My Recent Transactions
           </h1>
         </div>
@@ -89,7 +89,7 @@ export default function UserDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                   <th className="py-3 px-4">#</th>
                   <th className="py-3 px-4">Symbol</th>
                   <th className="py-3 px-4">Quantity</th>
@@ -105,7 +105,7 @@ export default function UserDashboard() {
                 {!isLoading && transaction.length > 0 && (
                   <>
                     {transaction.map((tx, i) => (
-                      <tr key={tx._id} className="border-b bg-monefi-off-pink">
+                      <tr key={tx._id} className="border-b bg-bakerjonesholdings-off-pink">
                         <td className="py-3 px-4 text-sm">{i + 1}</td>
                         <td className="py-3 px-4 text-sm font-medium text-gray-800">
                           <p className="font-bold"> {tx.name}</p>
@@ -172,8 +172,8 @@ export default function UserDashboard() {
 }
 
 const SummaryCard = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-monefi-off-pink rounded-xl p-4 shadow-sm">
-    <p className="text-sm text-monefi-dark-gray font-medium">{label}</p>
-    <p className="text-xl font-semibold text-monefi-black mt-1">{value}</p>
+  <div className="bg-bakerjonesholdings-off-pink rounded-xl p-4 shadow-sm">
+    <p className="text-sm text-bakerjonesholdings-dark-gray font-medium">{label}</p>
+    <p className="text-xl font-semibold text-bakerjonesholdings-black mt-1">{value}</p>
   </div>
 );

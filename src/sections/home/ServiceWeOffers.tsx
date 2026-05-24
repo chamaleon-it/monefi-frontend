@@ -8,7 +8,7 @@ export default function ServiceWeOffers() {
     <section className="bg-white" id="section_services">
       <div className="max-w-[95%] lg:max-w-[83%] mx-auto mb-24">
         <div className="text-center mt-24">
-          <p className="text-monefi-green font-poppins font-bold uppercase mac:text-lg">
+          <p className="text-bakerjonesholdings-green font-poppins font-bold uppercase mac:text-lg">
             Our Services
           </p>
           <h2 className="font-poppins font-bold text-5xl lg:text-6xl mac:text-8xl">
@@ -41,7 +41,7 @@ const Card = ({
 }) => {
   return (
     <div
-      className={`aspect-[79/67] rounded-4xl relative bg-monefi-${bg} bg-cover bg-no-repeat bg-top`}
+      className={`aspect-[79/67] rounded-4xl relative bg-bakerjonesholdings-${bg} bg-cover bg-no-repeat bg-top`}
       style={{ backgroundImage: `url(/home/service-${bg}.png)` }}
     >
       <div className="absolute bottom-5 left-5 text-white space-y-5 z-10">

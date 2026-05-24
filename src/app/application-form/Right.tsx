@@ -14,7 +14,7 @@ export default function Right({form}: PropsType) {
 
 const {stage} = form
   return (
-    <div className='min-h-[calc(100vh-40vh)] h-full lg:min-h-screen  bg-monefi-off-white text-monefi-black w-full'>
+    <div className='min-h-[calc(100vh-40vh)] h-full lg:min-h-screen  bg-bakerjonesholdings-off-white text-bakerjonesholdings-black w-full'>
        {stage ===1 && <Stage1 form={form}/>}
        {stage ===2 && <Stage2 form={form}/>}
        {stage ===2 && <Stage3 form={form}/>}

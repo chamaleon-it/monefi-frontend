@@ -47,7 +47,7 @@ export default function BondsRow({ tx, i }: Props) {
 
   const bond = data?.data;
   return (
-    <tr className="border-b bg-monefi-off-pink">
+    <tr className="border-b bg-bakerjonesholdings-off-pink">
       <td className="py-3 px-4 text-sm">{i + 1}</td>
       <td className="py-3 px-4 text-sm font-medium text-gray-800">
         <p className="font-bold">{bond?.name}</p>

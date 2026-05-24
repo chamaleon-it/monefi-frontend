@@ -45,7 +45,7 @@ export default function RegisterForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl font-bold text-[#232323] mb-2">monefi.</h1>
+          <h1 className="text-4xl font-bold text-[#232323] mb-2">bakerjonesholdings.</h1>
           <p className="text-gray-600">Your smart financial partner</p>
         </motion.div>
 
@@ -54,7 +54,7 @@ export default function RegisterForm() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-[#EC709A] rounded-2xl shadow-xl p-8"
+          className="bg-[#012A62] rounded-2xl shadow-xl p-8"
         >
           {/* Form Header */}
           <div className="text-center mb-6">
@@ -62,7 +62,7 @@ export default function RegisterForm() {
               Create Account
             </h2>
             <p className="text-white/90 text-sm">
-              Join monefi and start your financial journey
+              Join bakerjonesholdings and start your financial journey
             </p>
           </div>
 
@@ -184,7 +184,7 @@ export default function RegisterForm() {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-white text-[#EC709A] font-semibold py-3 px-4 rounded-lg hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-white text-[#012A62] font-semibold py-3 px-4 rounded-lg hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
               whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               initial={{ opacity: 0, y: 10 }}
@@ -193,7 +193,7 @@ export default function RegisterForm() {
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#EC709A] mr-2"></div>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#012A62] mr-2"></div>
                   Creating account...
                 </div>
               ) : (

@@ -38,7 +38,7 @@ export default function ChangePassword() {
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center space-x-2 mb-2">
-          <Shield className="h-5 w-5 text-monefi-pink" />
+          <Shield className="h-5 w-5 text-bakerjonesholdings-pink" />
           <h2 className="text-xl font-semibold text-[#232323]">Security</h2>
         </div>
         <p className="text-gray-600">
@@ -113,7 +113,7 @@ export default function ChangePassword() {
           </div>
         </div>
                 {errors.root && <p className="text-sm text-red-500">{errors.root.message}</p>}
-        <button className="flex items-center space-x-2 px-4 py-2 bg-monefi-pink hover:bg-monefi-pink/90 text-white rounded-md transition-colors" disabled={isSubmitting}>
+        <button className="flex items-center space-x-2 px-4 py-2 bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/90 text-white rounded-md transition-colors" disabled={isSubmitting}>
           <Lock className="h-4 w-4" />
           <span>{isSubmitting ? "Changing Password..." : "Update Security Settings"}</span>
         </button>

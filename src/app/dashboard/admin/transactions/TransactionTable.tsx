@@ -95,11 +95,11 @@ export default function TransactionsTable() {
   return (
     <div className="w-full space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-monefi-black">Transactions</h1>
+        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Transactions</h1>
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-monefi-pink"
+          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -111,7 +111,7 @@ export default function TransactionsTable() {
         <div className="overflow-x-auto">
           <table className="w-full whitespace-nowrap">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-monefi-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">User</th>
                 <th className="py-3 px-4">Symbol</th>
@@ -167,7 +167,7 @@ export default function TransactionsTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page ? 'bg-monefi-pink text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page ? 'bg-bakerjonesholdings-pink text-white' : 'text-gray-600 hover:bg-gray-100'}`}
               >
                 {num}
               </button>

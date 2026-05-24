@@ -196,7 +196,7 @@ export default function CreateBond() {
 
         <button
           type="submit"
-          className="px-4 py-2 bg-monefi-pink hover:bg-monefi-pink/90 text-white rounded-md"
+          className="px-4 py-2 bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/90 text-white rounded-md"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Creating..." : "Create Bond"}

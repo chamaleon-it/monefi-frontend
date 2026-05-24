@@ -9,11 +9,11 @@ export default function LoginButton({isDashboard=false}:{isDashboard:boolean}) {
     const paths = usePaths()
     const {isAuthenticated,logout} = useAuth()
 
-    if(isAuthenticated) return <button onClick={logout} className={`py-1.5 px-3 lg:px-6 lg:py-3 rounded-full font-poppins  mac:text-lg ${isDashboard ?  "text-monefi-off-white bg-monefi-black" : "bg-monefi-off-white text-monefi-black"}`}>Logout</button>
+    if(isAuthenticated) return <button onClick={logout} className={`py-1.5 px-3 lg:px-6 lg:py-3 rounded-full font-poppins  mac:text-lg ${isDashboard ?  "text-bakerjonesholdings-off-white bg-bakerjonesholdings-black" : "bg-bakerjonesholdings-off-white text-bakerjonesholdings-black"}`}>Logout</button>
 
     return <Link
           href={ paths.auth.login}
-          className="py-1.5 px-3 lg:px-6 lg:py-3 rounded-full font-poppins bg-monefi-off-white text-monefi-black mac:text-lg"
+          className="py-1.5 px-3 lg:px-6 lg:py-3 rounded-full font-poppins bg-bakerjonesholdings-off-white text-bakerjonesholdings-black mac:text-lg"
           >
           Login
         </Link>
