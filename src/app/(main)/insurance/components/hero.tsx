@@ -13,7 +13,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         Protecting the financial future of your loved ones is one of the most important decisions you can make. Life insurance provides a guaranteed benefit in the event of death, helping cover expenses and maintain your family’s standard of living. At Baker Jones Holding, we offer flexible life insurance solutions designed to fit every stage of life and every budget.
+         Protecting the financial future of your loved ones is one of the most important decisions you can make. Life insurance provides a guaranteed benefit in the event of death, helping cover expenses and maintain your family’s standard of living. At Baker Jones Holdings, we offer flexible life insurance solutions designed to fit every stage of life and every budget.
         </p>
                {/* <motion.div
           initial={{

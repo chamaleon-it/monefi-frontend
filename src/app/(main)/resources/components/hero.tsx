@@ -13,7 +13,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         At Baker Jones Holding, we believe informed decisions lead to better outcomes. That&apos;s why we&apos;ve built a dedicated Resources section—your one-stop destination for financial education, guidance, and tools to help you take charge of your future.
+         At Baker Jones Holdings, we believe informed decisions lead to better outcomes. That&apos;s why we&apos;ve built a dedicated Resources section—your one-stop destination for financial education, guidance, and tools to help you take charge of your future.
         </p>
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">Whether you&apos;re exploring mortgages, comparing insurance options, or planning your next big life step, this is where clarity begins.</p>
                <motion.div

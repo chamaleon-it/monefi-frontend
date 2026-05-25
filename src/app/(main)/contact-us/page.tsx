@@ -54,32 +54,16 @@ export default function ContactUsContent() {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
                     <p className="text-gray-600 mb-3 leading-relaxed">We&apos;ll respond to your inquiry within 24 hours.</p>
                     <a
-                      href="mailto:hello@bakerjonesholdings.com"
+                      href="mailto:info@bakerjonesholdings.com"
                       className="text-bakerjonesholdings-pink font-semibold text-lg transition-colors"
                     >
-                      hello@bakerjonesholdings.com
+                      info@bakerjonesholdings.com
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-bakerjonesholdings-off-pink text-bakerjonesholdings-pink rounded-2xl flex items-center justify-center shadow-lg">
-                    <PhoneCall className="w-6 h-6 " />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
-                    <p className="text-gray-600 mb-3 leading-relaxed">Our customer support team is available.</p>
-                    <a
-                      href="tel: 020 8002 8761"
-                      className="text-bakerjonesholdings-pink font-semibold text-lg transition-colors"
-                    >
-                      020 8002 8761
-                    </a>
-                  </div>
-                </div>
-              </div>
+             
 
              
 

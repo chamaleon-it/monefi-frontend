@@ -68,7 +68,7 @@ export function Whychoose() {
   return (
     <div className="w-full bg-bakerjonesholdings-black py-[120px] space-y-10 font-poppins" data-lenis-prevent>
       <div className="py-10 text-center text-4xl">
-      <h1 className="text-white">Why Choose Baker Jones Holding for Your Life Cover</h1>
+      <h1 className="text-white">Why Choose Baker Jones Holdings for Your Life Cover</h1>
       </div>
       <StickyScroll  content={content} />
     </div>

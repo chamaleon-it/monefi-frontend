@@ -13,7 +13,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         Planning your financial future shouldn&apos;t be overwhelming—it should be empowering. At Baker Jones Holding, we help you take control of your money with clear, practical strategies tailored to your life goals, circumstances, and ambitions.
+         Planning your financial future shouldn&apos;t be overwhelming—it should be empowering. At Baker Jones Holdings, we help you take control of your money with clear, practical strategies tailored to your life goals, circumstances, and ambitions.
         </p>
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">Whether you&apos;re just starting out or fine-tuning your long-term plans, our financial advisers are here to guide you through every step of your financial journey.</p>
                {/* <motion.div

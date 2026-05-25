@@ -16,18 +16,13 @@ export default function FAQ() {
               Couldn’t find what <br /> you’re looking for?
             </p>
             <div className="space-y-3 lg:space-y-6 mt-5 lg:mt-10">
-              <div className="flex gap-3 items-center">
-                <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
-                  <Phone fill="#fff" strokeWidth={0.75} />
-                </div>
-                <p className="font-poppins font-bold text-xl"> 020 8002 8761</p>
-              </div>
+             
               <div className="flex gap-3 items-center">
                 <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
                   <AtSign />
                 </div>
                 <p className="font-inter font-medium text-xl">
-                  hello@bakerjonesholdings.com
+                  info@bakerjonesholdings.com
                 </p>
               </div>
             </div>
@@ -41,18 +36,13 @@ export default function FAQ() {
               Couldn’t find what <br /> you’re looking for?
             </p>
             <div className="space-y-3 lg:space-y-6 mt-5 lg:mt-10">
-              <div className="flex gap-3 items-center">
-                <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
-                  <Phone fill="#fff" strokeWidth={0.75} />
-                </div>
-                <p className="font-poppins font-bold text-xl"> 020 8002 8761</p>
-              </div>
+              
               <div className="flex gap-3 items-center">
                 <div className="w-[50px] h-[50px] rounded-full bg-white/10 flex justify-center items-center">
                   <AtSign />
                 </div>
                 <p className="font-inter font-medium text-xl">
-                  hello@bakerjonesholdings.com
+                  info@bakerjonesholdings.com
                 </p>
               </div>
             </div>
@@ -61,12 +51,12 @@ export default function FAQ() {
       </div>
       <div className="grid grid-cols-1 border-t  container mx-auto p-5 gap-10 py-5">
         <div className="space-y-5">
-          <p className="text-lg">Copyright © {new Date().getFullYear()} Baker Jones Holding</p>
-          <p className="text-lg leading-8">Baker Jones Holding is authorised and regulated by the Financial Conduct Authority, with firm reference no. 938387. Registered in England and Wales with company no. 12857853 and with registered offices at Burton Varley Ltd Suite 3, 2nd Floor, Didsbury House, 748-754 Wilmslow Road, Manchester, England, M20 2DW</p>
+          <p className="text-lg">Copyright © {new Date().getFullYear()} Baker Jones Holdings</p>
+          <p className="text-lg leading-8">Baker Jones Holdings is authorised and regulated by the Financial Conduct Authority with firm reference number 969487, registered in England and Wales with company number 12127676, and has its registered office at 1 Andromeda House, Calleva Park, Aldermaston, Reading, Berkshire, RG7 8AP, United Kingdom.</p>
         
         </div>
         {/* <div className="flex items-end justify-end">
-          <p className="text-lg">Copyright © {new Date().getFullYear()}Baker Jones Holding</p>
+          <p className="text-lg">Copyright © {new Date().getFullYear()}Baker Jones Holdings</p>
         </div> */}
       </div>
     </section>

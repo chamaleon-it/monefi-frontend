@@ -19,25 +19,12 @@ export default function Hero() {
                   smar
                   <span className="relative inline-block">
                     t
-                    <Image
-                      src="/home/hero/text-decoration.png"
-                      alt=""
-                      className="absolute rotate-[30deg] -top-0 -right-4 mac:-right-5 min-w-[40px] mac:min-w-[55px] block"
-                      width={55}
-                      height={55}
-                      priority
-                    />
+                   
                   </span>{" "}
                   choic
                   <span className="relative inline-block">
                     e
-                    <Image
-                      src="/home/hero/text-decoration.png"
-                      alt=""
-                      width={35}
-                      height={35}
-                      className="absolute rotate-[160deg] bottom-1 mac:bottom-3 -right-3.5 min-w-[35px] block"
-                    />
+                   
                   </span>
                 </span>{" "}
                 for <br className="hidden lg:block" /> your finances.
@@ -158,7 +145,7 @@ export default function Hero() {
       </section>
       <section className="h-[50px] flex justify-center items-end">
         <Link href={"#section_services"} aria-label="Services" title="Services">
-          {/* <Image  src={'/home/hero/down-arrow.svg'} width={40} height={40} alt="Baker Jones Holding. Down Arrow" className="animate-bounce"/> */}
+          {/* <Image  src={'/home/hero/down-arrow.svg'} width={40} height={40} alt="Baker Jones Holdings. Down Arrow" className="animate-bounce"/> */}
           <div className="w-[40px] h-[40px] rounded-full bg-bakerjonesholdings-pink animate-bounce flex justify-center items-center">
             <ArrowDown strokeWidth={2.25} className="text-white" />
           </div>

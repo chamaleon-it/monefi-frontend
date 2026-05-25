@@ -13,7 +13,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         Whether you’re buying your first home, moving up the property ladder, or refinancing to a better deal—Baker Jones Holding is here to help you navigate your mortgage with clarity and confidence. We work with leading UK mortgage lenders to bring you smart, flexible solutions that fit your life.
+         Whether you’re buying your first home, moving up the property ladder, or refinancing to a better deal—Baker Jones Holdings is here to help you navigate your mortgage with clarity and confidence. We work with leading UK mortgage lenders to bring you smart, flexible solutions that fit your life.
         </p>
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">Buying a home is one of the biggest decisions you’ll ever make. With expert advice, clear comparisons, and personalised support, we’ll help you get it right.</p>
                {/* <motion.div

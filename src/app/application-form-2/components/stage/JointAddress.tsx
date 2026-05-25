@@ -20,8 +20,8 @@ export default function JointAddress({
       </h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on  020 8002 8761 or email
-        hello@bakerjonesholdings.com
+        are happy to help. Simply email
+        info@bakerjonesholdings.com
       </p>
       <div className="grid lg:grid-cols-2 gap-5">
         <input

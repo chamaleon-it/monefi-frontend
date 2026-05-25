@@ -56,7 +56,7 @@ export function Section4() {
   return (
     <div className="w-full bg-bakerjonesholdings-black py-[120px] space-y-10 font-poppins" data-lenis-prevent>
       <div className="py-10 text-center text-4xl">
-      <h1 className="text-white">    Why Trust Baker Jones Holding&apos;s Resources?
+      <h1 className="text-white">    Why Trust Baker Jones Holdings&apos;s Resources?
 </h1>
       </div>
       <StickyScroll  content={content} />

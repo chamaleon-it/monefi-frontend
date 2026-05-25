@@ -13,7 +13,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 const testimonialData = [
   {
     id: 1,
-    content: "As a first-time buyer, I was nervous about getting a mortgage. Baker Jones Holding walked me through everything, explained the terms clearly, and helped me secure a great deal. I never felt rushed or pressured—just supported.",
+    content: "As a first-time buyer, I was nervous about getting a mortgage. Baker Jones Holdings walked me through everything, explained the terms clearly, and helped me secure a great deal. I never felt rushed or pressured—just supported.",
     author: "Sarah M.",
     role: "Manchester",
     rating: 5,
@@ -21,7 +21,7 @@ const testimonialData = [
   },
   {
     id: 2,
-    content: "I’ve worked with other brokers before, but Baker Jones Holding felt different. They really listened to my situation and helped me set up life insurance and savings goals that worked for me. It felt personal and professional at the same time.",
+    content: "I’ve worked with other brokers before, but Baker Jones Holdings felt different. They really listened to my situation and helped me set up life insurance and savings goals that worked for me. It felt personal and professional at the same time.",
     author: "David L.",
     role: "Birmingham",
     rating: 5,
@@ -29,7 +29,7 @@ const testimonialData = [
   },
    {
     id: 3,
-    content: "After struggling with debt for years, I reached out to Baker Jones Holding. They helped me consolidate my loans into one manageable payment and even gave me budgeting tips that I still use. I finally feel in control again.",
+    content: "After struggling with debt for years, I reached out to Baker Jones Holdings. They helped me consolidate my loans into one manageable payment and even gave me budgeting tips that I still use. I finally feel in control again.",
     author: "Rebecca K.",
     role: "Leeds",
     rating: 5,
@@ -89,7 +89,7 @@ const TestimonialCard = memo(({ testimonial, index }: TestimonialCardProps) => (
     </div>
     
     <footer className="flex items-center gap-2.5">
-      {/* <Image src={`/home/testimonials/${testimonial.profileImage}`} width={45} height={45} alt={testimonial.author + " Baker Jones Holding."}/> */}
+      {/* <Image src={`/home/testimonials/${testimonial.profileImage}`} width={45} height={45} alt={testimonial.author + " Baker Jones Holdings."}/> */}
       <cite className="not-italic">
         <div className="font-semibold text-lg">{testimonial.author}</div>
         <div className={`text-sm ${index % 2 === 0 ? 'text-gray-300' : 'text-gray-600'}`}>

@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     id: 1,
-    question: "Will applying for a loan or mortgage with Baker Jones Holding affect my credit score?",
+    question: "Will applying for a loan or mortgage with Baker Jones Holdings affect my credit score?",
     answer:
       "No—when you first apply, we only perform a soft credit check, which does not impact your credit score. A hard credit check will only be conducted once you choose a lender and move forward with your application.",
   },
@@ -20,7 +20,7 @@ const faqs = [
     id: 2,
     question: "Can I get financial advice even if I don’t have a lot to invest?",
     answer:
-      "Absolutely. At Baker Jones Holding, we believe everyone deserves quality financial guidance—no matter their income or assets. Whether you're just starting out or building wealth, our advisers offer personalised support tailored to your goals and budget.",
+      "Absolutely. At Baker Jones Holdings, we believe everyone deserves quality financial guidance—no matter their income or assets. Whether you're just starting out or building wealth, our advisers offer personalised support tailored to your goals and budget.",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const faqs = [
     id: 4,
     question: "What happens if I want to cancel my insurance policy?",
     answer:
-      "Most policies come with a 14-day cooling-off period, during which you can cancel without penalty. If you cancel after that, there may be fees or loss of cover. Always speak with a Baker Jones Holding adviser first—we'll explain your rights clearly and help you avoid unnecessary costs.",
+      "Most policies come with a 14-day cooling-off period, during which you can cancel without penalty. If you cancel after that, there may be fees or loss of cover. Always speak with a Baker Jones Holdings adviser first—we'll explain your rights clearly and help you avoid unnecessary costs.",
   },
 ];
 

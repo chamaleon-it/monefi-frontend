@@ -14,9 +14,9 @@ export default function Stage3({ form }: PropsType) {
         Personal Information
       </h2>
       <p className="text-sm">
-        Baker Jones Holding will use the information below to electronically verify the
+        Baker Jones Holdings will use the information below to electronically verify the
         identity of Investors, Trustees, Directors and Authorised Signatories
-        where possible. Baker Jones Holding may request certified ID where this is not
+        where possible. Baker Jones Holdings may request certified ID where this is not
         possible. For company accounts at least two Directors’ or Authorised
         Signatories’ details are required, with the exception of Sole Director
         companies.

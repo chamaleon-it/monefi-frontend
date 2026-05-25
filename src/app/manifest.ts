@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Baker Jones Holding. | The smart choice for your finances.",
-    short_name: "Baker Jones Holding.",
+    name: "Baker Jones Holdings. | The smart choice for your finances.",
+    short_name: "Baker Jones Holdings.",
     description:
       "Empower your financial journey with expert advice and tailored financial services. From life insurance and mortgage solutions to business insurance and personal loans, we provide the support you need to make informed decisions and achieve lasting financial security.",
     start_url: "/",

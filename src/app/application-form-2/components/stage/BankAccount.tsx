@@ -14,8 +14,8 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
       <h2 className="text-2xl font-semibold">Existing Bank Account</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on  020 8002 8761 or email
-        hello@bakerjonesholdings.com
+        are happy to help. Simply email
+        info@bakerjonesholdings.com
       </p>
       <div className="flex flex-col gap-5">
         {[

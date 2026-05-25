@@ -13,7 +13,7 @@ export function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-         Whether you&apos;re planning a big purchase, consolidating debt, or need quick access to funds, Baker Jones Holding makes borrowing simple, transparent, and tailored to you. We partner with trusted UK lenders to bring you competitive loan options—without the confusion or hard sales.
+         Whether you&apos;re planning a big purchase, consolidating debt, or need quick access to funds, Baker Jones Holdings makes borrowing simple, transparent, and tailored to you. We partner with trusted UK lenders to bring you competitive loan options—without the confusion or hard sales.
         </p>
                {/* <motion.div
           initial={{

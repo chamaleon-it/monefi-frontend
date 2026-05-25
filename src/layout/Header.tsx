@@ -45,7 +45,7 @@ export default function Header() {
         className={`sticky z-40 top-0 transition-all duration-300 ${
           isDashboard
             ? "bg-white/95 backdrop-blur-md py-4 top-0 border-b border-gray-200/50 shadow-sm"
-            : "bg-bakerjonesholdings-black/95 backdrop-blur-md pb-4 pt-4 2xl:py-10  -top-1 border-b border-white/10"
+            : "bg-bakerjonesholdings-off-white backdrop-blur-md pb-4 pt-4 2xl:py-10  -top-1 border-b border-white/10"
         }`}
       >
         <div className="mac:max-w-[83%] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,21 +54,21 @@ export default function Header() {
             <Link
               href={paths.home}
               aria-label="Home Page"
-              title="Baker Jones Holding. Home Page"
+              title="Baker Jones Holdings. Home Page"
               className="flex-shrink-0 transition-transform hover:scale-105 duration-200"
             >
               <Image
                 src={isDashboard ? "/logo-2.png" : "/logo.png"}
                 width={164}
                 height={40}
-                alt="Baker Jones Holding logo"
+                alt="Baker Jones Holdings logo"
                 className="hidden sm:block"
               />
               <Image
                 src={isDashboard ? "/logo-2.png" : "/logo.png"}
                 width={120}
                 height={30}
-                alt="Baker Jones Holding logo"
+                alt="Baker Jones Holdings logo"
                 className="sm:hidden"
               />
             </Link>
@@ -83,7 +83,7 @@ export default function Header() {
                         className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 hover:scale-105 mac:text-lg ${
                           isDashboard
                             ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                            : "text-white/90 hover:text-white hover:bg-white/10"
+                            : "text-black hover:text-white hover:bg-white/10"
                         }`}
                       >
                         {item.label}
@@ -153,7 +153,7 @@ export default function Header() {
                           src={isDashboard ? "/logo-2.png" : "/logo.png"}
                           width={140}
                           height={35}
-                          alt="Baker Jones Holding logo"
+                          alt="Baker Jones Holdings logo"
                         />
                       </Link>
                       <SheetClose asChild>
@@ -209,7 +209,7 @@ export default function Header() {
                             isDashboard ? "text-gray-500" : "text-white/60"
                           }`}
                         >
-                          © {new Date().getFullYear()} Baker Jones Holding. All rights
+                          © {new Date().getFullYear()} Baker Jones Holdings. All rights
                           reserved.
                         </div>
                       </div>

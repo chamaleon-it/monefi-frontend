@@ -13,7 +13,7 @@ export default function LoginButton({isDashboard=false}:{isDashboard:boolean}) {
 
     return <Link
           href={ paths.auth.login}
-          className="py-1.5 px-3 lg:px-6 lg:py-3 rounded-full font-poppins bg-bakerjonesholdings-off-white text-bakerjonesholdings-black mac:text-lg"
+          className="py-1.5 px-3 lg:px-6 lg:py-3 rounded-full font-poppins text-bakerjonesholdings-off-white bg-bakerjonesholdings-black mac:text-lg"
           >
           Login
         </Link>

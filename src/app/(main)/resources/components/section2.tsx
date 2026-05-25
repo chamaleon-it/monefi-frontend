@@ -39,7 +39,7 @@ export function Section2() {
       <GridItem
         area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
         icon={<Search className="h-4 w-4 text-white dark:text-neutral-400" />}
-        title="Baker Jones Holding Blog (Coming Soon)"
+        title="Baker Jones Holdings Blog (Coming Soon)"
         description="Stay up-to-date with the latest tips, trends, and financial insights written by our in-house experts."
       />
     </ul>

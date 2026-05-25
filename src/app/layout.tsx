@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Baker Jones Holding. | The smart choice for your finances.",
+  title: "Baker Jones Holdings. | The smart choice for your finances.",
   description:
     "Empower your financial journey with expert advice and tailored financial services. From life insurance and mortgage solutions to business insurance and personal loans, we provide the support you need to make informed decisions and achieve lasting financial security.",
   icons: {
@@ -49,7 +49,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Baker Jones Holding.",
+              name: "Baker Jones Holdings.",
               url: "https://www.bakerjonesholdings.com",
               potentialAction: {
                 "@type": "SearchAction",

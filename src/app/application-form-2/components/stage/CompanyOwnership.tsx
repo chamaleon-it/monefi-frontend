@@ -18,8 +18,8 @@ export default function CompanyOwnership({
       <h2 className="text-2xl font-semibold">Company Ownership</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
-        are happy to help. Simply contact us on  020 8002 8761 or email
-        hello@bakerjonesholdings.com
+        are happy to help. Simply email
+        info@bakerjonesholdings.com
       </p>
        <div className="col-span-full flex flex-col gap-5">
           {["Yes" , "No"].map((type) => (
