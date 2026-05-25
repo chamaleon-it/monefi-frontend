@@ -42,7 +42,7 @@ export default function ForgotPasswordForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl font-bold text-[#232323] mb-2">bakerjonesholdings.</h1>
+          <h1 className="text-4xl font-bold text-[#232323] mb-2">Baker Jones Holdings</h1>
           <p className="text-bakerjonesholdings-black">Your smart financial partner</p>
         </motion.div>
 
