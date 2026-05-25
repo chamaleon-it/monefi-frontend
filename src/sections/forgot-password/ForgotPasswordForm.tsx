@@ -43,7 +43,7 @@ export default function ForgotPasswordForm() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl font-bold text-[#232323] mb-2">bakerjonesholdings.</h1>
-          <p className="text-gray-600">Your smart financial partner</p>
+          <p className="text-bakerjonesholdings-black">Your smart financial partner</p>
         </motion.div>
 
         {/* Login Card */}

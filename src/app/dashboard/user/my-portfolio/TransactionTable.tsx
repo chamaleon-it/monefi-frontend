@@ -103,7 +103,7 @@ export default function TransactionsTable() {
             <div className="overflow-x-auto">
               <table className="w-full whitespace-nowrap">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+                  <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
@@ -159,7 +159,7 @@ export default function TransactionsTable() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+                  <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
@@ -185,16 +185,16 @@ export default function TransactionsTable() {
                           <td className="py-3 px-4 text-sm font-medium text-gray-800">
                             {tx.symbol}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {tx.quantity}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {fCurrency(tx.unitPrice)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {fCurrency(tx.totalValue)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {fDateAndTime(tx.createdAt)}
                           </td>
                         </tr>
@@ -227,7 +227,7 @@ export default function TransactionsTable() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+                  <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
                     <th className="py-3 px-4">Symbol</th>
                     <th className="py-3 px-4">Quantity</th>
@@ -253,16 +253,16 @@ export default function TransactionsTable() {
                           <td className="py-3 px-4 text-sm font-medium text-gray-800">
                             {tx.symbol}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {tx.quantity}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {fCurrency(tx.unitPrice)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {fCurrency(tx.totalValue)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-gray-600">
+                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {fDateAndTime(tx.createdAt)}
                           </td>
                         </tr>

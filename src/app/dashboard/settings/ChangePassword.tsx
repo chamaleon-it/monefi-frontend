@@ -41,7 +41,7 @@ export default function ChangePassword() {
           <Shield className="h-5 w-5 text-bakerjonesholdings-pink" />
           <h2 className="text-xl font-semibold text-[#232323]">Security</h2>
         </div>
-        <p className="text-gray-600">
+        <p className="text-bakerjonesholdings-black">
           Manage your password and security preferences
         </p>
       </div>
@@ -64,7 +64,7 @@ export default function ChangePassword() {
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-bakerjonesholdings-black"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (

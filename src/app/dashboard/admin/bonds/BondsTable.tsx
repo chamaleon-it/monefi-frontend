@@ -105,7 +105,7 @@ export default function BondsPage() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink whitespace-nowrap">
+              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink whitespace-nowrap">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">ISIN</th>
@@ -129,13 +129,13 @@ export default function BondsPage() {
                     <tr key={bond._id} className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">{bond.name}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond.isin}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{fCurrency(bond.unitPrice)}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond.couponType}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond.annualCouponRate ? `${bond.annualCouponRate} %`  : "-"}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond.couponFrequency}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{bond?.meturityDate && fDate(bond.meturityDate)}</td>
-                      <td className="py-3 px-4 text-sm text-gray-600">{fBoolean(bond.isPublic,"Public","Private")}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond.isin}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(bond.unitPrice)}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond.couponType}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond.annualCouponRate ? `${bond.annualCouponRate} %`  : "-"}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond.couponFrequency}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.meturityDate && fDate(bond.meturityDate)}</td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fBoolean(bond.isPublic,"Public","Private")}</td>
                     </tr>
                   ))}
                 </>
@@ -155,7 +155,7 @@ export default function BondsPage() {
 
       {pagination && pagination.totalPage > 1 && (
         <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-bakerjonesholdings-black">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
           </p>
@@ -175,7 +175,7 @@ export default function BondsPage() {
                 className={`px-3 py-2 text-sm rounded-md border ${
                   num === pagination.page
                     ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-gray-600 hover:bg-gray-100"
+                    : "text-bakerjonesholdings-black hover:bg-gray-100"
                 }`}
               >
                 {num}

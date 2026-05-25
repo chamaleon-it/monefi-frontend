@@ -420,7 +420,7 @@ export default function UsersPage() {
                 <tr>
                   <td colSpan={7} className="py-12 text-center">
                     <div className="text-gray-400 text-6xl mb-4">👥</div>
-                    <h3 className="text-lg font-semibold text-gray-600 mb-2">
+                    <h3 className="text-lg font-semibold text-bakerjonesholdings-black mb-2">
                       No Users Found
                     </h3>
                     <p className="text-gray-500">
@@ -437,7 +437,7 @@ export default function UsersPage() {
       {/* Pagination */}
       {pagination && pagination.totalPage > 1 && (
         <div className="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-bakerjonesholdings-black">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
             {pagination.total} results

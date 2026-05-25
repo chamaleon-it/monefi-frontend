@@ -197,7 +197,7 @@ export default function ApplicationTable() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Name</th>
                 <th className="py-3 px-4">Type</th>
@@ -265,7 +265,7 @@ export default function ApplicationTable() {
 
       {pagination && pagination.totalPage > 1 && (
         <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-bakerjonesholdings-black">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
             {pagination.total}
@@ -286,7 +286,7 @@ export default function ApplicationTable() {
                 className={`px-3 py-2 text-sm rounded-md border ${
                   num === pagination.page
                     ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-gray-600 hover:bg-gray-100"
+                    : "text-bakerjonesholdings-black hover:bg-gray-100"
                 }`}
               >
                 {num}
@@ -528,7 +528,7 @@ export default function ApplicationTable() {
               </div>
             </div>
 
-            <div className="border-t pt-4 space-y-2 text-sm text-gray-600">
+            <div className="border-t pt-4 space-y-2 text-sm text-bakerjonesholdings-black">
               <p>
                 <strong>Application ID:</strong> {selectedApplication._id}
               </p>

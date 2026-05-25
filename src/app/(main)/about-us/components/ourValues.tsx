@@ -61,7 +61,7 @@ export default function OurValues() {
                 <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
                     Our Values
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-lg text-bakerjonesholdings-black">
                     The principles that guide every decision we make.
                 </p>
             </div>
@@ -75,7 +75,7 @@ export default function OurValues() {
                         <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">
                             {value.title}
                         </h3>
-                        <p className="text-gray-600 text-center">{value.description}</p>
+                        <p className="text-bakerjonesholdings-black text-center">{value.description}</p>
                     </div>
                 ))}
             </div>

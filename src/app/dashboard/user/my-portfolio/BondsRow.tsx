@@ -53,23 +53,23 @@ export default function BondsRow({ tx, i }: Props) {
         <p className="font-bold">{bond?.name}</p>
         <p className="text-sm">{bond?.isin}</p>
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">{tx.quantity}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.unitPrice)}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.totalValue)}
       </td>
 
      
-      <td className="py-3 px-4 text-sm text-gray-600">{tx.buyBack}</td>
-        <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.buyBack}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           {tx.transaction.buyBackDate ? fDate(tx.transaction.buyBackDate) : "-"}
         </td>
-          <td className="py-3 px-4 text-sm text-gray-600">
+          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           <InterestView tx={tx}/>
           </td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {tx?.certificate ? (
           <a
             href={getConfig().backendURL + tx.certificate}
@@ -83,15 +83,15 @@ export default function BondsRow({ tx, i }: Props) {
           "-"
         )}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">{fDate(tx.transaction.createdAt)}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fDate(tx.transaction.createdAt)}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {bond?.annualCouponRate} %
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {bond?.couponFrequency}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">{bond?.couponType}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.couponType}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {bond?.meturityDate ? fDate(bond?.meturityDate) : "-"}
       </td>
     </tr>

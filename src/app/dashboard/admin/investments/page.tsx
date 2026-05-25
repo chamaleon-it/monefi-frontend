@@ -8,7 +8,7 @@ export default function InvestmentsPage() {
                 <h1 className="text-3xl font-bold text-[#232323] mb-2">
                   Investment
                 </h1>
-                <p className="text-gray-600">Add new investment details to your platform</p>
+                <p className="text-bakerjonesholdings-black">Add new investment details to your platform</p>
               </div>
               <div className="space-y-8">
                 <Investment />

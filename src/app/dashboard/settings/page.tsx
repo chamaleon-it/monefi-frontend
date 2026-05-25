@@ -6,7 +6,7 @@ export default function SettingPage() {
     <div className="">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[#232323] mb-2">Settings</h1>
-        <p className="text-gray-600">
+        <p className="text-bakerjonesholdings-black">
           Manage your account settings and preferences
         </p>
       </div>

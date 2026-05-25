@@ -25,7 +25,7 @@ export default function ContactUsContent() {
             <h1 className="text-4xl lg:text-7xl font-bold text-bakerjonesholdings-black mb-6">
               We&apos;d Love to Hear From You!
             </h1>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg lg:text-xl text-bakerjonesholdings-black max-w-3xl mx-auto leading-relaxed">
               At bakerjonesholdings, we&apos;re always here to assist you with your financial needs. Whether you&apos;re looking for more
               information about our services, need advice, or are ready to take the next step toward financial
               empowerment, our team is just a message away.
@@ -52,7 +52,7 @@ export default function ContactUsContent() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
-                    <p className="text-gray-600 mb-3 leading-relaxed">We&apos;ll respond to your inquiry within 24 hours.</p>
+                    <p className="text-bakerjonesholdings-black mb-3 leading-relaxed">We&apos;ll respond to your inquiry within 24 hours.</p>
                     <a
                       href="mailto:info@bakerjonesholdings.com"
                       className="text-bakerjonesholdings-pink font-semibold text-lg transition-colors"

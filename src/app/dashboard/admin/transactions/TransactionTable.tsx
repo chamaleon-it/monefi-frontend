@@ -111,7 +111,7 @@ export default function TransactionsTable() {
         <div className="overflow-x-auto">
           <table className="w-full whitespace-nowrap">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">User</th>
                 <th className="py-3 px-4">Symbol</th>
@@ -152,7 +152,7 @@ export default function TransactionsTable() {
 
       {pagination && pagination.totalPage > 1 && (
         <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-bakerjonesholdings-black">
             Showing {(pagination.page - 1) * pagination.limit + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
           </p>
           <div className="flex items-center gap-2">
@@ -167,7 +167,7 @@ export default function TransactionsTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page ? 'bg-bakerjonesholdings-pink text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page ? 'bg-bakerjonesholdings-pink text-white' : 'text-bakerjonesholdings-black hover:bg-gray-100'}`}
               >
                 {num}
               </button>

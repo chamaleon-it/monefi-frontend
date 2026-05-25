@@ -110,7 +110,7 @@ export default function TransactionsTable() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">Symbol</th>
                 <th className="py-3 px-4">Quantity</th>
@@ -140,25 +140,25 @@ export default function TransactionsTable() {
                        <p className="font-bold"> {tx.name}</p>
                           <p className="text-sm">{tx.symbol}</p>
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {tx.quantity}
                       </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {tx.annualCouponRate ? `${tx.annualCouponRate} %` : "-"}
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {fCurrency(tx.unitPrice)}
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {fCurrency(tx.totalValue)}
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {tx.tradeAction}
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {tx.investmentType}
                       </td>
-                      <td className="py-3 px-4 text-sm text-gray-600">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {fDate(tx.createdAt)}
                       </td>
                       <td className={`py-3 px-4 text-xs`}>
@@ -200,7 +200,7 @@ export default function TransactionsTable() {
 
       {pagination && pagination.totalPage > 1 && (
         <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-bakerjonesholdings-black">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
             {pagination.total}
@@ -220,7 +220,7 @@ export default function TransactionsTable() {
                 className={`px-3 py-2 text-sm rounded-md border ${
                   num === pagination.page
                     ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-gray-600 hover:bg-gray-100"
+                    : "text-bakerjonesholdings-black hover:bg-gray-100"
                 }`}
               >
                 {num}

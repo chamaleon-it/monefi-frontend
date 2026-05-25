@@ -96,19 +96,19 @@ export default function TransactionRow({
           <p className="font-bold"> {tx.name}</p>
           <p className="text-sm">{tx.symbol}</p>
         </td>
-        <td className="py-3 px-4 text-sm text-gray-600">{tx.quantity}</td>
-         <td className="py-3 px-4 text-sm text-gray-600">
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
+         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {tx.annualCouponRate ? `${tx.annualCouponRate} %` : "-"}
                       </td>
-        <td className="py-3 px-4 text-sm text-gray-600">
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           {fCurrency(tx.unitPrice)}
         </td>
-        <td className="py-3 px-4 text-sm text-gray-600">
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           {fCurrency(tx.totalValue)}
         </td>
-        <td className="py-3 px-4 text-sm text-gray-600">{tx.tradeAction}</td>
-        <td className="py-3 px-4 text-sm text-gray-600">{tx.investmentType}</td>
-        <td className="py-3 px-4 text-sm text-gray-600">
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.tradeAction}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.investmentType}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           {fDate(tx.createdAt)}
         </td>
         <td className={`py-3 px-4 text-xs`}>
@@ -129,7 +129,7 @@ export default function TransactionRow({
             {tx.status}
           </p>
         </td>
-        <td className="py-3 px-4 text-sm text-gray-600">
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           <div className="flex gap-2.5">
 
           {tx.status === TransactionStatus.PENDING && (
@@ -165,7 +165,7 @@ export default function TransactionRow({
                 <h3 className="mb-3 font-bold text-xl text-gray-800">
                   Change Transaction Date
                 </h3>
-                <p className="mb-5 text-gray-600">
+                <p className="mb-5 text-bakerjonesholdings-black">
                   Do you want to change the date of this transaction?
                 </p>
                 <label className="block mb-4">

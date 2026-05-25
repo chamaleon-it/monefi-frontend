@@ -104,7 +104,7 @@ export default function Investment() {
         <h2 className="text-xl font-semibold text-[#232323] mb-1">
           New Investment
         </h2>
-        <p className="text-gray-600">Add a new investment to the system</p>
+        <p className="text-bakerjonesholdings-black">Add a new investment to the system</p>
       </div>
       <form onSubmit={submit} className="p-6 space-y-6">
         <div className="space-y-4">

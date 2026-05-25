@@ -92,7 +92,7 @@ const TestimonialCard = memo(({ testimonial, index }: TestimonialCardProps) => (
       {/* <Image src={`/home/testimonials/${testimonial.profileImage}`} width={45} height={45} alt={testimonial.author + " Baker Jones Holdings."}/> */}
       <cite className="not-italic">
         <div className="font-semibold text-lg">{testimonial.author}</div>
-        <div className={`text-sm ${index % 2 === 0 ? 'text-gray-300' : 'text-gray-600'}`}>
+        <div className={`text-sm ${index % 2 === 0 ? 'text-gray-300' : 'text-bakerjonesholdings-black'}`}>
           {testimonial.role}
         </div>
       </cite>

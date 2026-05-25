@@ -89,7 +89,7 @@ export default function UserDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b text-left text-sm font-medium text-gray-600 bg-bakerjonesholdings-off-pink">
+                <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                   <th className="py-3 px-4">#</th>
                   <th className="py-3 px-4">Symbol</th>
                   <th className="py-3 px-4">Quantity</th>
@@ -111,22 +111,22 @@ export default function UserDashboard() {
                           <p className="font-bold"> {tx.name}</p>
                           <p className="text-sm">{tx.symbol}</p>
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                           {tx.quantity}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                           {fCurrency(tx.unitPrice)}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                           {fCurrency(tx.totalValue)}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                           {tx.tradeAction}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                           {tx.investmentType}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-600">
+                        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                           {fDate(tx.createdAt)}
                         </td>
                         <td className={`py-3 px-4 text-xs`}>

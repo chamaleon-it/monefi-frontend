@@ -187,7 +187,7 @@ export default function Stage3({ form }: PropsType) {
           className={`px-4 py-1.5 rounded-md shadow font-medium ${
             false
               ? "bg-bakerjonesholdings-pink text-bakerjonesholdings-black cursor-pointer"
-              : "bg-gray-300 text-gray-600 cursor-not-allowed"
+              : "bg-gray-300 text-bakerjonesholdings-black cursor-not-allowed"
           }`}
           onClick={gotoNextStage}
         >

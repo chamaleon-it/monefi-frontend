@@ -107,7 +107,7 @@ export default function Form() {
         />
         <label
           htmlFor="privacy"
-          className="text-sm text-gray-600 leading-relaxed"
+          className="text-sm text-bakerjonesholdings-black leading-relaxed"
         >
           I agree to the{" "}
           <a

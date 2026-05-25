@@ -96,15 +96,15 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
         <p className="font-bold">{bond?.name}</p>
         <p className="text-sm">{bond?.isin}</p>
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">{tx.quantity}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.unitPrice)}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.totalValue)}
       </td>
 
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         <RadioGroup
           className="flex gap-5"
           value={tx.buyBack}
@@ -139,15 +139,15 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
         </RadioGroup>
       </td>
 
-  <td className="py-3 px-4 text-sm text-gray-600">
+  <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
     {tx.transaction.buyBackDate ? fDate(tx.transaction.buyBackDate) : "-"}
   </td>
 
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         <InterestUpdate tx={tx} portfolioMutate={portfolioMutate} />
       </td>
 
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         <div className="flex gap-2.5 items-center justify-center">
           <div className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer w-[120px] h-9 flex justify-center items-center text-center relative">
             <input
@@ -170,15 +170,15 @@ export default function BondsRow({ tx, i, portfolioMutate }: Props) {
           )}
         </div>
       </td>
-       <td className="py-3 px-4 text-sm text-gray-600">{fDate(tx.transaction.createdAt)}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fDate(tx.transaction.createdAt)}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {bond?.annualCouponRate} %
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {bond?.couponFrequency}
       </td>
-      <td className="py-3 px-4 text-sm text-gray-600">{bond?.couponType}</td>
-      <td className="py-3 px-4 text-sm text-gray-600">
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.couponType}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {bond?.meturityDate ? fDate(bond?.meturityDate) : "-"}
       </td>
     </tr>
