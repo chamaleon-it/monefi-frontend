@@ -37,7 +37,7 @@ export default function Hero() {
                 </p>
                 <Link
                   href={paths.contactUs}
-                  className="mt-7 px-6 py-4 rounded-full border font-poppins hover:scale-110 duration-400 hover:bg-bakerjonesholdings-pink hover:text-bakerjonesholdings-black mac:text-lg inline-block"
+                  className="mt-7 px-6 py-4 rounded-full border font-poppins hover:scale-110 duration-400 hover:bg-bakerjonesholdings-pink hover:text-bakerjonesholdings-white mac:text-lg inline-block"
                 >
                   Join Today
                 </Link>

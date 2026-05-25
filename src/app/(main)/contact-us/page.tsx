@@ -18,7 +18,7 @@ export default function ContactUsContent() {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-bakerjonesholdings-off-pink text-bakerjonesholdings-pink rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-bakerjonesholdings-pink text-white rounded-full text-sm font-medium mb-6">
               <Mail className="w-4 h-4 mr-2" />
               Get in Touch
             </div>
@@ -47,7 +47,7 @@ export default function ContactUsContent() {
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-bakerjonesholdings-off-pink text-bakerjonesholdings-pink rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="w-14 h-14 bg-bakerjonesholdings-pink text-white rounded-2xl flex items-center justify-center shadow-lg">
                     <Mail className="w-6 h-6" />
                   </div>
                   <div className="flex-1">

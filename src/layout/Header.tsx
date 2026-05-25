@@ -83,7 +83,7 @@ export default function Header() {
                         className={`px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 hover:scale-105 mac:text-lg ${
                           isDashboard
                             ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                            : "text-black hover:text-white hover:bg-white/10"
+                            : "text-black cursor-pointer"
                         }`}
                       >
                         {item.label}

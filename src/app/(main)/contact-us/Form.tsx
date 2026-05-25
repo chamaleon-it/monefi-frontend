@@ -122,7 +122,7 @@ export default function Form() {
 
       <button
         type="submit"
-        className="w-full h-16 bg-bakerjonesholdings-off-pink text-bakerjonesholdings-pink font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl active:scale-[0.98]"
+        className="w-full h-16 bg-bakerjonesholdings-pink text-white font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl active:scale-[0.98]"
         disabled={isSubmitting}
       >
         Send Message
