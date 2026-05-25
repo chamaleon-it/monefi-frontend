@@ -124,7 +124,7 @@ export default function Header() {
                     className={`relative  rounded-lg transition-all duration-200 hover:scale-105 ${
                       isDashboard
                         ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                        : "text-white hover:text-white hover:bg-white/10"
+                        : "!text-black hover:!text-black hover:bg-white/10"
                     }`}
                   />
 
@@ -147,7 +147,7 @@ export default function Header() {
                         href={paths.home}
                         onClick={() => setIsOpen(false)}
                         aria-label="Home Page"
-                        className="transition-transform hover:scale-105 duration-200"
+                        className={`transition-transform hover:scale-105 duration-200 ${isDashboard? "" : "invert"}`}
                       >
                         <Image
                           src={isDashboard ? "/logo-2.png" : "/logo.png"}

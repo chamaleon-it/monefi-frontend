@@ -43,7 +43,7 @@ const WhyChooseUs: React.FC = () => (
     <section className="why-choose-us-section py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-3xl font-bold text-center mb-8 text-primary">
-                Why Choose bakerjonesholdings?
+                Why Choose Baker Jones Holdings?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {reasons.map((reason, idx) => (

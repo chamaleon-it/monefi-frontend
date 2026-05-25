@@ -28,7 +28,7 @@ export function Section2() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                    At bakerjonesholdings, we specialize in a wide range of financial services, including:
+                    At Baker Jones Holdings, we specialize in a wide range of financial services, including:
                 </motion.p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                     {services.map((service, idx) => (
@@ -63,7 +63,7 @@ export function Section2() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                 >
                     As a forward-thinking financial services provider, we pride ourselves on our ability to offer personalized solutions that address the unique needs of each client. Whether you’re an individual looking for a mortgage to buy your first home, a business in need of financing to expand, or someone planning for a secure future,{" "}
-                    <span className="text-bakerjonesholdings-pink font-semibold">bakerjonesholdings</span> is here to guide you every step of the way.
+                    <span className="text-bakerjonesholdings-pink font-semibold">Baker Jones Holdings</span> is here to guide you every step of the way.
                 </motion.p>
             </div>
         </section>

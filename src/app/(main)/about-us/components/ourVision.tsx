@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 
-const visionText = `At bakerjonesholdings, we believe that financial success isn’t just about numbers – it’s about empowering people. We want to help our clients take control of their financial futures by offering customized solutions that support their short-term needs and long-term goals. Through education, thoughtful planning, and innovative services, we are here to help you build a secure and prosperous future.`;
+const visionText = `At Baker Jones Holdings, we believe that financial success isn’t just about numbers – it’s about empowering people. We want to help our clients take control of their financial futures by offering customized solutions that support their short-term needs and long-term goals. Through education, thoughtful planning, and innovative services, we are here to help you build a secure and prosperous future.`;
 
 export default function OurVision() {
     return (
