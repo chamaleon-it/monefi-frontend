@@ -12,7 +12,7 @@ interface Props {
 
 export default function CompanyTaxInformation({formData,setFormData,setStage}: Props) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-bakerjonesholdings-black flex flex-col gap-5 overflow-scroll">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-white flex flex-col gap-5 overflow-scroll">
       <h2 className="text-2xl font-semibold">Company Tax Information</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
@@ -65,7 +65,7 @@ export default function CompanyTaxInformation({formData,setFormData,setStage}: P
           Previous
         </button>
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-bakerjonesholdings-pink bg-bakerjonesholdings-black"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-white bg-bakerjonesholdings-black"
           onClick={() => {
         if(!formData.company?.companyTaxInformation){
           toast.error("Select any tax information")

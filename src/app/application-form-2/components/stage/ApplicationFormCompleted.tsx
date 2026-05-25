@@ -30,11 +30,11 @@ export default function ApplicationFormCompleted({ formData }: StartProps) {
   )
   
   return (
-    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5 flex flex-col items-center justify-center gap-5 text-bakerjonesholdings-black">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5 flex flex-col items-center justify-center gap-5 text-white">
       <h2 className="text-2xl font-semibold text-center">Application form completed</h2>
       <p className="text-center">Review and submit your application.</p>
 
-      <button className="text-bakerjonesholdings-pink px-4 py-2 rounded-lg bg-bakerjonesholdings-black hover:px-5 duration-200 cursor-pointer hover:opacity-90" onClick={()=>completeApplicationForm(formData)}>
+      <button className="text-white px-4 py-2 rounded-lg bg-bakerjonesholdings-black hover:px-5 duration-200 cursor-pointer hover:opacity-90" onClick={()=>completeApplicationForm(formData)}>
         Submit
       </button>
     </div>

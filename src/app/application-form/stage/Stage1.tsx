@@ -21,10 +21,10 @@ export default function Stage1({ form }: PropsType) {
 
   return (
     <div className="space-y-5 flex flex-col items-center justify-center h-full w-full min-h-[calc(100vh-40vh)] p-5">
-      <h2 className="text-3xl font-semibold text-bakerjonesholdings-pink">
+      <h2 className="text-3xl font-semibold text-white">
         Account Application
       </h2>
-      <p className="text-lg text-center">
+      <p className="text-lg text-center text-white">
         Please enter your registered email address below and click start
         application.
       </p>

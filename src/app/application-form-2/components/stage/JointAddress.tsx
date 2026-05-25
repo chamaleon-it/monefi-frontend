@@ -14,7 +14,7 @@ export default function JointAddress({
   setFormData,
 }: AddressProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-bakerjonesholdings-black flex flex-col gap-5">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-white flex flex-col gap-5">
       <h2 className="text-2xl font-semibold">
         Residential address information (Joint)
       </h2>
@@ -91,7 +91,7 @@ export default function JointAddress({
           Previous
         </button>
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-bakerjonesholdings-pink bg-bakerjonesholdings-black"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-white bg-bakerjonesholdings-black"
           onClick={() => {
             // Validate address fields before proceeding
             if (

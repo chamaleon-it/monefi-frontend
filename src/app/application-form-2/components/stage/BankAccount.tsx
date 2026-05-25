@@ -10,7 +10,7 @@ interface AccountTypeProps {
 
 export default function BankAccount({ setStage,formData,setFormData }: AccountTypeProps) {
   return (
-    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-bakerjonesholdings-black flex flex-col gap-5 overflow-auto">
+    <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-white flex flex-col gap-5 overflow-auto">
       <h2 className="text-2xl font-semibold">Existing Bank Account</h2>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
@@ -124,7 +124,7 @@ export default function BankAccount({ setStage,formData,setFormData }: AccountTy
           Previous
         </button>
         <button
-          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-bakerjonesholdings-pink bg-bakerjonesholdings-black"
+          className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-white bg-bakerjonesholdings-black"
           onClick={() => {
             if(formData.bankAccount === "Provide Existing Bank Account Details"){
               if(!formData?.bankAccountDetails?.bankName || !formData?.bankAccountDetails?.accountName || !formData?.bankAccountDetails?.accountNumber || !formData?.bankAccountDetails?.sortCode){
