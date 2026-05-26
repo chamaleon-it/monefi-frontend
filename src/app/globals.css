@@ -20,11 +20,11 @@
   --color-corporate-gold: #c5a880;
   --color-corporate-beige: #e8e3dc;
 
-  /* Existing Dashboard Colors */
+  /* Existing Dashboard Colors mapped to Corporate Theme */
   --color-bakerjonesholdings-black:#232323;
-  --color-bakerjonesholdings-pink:#012A62;
+  --color-bakerjonesholdings-pink:#1f1f1f; /* Changed from dark blue (#012A62) to corporate charcoal */
   --color-bakerjonesholdings-off-white:#ECEDDA;
-  --color-bakerjonesholdings-blue:#86BBD8;
+  --color-bakerjonesholdings-blue:#c5a880; /* Changed from light blue (#86BBD8) to corporate gold */
   --color-bakerjonesholdings-yellow:#F9EB9F;
   --color-bakerjonesholdings-green:#647E4E;
   --color-bakerjonesholdings-off-pink:#e5e7eb;

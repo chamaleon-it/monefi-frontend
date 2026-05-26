@@ -5,11 +5,11 @@
 
 export function HeroSection() {
   return (
-    <section className="py-16 md:py-24 flex justify-center items-center font-poppins px-4 h-[calc(100vh-150px)] bg-bakerjonesholdings-off-white">
+    <section className="py-16 md:py-24 flex justify-center items-center font-poppins px-4 h-[calc(100vh-150px)] bg-corporate-white">
       <div className="container mx-auto max-w-6xl text-center space-y-5">
 
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight px-4">
-          Loan Types -  Finance That Fits <br />  <span style={{ color: "#012A62" }}>Your Life</span>
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-corporate-black mb-6 leading-tight px-4 font-serif">
+          Loan Types - Finance That Fits <br />  <span className="text-corporate-gold italic">Your Life</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-700 font-poppins mb-8 max-w-4xl mx-auto leading-relaxed px-4">
