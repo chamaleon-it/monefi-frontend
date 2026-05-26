@@ -76,8 +76,8 @@ export default function PublicFooter() {
           </div>
           <div className="flex space-x-6">
             {/* Social Placeholders */}
-            <a href="#" className="text-white/40 hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="text-white/40 hover:text-white transition-colors">Twitter</a>
+            {/* <a href="#" className="text-white/40 hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" className="text-white/40 hover:text-white transition-colors">Twitter</a> */}
           </div>
         </div>
       </div>
