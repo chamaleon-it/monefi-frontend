@@ -49,7 +49,7 @@ export default function HeroSection() {
         >
           <Link
             href="#portfolio"
-            className="group relative px-6 lg:px-8 py-3 lg:py-4 bg-white text-corporate-charcoal rounded-full font-medium text-md lg:text-lg overflow-hidden transition-all hover:scale-105"
+            className="group relative px-4 lg:px-8 py-2 lg:py-4 bg-white text-corporate-charcoal rounded-full font-medium text-sm lg:text-lg overflow-hidden transition-all hover:scale-105"
           >
             <span className="relative z-10 flex items-center">
               Explore Portfolio <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -57,7 +57,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/contact-us"
-            className="px-6 lg:px-8 py-3 lg:py-4 bg-transparent border border-white/30 text-white rounded-full font-medium text-md lg:text-lg hover:bg-white/10 transition-colors"
+            className="px-4 lg:px-8 py-2 lg:py-4 bg-transparent border border-white/30 text-white rounded-full font-medium text-sm lg:text-lg hover:bg-white/10 transition-colors"
           >
             Partner With Us
           </Link>
