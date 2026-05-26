@@ -57,12 +57,12 @@ export const StickyScroll = ({
 
   useEffect(() => {
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard,linearGradients]);
+  }, [activeCard, linearGradients]);
 
   return (
     <motion.div
       animate={{
-        backgroundColor: backgroundColors[activeCard % backgroundColors.length],
+        backgroundColor: "#1F1F1F",
       }}
       className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
       ref={ref}
