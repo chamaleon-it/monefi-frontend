@@ -36,22 +36,22 @@ export default function AboutSection() {
             className="grid grid-cols-2 gap-8"
           >
             <div className="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/5">
-              <div className="text-5xl font-bold text-corporate-black mb-2">15+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-corporate-black mb-2">15+</div>
               <div className="text-sm font-medium text-corporate-charcoal/60 uppercase tracking-wider">Years Expertise</div>
             </div>
 
             <div className="p-8 bg-corporate-charcoal text-white rounded-3xl shadow-xl">
-              <div className="text-5xl font-bold text-corporate-gold mb-2">24</div>
+              <div className="text-4xl lg:text-5xl font-bold text-corporate-gold mb-2">24</div>
               <div className="text-sm font-medium text-white/60 uppercase tracking-wider">Strategic Partners</div>
             </div>
 
             <div className="p-8 bg-corporate-beige/30 rounded-3xl border border-black/5">
-              <div className="text-5xl font-bold text-corporate-black mb-2">6</div>
+              <div className="text-4xl lg:text-5xl font-bold text-corporate-black mb-2">6</div>
               <div className="text-sm font-medium text-corporate-charcoal/60 uppercase tracking-wider">Investment Sectors</div>
             </div>
 
             <div className="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/5">
-              <div className="text-5xl font-bold text-corporate-black mb-2">$50M+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-corporate-black mb-2">$50M+</div>
               <div className="text-sm font-medium text-corporate-charcoal/60 uppercase tracking-wider">Assets Managed</div>
             </div>
           </motion.div>
