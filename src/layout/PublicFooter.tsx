@@ -14,7 +14,7 @@ export default function PublicFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
 
           <div className="lg:col-span-2 space-y-6">
-            <Link href={paths.home} className="inline-block invert">
+            <Link href={paths.home} className="inline-block">
               <Image
                 src="/logo.png"
                 width={164}

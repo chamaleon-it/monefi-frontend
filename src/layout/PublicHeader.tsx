@@ -49,14 +49,14 @@ export default function PublicHeader() {
                 width={164}
                 height={40}
                 alt="Baker Jones Holdings logo"
-                className="hidden sm:block invert"
+                className="hidden sm:block "
               />
               <Image
                 src="/logo.png"
                 width={120}
                 height={30}
                 alt="Baker Jones Holdings logo"
-                className="sm:hidden invert"
+                className="sm:hidden "
               />
             </Link>
 
@@ -101,7 +101,7 @@ export default function PublicHeader() {
                       <Link
                         href={paths.home}
                         onClick={() => setIsOpen(false)}
-                        className="flex-shrink-0 invert"
+                        className="flex-shrink-0 "
                       >
                         <Image
                           src="/logo.png"
