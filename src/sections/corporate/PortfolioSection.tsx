@@ -25,10 +25,10 @@ export default function PortfolioSection() {
   return (
     <section id="portfolio" className="py-32 bg-corporate-white text-corporate-black border-t border-black/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          
-          <div className="sticky top-32 self-start">
+
+          <div className="lg:sticky lg:top-32 self-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export default function PortfolioSection() {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-bold leading-tight mb-6 font-serif"
             >
-              Building Scalable <br className="hidden md:block"/> <span className="italic text-corporate-gold">Business Models.</span>
+              Building Scalable <br className="hidden md:block" /> <span className="italic text-corporate-gold">Business Models.</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ export default function PortfolioSection() {
             >
               Our portfolio companies benefit from our proprietary scaling frameworks. We transition businesses from founder-led operations to system-led enterprises.
             </motion.p>
-            
+
             {/* Abstract Graphic */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

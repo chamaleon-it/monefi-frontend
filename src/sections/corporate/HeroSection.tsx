@@ -45,11 +45,11 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex lg:flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
             href="#portfolio"
-            className="group relative px-8 py-4 bg-white text-corporate-charcoal rounded-full font-medium text-lg overflow-hidden transition-all hover:scale-105"
+            className="group relative px-6 lg:px-8 py-3 lg:py-4 bg-white text-corporate-charcoal rounded-full font-medium text-md lg:text-lg overflow-hidden transition-all hover:scale-105"
           >
             <span className="relative z-10 flex items-center">
               Explore Portfolio <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -57,7 +57,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/contact-us"
-            className="px-8 py-4 bg-transparent border border-white/30 text-white rounded-full font-medium text-lg hover:bg-white/10 transition-colors"
+            className="px-6 lg:px-8 py-3 lg:py-4 bg-transparent border border-white/30 text-white rounded-full font-medium text-md lg:text-lg hover:bg-white/10 transition-colors"
           >
             Partner With Us
           </Link>
@@ -66,7 +66,7 @@ export default function HeroSection() {
 
       {/* Floating abstract glowing orbs */}
       <motion.div
-        animate={{ 
+        animate={{
           y: [0, -20, 0],
           opacity: [0.3, 0.5, 0.3]
         }}
@@ -74,7 +74,7 @@ export default function HeroSection() {
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-corporate-gold/20 rounded-full blur-[100px] -z-10"
       />
       <motion.div
-        animate={{ 
+        animate={{
           y: [0, 30, 0],
           opacity: [0.2, 0.4, 0.2]
         }}
