@@ -1,32 +1,30 @@
-import FAQ from '@/sections/home/FAQ'
-import Hero from '@/sections/home/Hero'
-// import MaintenanceBanner from '@/sections/home/MaintenanceBanner'
-// import LatestNews from '@/sections/home/LatestNews'
-import Mission from '@/sections/home/Mission'
-import OurPromise from '@/sections/home/OurPromise'
-import ServiceWeOffers from '@/sections/home/ServiceWeOffers'
-import Testimonials from '@/sections/home/Testimonials'
 import { Metadata } from 'next'
 import React from 'react'
+import HeroSection from '@/sections/corporate/HeroSection'
+import AboutSection from '@/sections/corporate/AboutSection'
+import ServicesSection from '@/sections/corporate/ServicesSection'
+import IndustriesSection from '@/sections/corporate/IndustriesSection'
+import PortfolioSection from '@/sections/corporate/PortfolioSection'
+import WhyWorkWithUsSection from '@/sections/corporate/WhyWorkWithUsSection'
+import InsightsSection from '@/sections/corporate/InsightsSection'
+import ContactCTASection from '@/sections/corporate/ContactCTASection'
 
-
-export const metadata:Metadata  = {
-  title:"Home | Baker Jones Holdings. | The smart choice for your finances.",
-   description:
-    "Empower your financial journey with expert advice and tailored financial services. From life insurance and mortgage solutions to business insurance and personal loans, we provide the support you need to make informed decisions and achieve lasting financial security.",
+export const metadata: Metadata = {
+  title: "Home | Baker Jones Holdings",
+  description: "Building Long-Term Value Through Strategic Investments",
 }
 
 export default function HomePage() {
   return (
-   <main>
-   <Hero/>
-   <ServiceWeOffers />
-   <Mission/>
-   <OurPromise/>
-   <Testimonials/>
-   {/* <LatestNews/> */}
-   <FAQ/>
-   {/* <MaintenanceBanner/> */}
-   </main>
+    <div className="bg-corporate-white">
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+      <IndustriesSection />
+      <PortfolioSection />
+      <WhyWorkWithUsSection />
+      <InsightsSection />
+      <ContactCTASection />
+    </div>
   )
 }

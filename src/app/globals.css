@@ -1,41 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9f9f7;
+  --foreground: #111111;
+  --font-general-sans: 'General Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-poppins: var(--font-poppins-mono);
-  --font-inter:var(--font-inter-mono);
+  
+  /* New Corporate Colors */
+  --color-corporate-charcoal: #1f1f1f;
+  --color-corporate-black: #111111;
+  --color-corporate-white: #f9f9f7;
+  --color-corporate-gold: #c5a880;
+  --color-corporate-beige: #e8e3dc;
+
+  /* Existing Dashboard Colors */
   --color-bakerjonesholdings-black:#232323;
   --color-bakerjonesholdings-pink:#012A62;
   --color-bakerjonesholdings-off-white:#ECEDDA;
   --color-bakerjonesholdings-blue:#86BBD8;
   --color-bakerjonesholdings-yellow:#F9EB9F;
-  --breakpoint-mac:2000px;
   --color-bakerjonesholdings-green:#647E4E;
-  --color-bakerjonesholdings-off-pink:#4995fc;
-  --breakpoint-mac:125rem
+  --color-bakerjonesholdings-off-pink:#e5e7eb;
+  
+  --font-poppins: var(--font-poppins-mono);
+  --font-inter: var(--font-inter-mono);
+  --font-general: var(--font-general-sans);
+  --font-serif: var(--font-serif);
+  
+  --breakpoint-mac: 125rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #111111;
+    --foreground: #f9f9f7;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-general-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
 .tradingview-widget-copyright{
     display: none;
 }
-
