@@ -7,7 +7,7 @@ const industries = [
   { name: "Technology", span: "col-span-1 md:col-span-2 row-span-2", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" },
   { name: "Real Estate", span: "col-span-1 row-span-1", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" },
   { name: "AI & SaaS", span: "col-span-1 row-span-1", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop" },
-  { name: "Infrastructure", span: "col-span-1 row-span-2", img: "https://images.unsplash.com/photo-1541888081622-29fc1029e246?q=80&w=2070&auto=format&fit=crop" },
+  { name: "Infrastructure", span: "col-span-1 row-span-2", img: "/home/blabla.png" },
   { name: "Financial Services", span: "col-span-1 md:col-span-2 row-span-1", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" },
   { name: "Digital Commerce", span: "col-span-1 row-span-1", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop" },
   { name: "Healthcare", span: "col-span-1 row-span-1", img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop" },
@@ -17,7 +17,7 @@ export default function IndustriesSection() {
   return (
     <section className="py-32 bg-corporate-charcoal text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
+
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div className="max-w-2xl">
             <motion.h2
@@ -26,7 +26,7 @@ export default function IndustriesSection() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold leading-tight mb-4 font-serif"
             >
-              Transforming Key <br className="hidden md:block"/>
+              Transforming Key <br className="hidden md:block" />
               <span className="text-corporate-gold italic">Global Industries.</span>
             </motion.h2>
             <motion.p
