@@ -42,7 +42,7 @@ export default function PublicHeader() {
             <Link
               href={paths.home}
               aria-label="Home Page"
-              className="flex-shrink-0 transition-opacity hover:opacity-80"
+              className="flex-shrink-0"
             >
               <Image
                 src="/logo.png"
