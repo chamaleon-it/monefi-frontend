@@ -35,7 +35,7 @@ export default function PublicHeader() {
 
   return (
     <>
-      <header className="fixed z-50 top-0 left-0 w-full bg-corporate-charcoal/95 backdrop-blur-xl border-b border-white/10 py-4 shadow-xl">
+      <header className="fixed z-50 top-0 left-0 w-full bg-corporate-white/95 backdrop-blur-xl border-b border-black/10 py-4 shadow-xl">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
@@ -49,24 +49,24 @@ export default function PublicHeader() {
                 width={164}
                 height={40}
                 alt="Baker Jones Holdings logo"
-                className="hidden sm:block "
+                className="hidden sm:block"
               />
               <Image
                 src="/logo.png"
                 width={120}
                 height={30}
                 alt="Baker Jones Holdings logo"
-                className="sm:hidden "
+                className="sm:hidden"
               />
             </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-2 bg-white/5 backdrop-blur-md px-6 py-2.5 rounded-full border border-white/10">
+            <nav className="hidden lg:flex items-center space-x-2 bg-black/5 backdrop-blur-md px-6 py-2.5 rounded-full border border-black/10">
               <ul className="flex items-center space-x-1">
                 {navigationItems.map((item) => (
                   <li key={item.label}>
                     <Link href={item.href}>
-                      <span className="px-4 py-2 rounded-full font-medium text-sm text-white/80 transition-all duration-300 hover:text-white hover:bg-white/10">
+                      <span className="px-4 py-2 rounded-full font-medium text-sm text-corporate-charcoal/80 transition-all duration-300 hover:text-corporate-charcoal hover:bg-black/5">
                         {item.label}
                       </span>
                     </Link>
@@ -77,7 +77,7 @@ export default function PublicHeader() {
 
             {/* Desktop Right Actions */}
             <div className="hidden lg:flex items-center space-x-6">
-              <Link href={paths.contactUs} className="text-sm font-medium text-white/80 hover:text-white transition-colors">
+              <Link href={paths.contactUs} className="text-sm font-medium text-corporate-charcoal/80 hover:text-corporate-charcoal transition-colors">
                 Partner With Us
               </Link>
               <LoginButton isDashboard={false} />
@@ -91,13 +91,13 @@ export default function PublicHeader() {
 
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                  <Button variant="ghost" size="icon" className="text-corporate-charcoal hover:bg-black/5">
                     <Menu width={24} height={24} />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-full sm:w-[400px] p-0 border-0 bg-corporate-charcoal">
-                  <div className="flex flex-col h-full text-white">
-                    <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <SheetContent side="right" className="w-full sm:w-[400px] p-0 border-0 bg-corporate-white">
+                  <div className="flex flex-col h-full text-corporate-charcoal">
+                    <div className="flex items-center justify-between p-6 border-b border-black/10">
                       <Link
                         href={paths.home}
                         onClick={() => setIsOpen(false)}
@@ -111,7 +111,7 @@ export default function PublicHeader() {
                         />
                       </Link>
                       <SheetClose asChild>
-                        <X onClick={() => setIsOpen(false)} width={24} height={24} className="cursor-pointer text-white/80 hover:text-white" />
+                        <X onClick={() => setIsOpen(false)} width={24} height={24} className="cursor-pointer text-corporate-charcoal/80 hover:text-corporate-charcoal" />
                       </SheetClose>
                     </div>
 
@@ -122,7 +122,7 @@ export default function PublicHeader() {
                             <Link
                               href={item.href}
                               onClick={() => setIsOpen(false)}
-                              className="block px-4 py-3 rounded-lg font-medium text-lg text-white/90 hover:text-white hover:bg-white/10 transition-all"
+                              className="block px-4 py-3 rounded-lg font-medium text-lg text-corporate-charcoal/90 hover:text-corporate-charcoal hover:bg-black/5 transition-all"
                             >
                               {item.label}
                             </Link>
@@ -131,8 +131,8 @@ export default function PublicHeader() {
                       </ul>
                     </nav>
 
-                    <div className="p-6 border-t border-white/10">
-                      <div className="text-sm text-white/60 text-center">
+                    <div className="p-6 border-t border-black/10">
+                      <div className="text-sm text-corporate-charcoal/60 text-center">
                         © {new Date().getFullYear()} Baker Jones Holdings.
                       </div>
                     </div>

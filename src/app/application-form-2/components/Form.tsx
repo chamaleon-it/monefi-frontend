@@ -171,8 +171,8 @@ export default function Form() {
 
   return (
     <div className="flex w-[95vw] lg:w-[75vw] h-[90vh] lg:h-[75vh] rounded-xl overflow-hidden shadow-2xl shadow-bakerjonesholdings-black/40 font-poppins">
-      <div className=" h-full w-1/2 bg-bakerjonesholdings-off-white py-10 px-5 hidden lg:flex items-center justify-center">
-        <h1 className="font-semibold text-4xl text-center text-bakerjonesholdings-pink">
+      <div className=" h-full w-1/2 bg-corporate-white py-10 px-5 hidden lg:flex items-center justify-center">
+        <h1 className="font-semibold text-4xl text-center text-corporate-charcoal font-serif">
           Apply for an Online <br /> Account in minutes
         </h1>
       </div>

@@ -51,7 +51,7 @@ export default function ForgotPasswordForm() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-[#012A62] rounded-2xl shadow-xl p-8"
+          className="bg-[#090A2C] rounded-2xl shadow-xl p-8"
         >
           {/* Form Header */}
           <div className="text-center mb-6">
@@ -93,7 +93,7 @@ export default function ForgotPasswordForm() {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-white text-[#012A62] font-semibold py-3 px-4 rounded-lg hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-white text-[#090A2C] font-semibold py-3 px-4 rounded-lg hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
               whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               initial={{ opacity: 0, y: 10 }}
@@ -102,8 +102,8 @@ export default function ForgotPasswordForm() {
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#012A62] mr-2"></div>
-                  Sending
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#090A2C] mr-2"></div>
+                  Resetting link sending...
                 </div>
               ) : (
                 "Send Reset link"

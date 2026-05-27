@@ -14,7 +14,7 @@
   --color-foreground: var(--foreground);
   
   /* New Corporate Colors */
-  --color-corporate-charcoal: #1f1f1f;
+  --color-corporate-charcoal: #090A2C;
   --color-corporate-black: #111111;
   --color-corporate-white: #f9f9f7;
   --color-corporate-gold: #c5a880;
@@ -22,7 +22,7 @@
 
   /* Existing Dashboard Colors mapped to Corporate Theme */
   --color-bakerjonesholdings-black:#232323;
-  --color-bakerjonesholdings-pink:#1f1f1f; /* Changed from dark blue (#012A62) to corporate charcoal */
+  --color-bakerjonesholdings-pink:#090A2C; /* Changed from dark blue to corporate navy */
   --color-bakerjonesholdings-off-white:#ECEDDA;
   --color-bakerjonesholdings-blue:#c5a880; /* Changed from light blue (#86BBD8) to corporate gold */
   --color-bakerjonesholdings-yellow:#F9EB9F;
