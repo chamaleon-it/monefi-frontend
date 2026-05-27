@@ -8,6 +8,8 @@ export default function usePaths() {
     financialplanning: "/financial-planning",
     loans: "/loans",
     mortgages: "/mortgages",
+    privacy: "/privacy",
+    terms: "/terms",
     utilities: "/utilities",
     estatePlanning: "/estate-planning",
     auth: {

@@ -52,12 +52,12 @@ export default function PublicFooter() {
             <h4 className="font-semibold text-lg mb-6 text-corporate-charcoal/90">Legal</h4>
             <ul className="space-y-4">
               <li>
-                <Link href="#" className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
+                <Link href={paths.privacy} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
                   Privacy Policy <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
+                <Link href={paths.terms} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
                   Terms of Service <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
