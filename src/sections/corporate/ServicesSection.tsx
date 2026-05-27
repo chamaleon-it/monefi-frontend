@@ -19,7 +19,7 @@ export default function ServicesSection() {
   return (
     <section className="py-32 bg-corporate-beige/20 text-corporate-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
+
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ export default function ServicesSection() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold leading-tight font-serif"
           >
-            Comprehensive Expertise for <br className="hidden md:block"/> 
+            Comprehensive Expertise for <br className="hidden md:block" />
             <span className="italic text-corporate-gold">Modern Growth</span>
           </motion.h2>
         </div>
@@ -58,11 +58,7 @@ export default function ServicesSection() {
               <p className="text-corporate-charcoal/70 text-sm leading-relaxed mb-6 flex-grow">
                 {service.desc}
               </p>
-              <div className="mt-auto">
-                <Link href="#" className="inline-flex items-center text-sm font-medium text-corporate-charcoal group-hover:text-corporate-gold transition-colors">
-                  Learn more <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                </Link>
-              </div>
+
             </motion.div>
           ))}
         </div>
