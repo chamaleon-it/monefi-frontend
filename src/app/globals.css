@@ -37,12 +37,7 @@
   --breakpoint-mac: 125rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #111111;
-    --foreground: #f9f9f7;
-  }
-}
+
 
 body {
   background: var(--background);
