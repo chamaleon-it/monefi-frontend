@@ -8,24 +8,26 @@ const insights = [
   {
     category: "AI & Business Growth",
     title: "How Automation is Redefining the Middle Market",
-    date: "Oct 12, 2024",
+    date: "Mar 09, 2026",
     readTime: "5 min read",
-    img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
+    link: "https://www.forbes.com/councils/forbesbusinesscouncil/2026/01/09/how-automation-is-redefining-survival-for-mid-sized-logistics/"
   },
   {
     category: "Investment Trends",
-    title: "The Shift Towards Sustainable Digital Infrastructure",
-    date: "Oct 05, 2024",
+    title: "Cloud Computing – The Digital Backbone of the Economy",
+    date: "Apr 07, 2026",
     readTime: "7 min read",
-    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop",
+    link: "https://digital-strategy.ec.europa.eu/en/policies/cloud-computing"
   },
-  {
-    category: "Strategic Scaling",
-    title: "Why Operational Systems Outperform Capital Injections",
-    date: "Sep 28, 2024",
-    readTime: "6 min read",
-    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-  }
+  // {
+  //   category: "Strategic Scaling",
+  //   title: "Why Operational Systems Outperform Capital Injections",
+  //   date: "Sep 28, 2024",
+  //   readTime: "6 min read",
+  //   img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+  // }
 ];
 
 export default function InsightsSection() {
@@ -67,13 +69,15 @@ export default function InsightsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {insights.map((insight, index) => (
-            <motion.div
+            <motion.a
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="group cursor-pointer"
+              href={insight.link}
+              target="_blank"
             >
               <div className="relative h-64 w-full rounded-2xl overflow-hidden mb-6">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10" />
@@ -94,7 +98,7 @@ export default function InsightsSection() {
               <div className="text-sm text-corporate-charcoal/60">
                 {insight.date}
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
