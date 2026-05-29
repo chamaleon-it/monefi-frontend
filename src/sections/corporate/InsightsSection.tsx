@@ -8,7 +8,7 @@ const insights = [
   {
     category: "AI & Business Growth",
     title: "How Automation is Redefining the Middle Market",
-    date: "Mar 09, 2026",
+    date: "Jan 09, 2026",
     readTime: "5 min read",
     img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
     link: "https://www.forbes.com/councils/forbesbusinesscouncil/2026/01/09/how-automation-is-redefining-survival-for-mid-sized-logistics/"
@@ -16,7 +16,7 @@ const insights = [
   {
     category: "Investment Trends",
     title: "Cloud Computing – The Digital Backbone of the Economy",
-    date: "Apr 07, 2026",
+    date: "Mar 24, 2026",
     readTime: "7 min read",
     img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop",
     link: "https://digital-strategy.ec.europa.eu/en/policies/cloud-computing"
