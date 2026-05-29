@@ -35,7 +35,7 @@ const reasons = [
         icon: <FaChartLine className="text-primary text-3xl mb-4" />,
         title: "Commitment to Growth",
         description:
-            "bakerjonesholdings has grown rapidly, expanding our services and reach. Our growth reflects our clients’ trust and our commitment to high-quality guidance.",
+            "Baker Jones Holdings has grown rapidly, expanding our services and reach. Our growth reflects our clients’ trust and our commitment to high-quality guidance.",
     },
 ];
 

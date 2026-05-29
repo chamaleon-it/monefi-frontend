@@ -1,5 +1,5 @@
 import FAQ from "@/sections/home/FAQ";
-import {  Mail, PhoneCall } from "lucide-react";
+import { Mail, PhoneCall } from "lucide-react";
 import React from "react";
 import Form from "./Form";
 
@@ -26,7 +26,7 @@ export default function ContactUsContent() {
               We&apos;d Love to Hear From You!
             </h1>
             <p className="text-lg lg:text-xl text-bakerjonesholdings-black max-w-3xl mx-auto leading-relaxed">
-              At bakerjonesholdings, we&apos;re always here to assist you with your financial needs. Whether you&apos;re looking for more
+              At Baker Jones Holdings, we&apos;re always here to assist you with your financial needs. Whether you&apos;re looking for more
               information about our services, need advice, or are ready to take the next step toward financial
               empowerment, our team is just a message away.
             </p>
@@ -39,7 +39,7 @@ export default function ContactUsContent() {
               <div className="bg-white/80 backdrop-blur-sm p-8 lg:p-12 rounded-3xl shadow-2xl border border-white/20">
                 <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-8">Send us a message</h2>
 
-               <Form/>
+                <Form />
               </div>
             </div>
 
@@ -63,11 +63,11 @@ export default function ContactUsContent() {
                 </div>
               </div>
 
-             
 
-             
 
-             
+
+
+
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ import { UserRegistrationZod } from "@/validator/user-registration.zod";
 import { useAuth } from "@/auth/useAuth";
 
 export default function RegisterForm() {
-  const { register: userRegister,login,verify } = useAuth();
+  const { register: userRegister, login, verify } = useAuth();
 
   const {
     register,
@@ -25,7 +25,7 @@ export default function RegisterForm() {
     try {
       const { status, error } = await userRegister(data);
       if (status === "success") {
-         await login({email:data.email,password:data.password})
+        await login({ email: data.email, password: data.password })
         await verify()
       } else {
         setError("root", { message: error });
@@ -62,7 +62,7 @@ export default function RegisterForm() {
               Create Account
             </h2>
             <p className="text-white/90 text-sm">
-              Join bakerjonesholdings and start your financial journey
+              Join Baker Jones Holdings and start your financial journey
             </p>
           </div>
 
@@ -72,7 +72,7 @@ export default function RegisterForm() {
 
 
 
-      <motion.div
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}

@@ -18,15 +18,15 @@ export default function Form() {
 
   const formSubmit = handleSubmit(async (data) => {
     try {
-        await toast.promise(api.post('/contact-us',data),
-    {
-        loading:"We are sending your message.",
-        error:"Oops, We have a issue with connections.",
-        success:"You message is successfully received."
-    }
-    )
+      await toast.promise(api.post('/contact-us', data),
+        {
+          loading: "We are sending your message.",
+          error: "Oops, We have a issue with connections.",
+          success: "You message is successfully received."
+        }
+      )
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   });
   return (
@@ -37,7 +37,7 @@ export default function Form() {
             First Name
           </label>
           <input
-          {...register("firstName")}
+            {...register("firstName")}
             type="text"
             className="w-full h-14 px-6 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-500"
             placeholder="Enter your first name"
@@ -49,12 +49,12 @@ export default function Form() {
             Last Name
           </label>
           <input
-          {...register("lastName")}
+            {...register("lastName")}
             type="text"
             className="w-full h-14 px-6 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-500"
             placeholder="Enter your last name"
           />
-            {errors.lastName && <p className="text-xs text-red-500 mt-1.5">{errors.lastName.message}</p>}
+          {errors.lastName && <p className="text-xs text-red-500 mt-1.5">{errors.lastName.message}</p>}
         </div>
       </div>
 
@@ -64,24 +64,24 @@ export default function Form() {
             Email Address
           </label>
           <input
-          {...register("email")}
+            {...register("email")}
             type="email"
             className="w-full h-14 px-6 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-500"
             placeholder="Enter your email address"
           />
-            {errors.email && <p className="text-xs text-red-500 mt-1.5">{errors.email.message}</p>}
+          {errors.email && <p className="text-xs text-red-500 mt-1.5">{errors.email.message}</p>}
         </div>
         <div className="group">
           <label className="block text-sm font-semibold text-gray-700 mb-3">
             Phone Number
           </label>
           <input
-          {...register("phoneNumber")}
+            {...register("phoneNumber")}
             type="tel"
             className="w-full h-14 px-6 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-500"
             placeholder="Enter your phone number"
           />
-            {errors.phoneNumber && <p className="text-xs text-red-500 mt-1.5">{errors.phoneNumber.message}</p>}
+          {errors.phoneNumber && <p className="text-xs text-red-500 mt-1.5">{errors.phoneNumber.message}</p>}
         </div>
       </div>
 
@@ -90,17 +90,17 @@ export default function Form() {
           Message
         </label>
         <textarea
-        {...register("message")}
+          {...register("message")}
           rows={6}
           className="w-full p-6 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:bg-white transition-all duration-300 outline-none text-gray-900 placeholder-gray-500 resize-none"
           placeholder="Tell us how we can help you..."
         />
-          {errors.message && <p className="text-xs text-red-500 mt-1.5">{errors.message.message}</p>}
+        {errors.message && <p className="text-xs text-red-500 mt-1.5">{errors.message.message}</p>}
       </div>
 
       <div className="flex items-start gap-4">
         <input
-        required
+          required
           type="checkbox"
           id="privacy"
           className="w-5 h-5 mt-1 accent-blue-600 rounded"
@@ -116,7 +116,7 @@ export default function Form() {
           >
             privacy policy
           </a>{" "}
-          and consent to being contacted by bakerjonesholdings.
+          and consent to being contacted by Baker Jones Holdings.
         </label>
       </div>
 

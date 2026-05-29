@@ -53,7 +53,7 @@ export default function InsightsSection() {
               Perspectives on <span className="italic text-corporate-gold">Growth.</span>
             </motion.h2>
           </div>
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -62,7 +62,7 @@ export default function InsightsSection() {
             <Link href="#" className="inline-flex items-center text-corporate-charcoal hover:text-corporate-gold font-medium transition-colors">
               View All Insights <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
