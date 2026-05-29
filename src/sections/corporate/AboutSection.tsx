@@ -51,7 +51,7 @@ export default function AboutSection() {
             </div>
 
             <div className="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/5">
-              <div className="text-4xl lg:text-5xl font-bold text-corporate-black mb-2">$50M+</div>
+              <div className="text-4xl lg:text-5xl font-bold text-corporate-black mb-2">&pound;50M+</div>
               <div className="text-sm font-medium text-corporate-charcoal/60 uppercase tracking-wider">Assets Managed</div>
             </div>
           </motion.div>
