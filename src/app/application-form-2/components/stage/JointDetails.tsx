@@ -60,7 +60,7 @@ export default function JointDetails({
           placeholder="First Name"
           className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,firstName:e.target.value} }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, firstName: e.target.value } }))
           }
           value={formData?.jointHolder?.firstName}
         />
@@ -69,28 +69,32 @@ export default function JointDetails({
           placeholder="Last Name"
           className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,lastName:e.target.value} }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, lastName: e.target.value } }))
           }
           value={formData?.jointHolder?.lastName}
         />
         <div className="w-full">
-<label htmlFor="" className="text-bakerjonesholdings-off-white text-sm">Date Of Birth</label>
-        <input
-          type="date"
-          placeholder="Date of Birth"
-          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white accent-bakerjonesholdings-off-white w-full"
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,dateOfBirth:e.target.value} }))
-          }
-          value={formData?.jointHolder?.dateOfBirth}
-        />
+          <label htmlFor="" className="text-bakerjonesholdings-off-white text-sm">Date Of Birth</label>
+          <input
+            type="date"
+            placeholder="Date of Birth"
+            className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white accent-white [color-scheme:dark]
+  [&::-webkit-calendar-picker-indicator]:invert
+  [&::-webkit-calendar-picker-indicator]:brightness-0
+  [&::-webkit-calendar-picker-indicator]:opacity-100
+  w-full"
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, dateOfBirth: e.target.value } }))
+            }
+            value={formData?.jointHolder?.dateOfBirth}
+          />
         </div>
         <input
           type="text"
           placeholder="Occupation"
           className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,occupation:e.target.value} }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, occupation: e.target.value } }))
           }
           value={formData?.jointHolder?.occupation}
         />
@@ -101,19 +105,19 @@ export default function JointDetails({
           onChange={(e) =>
             setFormData((prev) => ({
               ...prev,
-              jointHolder:{...prev.jointHolder,occupationCategory:e.target.value}
+              jointHolder: { ...prev.jointHolder, occupationCategory: e.target.value }
             }))
           }
           value={formData?.jointHolder?.occupationCategory}
         />
-       
+
 
         <input
           type="text"
           placeholder="Home Phone"
           className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,homePhone:e.target.value} }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, homePhone: e.target.value } }))
           }
           value={formData?.jointHolder?.homePhone}
         />
@@ -122,11 +126,11 @@ export default function JointDetails({
           placeholder="Mobile Phone"
           className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
           onChange={(e) =>
-            setFormData((prev) => ({ ...prev, jointHolder:{...prev.jointHolder,mobilePhone:e.target.value} }))
+            setFormData((prev) => ({ ...prev, jointHolder: { ...prev.jointHolder, mobilePhone: e.target.value } }))
           }
           value={formData?.jointHolder?.mobilePhone}
         />
-        
+
       </div>
 
       <div className="flex justify-between items-start">
@@ -171,7 +175,7 @@ export default function JointDetails({
               toast.error("Please enter your mobile phone");
               return;
             }
-           
+
             // If all validations pass, proceed to the next stage
             setStage("Joint address");
           }}

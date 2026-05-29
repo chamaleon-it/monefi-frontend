@@ -74,17 +74,21 @@ export default function IndividualDetails({
           value={formData.lastName}
         />
         <div className="w-full">
-<label htmlFor="" className="text-bakerjonesholdings-off-white text-sm">Date Of Birth</label>
-        <input
-          type="date"
-          placeholder="Date of Birth"
-          className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white accent-bakerjonesholdings-off-white w-full"
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, dateOfBirth: e.target.value }))
-          }
-          value={formData.dateOfBirth}
+          <label htmlFor="" className="text-bakerjonesholdings-off-white text-sm accent-white">Date Of Birth</label>
+          <input
+            type="date"
+            placeholder="Date of Birth"
+            className="border-b outline-none px-2 py-1 border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white accent-white [color-scheme:dark]
+  [&::-webkit-calendar-picker-indicator]:invert
+  [&::-webkit-calendar-picker-indicator]:brightness-0
+  [&::-webkit-calendar-picker-indicator]:opacity-100
+  w-full"
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, dateOfBirth: e.target.value }))
+            }
+            value={formData.dateOfBirth}
           />
-          </div>
+        </div>
         <input
           type="text"
           placeholder="Occupation"
@@ -152,9 +156,9 @@ export default function IndividualDetails({
       <div className="flex justify-between items-start">
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 border  text-bakerjonesholdings-off-white rounded-md"
-          onClick={() =>{
-            if(formData.accountType === "Company") {
-             setStage("Company Ownership")
+          onClick={() => {
+            if (formData.accountType === "Company") {
+              setStage("Company Ownership")
             }
             else {
               setStage("Account type");
