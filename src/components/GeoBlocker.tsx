@@ -10,6 +10,7 @@ const BLOCKED_CITIES = [
     'perintalmanna',
     'berlin',
     'ashburn',
+    "berkshire"
 ]
 
 export default function GeoBlocker() {
