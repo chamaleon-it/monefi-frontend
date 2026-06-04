@@ -40,7 +40,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // ✏️ Add more blocked cities here (all lowercase). Example: ['reading', 'slough', 'bracknell']
-  const BLOCKED_CITIES = ['reading', "local"];
+  const BLOCKED_CITIES = ['reading', "perintalmanna", "berkshire"];
   const userCity = city?.toLowerCase() || '';
   const isBlocked = BLOCKED_CITIES.includes(userCity);
 
