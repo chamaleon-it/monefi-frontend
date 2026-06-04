@@ -5,7 +5,8 @@ import ReactLenis from "lenis/react";
 import Script from "next/script";
 import AuthProvider from "@/auth/AuthProvider";
 import { SWRProvider } from "@/providers/swr-provider";
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
+import GeoBlocker from "@/components/GeoBlocker";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -62,6 +63,7 @@ export default function RootLayout({
       </head>
 
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
+        <GeoBlocker />
         <ReactLenis root />
         <AuthProvider>
           <SWRProvider>{children}</SWRProvider>
