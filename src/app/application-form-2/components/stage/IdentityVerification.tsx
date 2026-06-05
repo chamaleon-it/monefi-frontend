@@ -7,13 +7,14 @@ import api from "@/services/api";
 interface AccountTypeProps {
   setStage: React.Dispatch<React.SetStateAction<StageType>>;
   formData: FormDataType;
-    setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
+  setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
 }
 
-export default function IdentityVerification({ setStage,formData,setFormData }: AccountTypeProps) {
+export default function IdentityVerification({ setStage, formData, setFormData }: AccountTypeProps) {
   return (
     <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-white flex flex-col gap-5 overflow-auto">
       <h2 className="text-2xl font-semibold">Identity Verification</h2>
+      <p className="text-sm">If you experience any technical issues uploading your files, you can leave this blank, submit the form, and email your documents directly to your advisor.</p>
       <p className="text-sm">
         If you need our assistance to complete the account opening process we
         are happy to help. Simply email
@@ -27,20 +28,19 @@ export default function IdentityVerification({ setStage,formData,setFormData }: 
         ].map((type) => (
           <label
             key={type}
-            className={`cursor-pointer px-4 py-2 rounded-md border ${
-              formData.identityVerification === type
-                ? "bg-bakerjonesholdings-black text-bakerjonesholdings-off-white border-bakerjonesholdings-black"
-                : "border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
-            }`}
+            className={`cursor-pointer px-4 py-2 rounded-md border ${formData.identityVerification === type
+              ? "bg-bakerjonesholdings-black text-bakerjonesholdings-off-white border-bakerjonesholdings-black"
+              : "border-bakerjonesholdings-off-white text-bakerjonesholdings-off-white"
+              }`}
           >
             <input
               type="radio"
               name="accountType"
               value={type}
               checked={formData.identityVerification === type}
-              onChange={()=>{
-                setFormData(prev=>({...prev, identityVerification: type as "International travel document" | "Driving Licence" | "Email Identification",identityVerificationFile:""}));
-                
+              onChange={() => {
+                setFormData(prev => ({ ...prev, identityVerification: type as "International travel document" | "Driving Licence" | "Email Identification", identityVerificationFile: "" }));
+
               }}
               className="hidden"
             />
@@ -49,12 +49,12 @@ export default function IdentityVerification({ setStage,formData,setFormData }: 
         ))}
       </div>
 
-      {formData.identityVerification !== "Email Identification" && 
-      <>
-<UploadIdentity formData={formData} setFormData={setFormData}/>
-<UploadBackIdentity formData={formData} setFormData={setFormData} />
-      </>
-}
+      {formData.identityVerification !== "Email Identification" &&
+        <>
+          <UploadIdentity formData={formData} setFormData={setFormData} />
+          <UploadBackIdentity formData={formData} setFormData={setFormData} />
+        </>
+      }
 
       <div className="flex justify-between items-start">
         <button
@@ -66,8 +66,8 @@ export default function IdentityVerification({ setStage,formData,setFormData }: 
         <button
           className="cursor-pointer px-3 hover:px-3.5 py-1 hover:opacity-90 duration-300 rounded-md text-white bg-bakerjonesholdings-black"
           onClick={() => {
-            if(formData.identityVerification !== "Email Identification"){
-              if(!formData.identityVerificationFile){
+            if (formData.identityVerification !== "Email Identification") {
+              if (!formData.identityVerificationFile) {
                 toast.error("Please upload identity proof")
                 return
               }
