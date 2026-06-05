@@ -15,11 +15,6 @@ export default function ProofofAddress({ setStage, formData, setFormData }: Acco
     <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5  text-white flex flex-col gap-5 overflow-auto">
       <h2 className="text-2xl font-semibold">Proof of Address</h2>
       <p className="text-sm">If you experience any technical issues uploading your files, you can leave this blank, submit the form, and email your documents directly to your advisor.</p>
-      <p className="text-sm">
-        If you need our assistance to complete the account opening process we
-        are happy to help. Simply email
-        info@bakerjonesholdings.com
-      </p>
       <div className="flex flex-col gap-5">
         {["Utility Bill", "Driving Licence", "Email Proof of Address"].map(
           (type) => (
