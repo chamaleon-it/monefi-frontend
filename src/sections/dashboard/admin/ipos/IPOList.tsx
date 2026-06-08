@@ -6,6 +6,7 @@ import { fDate } from "@/utility/dateFormatters.ts"
 import { fCurrency } from "@/utility/numberFormatters"
 import toast from "react-hot-toast"
 import api from "@/services/api"
+import configuration from "@/config/configuration"
 import CreateIPODialog from "./CreateIPODialog"
 import UpdateIPODialog from "./UpdateIPODialog"
 import ViewIPODetailsDialog from "./ViewIPODetailsDialog"
@@ -35,6 +36,7 @@ interface Ipo {
   companyDescription?: string
   officialWebsite?: string
   status: string
+  logoUrl?: string
   isPublic: boolean
 }
 
@@ -49,6 +51,12 @@ interface IpoApiResponse {
   data: Ipo[]
   pagination: Pagination
 }
+
+const getLogoUrl = (url?: string) => {
+  if (!url) return '/uploads/default-logo.png';
+  if (url.startsWith('http')) return url;
+  return `${configuration().backendURL}${url}`;
+};
 
 export default function IPOList() {
   const [filter, setFilter] = useState({ page: 1, limit: 10 })
@@ -143,7 +151,7 @@ export default function IPOList() {
 
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      {Array.from({ length: 11 }).map((_, i) => (
+      {Array.from({ length: 12 }).map((_, i) => (
         <td key={i} className="py-3 px-4">
           <div className="h-4 bg-gray-300 rounded w-20 mx-auto"></div>
         </td>
@@ -199,7 +207,10 @@ export default function IPOList() {
                     <tr key={ipo._id} className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">{ipo.name}</td>
-                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{ipo.companyName}</td>
+                      <td className="py-3 px-4 flex items-center space-x-2">
+                        <img src={getLogoUrl(ipo.logoUrl)} alt="logo" className="h-8 w-8 object-cover rounded bg-gray-50 border border-gray-100" />
+                        <span className="text-sm text-bakerjonesholdings-black">{ipo.companyName}</span>
+                      </td>
                       <td className="py-3 px-4 text-sm font-semibold text-bakerjonesholdings-black">{ipo.stockSymbol}</td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{ipo.openDate ? fDate(ipo.openDate) : "-"}</td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{ipo.closeDate ? fDate(ipo.closeDate) : "-"}</td>
@@ -215,6 +226,7 @@ export default function IPOList() {
                           <span className="px-2 py-1 bg-gray-200 text-gray-600 rounded-full text-xs font-medium">Hidden</span>
                         )}
                       </td>
+
                       <td className="py-3 px-4 text-sm text-center">
                         <div className="flex justify-center gap-1.5">
                           <button
@@ -247,7 +259,7 @@ export default function IPOList() {
 
               {!isLoading && ipos.length === 0 && (
                 <tr>
-                  <td colSpan={11} className="text-center py-10 text-gray-500">
+                  <td colSpan={12} className="text-center py-10 text-gray-500">
                     No IPOs found.
                   </td>
                 </tr>
@@ -276,11 +288,10 @@ export default function IPOList() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${
-                  num === pagination.page
+                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page
                     ? "bg-bakerjonesholdings-pink text-white"
                     : "text-bakerjonesholdings-black hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 {num}
               </button>

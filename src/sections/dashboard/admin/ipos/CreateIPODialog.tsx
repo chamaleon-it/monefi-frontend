@@ -24,6 +24,9 @@ export default function CreateIPODialog() {
   const [open, setOpen] = useState(false);
   const { mutate } = useSWRConfig();
   
+  // State for logo file
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  
   const {
     register,
     handleSubmit,
@@ -36,12 +39,33 @@ export default function CreateIPODialog() {
 
   const submit = handleSubmit(async (data) => {
     try {
-      await toast.promise(api.post("/ipos", data), {
-        loading: "Creating IPO...",
-        success: "IPO created successfully!",
-        error: "Failed to create IPO.",
-      });
+      let logoUrl = "";
+      if (logoFile) {
+        const uploadData = new FormData();
+        uploadData.append("file", logoFile);
+        const uploadRes = await api.post("/upload", uploadData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        logoUrl = uploadRes.data.data;
+      }
+
+      const payload = {
+        ...data,
+        logoUrl: logoUrl || undefined,
+      };
+
+      await toast.promise(
+        api.post('/ipos', payload),
+        {
+          loading: "Creating IPO...",
+          success: "IPO created successfully!",
+          error: "Failed to create IPO.",
+        }
+      );
       reset();
+      setLogoFile(null);
       setOpen(false);
       mutate((key) => typeof key === "string" && key.startsWith("/ipos"));
     } catch (error) {
@@ -185,6 +209,10 @@ export default function CreateIPODialog() {
                   <label className={labelStyles}>Company Description</label>
                   <textarea {...register("companyDescription")} rows={3} className={`${inputStyles} resize-none`} placeholder="Write a short description..." />
                   {errors.companyDescription && <p className="text-xs text-red-500 mt-1">{errors.companyDescription.message}</p>}
+                </div>
+                <div>
+                  <label className={labelStyles}>Logo (optional)</label>
+                  <input type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} className={inputStyles} />
                 </div>
                 <div>
                   <label className={labelStyles}>Official Website</label>

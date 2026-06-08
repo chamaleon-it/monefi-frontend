@@ -6,6 +6,7 @@ import { fDate } from "@/utility/dateFormatters.ts"
 import { fCurrency } from "@/utility/numberFormatters"
 import toast from "react-hot-toast"
 import api from "@/services/api"
+import configuration from "@/config/configuration"
 import RequestIPODialog from "./RequestIPODialog"
 
 interface Ipo {
@@ -20,6 +21,7 @@ interface Ipo {
   priceBandMax: number
   lotSize: number
   issueSize: number
+  logoUrl?: string
 }
 
 interface Pagination {
@@ -33,6 +35,12 @@ interface IpoApiResponse {
   data: Ipo[]
   pagination: Pagination
 }
+
+const getLogoUrl = (url?: string) => {
+  if (!url) return '/uploads/default-logo.png';
+  if (url.startsWith('http')) return url;
+  return `${configuration().backendURL}${url}`;
+};
 
 export default function IPOList() {
   const [filter, setFilter] = useState({ page: 1, limit: 10 })
@@ -95,11 +103,11 @@ export default function IPOList() {
 
   const SkeletonRow = () => (
     <tr className="animate-pulse">
-      {Array.from({ length: 9 }).map((_, i) => (
-        <td key={i} className="py-3 px-4">
-          <div className="h-4 bg-gray-300 rounded w-20 mx-auto"></div>
-        </td>
-      ))}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <td key={i} className="py-3 px-4">
+            <div className="h-4 bg-gray-300 rounded w-20 mx-auto"/>
+          </td>
+        ))}
     </tr>
   )
 
@@ -131,6 +139,7 @@ export default function IPOList() {
                 <th className="py-3 px-4">Close Date</th>
                 <th className="py-3 px-4">Price Band</th>
                 <th className="py-3 px-4">Lot Size</th>
+                <th className="py-3 px-4">Logo</th>
                 <th className="py-3 px-4 text-center">Action</th>
               </tr>
             </thead>
@@ -154,9 +163,10 @@ export default function IPOList() {
                         {fCurrency(ipo.priceBandMin)} - {fCurrency(ipo.priceBandMax)}
                       </td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{ipo.lotSize}</td>
-                      <td className="py-3 px-4 text-sm text-center">
-                        <RequestIPODialog ipo={ipo} />
-                      </td>
+                       <td className="py-3 px-4 text-sm text-center"><img src={getLogoUrl(ipo.logoUrl)} alt="logo" className="h-8 w-8 object-cover rounded bg-gray-50 border border-gray-100 mx-auto"/></td>
+                       <td className="py-3 px-4 text-center">
+                         <RequestIPODialog ipo={ipo} />
+                       </td>
                     </tr>
                   ))}
                 </>
@@ -164,9 +174,7 @@ export default function IPOList() {
 
               {!isLoading && ipos.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="text-center py-10 text-gray-500">
-                    No IPOs currently available.
-                  </td>
+                  <td colSpan={10} className="text-center py-10 text-gray-500">No IPOs currently available.</td>
                 </tr>
               )}
             </tbody>

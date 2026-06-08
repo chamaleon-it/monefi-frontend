@@ -27,27 +27,16 @@ interface RequestIPODialogProps {
 
 export default function RequestIPODialog({ ipo }: RequestIPODialogProps) {
   const [open, setOpen] = useState(false);
-  const [quantity, setQuantity] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Use ipo.price if available, otherwise fallback to 0 to avoid NaN
   const price = ipo.price || 0;
-  const totalAmount = quantity * price;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (quantity < 1) {
-      toast.error("Quantity must be at least 1");
-      return;
-    }
-    if (quantity > ipo.issueSize) {
-      toast.error(`Quantity cannot exceed issue size (${ipo.issueSize})`);
-      return;
-    }
-
     setIsSubmitting(true);
     try {
-      await toast.promise(api.post(`/ipos/${ipo._id}/request`, { quantity }), {
+      await toast.promise(api.post(`/ipos/${ipo._id}/request`, {}), {
         loading: "Submitting request...",
         success: "IPO requested successfully!",
         error: "Failed to request IPO or already requested.",
@@ -71,7 +60,7 @@ export default function RequestIPODialog({ ipo }: RequestIPODialogProps) {
         <DialogHeader className="px-6 py-5 border-b border-gray-100 bg-gray-50/30 shrink-0">
           <DialogTitle className="text-xl font-bold">Request IPO</DialogTitle>
           <DialogDescription className="text-gray-500 mt-1">
-            Choose the quantity you want to request for <strong>{ipo.name}</strong>.
+            Are you sure you want to request <strong>{ipo.name}</strong>?
           </DialogDescription>
         </DialogHeader>
 
@@ -91,27 +80,10 @@ export default function RequestIPODialog({ ipo }: RequestIPODialogProps) {
                 <span className="font-bold text-gray-900">{ipo.lotSize?.toLocaleString()}</span>
               </div>
             </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Quantity (Units)</label>
-              <input
-                type="number"
-                min={1}
-                max={ipo.issueSize}
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-[#86BBD8] focus:border-transparent outline-none transition-all text-gray-900"
-                required
-              />
-              <p className="text-xs text-gray-500 mt-2">Enter how many units you wish to purchase.</p>
-            </div>
-
-            <div className="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-bold text-blue-900">Total Amount to Pay:</span>
-                <span className="text-2xl font-black text-blue-600">{fCurrency(totalAmount)}</span>
-              </div>
-            </div>
+            
+            <p className="text-sm text-gray-600 text-center">
+              Clicking <strong>Confirm Request</strong> will submit your subscription request to the administration for approval.
+            </p>
           </div>
 
           <div className="px-6 py-4 border-t border-gray-100 bg-gray-50/30 flex justify-end gap-3 shrink-0">
@@ -124,7 +96,7 @@ export default function RequestIPODialog({ ipo }: RequestIPODialogProps) {
             </button>
             <button
               type="submit"
-              disabled={isSubmitting || quantity < 1 || quantity > ipo.issueSize}
+              disabled={isSubmitting}
               className="px-5 py-2.5 text-sm font-medium text-white bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/90 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               {isSubmitting ? "Processing..." : "Confirm Request"}

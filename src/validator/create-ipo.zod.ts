@@ -14,6 +14,8 @@ export const CreateIpoZod = z.object({
   price: z.number().min(0, "Must be greater than or equal to 0"),
   companyDescription: z.string().optional(),
   officialWebsite: z.string().optional(),
+  status: z.enum(["Upcoming", "Open", "Closed", "Listed"]).optional(),
+  isPublic: z.boolean().optional(),
 });
 
 export type CreateIpoInput = z.infer<typeof CreateIpoZod>;

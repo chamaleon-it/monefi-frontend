@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateIpoZod, CreateIpoInput } from "@/validator/create-ipo.zod";
@@ -33,6 +33,7 @@ interface Ipo {
   officialWebsite?: string
   status: string
   isPublic: boolean
+  logoUrl?: string
 }
 
 interface UpdateIPODialogProps {
@@ -46,6 +47,7 @@ const labelStyles = "block text-sm font-semibold text-gray-700 mb-1.5";
 
 export default function UpdateIPODialog({ ipo, open, onOpenChange }: UpdateIPODialogProps) {
   const { mutate } = useSWRConfig();
+  const [logoFile, setLogoFile] = useState<File | null>(null);
   
   const {
     register,
@@ -76,6 +78,7 @@ export default function UpdateIPODialog({ ipo, open, onOpenChange }: UpdateIPODi
 
   useEffect(() => {
     if (open) {
+      setLogoFile(null);
       reset({
         name: ipo.name,
         companyName: ipo.companyName,
@@ -98,11 +101,29 @@ export default function UpdateIPODialog({ ipo, open, onOpenChange }: UpdateIPODi
 
   const submit = handleSubmit(async (data) => {
     try {
-      await toast.promise(api.patch(`/ipos/${ipo._id}`, data), {
+      let logoUrl = ipo.logoUrl;
+      if (logoFile) {
+        const uploadData = new FormData();
+        uploadData.append("file", logoFile);
+        const uploadRes = await api.post("/upload", uploadData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        logoUrl = uploadRes.data.data;
+      }
+
+      const payload = {
+        ...data,
+        logoUrl,
+      };
+
+      await toast.promise(api.patch(`/ipos/${ipo._id}`, payload), {
         loading: "Updating IPO...",
         success: "IPO updated successfully!",
         error: "Failed to update IPO.",
       });
+      setLogoFile(null);
       onOpenChange(false);
       mutate((key: unknown) => typeof key === "string" && key.startsWith("/ipos"));
     } catch (error) {
@@ -241,6 +262,10 @@ export default function UpdateIPODialog({ ipo, open, onOpenChange }: UpdateIPODi
                   <label className={labelStyles}>Company Description</label>
                   <textarea {...register("companyDescription")} rows={3} className={`${inputStyles} resize-none`} placeholder="Write a short description..." />
                   {errors.companyDescription && <p className="text-xs text-red-500 mt-1">{errors.companyDescription.message}</p>}
+                </div>
+                <div>
+                  <label className={labelStyles}>Logo (optional)</label>
+                  <input type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} className={inputStyles} />
                 </div>
                 <div>
                   <label className={labelStyles}>Official Website</label>

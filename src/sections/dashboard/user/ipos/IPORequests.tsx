@@ -123,8 +123,6 @@ export default function IPORequests() {
               <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink whitespace-nowrap">
                 <th className="py-3 px-4">#</th>
                 <th className="py-3 px-4">IPO Name</th>
-                <th className="py-3 px-4">Quantity</th>
-                <th className="py-3 px-4">Total Amount</th>
                 <th className="py-3 px-4">Request Date</th>
                 <th className="py-3 px-4">Last Updated</th>
                 <th className="py-3 px-4 text-center">Status</th>
@@ -142,8 +140,6 @@ export default function IPORequests() {
                     <tr key={request._id} className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap items-center">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">{request.ipo?.name} ({request.ipo?.stockSymbol})</td>
-                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{request.quantity}</td>
-                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black text-blue-700 font-semibold">${request.totalAmount?.toLocaleString()}</td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fDate(request.createdAt)}</td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fDate(request.updatedAt)}</td>
                       <td className="py-3 px-4 text-sm text-center">{getStatusBadge(request.status)}</td>

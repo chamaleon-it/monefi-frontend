@@ -8,8 +8,7 @@ import api from "@/services/api"
 
 interface User {
   _id: string
-  firstName: string
-  lastName: string
+  name: string
   email: string
 }
 
@@ -163,7 +162,8 @@ export default function IPORequests() {
                     <tr key={request._id} className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap items-center">
                       <td className="py-3 px-4 text-sm">{(filter.page - 1) * filter.limit + i + 1}</td>
                       <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        {request.user?.firstName} {request.user?.lastName}
+                        <div className="font-semibold text-gray-900">{request.user?.name}</div>
+                        <div className="text-xs text-gray-500 font-normal">{request.user?.email}</div>
                       </td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{request.ipo?.name}</td>
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{request.ipo?.stockSymbol}</td>
@@ -224,11 +224,10 @@ export default function IPORequests() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${
-                  num === pagination.page
-                    ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-bakerjonesholdings-black hover:bg-gray-100"
-                }`}
+                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page
+                  ? "bg-bakerjonesholdings-pink text-white"
+                  : "text-bakerjonesholdings-black hover:bg-gray-100"
+                  }`}
               >
                 {num}
               </button>
