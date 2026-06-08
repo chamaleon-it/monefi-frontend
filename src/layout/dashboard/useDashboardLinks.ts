@@ -68,7 +68,7 @@ export default function useDashboardLinks(): Links[] {
       icon: "hugeicons:invoice",
     },
     {
-      title: "Trade Stock",
+      title: "Markets",
       path: paths.dashboard.user.tradeStock,
       icon: "mingcute:stock-line",
     },
@@ -87,7 +87,7 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.user.myPortfolio,
       icon: "bytesize:portfolio",
     },
-     {
+    {
       title: "KYC",
       path: paths.dashboard.user.kyc,
       icon: "mingcute:user-search-line",
