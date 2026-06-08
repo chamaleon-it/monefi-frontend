@@ -37,7 +37,7 @@ interface Ipo {
 }
 
 interface UpdateIPODialogProps {
-  ipo: Ipo;
+  ipo: any;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -48,7 +48,7 @@ const labelStyles = "block text-sm font-semibold text-gray-700 mb-1.5";
 export default function UpdateIPODialog({ ipo, open, onOpenChange }: UpdateIPODialogProps) {
   const { mutate } = useSWRConfig();
   const [logoFile, setLogoFile] = useState<File | null>(null);
-  
+
   const {
     register,
     handleSubmit,
@@ -130,7 +130,7 @@ export default function UpdateIPODialog({ ipo, open, onOpenChange }: UpdateIPODi
       let err: string | [string] = "Something went wrong.";
       if (error && typeof error === "object" && (error as AxiosError).isAxiosError) {
         err =
-          ((error as AxiosError).response?.data as {message:[string] |string})?.message ||
+          ((error as AxiosError).response?.data as { message: [string] | string })?.message ||
           "Something went wrong.";
       }
       const message = typeof err === "string" ? err : err[0];
