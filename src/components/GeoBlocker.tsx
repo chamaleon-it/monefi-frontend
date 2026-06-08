@@ -27,7 +27,7 @@ export default function GeoBlocker() {
                             cachedCity.toLowerCase()
                         )
                     ) {
-                        router.replace('/forbidden')
+                        // router.replace('/forbidden')
                     }
                     return
                 }
@@ -40,7 +40,7 @@ export default function GeoBlocker() {
                 localStorage.setItem('user_city', city)
 
                 if (BLOCKED_CITIES.includes(city)) {
-                    router.replace('/forbidden')
+                    // router.replace('/forbidden')
                 }
             } catch (error) {
                 console.error('Geo check failed', error)

@@ -50,6 +50,16 @@ export default function useDashboardLinks(): Links[] {
       icon: "mdi:form-outline",
     },
     {
+      title: "IPOs",
+      path: paths.dashboard.admin.ipos,
+      icon: "mdi:bank-outline",
+    },
+    {
+      title: "IPO Requests",
+      path: paths.dashboard.admin.ipoRequests,
+      icon: "mdi:clipboard-text-outline",
+    },
+    {
       title: "Settings",
       path: paths.dashboard.settings,
       icon: "material-symbols:settings-outline",
@@ -91,6 +101,16 @@ export default function useDashboardLinks(): Links[] {
       title: "KYC",
       path: paths.dashboard.user.kyc,
       icon: "mingcute:user-search-line",
+    },
+    {
+      title: "IPOs",
+      path: paths.dashboard.user.ipos,
+      icon: "mdi:bank-outline",
+    },
+    {
+      title: "IPO Requests",
+      path: paths.dashboard.user.ipoRequests,
+      icon: "mdi:clipboard-text-outline",
     },
     {
       title: "Settings",
