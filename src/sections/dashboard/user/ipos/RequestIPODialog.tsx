@@ -22,7 +22,7 @@ interface Ipo {
 }
 
 interface RequestIPODialogProps {
-  ipo: Ipo;
+  ipo: any;
 }
 
 export default function RequestIPODialog({ ipo }: RequestIPODialogProps) {
@@ -80,7 +80,7 @@ export default function RequestIPODialog({ ipo }: RequestIPODialogProps) {
                 <span className="font-bold text-gray-900">{ipo.lotSize?.toLocaleString()}</span>
               </div>
             </div>
-            
+
             <p className="text-sm text-gray-600 text-center">
               Clicking <strong>Confirm Request</strong> will submit your subscription request to the administration for approval.
             </p>
