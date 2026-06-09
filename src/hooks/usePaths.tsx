@@ -21,6 +21,7 @@ export default function usePaths() {
     dashboard: {
       root: "/dashboard",
       settings: "/dashboard/settings",
+      regulatoryInformation: "/dashboard/regulatory-information",
       admin: {
         transactions: "/dashboard/admin/transactions",
         newBond: "/dashboard/admin/bonds/new",
