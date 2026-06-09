@@ -99,5 +99,6 @@ export const topStock = [
   { name: "Public Storage", symbol: "PSA" },
   { name: "Digital Realty", symbol: "DLR" },
   { name: "Match Group", symbol: "MTCH" },
-  { name: "HCA Healthcare", symbol: "HCA" }
+  { name: "HCA Healthcare", symbol: "HCA" },
+  { name: "British American Tobacco p.l.c.", symbol: "BATS" }
 ]
