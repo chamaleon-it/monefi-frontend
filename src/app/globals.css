@@ -28,6 +28,18 @@
   --color-bakerjonesholdings-yellow:#F9EB9F;
   --color-bakerjonesholdings-green:#647E4E;
   --color-bakerjonesholdings-off-pink:#e5e7eb;
+
+  /* Shadcn UI Theme Colors */
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111111;
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #111111;
+  --color-border: #e5e7eb;
+  --color-input: #e5e7eb;
+  --color-ring: #c5a880;
+  --color-muted: #f3f4f6;
+  --color-muted-foreground: #6b7280;
+  --color-destructive: #ef4444;
   
   --font-poppins: var(--font-poppins-mono);
   --font-inter: var(--font-inter-mono);

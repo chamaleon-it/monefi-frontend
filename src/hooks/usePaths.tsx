@@ -22,6 +22,7 @@ export default function usePaths() {
       root: "/dashboard",
       settings: "/dashboard/settings",
       regulatoryInformation: "/dashboard/regulatory-information",
+      support: "/dashboard/support",
       admin: {
         transactions: "/dashboard/admin/transactions",
         newBond: "/dashboard/admin/bonds/new",

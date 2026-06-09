@@ -65,6 +65,11 @@ export default function useDashboardLinks(): Links[] {
       icon: "mdi:shield-check-outline",
     },
     {
+      title: "Support",
+      path: paths.dashboard.support,
+      icon: "material-symbols:support-agent",
+    },
+    {
       title: "Settings",
       path: paths.dashboard.settings,
       icon: "material-symbols:settings-outline",
@@ -121,6 +126,11 @@ export default function useDashboardLinks(): Links[] {
       title: "Regulatory Information",
       path: paths.dashboard.regulatoryInformation,
       icon: "mdi:shield-check-outline",
+    },
+    {
+      title: "Support",
+      path: paths.dashboard.support,
+      icon: "material-symbols:support-agent",
     },
     {
       title: "Settings",
