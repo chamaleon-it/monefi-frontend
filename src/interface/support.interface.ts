@@ -1,9 +1,8 @@
 import { SupportTicketStatus, SupportTicketSubject } from "../enum/support.enum";
-import { User } from "./user.interface";
 
 export interface SupportTicket {
   _id: string;
-  user: User;
+  user: any;
   subject: SupportTicketSubject;
   message: string;
   status: SupportTicketStatus;
