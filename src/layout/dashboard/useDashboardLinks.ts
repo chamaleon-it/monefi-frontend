@@ -60,6 +60,16 @@ export default function useDashboardLinks(): Links[] {
       icon: "mdi:clipboard-text-outline",
     },
     {
+      title: "Regulatory Information",
+      path: paths.dashboard.regulatoryInformation,
+      icon: "mdi:shield-check-outline",
+    },
+    {
+      title: "Support",
+      path: paths.dashboard.support,
+      icon: "material-symbols:support-agent",
+    },
+    {
       title: "Settings",
       path: paths.dashboard.settings,
       icon: "material-symbols:settings-outline",
@@ -111,6 +121,16 @@ export default function useDashboardLinks(): Links[] {
       title: "IPO Requests",
       path: paths.dashboard.user.ipoRequests,
       icon: "mdi:clipboard-text-outline",
+    },
+    {
+      title: "Regulatory Information",
+      path: paths.dashboard.regulatoryInformation,
+      icon: "mdi:shield-check-outline",
+    },
+    {
+      title: "Support",
+      path: paths.dashboard.support,
+      icon: "material-symbols:support-agent",
     },
     {
       title: "Settings",
