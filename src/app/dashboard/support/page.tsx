@@ -209,7 +209,7 @@ export default function SupportPage() {
                   <td className="py-4 px-4 text-sm font-medium text-gray-800">
                     {ticket.subject}
                   </td>
-                  <td className="py-4 px-4 text-sm text-gray-600 max-w-xs truncate">
+                  <td className="py-4 px-4 text-sm text-gray-600 w-96">
                     {ticket.message}
                   </td>
                   <td className="py-4 px-4 text-sm text-gray-500">

@@ -18,18 +18,18 @@ export default function TransactionsTable() {
       quantity: number;
       unitPrice: number;
       totalValue: number;
-      transaction:{
-        createdAt:Date,
-        buyBackDate?:Date |null
+      transaction: {
+        createdAt: Date,
+        buyBackDate?: Date | null
       },
       investmentType: InvestmentType;
       createdAt: Date;
       buyBack: null | "Yes" | "No";
       certificate?: string | null;
-      interest:{
-        date:Date,
-        amount:number,
-        _id:string,
+      interest: {
+        date: Date,
+        amount: number,
+        _id: string,
       }[];
     }[];
   }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
@@ -109,15 +109,15 @@ export default function TransactionsTable() {
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
+                    <th className="py-3 px-4">Start Date</th>
                     <th className="py-3 px-4">Buyback</th>
                     <th className="py-3 px-4">Buyback Date</th>
-                    <th className="py-3 px-4">View Interest</th>
-                    <th className="py-3 px-4">Certificate</th>
-                    <th className="py-3 px-4">Date</th>
                     <th className="py-3 px-4">Coupon Rate</th>
                     <th className="py-3 px-4">Coupon Frequency</th>
                     <th className="py-3 px-4">Coupon Type</th>
                     <th className="py-3 px-4">Maturity Date</th>
+                    <th className="py-3 px-4">Payment Schedule</th>
+                    <th className="py-3 px-4">Certificate</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,11 +161,12 @@ export default function TransactionsTable() {
                 <thead>
                   <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
-                    <th className="py-3 px-4">Symbol</th>
+                    <th className="py-3 px-4">Ticker</th>
+                    <th className="py-3 px-4">Company Name</th>
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Date</th>
+                    <th className="py-3 px-4">Order Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -182,8 +183,12 @@ export default function TransactionsTable() {
                           className="border-b bg-bakerjonesholdings-off-pink"
                         >
                           <td className="py-3 px-4 text-sm">{i + 1}</td>
-                          <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                            {tx.symbol}
+                          <td className="py-3 px-4 font-medium text-gray-800">
+
+                            <p className="text-sm">{tx.symbol}</p>
+                          </td>
+                          <td className="py-3 px-4 font-medium text-gray-800">
+                            {tx.name}
                           </td>
                           <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                             {tx.quantity}

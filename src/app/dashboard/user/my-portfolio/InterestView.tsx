@@ -35,18 +35,18 @@ interface Props {
     createdAt: Date;
     buyBack: null | "Yes" | "No";
     certificate?: string | null;
-     interest:{
-        date:Date,
-        amount:number,
-        _id:string,
-      }[];
+    interest: {
+      date: Date,
+      amount: number,
+      _id: string,
+    }[];
   };
 }
 
 export default function InterestView({ tx }: Props) {
 
 
-  const totalInterest = useMemo(() => tx.interest.reduce((a,b)=>a+b.amount,0), [tx.interest])
+  const totalInterest = useMemo(() => tx.interest.reduce((a, b) => a + b.amount, 0), [tx.interest])
 
 
 
@@ -54,7 +54,7 @@ export default function InterestView({ tx }: Props) {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer">
-          View Interest
+          Payment Schedule
         </Button>
       </DialogTrigger>
 
@@ -62,7 +62,7 @@ export default function InterestView({ tx }: Props) {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <p className="text-emerald-500 text-xl">£</p>
-            
+
             Interest View
           </DialogTitle>
           <DialogDescription>
@@ -76,7 +76,7 @@ export default function InterestView({ tx }: Props) {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
 
- <div>
+                <div>
                   <p className="text-sm font-medium text-muted-foreground">
                     Initial Investment
                   </p>
