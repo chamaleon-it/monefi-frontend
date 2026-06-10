@@ -58,15 +58,15 @@ export default function InterestView({ tx }: Props) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="!w-[600px] !max-w-[600px] !max-h-[80vh]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <p className="text-emerald-500 text-xl">£</p>
 
-            Interest View
+            Payment Schedule
           </DialogTitle>
           <DialogDescription>
-            Manage your interest entries.
+            View your Payment Schedule entries.
           </DialogDescription>
         </DialogHeader>
 
@@ -88,14 +88,14 @@ export default function InterestView({ tx }: Props) {
                     Interest Accrued
                   </p>
                   <p className="text-2xl font-bold ">
-                    {fCurrency(totalInterest)}
+                    {fCurrency(totalInterest - tx.totalValue)}
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">
                     Value at Maturity
                   </p>
-                  <p className="text-2xl font-bold text-emerald-600">{fCurrency(totalInterest + tx.totalValue)}</p>
+                  <p className="text-2xl font-bold text-emerald-600">{fCurrency(totalInterest)}</p>
                 </div>
               </div>
             </CardContent>

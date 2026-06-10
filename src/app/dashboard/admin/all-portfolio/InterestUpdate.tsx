@@ -53,54 +53,54 @@ interface Props {
       name: string;
     };
     certificate?: string | null;
-     interest:{
-        date:Date,
-        amount:number,
-        _id:string,
-      }[];
+    interest: {
+      date: Date,
+      amount: number,
+      _id: string,
+    }[];
   };
   portfolioMutate: () => void;
 }
 
-export default function InterestUpdate({ tx,portfolioMutate }: Props) {
+export default function InterestUpdate({ tx, portfolioMutate }: Props) {
 
   const [newAmount, setNewAmount] = useState("");
   const [newDate, setNewDate] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-      try {
-          e.preventDefault();
-          if (!newAmount || !newDate) return;
-      
-          const newEntry = {
-            id: tx._id,
-            amount: parseFloat(newAmount),
-            date: new Date(newDate),
-          };
-          
-    await toast.promise(api.patch("/portfolio/update_interest", newEntry), {
-      loading: "Adding interest....",
-      success: ({ data }) => data.message,
-      error: "Somthing is error, Please try again.",
-    });
-    portfolioMutate();
-    setNewAmount("");
-    setNewDate("");
-} catch (error) {
-    console.log(error);
-}
+    try {
+      e.preventDefault();
+      if (!newAmount || !newDate) return;
+
+      const newEntry = {
+        id: tx._id,
+        amount: parseFloat(newAmount),
+        date: new Date(newDate),
+      };
+
+      await toast.promise(api.patch("/portfolio/update_interest", newEntry), {
+        loading: "Adding interest....",
+        success: ({ data }) => data.message,
+        error: "Somthing is error, Please try again.",
+      });
+      portfolioMutate();
+      setNewAmount("");
+      setNewDate("");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const deleteInterest = async(id:string) =>{
+  const deleteInterest = async (id: string) => {
     try {
-        await toast.promise(api.patch('/portfolio/delete_interest', {id:tx._id,interestId:id} ),{
-            loading:"Removing interest.",
-            error:"Somthing is error, Please try again.",
-            success: ({ data }) => data.message
-        })
-        portfolioMutate();
+      await toast.promise(api.patch('/portfolio/delete_interest', { id: tx._id, interestId: id }), {
+        loading: "Removing interest.",
+        error: "Somthing is error, Please try again.",
+        success: ({ data }) => data.message
+      })
+      portfolioMutate();
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   }
 
@@ -112,10 +112,10 @@ export default function InterestUpdate({ tx,portfolioMutate }: Props) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="!w-[600px] !max-w-[600px] !max-h-[80vh]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-           <p className="text-emerald-500 text-xl">£</p>
+            <p className="text-emerald-500 text-xl">£</p>
             Interest Management
           </DialogTitle>
           <DialogDescription>
@@ -134,7 +134,7 @@ export default function InterestUpdate({ tx,portfolioMutate }: Props) {
                     Total Interest
                   </p>
                   <p className="text-2xl font-bold text-emerald-600">
-                    {fCurrency(tx.interest.reduce((a,b)=>a+b.amount,0))}
+                    {fCurrency(tx.interest.reduce((a, b) => a + b.amount, 0) - tx.totalValue)}
                   </p>
                 </div>
                 <div>
@@ -200,7 +200,7 @@ export default function InterestUpdate({ tx,portfolioMutate }: Props) {
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                               <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction className="bg-red-500 hover:bg-red-600" onClick={()=>deleteInterest(entry._id)}>
+                              <AlertDialogAction className="bg-red-500 hover:bg-red-600" onClick={() => deleteInterest(entry._id)}>
                                 Delete
                               </AlertDialogAction>
                             </AlertDialogFooter>
