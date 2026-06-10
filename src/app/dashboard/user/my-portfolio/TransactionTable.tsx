@@ -105,7 +105,8 @@ export default function TransactionsTable() {
                 <thead>
                   <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
                     <th className="py-3 px-4">#</th>
-                    <th className="py-3 px-4">Symbol</th>
+                    <th className="py-3 px-4">ISIN</th>
+                    <th className="py-3 px-4">Issuer</th>
                     <th className="py-3 px-4">Quantity</th>
                     <th className="py-3 px-4">Unit Price</th>
                     <th className="py-3 px-4">Total Value</th>

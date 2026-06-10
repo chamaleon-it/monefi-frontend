@@ -50,9 +50,9 @@ export default function BondsRow({ tx, i }: Props) {
     <tr className="border-b bg-bakerjonesholdings-off-pink">
       <td className="py-3 px-4 text-sm">{i + 1}</td>
       <td className="py-3 px-4 text-sm font-medium text-gray-800">
-        <p className="font-bold">{bond?.name}</p>
-        <p className="text-sm">{bond?.isin}</p>
+        <p className="font-bold">{bond?.isin}</p>
       </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.name}</td>
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.unitPrice)}
