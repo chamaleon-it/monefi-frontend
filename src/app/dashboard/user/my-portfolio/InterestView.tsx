@@ -17,12 +17,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import { Card, CardContent } from "@/components/ui/card";
 import { fCurrency } from "@/utility/numberFormatters";
 import { fDate } from "@/utility/dateFormatters.ts";
-import { useMemo } from "react";
-
 
 interface Props {
   tx: {
@@ -36,20 +32,16 @@ interface Props {
     buyBack: null | "Yes" | "No";
     certificate?: string | null;
     interest: {
-      date: Date,
-      amount: number,
-      _id: string,
+      date: Date;
+      amount: number;
+      paymentType?: string;
+      status?: string;
+      _id: string;
     }[];
   };
 }
 
 export default function InterestView({ tx }: Props) {
-
-
-  const totalInterest = useMemo(() => tx.interest.reduce((a, b) => a + b.amount, 0), [tx.interest])
-
-
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -58,85 +50,70 @@ export default function InterestView({ tx }: Props) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="!w-[600px] !max-w-[600px] !max-h-[80vh]">
+      <DialogContent className="!w-[700px] !max-w-[700px] !max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <p className="text-emerald-500 text-xl">£</p>
-
             Payment Schedule
           </DialogTitle>
           <DialogDescription>
-            View your Payment Schedule entries.
+            View your scheduled payments and their current status.
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Summary Card */}
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">
-                    Initial Investment
-                  </p>
-                  <p className="text-2xl font-bold">{fCurrency(tx.totalValue)}</p>
-                </div>
-
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">
-                    Interest Accrued
-                  </p>
-                  <p className="text-2xl font-bold ">
-                    {fCurrency(totalInterest - tx.totalValue)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">
-                    Value at Maturity
-                  </p>
-                  <p className="text-2xl font-bold text-emerald-600">{fCurrency(totalInterest)}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Interest Entries Table */}
           <div className="border rounded-lg">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-16">SL</TableHead>
+                  <TableHead className="w-24">Payment No.</TableHead>
+                  <TableHead>Payment Type</TableHead>
+                  <TableHead>Due Date</TableHead>
                   <TableHead>Amount</TableHead>
-                  <TableHead>Date</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {tx.interest.length === 0 ? (
                   <TableRow>
                     <TableCell
-                      colSpan={4}
+                      colSpan={5}
                       className="text-center py-8 text-muted-foreground"
                     >
-                      No interest entries found.
+                      No payment entries found.
                     </TableCell>
                   </TableRow>
                 ) : (
-                  tx.interest.map((entry, index) => (
-                    <TableRow key={entry._id}>
-                      <TableCell className="font-medium">{index + 1}</TableCell>
-                      <TableCell className="font-semibold">
-                        {fCurrency(entry.amount)}
-                      </TableCell>
-                      <TableCell>{fDate(entry.date)}</TableCell>
+                  tx.interest.map((entry, index) => {
+                    const status = entry.status || "Upcoming";
+                    const paymentType = entry.paymentType || "Interest Payment";
 
-                    </TableRow>
-                  ))
+                    return (
+                      <TableRow key={entry._id}>
+                        <TableCell className="font-medium">{index + 1}</TableCell>
+                        <TableCell>{paymentType}</TableCell>
+                        <TableCell>{fDate(entry.date)}</TableCell>
+                        <TableCell className="font-semibold text-gray-800">
+                          {fCurrency(entry.amount)}
+                        </TableCell>
+                        <TableCell>
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                              status === "Completed"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-yellow-100 text-yellow-700"
+                            }`}
+                          >
+                            {status}
+                          </span>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
                 )}
               </TableBody>
             </Table>
           </div>
-
         </div>
       </DialogContent>
     </Dialog>
