@@ -1,0 +1,202 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import ChangePassword from "./ChangePassword";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import api from "@/services/api";
+import toast from "react-hot-toast";
+import Image from "next/image";
+
+interface LoginActivity {
+  ip: string;
+  device: string;
+  time: string;
+  _id: string;
+}
+
+export default function SecuritySettings() {
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [loginActivity, setLoginActivity] = useState<LoginActivity[]>([]);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
+  const [twoFactorCode, setTwoFactorCode] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const { data } = await api.get("/users/profile");
+      setTwoFactorEnabled(data.data.twoFactorEnabled);
+      setLoginActivity(data.data.loginActivity || []);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGenerate2FA = async () => {
+    try {
+      const { data } = await api.post("/users/2fa/generate");
+      setQrCodeDataUrl(data.data.qrCodeDataUrl);
+    } catch (error) {
+      toast.error("Failed to generate 2FA secret");
+    }
+  };
+
+  const handleEnable2FA = async () => {
+    if (!twoFactorCode || twoFactorCode.length !== 6) {
+      toast.error("Please enter a valid 6-digit code");
+      return;
+    }
+    try {
+      await api.post("/users/2fa/turn-on", { code: twoFactorCode });
+      toast.success("Two-Factor Authentication Enabled");
+      setTwoFactorEnabled(true);
+      setQrCodeDataUrl(null);
+      setTwoFactorCode("");
+    } catch (error) {
+      toast.error("Invalid 2FA code");
+    }
+  };
+
+  const handleDisable2FA = async () => {
+    if (!twoFactorCode || twoFactorCode.length !== 6) {
+      toast.error("Please enter a valid 6-digit code");
+      return;
+    }
+    try {
+      await api.post("/users/2fa/turn-off", { code: twoFactorCode });
+      toast.success("Two-Factor Authentication Disabled");
+      setTwoFactorEnabled(false);
+      setTwoFactorCode("");
+    } catch (error) {
+      toast.error("Invalid 2FA code");
+    }
+  };
+
+  if (loading) {
+    return <div className="animate-pulse text-gray-500">Loading security settings...</div>;
+  }
+
+  return (
+    <div className="space-y-8">
+      {/* Password Change */}
+      <ChangePassword />
+
+      {/* Two-Factor Authentication */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Two-Factor Authentication (2FA)</CardTitle>
+          <CardDescription>
+            Add an extra layer of security to your account using an authenticator app like Google Authenticator.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {twoFactorEnabled ? (
+            <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-md">
+              <p className="text-emerald-700 font-medium mb-4">
+                Two-Factor Authentication is currently enabled.
+              </p>
+              <div className="flex items-end gap-4 max-w-sm">
+                <div className="space-y-2 flex-1">
+                  <label className="text-sm font-medium text-emerald-800">
+                    Enter code to disable
+                  </label>
+                  <Input
+                    type="text"
+                    maxLength={6}
+                    placeholder="6-digit code"
+                    value={twoFactorCode}
+                    onChange={(e) => setTwoFactorCode(e.target.value)}
+                    className="tracking-widest text-center border-emerald-300 focus-visible:ring-emerald-500"
+                  />
+                </div>
+                <Button variant="destructive" onClick={handleDisable2FA}>
+                  Disable 2FA
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {!qrCodeDataUrl ? (
+                <Button onClick={handleGenerate2FA} className="bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/90 text-white">
+                  Set up 2FA
+                </Button>
+              ) : (
+                <div className="space-y-6">
+                  <p className="text-sm text-gray-600">
+                    1. Scan this QR code with your authenticator app.
+                  </p>
+                  <div className="bg-white p-4 inline-block border rounded-lg shadow-sm">
+                    <Image src={qrCodeDataUrl} alt="2FA QR Code" width={200} height={200} />
+                  </div>
+                  <div className="space-y-2 max-w-sm">
+                    <p className="text-sm text-gray-600">
+                      2. Enter the 6-digit code generated by your app.
+                    </p>
+                    <div className="flex gap-4">
+                      <Input
+                        type="text"
+                        maxLength={6}
+                        placeholder="6-digit code"
+                        value={twoFactorCode}
+                        onChange={(e) => setTwoFactorCode(e.target.value)}
+                        className="tracking-widest text-center"
+                      />
+                      <Button onClick={handleEnable2FA} className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                        Verify & Enable
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Login Activity */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Login Activity</CardTitle>
+          <CardDescription>Recent logins to your account.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {loginActivity.length === 0 ? (
+            <p className="text-sm text-gray-500">No recent login activity found.</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 rounded-l-lg">Date & Time</th>
+                    <th className="px-6 py-3">IP Address</th>
+                    <th className="px-6 py-3 rounded-r-lg">Device / Browser</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[...loginActivity].reverse().map((activity) => (
+                    <tr key={activity._id} className="bg-white border-b">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {new Date(activity.time).toLocaleString()}
+                      </td>
+                      <td className="px-6 py-4">{activity.ip}</td>
+                      <td className="px-6 py-4 truncate max-w-xs" title={activity.device}>
+                        {activity.device}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

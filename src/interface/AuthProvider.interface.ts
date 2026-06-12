@@ -21,8 +21,12 @@ export interface AuthContextInterface {
     message?: string;
     error?: string;
   }>;
-  login: (data: { email: string; password: string }) => Promise<{
-    status: "success" | "failed";
+  login: (data: {
+    email: string;
+    password: string;
+    twoFactorCode?: string;
+  }) => Promise<{
+    status: "success" | "failed" | "requires2FA";
     message?: string;
     error?: string;
   }>;
