@@ -12,19 +12,19 @@ interface Props {
     quantity: number;
     unitPrice: number;
     totalValue: number;
-    transaction:{
-      createdAt:Date
-      buyBackDate?:Date | null
+    transaction: {
+      createdAt: Date
+      buyBackDate?: Date | null
     }
     investmentType: string;
     createdAt: Date;
     buyBack: null | "Yes" | "No";
     certificate?: string | null;
-    interest:{
-        date:Date,
-        amount:number,
-        _id:string,
-      }[];
+    interest: {
+      date: Date,
+      amount: number,
+      _id: string,
+    }[];
   };
   i: number;
 }
@@ -50,9 +50,9 @@ export default function BondsRow({ tx, i }: Props) {
     <tr className="border-b bg-bakerjonesholdings-off-pink">
       <td className="py-3 px-4 text-sm">{i + 1}</td>
       <td className="py-3 px-4 text-sm font-medium text-gray-800">
-        <p className="font-bold">{bond?.name}</p>
-        <p className="text-sm">{bond?.isin}</p>
+        <p className="font-bold">{bond?.isin}</p>
       </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.name}</td>
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.unitPrice)}
@@ -60,15 +60,28 @@ export default function BondsRow({ tx, i }: Props) {
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {fCurrency(tx.totalValue)}
       </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fDate(tx.transaction.createdAt)}</td>
 
-     
+
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.buyBack}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-          {tx.transaction.buyBackDate ? fDate(tx.transaction.buyBackDate) : "-"}
-        </td>
-          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-          <InterestView tx={tx}/>
-          </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+        {tx.transaction.buyBackDate ? fDate(tx.transaction.buyBackDate) : "-"}
+      </td>
+
+
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+        {bond?.annualCouponRate} %
+      </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+        {bond?.couponFrequency}
+      </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.couponType}</td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+        {bond?.meturityDate ? fDate(bond?.meturityDate) : "-"}
+      </td>
+      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+        <InterestView tx={tx} />
+      </td>
       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
         {tx?.certificate ? (
           <a
@@ -82,17 +95,6 @@ export default function BondsRow({ tx, i }: Props) {
         ) : (
           "-"
         )}
-      </td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fDate(tx.transaction.createdAt)}</td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-        {bond?.annualCouponRate} %
-      </td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-        {bond?.couponFrequency}
-      </td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{bond?.couponType}</td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-        {bond?.meturityDate ? fDate(bond?.meturityDate) : "-"}
       </td>
     </tr>
   );

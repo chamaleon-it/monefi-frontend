@@ -38,13 +38,20 @@ export default function AuthProvider({
     async (data: {
       email: string;
       password: string;
+      twoFactorCode?: string;
     }): Promise<{
-      status: "success" | "failed";
+      status: "success" | "failed" | "requires2FA";
       message?: string;
       error?: string;
     }> => {
       try {
         const res = await api.post("/auth", data);
+        if (res.data.data?.requires2FA) {
+          return {
+            status: "requires2FA",
+            message: "2FA code required",
+          };
+        }
         setTokens(res.data.data.accessToken, res.data.data.refreshToken);
         return {
           status: "success",
@@ -53,7 +60,7 @@ export default function AuthProvider({
       } catch (error) {
         const { message } = (
           error as { response: { data: { message: string | string[] } } }
-        )?.response?.data;
+        )?.response?.data || { message: "An error occurred" };
         return {
           status: "failed",
           error: typeof message === "string" ? message : message[0],

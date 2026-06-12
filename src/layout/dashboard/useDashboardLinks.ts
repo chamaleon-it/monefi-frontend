@@ -49,6 +49,26 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.admin.applications,
       icon: "mdi:form-outline",
     },
+    // {
+    //   title: "IPOs",
+    //   path: paths.dashboard.admin.ipos,
+    //   icon: "mdi:bank-outline",
+    // },
+    // {
+    //   title: "IPO Requests",
+    //   path: paths.dashboard.admin.ipoRequests,
+    //   icon: "mdi:clipboard-text-outline",
+    // },
+    {
+      title: "Regulatory Information",
+      path: paths.dashboard.regulatoryInformation,
+      icon: "mdi:shield-check-outline",
+    },
+    {
+      title: "Support",
+      path: paths.dashboard.support,
+      icon: "material-symbols:support-agent",
+    },
     {
       title: "Settings",
       path: paths.dashboard.settings,
@@ -73,7 +93,7 @@ export default function useDashboardLinks(): Links[] {
       icon: "mingcute:stock-line",
     },
     {
-      title: "Trade Crypto",
+      title: "Crypto",
       path: paths.dashboard.user.tradeCrypto,
       icon: "bx:bitcoin",
     },
@@ -92,11 +112,35 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.user.kyc,
       icon: "mingcute:user-search-line",
     },
+    // {
+    //   title: "IPOs",
+    //   path: paths.dashboard.user.ipos,
+    //   icon: "mdi:bank-outline",
+    // },
+    // {
+    //   title: "IPO Requests",
+    //   path: paths.dashboard.user.ipoRequests,
+    //   icon: "mdi:clipboard-text-outline",
+    // },
     {
-      title: "Settings",
-      path: paths.dashboard.settings,
-      icon: "material-symbols:settings-outline",
+      title: "Regulatory Information",
+      path: paths.dashboard.regulatoryInformation,
+      icon: "mdi:shield-check-outline",
     },
+    {
+      title: "Support",
+      path: paths.dashboard.support,
+      icon: "material-symbols:support-agent",
+    },
+    ...(user?.name !== "Demo"
+      ? [
+        {
+          title: "Settings",
+          path: paths.dashboard.settings,
+          icon: "material-symbols:settings-outline",
+        },
+      ]
+      : [])
   ];
 
   return user.role === UserRoles.ADMIN ? adminLinks : userLinks;

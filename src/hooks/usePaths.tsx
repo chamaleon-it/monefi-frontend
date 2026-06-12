@@ -21,6 +21,8 @@ export default function usePaths() {
     dashboard: {
       root: "/dashboard",
       settings: "/dashboard/settings",
+      regulatoryInformation: "/dashboard/regulatory-information",
+      support: "/dashboard/support",
       admin: {
         transactions: "/dashboard/admin/transactions",
         newBond: "/dashboard/admin/bonds/new",
@@ -29,6 +31,8 @@ export default function usePaths() {
         allPortfolio: "/dashboard/admin/all-portfolio",
         users: "/dashboard/admin/users",
         applications: "/dashboard/admin/applications",
+        ipos: "/dashboard/admin/ipos",
+        ipoRequests: "/dashboard/admin/ipos/requests",
       },
       user: {
         transactions: "/dashboard/user/transactions",
@@ -37,6 +41,8 @@ export default function usePaths() {
         bonds: "/dashboard/user/bonds",
         myPortfolio: "/dashboard/user/my-portfolio",
         kyc: "/dashboard/user/kyc",
+        ipos: "/dashboard/user/ipos",
+        ipoRequests: "/dashboard/user/ipos/requests",
       },
     },
   };

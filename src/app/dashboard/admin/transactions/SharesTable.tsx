@@ -1,0 +1,336 @@
+"use client";
+
+import { useMemo, useState, useCallback } from "react";
+import useSWR from "swr";
+import { fCurrency } from "@/utility/numberFormatters";
+import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { InvestmentType } from "@/enum/investment-type.enum";
+import { TransactionStatus } from "@/enum/transaction-status.enum";
+import api from "@/services/api";
+import toast from "react-hot-toast";
+
+interface Transaction {
+  user: {
+    email: string;
+    _id: string;
+    name?: string;
+  };
+  _id: string;
+  symbol: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  fees?: number;
+  totalValue: number;
+  tradeAction: string;
+  status: TransactionStatus;
+  createdAt: string;
+}
+
+interface Pagination {
+  total: number;
+  page: number;
+  limit: number;
+  totalPage: number;
+}
+
+interface TransactionApiResponse {
+  data: Transaction[];
+  pagination: Pagination;
+}
+
+function SharesRow({ tx, mutate }: { tx: Transaction; mutate: () => void }) {
+  const [showDateModal, setShowDateModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
+  const updateStatus = useCallback(
+    async (id: string, status: TransactionStatus) => {
+      try {
+        await toast.promise(api.patch("/transactions/status", { id, status }), {
+          loading: "Transaction is updating...",
+          error: (err) => err.response?.data?.message || "Error updating",
+          success: "Transaction is updated.",
+        });
+        mutate();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [mutate]
+  );
+
+  const changeDate = useCallback(async () => {
+    if (!selectedDate) {
+      toast.error("Please select a valid date");
+      return;
+    }
+    const payload = {
+      id: tx._id,
+      date: new Date(selectedDate),
+    };
+
+    try {
+      await toast.promise(api.patch("/transactions/update_date", payload), {
+        loading: "Updating the transaction date...",
+        success: ({ data }) => data.message,
+        error: (err) => err.response?.data?.message || "Error updating",
+      });
+      setShowDateModal(false);
+      mutate();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [selectedDate, mutate, tx._id]);
+
+  return (
+    <>
+      <tr className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+          {fDateAndTime(tx.createdAt)}
+        </td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx._id}</td>
+        <td className="py-3 px-4 text-sm">
+          <p className="font-bold">{tx.user?.name}</p>
+          <p className="text-sm">{tx.user?.email}</p>
+        </td>
+        <td className="py-3 px-4 text-sm font-bold text-gray-800">{tx.symbol}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.name}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.tradeAction}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.unitPrice)}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.fees ?? 0)}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">{fCurrency(tx.totalValue)}</td>
+        <td className={`py-3 px-4 text-xs`}>
+          <p
+            className={`
+            ${
+              (tx.status === TransactionStatus.PENDING && "text-yellow-800 bg-yellow-400") ||
+              (tx.status === TransactionStatus.COMPLETED && "text-green-800 bg-green-400") ||
+              (tx.status === TransactionStatus.CANCELLED && "text-red-800 bg-red-400")
+            }
+            px-1 py-0.5 rounded-full text-center
+            `}
+          >
+            {tx.status}
+          </p>
+        </td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+          <div className="flex gap-2.5">
+            {tx.status === TransactionStatus.PENDING && (
+              <div className="flex gap-2.5">
+                <button
+                  className="px-2 py-1.5 rounded-md text-white bg-green-600"
+                  onClick={() => updateStatus(tx._id, TransactionStatus.COMPLETED)}
+                >
+                  Complete
+                </button>
+                <button
+                  className="px-2 py-1.5 rounded-md text-white bg-red-600"
+                  onClick={() => updateStatus(tx._id, TransactionStatus.CANCELLED)}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
+            <button
+              className="px-2 py-1.5 rounded-md text-white bg-green-600"
+              onClick={() => setShowDateModal(true)}
+            >
+              Change Date
+            </button>
+          </div>
+          {showDateModal && (
+            <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+              <div className="bg-white p-8 rounded-lg shadow-lg min-w-[340px]">
+                <h3 className="mb-3 font-bold text-xl text-gray-800">Change Transaction Date</h3>
+                <p className="mb-5 text-bakerjonesholdings-black">Do you want to change the date of this transaction?</p>
+                <label className="block mb-4">
+                  <span className="text-gray-700 font-medium mb-1 block">Select new date</span>
+                  <input
+                    type="date"
+                    className="border px-3 py-2 rounded w-full focus:outline-none focus:ring focus:border-blue-400"
+                    value={selectedDate ?? ""}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                  />
+                </label>
+                <div className="flex gap-3 justify-end mt-6">
+                  <button
+                    className="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+                    onClick={() => setShowDateModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 transition disabled:opacity-50"
+                    onClick={changeDate}
+                    disabled={!selectedDate}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </td>
+      </tr>
+    </>
+  );
+}
+
+export default function SharesTable() {
+  const [filter, setFilter] = useState({ page: 1, limit: 10 });
+
+  const apiUrl = useMemo(() => {
+    const params = new URLSearchParams({
+      page: filter.page.toString(),
+      limit: filter.limit.toString(),
+      investmentType: InvestmentType.STOCK,
+    });
+    return `/transactions?${params.toString()}`;
+  }, [filter]);
+
+  const { data, isLoading, mutate } = useSWR<TransactionApiResponse>(apiUrl, {
+    revalidateOnFocus: true,
+    revalidateOnMount: true,
+  });
+
+  const transactions = data?.data ?? [];
+  const pagination = data?.pagination;
+
+  const handlePageChange = (newPage: number) => {
+    setFilter((prev) => ({ ...prev, page: newPage }));
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    setFilter({ page: 1, limit: newLimit });
+  };
+
+  const getPageNumbers = () => {
+    if (!pagination) return [];
+    const { page, totalPage } = pagination;
+    const pages = [];
+    const maxVisible = 5;
+
+    let start = Math.max(1, page - Math.floor(maxVisible / 2));
+    const end = Math.min(totalPage, start + maxVisible - 1);
+
+    if (end - start + 1 < maxVisible) {
+      start = Math.max(1, end - maxVisible + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
+
+  const SkeletonRow = () => (
+    <tr className="animate-pulse border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
+      {Array.from({ length: 11 }).map((_, i) => (
+        <td key={i} className="py-3 px-4">
+          <div className="h-4 bg-gray-300 rounded w-full mx-auto"></div>
+        </td>
+      ))}
+    </tr>
+  );
+
+  return (
+    <div className="w-full space-y-4">
+      <div className="flex justify-end items-center">
+        <select
+          value={filter.limit}
+          onChange={(e) => handleLimitChange(Number(e.target.value))}
+          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink text-sm"
+        >
+          <option value={10}>10 per page</option>
+          <option value={25}>25 per page</option>
+          <option value={50}>50 per page</option>
+        </select>
+      </div>
+
+      <div className="bg-white rounded-xl shadow overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full whitespace-nowrap">
+            <thead>
+              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
+                <th className="py-3 px-4">Date</th>
+                <th className="py-3 px-4">Tx ID</th>
+                <th className="py-3 px-4">User</th>
+                <th className="py-3 px-4">Ticker</th>
+                <th className="py-3 px-4">Company Name</th>
+                <th className="py-3 px-4">Type</th>
+                <th className="py-3 px-4">Price</th>
+                <th className="py-3 px-4">Shares</th>
+                <th className="py-3 px-4">Fees</th>
+                <th className="py-3 px-4">Total Amount</th>
+                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {isLoading &&
+                Array.from({ length: filter.limit }).map((_, i) => (
+                  <SkeletonRow key={i} />
+                ))}
+
+              {!isLoading && transactions.length > 0 && (
+                <>
+                  {transactions.map((tx) => (
+                    <SharesRow key={tx._id} tx={tx} mutate={mutate} />
+                  ))}
+                </>
+              )}
+
+              {!isLoading && transactions.length === 0 && (
+                <tr>
+                  <td colSpan={11} className="text-center py-10 text-gray-500">
+                    No share transactions found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {pagination && pagination.totalPage > 1 && (
+        <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
+          <p className="text-sm text-bakerjonesholdings-black">
+            Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
+            {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
+            {pagination.total}
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handlePageChange(pagination.page - 1)}
+              disabled={pagination.page === 1}
+              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+            >
+              Previous
+            </button>
+            {getPageNumbers().map((num) => (
+              <button
+                key={num}
+                onClick={() => handlePageChange(num)}
+                className={`px-3 py-2 text-sm rounded-md border ${
+                  num === pagination.page
+                    ? "bg-bakerjonesholdings-pink text-white"
+                    : "text-bakerjonesholdings-black hover:bg-gray-100"
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(pagination.page + 1)}
+              disabled={pagination.page === pagination.totalPage}
+              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
