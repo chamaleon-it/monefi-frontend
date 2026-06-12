@@ -89,7 +89,7 @@ export default function SecuritySettings() {
       <ChangePassword />
 
       {/* Two-Factor Authentication */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="text-xl">Two-Factor Authentication (2FA)</CardTitle>
           <CardDescription>
@@ -158,10 +158,10 @@ export default function SecuritySettings() {
             </div>
           )}
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Login Activity */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="text-xl">Login Activity</CardTitle>
           <CardDescription>Recent logins to your account.</CardDescription>
@@ -196,7 +196,7 @@ export default function SecuritySettings() {
             </div>
           )}
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }
