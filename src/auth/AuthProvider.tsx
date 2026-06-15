@@ -28,7 +28,10 @@ export default function AuthProvider({
       setUser({ id: _id, email, role, status,name,balance });
       setIsAuthenticated(true);
     } catch (error) {
-      console.log(error);
+      console.error("Verification failed, clearing auth session:", error);
+      setUser(null);
+      setIsAuthenticated(false);
+      clearTokens();
     } finally {
       setLoading(false);
     }
@@ -102,12 +105,13 @@ export default function AuthProvider({
   const logout = useCallback(async () => {
     try {
       await api.post("/auth/logout");
+    } catch (error) {
+      console.error("Backend logout API request failed:", error);
+    } finally {
+      clearTokens();
       setIsAuthenticated(false);
       setUser(null);
-      clearTokens();
-      window.location.href = "/"
-    } catch (error) {
-      console.log(error);
+      window.location.href = "/";
     }
   }, []);
 

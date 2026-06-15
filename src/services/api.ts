@@ -23,8 +23,8 @@ const setTokens = (
 };
 
 const clearTokens = (ctx?: NookiesCtx) => {
-  destroyCookie(ctx, "accessToken");
-  destroyCookie(ctx, "refreshToken");
+  destroyCookie(ctx, "accessToken", { path: "/" });
+  destroyCookie(ctx, "refreshToken", { path: "/" });
 };
 
 const api = axios.create({
@@ -105,6 +105,9 @@ api.interceptors.response.use(
 
       try {
         const { refreshToken } = getTokens();
+        if (!refreshToken) {
+          throw new Error("No refresh token available");
+        }
 
         const res = await axios.post(
           `${configuration().backendURL}/auth/refresh`,
