@@ -73,14 +73,14 @@ export default function AccountInformation() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-6 border-b">
         <CardTitle className="text-xl">Account Information</CardTitle>
-        {/* <Button
+        <Button
           variant={isEditing ? "default" : "outline"}
           onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
           disabled={saving}
           className={isEditing ? "bg-emerald-600 hover:bg-emerald-700 text-white" : ""}
         >
           {saving ? "Saving..." : isEditing ? "Save Changes" : "Edit Information"}
-        </Button> */}
+        </Button>
       </CardHeader>
       <CardContent className="pt-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
