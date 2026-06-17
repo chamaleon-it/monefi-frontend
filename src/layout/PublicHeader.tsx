@@ -77,9 +77,6 @@ export default function PublicHeader() {
 
             {/* Desktop Right Actions */}
             <div className="hidden lg:flex items-center space-x-6">
-              <Link href={paths.contactUs} className="text-sm font-medium text-corporate-charcoal/80 hover:text-corporate-charcoal transition-colors">
-                Partner With Us
-              </Link>
               <LoginButton isDashboard={false} />
             </div>
 
