@@ -20,15 +20,15 @@ export default function DashboardLayout({
     if (!isAuthenticated && !loading) {
       router.replace(paths.home);
     }
-  }, [isAuthenticated, loading,paths.home,router]);
+  }, [isAuthenticated, loading, paths.home, router]);
 
   if (!isAuthenticated || loading) return null;
 
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-150px)] max-w-[95%] lg:max-w-[85%] mx-auto">
-        <div className="flex flex-col lg:flex-row items-start gap-10 w-full">
+      <main className="min-h-[calc(100vh-150px)] max-w-[95%] lg:max-w-[95%] mx-auto">
+        <div className="flex flex-col lg:flex-row items-start gap-5 w-full">
           <Aside />
           <div className="max-w-full lg:max-w-[calc(100%-400px-40px)] w-full p-2.5">
             {children}
