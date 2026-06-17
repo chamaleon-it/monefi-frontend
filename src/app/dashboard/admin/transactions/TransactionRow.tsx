@@ -25,6 +25,7 @@ interface Transaction {
   status: TransactionStatus;
   createdAt: string;
   annualCouponRate?:number;
+  fees?: number;
 }
 
 export default function TransactionRow({
