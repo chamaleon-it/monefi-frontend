@@ -5,14 +5,14 @@ import { ArrowRight, Briefcase, Building2, Server, Cpu, Landmark, TrendingUp, Gl
 import Link from "next/link";
 
 const services = [
-  { icon: Briefcase, title: "Strategic Investments", desc: "Long-term capital allocation across high-growth markets." },
-  { icon: Landmark, title: "Business Acquisitions", desc: "Acquiring established entities with scalable infrastructure." },
-  { icon: Server, title: "Digital Infrastructure", desc: "Modernizing backend operations and cloud architecture." },
-  { icon: Cpu, title: "AI & Automation Consulting", desc: "Implementing intelligent systems for operational efficiency." },
-  { icon: Building2, title: "Real Estate Holdings", desc: "Premium commercial and digital real estate investments." },
-  { icon: TrendingUp, title: "Growth Partnerships", desc: "Strategic joint ventures to accelerate market share." },
-  { icon: Globe, title: "Brand & Digital Expansion", desc: "Scaling digital presence globally across new markets." },
-  { icon: Settings, title: "Operational Systems Development", desc: "Building robust operational frameworks for scale." }
+  { icon: Briefcase, title: "Strategic Investments", desc: "Long-term capital allocation across high-growth markets.", slug: "strategic-investments" },
+  { icon: Landmark, title: "Business Acquisitions", desc: "Acquiring established entities with scalable infrastructure.", slug: "business-acquisitions" },
+  { icon: Server, title: "Digital Infrastructure", desc: "Modernizing backend operations and cloud architecture.", slug: "digital-infrastructure" },
+  { icon: Cpu, title: "AI & Automation Consulting", desc: "Implementing intelligent systems for operational efficiency.", slug: "ai-automation-consulting" },
+  { icon: Building2, title: "Real Estate Holdings", desc: "Premium commercial and digital real estate investments.", slug: "real-estate-holdings" },
+  { icon: TrendingUp, title: "Growth Partnerships", desc: "Strategic joint ventures to accelerate market share.", slug: "growth-partnerships" },
+  { icon: Globe, title: "Brand & Digital Expansion", desc: "Scaling digital presence globally across new markets.", slug: "brand-digital-expansion" },
+  { icon: Settings, title: "Operational Systems Development", desc: "Building robust operational frameworks for scale.", slug: "operational-systems-development" }
 ];
 
 export default function ServicesSection() {
@@ -43,23 +43,27 @@ export default function ServicesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group bg-white p-8 rounded-3xl border border-black/5 hover:border-corporate-gold/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-corporate-charcoal/5 flex items-center justify-center mb-6 group-hover:bg-corporate-gold/10 transition-colors">
-                <service.icon className="w-6 h-6 text-corporate-charcoal group-hover:text-corporate-gold transition-colors" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <p className="text-corporate-charcoal/70 text-sm leading-relaxed mb-6 flex-grow">
-                {service.desc}
-              </p>
-
-            </motion.div>
+            <Link href={`/capabilities/${service.slug}`} key={index}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group bg-white p-8 rounded-3xl border border-black/5 hover:border-corporate-gold/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full cursor-pointer"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-corporate-charcoal/5 flex items-center justify-center mb-6 group-hover:bg-corporate-gold/10 transition-colors">
+                  <service.icon className="w-6 h-6 text-corporate-charcoal group-hover:text-corporate-gold transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <p className="text-corporate-charcoal/70 text-sm leading-relaxed mb-6 flex-grow">
+                  {service.desc}
+                </p>
+                <div className="flex items-center text-corporate-gold font-medium text-sm mt-auto">
+                  <span>Learn more</span>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

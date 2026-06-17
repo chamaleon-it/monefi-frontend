@@ -14,6 +14,7 @@ export default function usePaths() {
     estatePlanning: "/estate-planning",
     expertise: "/expertise",
     approach: "/our-approach",
+    capabilities: "/capabilities",
     auth: {
       login: "/login",
       register: "/register",
