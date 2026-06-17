@@ -80,7 +80,7 @@ export default function CryptoTable() {
 
   const SkeletonRow = () => (
     <tr className="animate-pulse border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
-      {Array.from({ length: 9 }).map((_, i) => (
+      {Array.from({ length: 10 }).map((_, i) => (
         <td key={i} className="py-3 px-4">
           <div className="h-4 bg-gray-300 rounded w-full mx-auto"></div>
         </td>
@@ -115,6 +115,7 @@ export default function CryptoTable() {
                 <th className="py-3 px-4">Execution Price</th>
                 <th className="py-3 px-4">Quantity</th>
                 <th className="py-3 px-4">Fees</th>
+                <th className="py-3 px-4">Investment Sum</th>
                 <th className="py-3 px-4">Total Amount</th>
               </tr>
             </thead>
@@ -152,8 +153,11 @@ export default function CryptoTable() {
                       <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {fCurrency(tx.fees ?? 0)}
                       </td>
-                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
                         {fCurrency(tx.totalValue)}
+                      </td>
+                      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">
+                        {fCurrency(tx.totalValue + (tx.fees ?? 0))}
                       </td>
                     </tr>
                   ))}
@@ -162,7 +166,7 @@ export default function CryptoTable() {
 
               {!isLoading && transactions.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="text-center py-10 text-gray-500">
+                  <td colSpan={10} className="text-center py-10 text-gray-500">
                     No crypto transactions found.
                   </td>
                 </tr>

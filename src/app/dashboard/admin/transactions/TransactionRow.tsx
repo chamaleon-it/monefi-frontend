@@ -6,6 +6,7 @@ import { fDate } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import React, { useCallback, useState } from "react";
 import toast from "react-hot-toast";
+import TransactionFeeModal from "./TransactionFeeModal";
 
 interface Transaction {
   user: {
@@ -42,11 +43,12 @@ export default function TransactionRow({
 }) {
   const [showDateModal, setShowDateModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [showFeeModal, setShowFeeModal] = useState(false);
 
-  const updateStatus = useCallback(
-    async (id: string, status: TransactionStatus) => {
+  const cancelTransaction = useCallback(
+    async (id: string) => {
       try {
-        await toast.promise(api.patch("/transactions/status", { id, status }), {
+        await toast.promise(api.patch("/transactions/status", { id, status: TransactionStatus.CANCELLED }), {
           loading: "Transaction is updating...",
           error: (err) => err.response.data.message,
           success: "Transaction is updated.",
@@ -104,7 +106,13 @@ export default function TransactionRow({
           {fCurrency(tx.unitPrice)}
         </td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+          {fCurrency(tx.fees ?? 0)}
+        </td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           {fCurrency(tx.totalValue)}
+        </td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">
+          {fCurrency(tx.totalValue + (tx.fees ?? 0))}
         </td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.tradeAction}</td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.investmentType}</td>
@@ -136,16 +144,14 @@ export default function TransactionRow({
             <div className="flex gap-2.5">
               <button
                 className="px-2 py-1.5 rounded-md text-white bg-green-600"
-                onClick={() =>
-                  updateStatus(tx._id, TransactionStatus.COMPLETED)
-                }
+                onClick={() => setShowFeeModal(true)}
                 >
                 Complete
               </button>
               <button
                 className="px-2 py-1.5 rounded-md text-white bg-red-600"
                 onClick={() =>
-                  updateStatus(tx._id, TransactionStatus.CANCELLED)
+                  cancelTransaction(tx._id)
                 }
                 >
                 Cancel
@@ -199,6 +205,12 @@ export default function TransactionRow({
           )}
         </td>
       </tr>
+      <TransactionFeeModal
+        open={showFeeModal}
+        onClose={() => setShowFeeModal(false)}
+        transaction={tx}
+        onSuccess={mutate}
+      />
     </>
   );
 }

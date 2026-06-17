@@ -8,6 +8,7 @@ import { InvestmentType } from "@/enum/investment-type.enum";
 import { TransactionStatus } from "@/enum/transaction-status.enum";
 import api from "@/services/api";
 import toast from "react-hot-toast";
+import TransactionFeeModal from "./TransactionFeeModal";
 
 interface Transaction {
   user: {
@@ -42,11 +43,12 @@ interface TransactionApiResponse {
 function SharesRow({ tx, mutate }: { tx: Transaction; mutate: () => void }) {
   const [showDateModal, setShowDateModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [showFeeModal, setShowFeeModal] = useState(false);
 
-  const updateStatus = useCallback(
-    async (id: string, status: TransactionStatus) => {
+  const cancelTransaction = useCallback(
+    async (id: string) => {
       try {
-        await toast.promise(api.patch("/transactions/status", { id, status }), {
+        await toast.promise(api.patch("/transactions/status", { id, status: TransactionStatus.CANCELLED }), {
           loading: "Transaction is updating...",
           error: (err) => err.response?.data?.message || "Error updating",
           success: "Transaction is updated.",
@@ -99,7 +101,8 @@ function SharesRow({ tx, mutate }: { tx: Transaction; mutate: () => void }) {
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.unitPrice)}</td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.fees ?? 0)}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">{fCurrency(tx.totalValue)}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.totalValue)}</td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">{fCurrency(tx.totalValue + (tx.fees ?? 0))}</td>
         <td className={`py-3 px-4 text-xs`}>
           <p
             className={`
@@ -120,13 +123,13 @@ function SharesRow({ tx, mutate }: { tx: Transaction; mutate: () => void }) {
               <div className="flex gap-2.5">
                 <button
                   className="px-2 py-1.5 rounded-md text-white bg-green-600"
-                  onClick={() => updateStatus(tx._id, TransactionStatus.COMPLETED)}
+                  onClick={() => setShowFeeModal(true)}
                 >
                   Complete
                 </button>
                 <button
                   className="px-2 py-1.5 rounded-md text-white bg-red-600"
-                  onClick={() => updateStatus(tx._id, TransactionStatus.CANCELLED)}
+                  onClick={() => cancelTransaction(tx._id)}
                 >
                   Cancel
                 </button>
@@ -173,6 +176,12 @@ function SharesRow({ tx, mutate }: { tx: Transaction; mutate: () => void }) {
           )}
         </td>
       </tr>
+      <TransactionFeeModal
+        open={showFeeModal}
+        onClose={() => setShowFeeModal(false)}
+        transaction={tx}
+        onSuccess={mutate}
+      />
     </>
   );
 }
@@ -226,7 +235,7 @@ export default function SharesTable() {
 
   const SkeletonRow = () => (
     <tr className="animate-pulse border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
-      {Array.from({ length: 11 }).map((_, i) => (
+      {Array.from({ length: 13 }).map((_, i) => (
         <td key={i} className="py-3 px-4">
           <div className="h-4 bg-gray-300 rounded w-full mx-auto"></div>
         </td>
@@ -262,6 +271,7 @@ export default function SharesTable() {
                 <th className="py-3 px-4">Price</th>
                 <th className="py-3 px-4">Shares</th>
                 <th className="py-3 px-4">Fees</th>
+                <th className="py-3 px-4">Investment Sum</th>
                 <th className="py-3 px-4">Total Amount</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4">Actions</th>
@@ -283,7 +293,7 @@ export default function SharesTable() {
 
               {!isLoading && transactions.length === 0 && (
                 <tr>
-                  <td colSpan={11} className="text-center py-10 text-gray-500">
+                  <td colSpan={13} className="text-center py-10 text-gray-500">
                     No share transactions found.
                   </td>
                 </tr>
