@@ -15,6 +15,8 @@ export default function usePaths() {
     expertise: "/expertise",
     approach: "/our-approach",
     capabilities: "/capabilities",
+    industries: "/industries",
+    careers: "/careers",
     auth: {
       login: "/login",
       register: "/register",

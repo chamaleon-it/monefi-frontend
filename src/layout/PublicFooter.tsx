@@ -41,7 +41,7 @@ export default function PublicFooter() {
                 </Link>
               </li>
               <li>
-                <Link href={paths.contactUs} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
+                <Link href={paths.careers} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
                   Careers <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>

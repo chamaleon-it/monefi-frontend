@@ -233,7 +233,35 @@ export const capabilitiesData: CapabilityContent[] = [
     slug: "ai-automation-consulting",
     title: "AI & Automation Consulting",
     subtitle: "Implementing intelligent systems for operational efficiency",
-    overview: "[Content pending for AI & Automation Consulting. This page will be updated once the content is provided.]",
-    sections: []
+    overview: "Artificial Intelligence and automation are rapidly reshaping how modern businesses operate. Baker Jones Holdings provides strategic consulting to help organizations integrate intelligent systems, automate workflows, and unlock unprecedented levels of efficiency and productivity.",
+    sections: [
+      {
+        heading: "Our Consulting Focus",
+        type: "text",
+        content: "We work closely with leadership teams to identify opportunities for automation, design scalable AI architectures, and guide the implementation of intelligent technologies across enterprise operations."
+      },
+      {
+        heading: "Key Focus Areas",
+        type: "list",
+        content: [
+          "Workflow automation strategy",
+          "Machine learning integration",
+          "Enterprise AI adoption",
+          "Data-driven decision systems",
+          "Process optimization",
+          "Intelligent business operations"
+        ]
+      },
+      {
+        heading: "Strategic Implementation",
+        type: "text",
+        content: "Our consulting approach ensures that AI and automation initiatives align with your long-term business objectives, driving measurable ROI and sustainable competitive advantages."
+      },
+      {
+        heading: "Future-Proofing Business",
+        type: "text",
+        content: "We help organizations build the digital resilience needed to thrive in an increasingly automated global economy."
+      }
+    ]
   }
 ];
