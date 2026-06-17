@@ -29,6 +29,8 @@ export default function PublicHeader() {
     { href: paths.loans, label: "Loan Types" },
     { href: paths.mortgages, label: "Mortgages" },
     { href: paths.financialplanning, label: "Financial Planning" },
+    { href: paths.expertise, label: "Expertise" },
+    { href: paths.approach, label: "Our Approach" },
     { href: paths.aboutUs, label: "About Us" },
     { href: paths.contactUs, label: "Contact Us" },
   ];
@@ -36,7 +38,7 @@ export default function PublicHeader() {
   return (
     <>
       <header className="fixed z-50 top-0 left-0 w-full bg-corporate-white/95 backdrop-blur-xl border-b border-black/10 py-4 shadow-xl">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[98%] 2xl:max-w-[90%] mx-auto px-4 lg:px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link
@@ -66,7 +68,7 @@ export default function PublicHeader() {
                 {navigationItems.map((item) => (
                   <li key={item.label}>
                     <Link href={item.href}>
-                      <span className="px-4 py-2 rounded-full font-medium text-sm text-corporate-charcoal/80 transition-all duration-300 hover:text-corporate-charcoal hover:bg-black/5">
+                      <span className="px-2 xl:px-3 py-2 rounded-full font-medium text-sm text-corporate-charcoal/80 transition-all duration-300 hover:text-corporate-charcoal hover:bg-black/5 whitespace-nowrap">
                         {item.label}
                       </span>
                     </Link>
