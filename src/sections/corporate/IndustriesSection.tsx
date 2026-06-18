@@ -9,7 +9,7 @@ const industries = [
   { name: "Technology", span: "col-span-1 md:col-span-2 md:row-span-2", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop", slug: "technology" },
   { name: "Real Estate", span: "col-span-1 md:col-span-1 md:row-span-1", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop", slug: "real-estate" },
   { name: "AI & SaaS", span: "col-span-1 md:col-span-1 md:row-span-1", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop", slug: "ai-saas" },
-  { name: "Financial Services", span: "col-span-1 md:col-span-2 md:row-span-1", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop", slug: "financial-services" },
+  { name: "Financial Services", span: "col-span-1 md:col-span-2 md:row-span-1", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", slug: "financial-services" },
   { name: "Infrastructure", span: "col-span-1 md:col-span-2 md:row-span-1", img: "/home/blabla.png", slug: "infrastructure" },
   { name: "Digital Commerce", span: "col-span-1 md:col-span-1 md:row-span-1", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop", slug: "digital-commerce" },
   { name: "Healthcare", span: "col-span-1 md:col-span-1 md:row-span-1", img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop", slug: "healthcare" },
@@ -65,10 +65,6 @@ export default function IndustriesSection() {
                   <h3 className="text-2xl font-bold text-white drop-shadow-md translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {ind.name}
                   </h3>
-                  <div className="text-corporate-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium flex items-center text-sm">
-                    <span className="hidden sm:inline">Learn more</span>
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </div>
                 </div>
               </Link>
             </motion.div>

@@ -35,11 +35,11 @@ export default function PublicFooter() {
                   About Us <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href={paths.insurance} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
                   Insurance <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href={paths.careers} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
                   Careers <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />

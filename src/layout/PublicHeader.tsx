@@ -25,9 +25,9 @@ export default function PublicHeader() {
 
   const navigationItems = [
     { href: paths.home, label: "Home" },
-    { href: paths.insurance, label: "Insurance" },
-    { href: paths.loans, label: "Loan Types" },
-    { href: paths.mortgages, label: "Mortgages" },
+    // { href: paths.insurance, label: "Insurance" },
+    // { href: paths.loans, label: "Loan Types" },
+    // { href: paths.mortgages, label: "Mortgages" },
     { href: paths.financialplanning, label: "Financial Planning" },
     { href: paths.expertise, label: "Expertise" },
     { href: paths.approach, label: "Our Approach" },
