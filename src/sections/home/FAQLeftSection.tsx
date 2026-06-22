@@ -6,37 +6,62 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     id: 0,
-    question: "What is the difference between life insurance and income protection?",
+    question: "What does it mean that you are an independent firm?",
     answer:
-      "Life insurance provides a lump-sum payout to your loved ones if you pass away during the policy term. Income protection, on the other hand, pays you a monthly income if you’re unable to work due to illness or injury—helping you cover bills and maintain your lifestyle while you recover.",
+      "Being an independent firm means we have zero commercial ties, quotas, or restrictions tied to specific financial institutions. We research the entire UK market to select the absolute best financial plans, platforms, and investment vehicles tailored exclusively to your goals.",
   },
   {
     id: 1,
-    question: "Will applying for a loan or mortgage with Baker Jones Holdings affect my credit score?",
+    question: "Why should I work with you instead of my high street bank branch?",
     answer:
-      "No—when you first apply, we only perform a soft credit check, which does not impact your credit score. A hard credit check will only be conducted once you choose a lender and move forward with your application.",
+      "High street banks often treat clients like a herd, funneling them into restrictive, standardized products. Because we are an independent boutique, we offer an entirely different experience: True Personalisation: Your adviser capped at 50 clients means tailored strategies, not institutional templates. Institutional-Grade Products: We access institutional fixed-income products and terms from tier-one global banks that high street branches cannot offer retail clients. Unbiased Representation: Bank employees represent the bank’s product line; we exclusively represent you.",
   },
   {
     id: 2,
-    question: "Can I get financial advice even if I don’t have a lot to invest?",
+    question: "How do you ensure I won’t just become another number?",
     answer:
-      "Absolutely. At Baker Jones Holdings, we believe everyone deserves quality financial guidance—no matter their income or assets. Whether you're just starting out or building wealth, our advisers offer personalised support tailored to your goals and budget.",
+      "We strictly limit our client capacity to a maximum of 50 clients per adviser. This intentional cap guarantees that your adviser knows your name, remembers your unique family dynamics, understands your long-term vision, and remains highly responsive to your needs.",
   },
   {
     id: 3,
-    question: "How long does it take to get approved for a loan or mortgage?",
+    question: "What is the difference between your financial planning and wealth management services?",
     answer:
-      "This varies by lender and product, but many personal loans can be approved within 24–48 hours. Mortgage approvals typically take 2–4 weeks, depending on your documentation and the property involved. Our advisers will keep you informed every step of the way.",
+      "Financial planning is the architectural blueprint for your life goals—mapping out timelines for retirement, property purchases, or business exits. Wealth management is the engineering that powers it—actively building, monitoring, and executing the investment portfolios required to fund that exact blueprint.",
   },
   {
     id: 4,
-    question: "What happens if I want to cancel my insurance policy?",
+    question: "Can you help with my estate planning and Inheritance Tax (IHT)?",
     answer:
-      "Most policies come with a 14-day cooling-off period, during which you can cancel without penalty. If you cancel after that, there may be fees or loss of cover. Always speak with a Baker Jones Holdings adviser first—we'll explain your rights clearly and help you avoid unnecessary costs.",
+      "Yes. We employ detailed lifetime cashflow modelling to map your wealth against future needs, structuring legitimate gifting strategies and trusts to mitigate UK Inheritance Tax while ensuring your family legacy passes smoothly to the next generation.",
   },
+  {
+    id: 5,
+    question: "How do you secure better rates on fixed-income products?",
+    answer:
+      "Because our independent firm manages and raises substantial tranches of capital collectively, major tier-one global institutions grant us access to high-yield fixed-income assets. These institutional-grade bonds and fixed-term rates offer significantly higher yields and more flexible terms than the standard savings accounts or fixed bonds available to the general public.",
+  },
+  {
+    id: 6,
+    question: "How are your fees structured?",
+    answer:
+      "We believe in absolute transparency. Because every client’s financial blueprint is unique, our fees vary depending on the specific advisory services and asset structures required. You will receive a complete, itemised breakdown of all costs before committing to any service, ensuring there are never any hidden surprises or exit penalties.",
+  },
+  {
+    id: 7,
+    question: "How safe is my money?",
+    answer:
+      "Your capital is never held directly by our firm. All client assets are securely held by independent, heavily regulated third-party custodian institutions. This structure keeps your investments completely isolated and fully safe, even in the highly unlikely event that our advisory firm closes.",
+  },
+  {
+    id: 8,
+    question: "How do you adapt my financial plan when UK tax laws change?",
+    answer:
+      "As an independent boutique, we proactively monitor Autumn Statements and Spring Budgets. Because of our strict 50-client limit, your adviser can instantly assess how new tax legislation impacts your portfolio and tweak your ISA, SIPP, or capital gains structures before the changes take effect.",
+  },
+
 ];
 
-const FAQLeftSection = () => {
+function FAQLeftSection() {
   const [selectedFaq, setSelectedFaq] = useState<number | null>(0);
 
   const toggleFaq = (id: number) => {
@@ -78,6 +103,6 @@ const FAQLeftSection = () => {
       ))}
     </div>
   );
-};
+}
 
 export default FAQLeftSection;
