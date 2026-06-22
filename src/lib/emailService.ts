@@ -24,7 +24,7 @@ export const sendThankYouEmail = async (
     const mailOptions = {
       from: `"${fromName}" <${fromEmail}>`,
       to: toEmail,
-      subject: 'Thank You for Your Application',
+      subject: 'We’ve received your application – Baker Jones Holdings',
       html: htmlContent,
     };
 

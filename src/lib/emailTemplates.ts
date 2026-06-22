@@ -83,11 +83,16 @@ export function getThankYouEmailTemplate(firstName: string, lastName: string): s
     <div class="content">
       <p>Dear ${name},</p>
       
-      <p>Thank you for submitting your application to Baker Jones Holdings. We are pleased to confirm that we have received it successfully.</p>
+      <p>Thank you for submitting your application to open an account with Baker Jones Holdings. We are excited about the opportunity to partner with you. We have successfully received your digital application form. Our onboarding team is currently reviewing your submitted information and AML (Anti-Money Laundering) documents to finalize your account setup. This standard verification process typically takes 1 to 2 business days.</p>
       
-      <p>Our team is currently reviewing your details. We will process your application shortly and follow up with you regarding the next steps.</p>
+      <p><strong>What happens next:</strong></p>
       
-      <p>If you have any urgent questions or require further assistance, please do not hesitate to contact our support team.</p>
+      <ul>
+        <li><strong>Approval & Documentation:</strong> Once your application is approved, we will send over the official transaction and offering documents tailored to your specific investment purchase (such as your designated bonds, IPOs, or fund allocations).</li>
+        <li><strong>Advisor Outreach:</strong> Alternatively, your dedicated advisor will be in touch shortly to walk you through the next steps and help complete your transaction.</li>
+      </ul>
+      
+      <p>If you have any immediate questions, please reply directly to this email or contact our advisory desk.</p>
       
       <div class="btn-container">
         <a href="https://bakerjonesholdings.com/contact-us" class="btn">Contact Support</a>
