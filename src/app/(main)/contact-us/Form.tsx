@@ -25,6 +25,17 @@ export default function Form() {
           success: "You message is successfully received."
         }
       )
+
+      // Fire-and-forget email dispatch
+      try {
+        await fetch('/api/contact-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+      } catch (emailError) {
+        console.error("Failed to trigger contact us emails:", emailError);
+      }
     } catch (error) {
       console.log(error);
     }
