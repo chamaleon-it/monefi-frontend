@@ -92,14 +92,14 @@ export function getThankYouEmailTemplate(firstName: string, lastName: string): s
         <li><strong>Advisor Outreach:</strong> Alternatively, your dedicated advisor will be in touch shortly to walk you through the next steps and help complete your transaction.</li>
       </ul>
       
-      <p>If you have any immediate questions, please reply directly to this email or contact our advisory desk.</p>
+      <p>If you have any immediate questions, please reply directly to this email or contact our advisory desk at <a href="tel:+441182118521">0118 211 8521</a></p>
       
       <div class="btn-container">
         <a href="https://bakerjonesholdings.com/contact-us" class="btn">Contact Support</a>
       </div>
       
       <p>Best regards,<br>
-      <strong>The Baker Jones Holdings Team</strong></p>
+      <strong>Baker Jones Holdings</strong></p>
     </div>
     <div class="footer">
       &copy; ${new Date().getFullYear()} Baker Jones Holdings. All rights reserved.<br>
