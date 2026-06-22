@@ -90,7 +90,7 @@ export function getThankYouEmailTemplate(firstName: string, lastName: string): s
       <p>If you have any urgent questions or require further assistance, please do not hesitate to contact our support team.</p>
       
       <div class="btn-container">
-        <a href="https://bakerjonesholdings.com/contact" class="btn">Contact Support</a>
+        <a href="https://bakerjonesholdings.com/contact-us" class="btn">Contact Support</a>
       </div>
       
       <p>Best regards,<br>
