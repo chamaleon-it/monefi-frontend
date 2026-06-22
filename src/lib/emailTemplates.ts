@@ -204,3 +204,82 @@ export function getContactThankYouEmailTemplate(firstName: string, lastName: str
 </html>
   `;
 }
+
+export interface CareersData {
+  name: string;
+  email: string;
+  message?: string;
+}
+
+export function getCareersAdminEmailTemplate(data: CareersData): string {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px; }
+    h2 { color: #090A2C; }
+    .field { margin-bottom: 10px; }
+    .label { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>New Career Application</h2>
+    <div class="field"><span class="label">Name:</span> ${data.name}</div>
+    <div class="field"><span class="label">Email:</span> ${data.email}</div>
+    <div class="field"><span class="label">Message:</span><br/>${data.message ? data.message.replace(/\n/g, '<br/>') : 'N/A'}</div>
+    <br/>
+    <p>Please find the applicant's resume attached to this email.</p>
+  </div>
+</body>
+</html>
+  `;
+}
+
+export function getCareersThankYouEmailTemplate(name: string): string {
+  const firstName = name.split(' ')[0] || 'Applicant';
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Received - Baker Jones Holdings</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9f9f7; color: #111111; line-height: 1.6; }
+    .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    .header { background-color: #090A2C; color: #ffffff; padding: 30px 20px; text-align: center; }
+    .header h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: 0.5px; }
+    .content { padding: 30px; }
+    .content p { margin-bottom: 20px; font-size: 16px; }
+    .footer { background-color: #e5e7eb; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Baker Jones Holdings</h1>
+    </div>
+    <div class="content">
+      <p>Dear ${firstName},</p>
+      
+      <p>Thank you for expressing your interest in joining Baker Jones Holdings! We are thrilled to confirm that we have successfully received your career application and resume.</p>
+      
+      <p>Our talent acquisition team is currently reviewing your profile to determine how your skills and experiences align with our current opportunities. If your qualifications match our needs, a member of our team will reach out to you regarding the next steps.</p>
+      
+      <p>We appreciate the time you took to apply and your interest in building a career with us.</p>
+      
+      <p>Best regards,<br>
+      <strong>Baker Jones Holdings</strong></p>
+    </div>
+    <div class="footer">
+      &copy; ${new Date().getFullYear()} Baker Jones Holdings. All rights reserved.<br>
+      Please do not reply to this automated email.
+    </div>
+  </div>
+</body>
+</html>
+  `;
+}

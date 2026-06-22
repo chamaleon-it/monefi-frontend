@@ -85,3 +85,61 @@ export const sendContactUsEmails = async (data: ContactUsData): Promise<{ succes
     return { success: false, message: 'Failed to process emails' };
   }
 };
+
+import { getCareersAdminEmailTemplate, getCareersThankYouEmailTemplate, CareersData } from './emailTemplates';
+
+export const sendCareersEmails = async (
+  data: CareersData,
+  fileName: string,
+  fileBuffer: Buffer
+): Promise<{ success: boolean; message: string }> => {
+  try {
+    const adminHtmlContent = getCareersAdminEmailTemplate(data);
+    const clientHtmlContent = getCareersThankYouEmailTemplate(data.name);
+    
+    const fromName = process.env.SMTP_FROM_NAME || 'Baker Jones Holdings';
+    const fromEmail = process.env.SMTP_FROM_EMAIL || 'noreply@bakerjonesholdings.com';
+    const adminEmail = process.env.ADMIN_EMAIL || 'info@bakerjonesholdings.com';
+
+    // 1. Email to Admin with Attachment
+    const adminMailOptions = {
+      from: `"${fromName}" <${fromEmail}>`,
+      to: adminEmail,
+      subject: 'New Career Application Received',
+      html: adminHtmlContent,
+      attachments: [
+        {
+          filename: fileName,
+          content: fileBuffer
+        }
+      ]
+    };
+
+    // 2. Email to Client
+    const clientMailOptions = {
+      from: `"${fromName}" <${fromEmail}>`,
+      to: data.email,
+      subject: 'Application Received - Baker Jones Holdings',
+      html: clientHtmlContent,
+    };
+
+    // Send both emails concurrently
+    const results = await Promise.allSettled([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(clientMailOptions)
+    ]);
+
+    results.forEach((result, index) => {
+      if (result.status === 'rejected') {
+        console.error(`Failed to send career email ${index === 0 ? 'to admin' : 'to client'}:`, result.reason);
+      } else {
+        console.log(`Career email successfully sent ${index === 0 ? 'to admin' : 'to client'}. Message ID: ${result.value.messageId}`);
+      }
+    });
+
+    return { success: true, message: 'Career emails processed' };
+  } catch (error) {
+    console.error('Error in sendCareersEmails:', error);
+    return { success: false, message: 'Failed to process career emails' };
+  }
+};
