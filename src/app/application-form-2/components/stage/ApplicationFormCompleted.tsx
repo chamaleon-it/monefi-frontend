@@ -21,6 +21,22 @@ export default function ApplicationFormCompleted({ formData }: StartProps) {
           error: "Application submission has some errors",
           success: "Your application has been submitted. Please wait while we review and verify it."
         })
+
+        // Send thank you email asynchronously (fire and forget)
+        try {
+          await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: data.email,
+              firstName: data.firstName,
+              lastName: data.lastName,
+            }),
+          });
+        } catch (emailError) {
+          console.error("Failed to send thank you email:", emailError);
+        }
+
         router.push(paths.home)
       } catch (error) {
         console.log(error);
