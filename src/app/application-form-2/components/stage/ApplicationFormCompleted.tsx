@@ -14,27 +14,27 @@ export default function ApplicationFormCompleted({ formData }: StartProps) {
   const paths = usePaths()
 
   const completeApplicationForm = useCallback(
-    async (data:FormDataType) => {
+    async (data: FormDataType) => {
       try {
-        await toast.promise(api.post("/application_form",data),{
-          loading:"Application is submitting...",
-          error:"Application submission has some errors",
-          success:"Your application has been submitted. Please wait while we review and verify it."
+        await toast.promise(api.post("/application_form", data), {
+          loading: "Application is submitting...",
+          error: "Application submission has some errors",
+          success: "Your application has been submitted. Please wait while we review and verify it."
         })
         router.push(paths.home)
       } catch (error) {
         console.log(error);
       }
     },
-    [paths.home,router],
+    [paths.home, router],
   )
-  
+
   return (
     <div className="h-full w-full lg:w-1/2 bg-bakerjonesholdings-pink py-10 px-5 flex flex-col items-center justify-center gap-5 text-white">
       <h2 className="text-2xl font-semibold text-center">Application form completed</h2>
-      <p className="text-center">Review and submit your application.</p>
+      <p className="text-center">Submit your application.</p>
 
-      <button className="text-white px-4 py-2 rounded-lg bg-bakerjonesholdings-black hover:px-5 duration-200 cursor-pointer hover:opacity-90" onClick={()=>completeApplicationForm(formData)}>
+      <button className="text-white px-4 py-2 rounded-lg bg-bakerjonesholdings-black hover:px-5 duration-200 cursor-pointer hover:opacity-90" onClick={() => completeApplicationForm(formData)}>
         Submit
       </button>
     </div>
