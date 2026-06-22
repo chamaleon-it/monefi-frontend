@@ -24,10 +24,8 @@ export function getThankYouEmailTemplate(firstName: string, lastName: string): s
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    .header { background-color: #ffffff; padding: 25px 20px; border-bottom: 2px solid #f0f0f0; }
-    .header-table { width: 100%; }
-    .header-logo { width: 180px; max-width: 100%; display: block; }
-    .header-slogan { color: #1e134b; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: right; vertical-align: middle; }
+    .header { background-color: #ffffff; padding: 0; text-align: center; border-bottom: 2px solid #f0f0f0; }
+    .header-image { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
     .content {
       padding: 30px;
     }
@@ -70,16 +68,7 @@ export function getThankYouEmailTemplate(firstName: string, lastName: string): s
 <body>
   <div class="container">
     <div class="header">
-      <table class="header-table" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td align="left" valign="middle">
-            <img src="https://bakerjonesholdings.com/logo.png" alt="Baker Jones Holdings" class="header-logo" />
-          </td>
-          <td align="right" valign="middle" class="header-slogan">
-            SECURE BOND OPTIONS
-          </td>
-        </tr>
-      </table>
+      <img src="https://bakerjonesholdings.com/email/header.png" alt="Baker Jones Holdings" class="header-image" />
     </div>
     <div class="content">
       <p>Dear ${name},</p>
@@ -89,15 +78,12 @@ export function getThankYouEmailTemplate(firstName: string, lastName: string): s
       <p><strong>What happens next:</strong></p>
       
       <ul>
-        <li><strong>Approval & Documentation:</strong> Once your application is approved, we will send over the official transaction and offering documents tailored to your specific investment purchase (such as your designated bonds, IPOs, or fund allocations).</li>
+        <li><strong>Approval & Documentation:</strong> Once your application is approved, we will send over the official transaction and offering documents tailored to your specific investment purchase (such as your designated bonds, IPOs, or fund allocations). <br/></li>
         <li><strong>Advisor Outreach:</strong> Alternatively, your dedicated advisor will be in touch shortly to walk you through the next steps and help complete your transaction.</li>
       </ul>
       
       <p>If you have any immediate questions, please reply directly to this email or contact our advisory desk at <a href="tel:+441182118521">0118 211 8521</a></p>
       
-      <div class="btn-container">
-        <a href="https://bakerjonesholdings.com/contact-us" class="btn">Contact Support</a>
-      </div>
       
       <p>Best regards,<br>
       <strong>Baker Jones Holdings</strong></p>
@@ -130,10 +116,8 @@ export function getContactAdminEmailTemplate(data: ContactUsData): string {
   <style>
     body { font-family: sans-serif; line-height: 1.6; color: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #ffffff; padding: 25px 20px; border-bottom: 2px solid #f0f0f0; }
-    .header-table { width: 100%; }
-    .header-logo { width: 180px; max-width: 100%; display: block; }
-    .header-slogan { color: #1e134b; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: right; vertical-align: middle; }
+    .header { background-color: #ffffff; padding: 0; text-align: center; border-bottom: 2px solid #f0f0f0; }
+    .header-image { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
     .content { padding: 20px; background: #f9f9f9; border: 1px solid #ddd; }
     .field { margin-bottom: 15px; }
     .label { font-weight: bold; color: #555; }
@@ -143,16 +127,7 @@ export function getContactAdminEmailTemplate(data: ContactUsData): string {
 <body>
   <div class="container">
     <div class="header">
-      <table class="header-table" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td align="left" valign="middle">
-            <img src="https://bakerjonesholdings.com/logo.png" alt="Baker Jones Holdings" class="header-logo" />
-          </td>
-          <td align="right" valign="middle" class="header-slogan">
-            SECURE BOND OPTIONS
-          </td>
-        </tr>
-      </table>
+      <img src="https://bakerjonesholdings.com/email/header.png" alt="Baker Jones Holdings" class="header-image" />
     </div>
     <div style="padding: 20px 20px 0;">
       <h2 style="color: #1e134b; margin: 0;">New Contact Us Submission</h2>
@@ -193,10 +168,8 @@ export function getContactThankYouEmailTemplate(firstName: string, lastName: str
   <style>
     body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9f9f7; color: #111111; line-height: 1.6; }
     .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-    .header { background-color: #ffffff; padding: 25px 20px; border-bottom: 2px solid #f0f0f0; }
-    .header-table { width: 100%; }
-    .header-logo { width: 180px; max-width: 100%; display: block; }
-    .header-slogan { color: #1e134b; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: right; vertical-align: middle; }
+    .header { background-color: #ffffff; padding: 0; text-align: center; border-bottom: 2px solid #f0f0f0; }
+    .header-image { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
     .content { padding: 30px; }
     .content p { margin-bottom: 20px; font-size: 16px; }
     .footer { background-color: #e5e7eb; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; }
@@ -205,16 +178,7 @@ export function getContactThankYouEmailTemplate(firstName: string, lastName: str
 <body>
   <div class="container">
     <div class="header">
-      <table class="header-table" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td align="left" valign="middle">
-            <img src="https://bakerjonesholdings.com/logo.png" alt="Baker Jones Holdings" class="header-logo" />
-          </td>
-          <td align="right" valign="middle" class="header-slogan">
-            SECURE BOND OPTIONS
-          </td>
-        </tr>
-      </table>
+      <img src="https://bakerjonesholdings.com/email/header.png" alt="Baker Jones Holdings" class="header-image" />
     </div>
     <div class="content">
       <p>Dear ${name},</p>
@@ -247,10 +211,8 @@ export function getCareersAdminEmailTemplate(data: CareersData): string {
     body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
     .container { padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px; background: #fff; }
     h2 { color: #1e134b; }
-    .header { background-color: #ffffff; padding: 0 0 20px 0; border-bottom: 2px solid #f0f0f0; margin-bottom: 20px; }
-    .header-table { width: 100%; }
-    .header-logo { width: 180px; max-width: 100%; display: block; }
-    .header-slogan { color: #1e134b; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: right; vertical-align: middle; }
+    .header { background-color: #ffffff; padding: 0; text-align: center; border-bottom: 2px solid #f0f0f0; margin-bottom: 20px; }
+    .header-image { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
     .field { margin-bottom: 10px; }
     .label { font-weight: bold; }
   </style>
@@ -258,16 +220,7 @@ export function getCareersAdminEmailTemplate(data: CareersData): string {
 <body>
   <div class="container">
     <div class="header">
-      <table class="header-table" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td align="left" valign="middle">
-            <img src="https://bakerjonesholdings.com/logo.png" alt="Baker Jones Holdings" class="header-logo" />
-          </td>
-          <td align="right" valign="middle" class="header-slogan">
-            SECURE BOND OPTIONS
-          </td>
-        </tr>
-      </table>
+      <img src="https://bakerjonesholdings.com/email/header.png" alt="Baker Jones Holdings" class="header-image" />
     </div>
     <h2>New Career Application</h2>
     <div class="field"><span class="label">Name:</span> ${data.name}</div>
@@ -293,10 +246,8 @@ export function getCareersThankYouEmailTemplate(name: string): string {
   <style>
     body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9f9f7; color: #111111; line-height: 1.6; }
     .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-    .header { background-color: #ffffff; padding: 25px 20px; border-bottom: 2px solid #f0f0f0; }
-    .header-table { width: 100%; }
-    .header-logo { width: 180px; max-width: 100%; display: block; }
-    .header-slogan { color: #1e134b; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-align: right; vertical-align: middle; }
+    .header { background-color: #ffffff; padding: 0; text-align: center; border-bottom: 2px solid #f0f0f0; }
+    .header-image { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
     .content { padding: 30px; }
     .content p { margin-bottom: 20px; font-size: 16px; }
     .footer { background-color: #e5e7eb; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; }
@@ -305,16 +256,7 @@ export function getCareersThankYouEmailTemplate(name: string): string {
 <body>
   <div class="container">
     <div class="header">
-      <table class="header-table" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td align="left" valign="middle">
-            <img src="https://bakerjonesholdings.com/logo.png" alt="Baker Jones Holdings" class="header-logo" />
-          </td>
-          <td align="right" valign="middle" class="header-slogan">
-            SECURE BOND OPTIONS
-          </td>
-        </tr>
-      </table>
+      <img src="https://bakerjonesholdings.com/email/header.png" alt="Baker Jones Holdings" class="header-image" />
     </div>
     <div class="content">
       <p>Dear ${firstName},</p>
