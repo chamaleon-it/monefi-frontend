@@ -14,7 +14,7 @@ const faqs = [
     id: 1,
     question: "Why should I work with you instead of my high street bank branch?",
     answer:
-      "High street banks often treat clients like a herd, funneling them into restrictive, standardized products. Because we are an independent boutique, we offer an entirely different experience: True Personalisation: Your adviser capped at 50 clients means tailored strategies, not institutional templates. Institutional-Grade Products: We access institutional fixed-income products and terms from tier-one global banks that high street branches cannot offer retail clients. Unbiased Representation: Bank employees represent the bank’s product line; we exclusively represent you.",
+      "High street banks often treat clients like a herd, funneling them into restrictive, standardized products. Because we are an independent boutique, we offer an entirely different experience: \nTrue Personalisation: Your adviser capped at 50 clients means tailored strategies, not institutional templates. \nInstitutional-Grade Products: We access institutional fixed-income products and terms from tier-one global banks that high street branches cannot offer retail clients. \nUnbiased Representation: Bank employees represent the bank’s product line; we exclusively represent you.",
   },
   {
     id: 2,
