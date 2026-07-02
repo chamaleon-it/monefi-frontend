@@ -30,9 +30,9 @@ export default function Step0Register({ formData, updateFormData, onNext }: Step
   const ic = (err?: string) => err ? INPUT_ERR : INPUT_OK;
 
   return (
-    <div className="h-screen w-full flex flex-col lg:flex-row overflow-hidden font-inter">
+    <div className="min-h-screen lg:h-full w-full flex flex-col lg:flex-row font-inter bg-[#F5F4F2]">
       {/* ── Left panel ── */}
-      <div className="w-full lg:w-[44%] xl:w-[40%] bg-corporate-charcoal text-white flex flex-col justify-between p-10 lg:p-14 relative overflow-hidden shrink-0 h-[220px] lg:h-screen">
+      <div className="w-full lg:w-[44%] xl:w-[40%] bg-corporate-charcoal text-white  flex-col justify-between p-6 sm:p-10 lg:p-14 relative overflow-hidden shrink-0 h-[100px] sm:h-[180px] lg:h-full hidden lg:flex">
         <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-corporate-gold/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute -bottom-20 -left-10 w-[350px] h-[350px] bg-white/3 rounded-full blur-[80px] pointer-events-none" />
 
@@ -65,9 +65,16 @@ export default function Step0Register({ formData, updateFormData, onNext }: Step
       </div>
 
       {/* ── Right panel ── */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-10 lg:p-14 bg-[#F5F4F2] overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-10 lg:p-14 lg:overflow-y-auto">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 sm:p-10">
+            {/* Mobile Logo */}
+            <div className="mb-8 lg:hidden flex justify-center border-b border-slate-100 pb-6">
+              <Link href="/home-2">
+                <Image src="/logo/logo.svg" width={160} height={40} alt="Baker Jones Holdings" className="h-8 w-auto object-contain" />
+              </Link>
+            </div>
+            
             <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400 mb-3">New Account</p>
             <h2 className="text-[1.875rem] font-semibold text-slate-900 tracking-tight leading-tight mb-2">Create your account</h2>
             <p className="text-[15px] text-slate-600 mb-8">Enter your details to begin your application.</p>

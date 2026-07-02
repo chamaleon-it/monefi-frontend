@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Star, ChevronDown, CheckCircle2, TrendingUp, Building2, Briefcase, Landmark, Shield, Clock, BarChart } from 'lucide-react';
 import { ScrollAnimation } from '@/components/ScrollAnimation';
 import { InvestmentCalculator } from '@/components/InvestmentCalculator';
+import Home2Header from '@/components/Home2Header';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -16,38 +17,7 @@ export default function Home2Page() {
     <div className="bg-corporate-white text-slate-900 font-inter antialiased">
 
       {/* Sticky Header */}
-      <header className="sticky top-0 bg-white/95 backdrop-blur-md py-4 lg:py-5 border-b border-gray-100 z-[100] shadow-sm transition-all duration-300">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-8 flex justify-between items-center">
-          <Link href="/home-2" className="flex-shrink-0">
-            <Image src="/logo/logo.svg" width={180} height={45} alt="Baker Jones Holdings logo" className="w-[140px] sm:w-[180px]" />
-          </Link>
-
-          <nav className="hidden lg:flex items-center space-x-9">
-            <Link href="/home-2" className="text-[14px] font-bold text-[#082348] pb-1">Home</Link>
-            <Link href="/about" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">About Us</Link>
-            <div className="flex items-center text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors cursor-pointer">
-              Financial Products <ChevronDown className="ml-1 w-3.5 h-3.5" />
-            </div>
-            <Link href="#" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">Investment Platform</Link>
-            <Link href="/how-it-works" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">How It Works</Link>
-            <Link href="/contact" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">Contact Us</Link>
-          </nav>
-
-          <div className="hidden lg:flex items-center space-x-3">
-            <Link href="/login" className="px-6 py-2 rounded-full border border-slate-300 text-[#082348] text-[14px] font-bold hover:border-[#082348] transition-all">
-              Log In
-            </Link>
-            <Link href="/new-application-form" className="px-6 py-2 rounded-full bg-[#082348] text-white text-[14px] font-bold hover:bg-[#051630] transition-all flex items-center">
-              Register <ArrowUpRight className="ml-1 w-3.5 h-3.5 stroke-[2.5]" />
-            </Link>
-          </div>
-
-          {/* Mobile menu button placeholder for visual accuracy */}
-          <button className="lg:hidden p-2 text-slate-500">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-          </button>
-        </div>
-      </header>
+      <Home2Header />
 
       {/* 1. Hero Section */}
       <section className="bg-[#FAFAFA] pt-12 pb-16 lg:pt-0 lg:pb-0 lg:h-[calc(100vh-76px)] flex flex-col justify-center">

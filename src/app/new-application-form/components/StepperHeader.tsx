@@ -103,7 +103,7 @@ export default function StepperHeader({ currentStepIndex, stepsFlow, formData, o
       {/* ── Stepper bar ─────────────────────────────────────── */}
       {currentStepIndex >= 2 && (
         <div className="bg-white border-b border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
-          <div className="mx-auto px-6 sm:px-10 py-4 overflow-x-auto w-min">
+          <div className="max-w-6xl mx-auto px-6 sm:px-10 py-4 overflow-x-auto w-full">
             <div className="flex items-center min-w-[560px] sm:min-w-0">
               {stepperSteps.map((step, idx) => {
                 const done = currentStepNumber > step.number;
