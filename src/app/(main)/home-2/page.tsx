@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Home2Page() {
   return (
-    <div className="bg-corporate-white text-slate-900 font-inter antialiased pb-10">
+    <div className="bg-corporate-white text-slate-900 font-inter antialiased">
 
       {/* Sticky Header */}
       <header className="sticky top-0 bg-white/95 backdrop-blur-md py-4 lg:py-5 border-b border-gray-100 z-[100] shadow-sm transition-all duration-300">
@@ -121,12 +121,21 @@ export default function Home2Page() {
               {/* As Featured In */}
               <div className="mb-8">
                 <span className="block text-[12px] text-slate-400 font-medium mb-4 uppercase tracking-wider">As Featured in</span>
-                <div className="flex flex-wrap gap-3">
-                  <span className="text-slate-700 text-[14px] font-bold">Yahoo!</span>
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="flex items-center gap-2 group cursor-default">
+                    <div className="w-6 h-6 rounded bg-[#6001D2] flex items-center justify-center text-white font-bold text-[12px] italic shadow-sm group-hover:scale-110 transition-transform">Y!</div>
+                    <span className="text-slate-700 text-[14px] font-bold group-hover:text-[#6001D2] transition-colors">Yahoo!</span>
+                  </div>
                   <span className="text-slate-300">|</span>
-                  <span className="text-slate-700 text-[14px] font-bold">Bloomberg</span>
+                  <div className="flex items-center gap-2 group cursor-default">
+                    <div className="w-6 h-6 rounded bg-black flex items-center justify-center text-white font-bold text-[14px] font-serif shadow-sm group-hover:scale-110 transition-transform">B</div>
+                    <span className="text-slate-700 text-[14px] font-bold group-hover:text-black transition-colors">Bloomberg</span>
+                  </div>
                   <span className="text-slate-300">|</span>
-                  <span className="text-slate-700 text-[14px] font-bold">Investing.com</span>
+                  <div className="flex items-center gap-2 group cursor-default">
+                    <div className="w-6 h-6 rounded bg-[#F97316] flex items-center justify-center text-white font-bold text-[13px] shadow-sm group-hover:scale-110 transition-transform">i</div>
+                    <span className="text-slate-700 text-[14px] font-bold group-hover:text-[#F97316] transition-colors">Investing.com</span>
+                  </div>
                 </div>
               </div>
 
@@ -286,31 +295,38 @@ export default function Home2Page() {
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-            <div className="order-2 lg:order-1 relative h-[500px] w-full flex items-center justify-center">
+            <div className="order-2 lg:order-1 relative h-[500px] w-full flex flex-col justify-center">
 
-              {/* Floating soft cards */}
-              <div className="absolute z-10 w-64 p-6 bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-gray-50 transform -rotate-6 -translate-x-16 -translate-y-10 animate-float-reverse group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
-                <div className="w-12 h-12 rounded-full bg-blue-50 text-[#082348] flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
-                  <TrendingUp className="w-6 h-6" />
+              {/* Structured Premium Cards */}
+              <div className="w-full max-w-[320px] ml-auto p-6 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 group hover:-translate-y-1 transition-all duration-300 cursor-pointer relative z-10 translate-x-4 lg:translate-x-8">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-10 h-10 rounded bg-[#FAFAFA] border border-slate-100 text-[#082348] flex items-center justify-center transition-colors group-hover:border-[#082348]">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-[#082348] text-[15px]">Growth Equity</h3>
                 </div>
-                <h3 className="font-bold text-[#082348] mb-1">Growth Equity</h3>
-                <p className="text-[14px] text-slate-500">Access to rapidly scaling private companies.</p>
+                <p className="text-[13px] text-slate-500 leading-relaxed">Access to rapidly scaling private companies with institutional potential.</p>
               </div>
 
-              <div className="absolute z-20 w-72 p-8 bg-[#082348] text-white rounded-[2.5rem] shadow-2xl transform rotate-3 translate-x-12 translate-y-8 animate-float group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
-                <div className="w-14 h-14 rounded-full bg-white/10 text-corporate-gold flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-                  <Star className="w-7 h-7" />
+              <div className="w-full max-w-[360px] mx-auto p-8 bg-[#082348] text-white rounded-2xl shadow-[0_20px_40px_rgba(8,35,72,0.2)] group hover:-translate-y-1 transition-all duration-300 cursor-pointer relative z-20 -my-4 lg:-my-6">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 rounded bg-white/10 border border-white/5 text-corporate-gold flex items-center justify-center">
+                    <Star className="w-6 h-6" />
+                  </div>
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-white/50 border border-white/10 px-3 py-1 rounded-sm">Premium</span>
                 </div>
-                <h3 className="font-bold text-lg mb-2">Pre-IPO Access</h3>
-                <p className="text-[13px] text-white/70">Exclusive entry to unicorns before they go public.</p>
+                <h3 className="font-bold text-[18px] mb-2">Pre-IPO Access</h3>
+                <p className="text-[13px] text-white/70 leading-relaxed">Exclusive entry to unicorns before they go public, bypassing traditional retail channels.</p>
               </div>
 
-              <div className="absolute z-10 w-56 p-5 bg-corporate-gold text-white rounded-[1.5rem] shadow-xl transform rotate-12 translate-x-32 -translate-y-24 animate-float-delayed group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-3 transition-transform group-hover:scale-110">
-                  <Shield className="w-5 h-5" />
+              <div className="w-full max-w-[320px] mr-auto p-6 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 group hover:-translate-y-1 transition-all duration-300 cursor-pointer relative z-10 -translate-x-4 lg:-translate-x-8">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-10 h-10 rounded bg-corporate-gold/5 border border-corporate-gold/20 text-corporate-gold flex items-center justify-center transition-colors group-hover:bg-corporate-gold group-hover:text-white group-hover:border-corporate-gold">
+                    <Shield className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-bold text-[#082348] text-[15px]">Corporate Bonds</h3>
                 </div>
-                <h3 className="font-bold mb-1">Bonds</h3>
-                <p className="text-[11px] text-white/80">Stable yield generation.</p>
+                <p className="text-[13px] text-slate-500 leading-relaxed">Stable yield generation focused on capital preservation and fixed periodic returns.</p>
               </div>
             </div>
 
@@ -453,17 +469,17 @@ export default function Home2Page() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* The pill image collage */}
             <div className="flex gap-4 justify-center items-center h-[300px] lg:h-[450px]">
-              <div className="w-1/3 h-full animate-float">
+              <div className="w-1/3 h-full">
                 <div className="w-full h-full rounded-full overflow-hidden shadow-lg transform -translate-y-6">
                   <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" alt="" />
                 </div>
               </div>
-              <div className="w-1/3 h-[110%] z-10 animate-float-reverse">
+              <div className="w-1/3 h-[110%] z-10 ">
                 <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
                   <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale" alt="" />
                 </div>
               </div>
-              <div className="w-1/3 h-full animate-float-delayed">
+              <div className="w-1/3 h-full ">
                 <div className="w-full h-full rounded-full overflow-hidden shadow-lg transform translate-y-6">
                   <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" alt="" />
                 </div>

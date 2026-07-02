@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Check, HeadphonesIcon } from 'lucide-react';
 import { ApplicationFormData } from './types';
 
@@ -56,13 +57,15 @@ export default function StepperHeader({ currentStepIndex, stepsFlow, formData, o
 
           {/* Left: logo + context */}
           <div className="flex items-center gap-5">
-            <Image
-              src="/logo/logo-white.svg"
-              width={140}
-              height={44}
-              alt="Baker Jones Holdings"
-              className="h-7 w-auto object-contain "
-            />
+            <Link href="/home-2">
+              <Image
+                src="/logo/logo-white.svg"
+                width={140}
+                height={44}
+                alt="Baker Jones Holdings"
+                className="h-7 w-auto object-contain "
+              />
+            </Link>
             <div className="h-5 w-px bg-white/25 hidden sm:block" />
             <span className="text-[13px] text-white/80 font-normal hidden sm:block">
               {formData.accountType || 'Individual'} Application

@@ -37,7 +37,7 @@ export default function Step0Register({ formData, updateFormData, onNext }: Step
         <div className="absolute -bottom-20 -left-10 w-[350px] h-[350px] bg-white/3 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="relative z-10">
-          <Link href="/"><Image src="/logo/logo-white.svg" width={180} height={56} alt="Baker Jones Holdings" className="h-8 w-auto object-contain" /></Link>
+          <Link href="/home-2"><Image src="/logo/logo-white.svg" width={180} height={56} alt="Baker Jones Holdings" className="h-8 w-auto object-contain" /></Link>
         </div>
 
         <div className="relative z-10 my-auto py-8 lg:py-0">
