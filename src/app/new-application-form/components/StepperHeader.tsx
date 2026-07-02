@@ -57,11 +57,11 @@ export default function StepperHeader({ currentStepIndex, stepsFlow, formData, o
           {/* Left: logo + context */}
           <div className="flex items-center gap-5">
             <Image
-              src="/logo-2.png"
+              src="/logo/logo-white.svg"
               width={140}
               height={44}
               alt="Baker Jones Holdings"
-              className="h-7 w-auto object-contain brightness-0 invert"
+              className="h-7 w-auto object-contain "
             />
             <div className="h-5 w-px bg-white/25 hidden sm:block" />
             <span className="text-[13px] text-white/80 font-normal hidden sm:block">
@@ -115,16 +115,16 @@ export default function StepperHeader({ currentStepIndex, stepsFlow, formData, o
                       className={`flex items-center gap-2.5 shrink-0 transition-opacity ${click ? 'cursor-pointer hover:opacity-70' : ''}`}
                     >
                       {/* Circle */}
-                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-semibold transition-all ${done
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[12px] font-semibold transition-all ${done
                         ? 'bg-corporate-charcoal text-white shadow-sm'
                         : active
                           ? 'bg-white border-2 border-corporate-charcoal text-corporate-charcoal'
-                          : 'bg-slate-100 text-slate-400 border border-slate-200'
+                          : 'bg-slate-100 text-slate-500 border border-slate-200'
                         }`}>
                         {done ? <Check className="w-3.5 h-3.5" strokeWidth={2.5} /> : step.number}
                       </div>
                       {/* Label */}
-                      <span className={`text-[13px] font-medium whitespace-nowrap ${active ? 'text-slate-900' : done ? 'text-slate-500' : 'text-slate-300'
+                      <span className={`text-[13px] font-semibold whitespace-nowrap ${active ? 'text-slate-900' : done ? 'text-slate-700' : 'text-slate-500'
                         }`}>
                         {step.label}
                       </span>

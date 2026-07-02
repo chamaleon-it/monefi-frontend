@@ -47,14 +47,14 @@ export default function PublicHeader() {
               className="flex-shrink-0"
             >
               <Image
-                src="/logo.png"
+                src="/logo/logo.svg"
                 width={164}
                 height={40}
                 alt="Baker Jones Holdings logo"
                 className="hidden sm:block"
               />
               <Image
-                src="/logo.png"
+                src="/logo/logo.svg"
                 width={120}
                 height={30}
                 alt="Baker Jones Holdings logo"
@@ -103,7 +103,7 @@ export default function PublicHeader() {
                         className="flex-shrink-0 "
                       >
                         <Image
-                          src="/logo.png"
+                          src="/logo/logo.svg"
                           width={140}
                           height={35}
                           alt="Baker Jones Holdings logo"

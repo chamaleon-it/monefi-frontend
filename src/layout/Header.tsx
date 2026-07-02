@@ -57,14 +57,14 @@ export default function Header() {
               className="flex-shrink-0 transition-transform hover:scale-105 duration-200"
             >
               <Image
-                src={isDashboard ? "/logo-2.png" : "/logo.png"}
+                src={isDashboard ? "/logo/logo-white.svg" : "/logo/logo.svg"}
                 width={164}
                 height={40}
                 alt="Baker Jones Holdings logo"
                 className="hidden sm:block"
               />
               <Image
-                src={isDashboard ? "/logo-2.png" : "/logo.png"}
+                src={isDashboard ? "/logo/logo-white.svg" : "/logo/logo.svg"}
                 width={120}
                 height={30}
                 alt="Baker Jones Holdings logo"
@@ -144,7 +144,7 @@ export default function Header() {
                         className={`transition-transform hover:scale-105 duration-200 ${isDashboard ? "" : "invert"}`}
                       >
                         <Image
-                          src={isDashboard ? "/logo-2.png" : "/logo.png"}
+                          src={isDashboard ? "/logo/logo-white.svg" : "/logo/logo.svg"}
                           width={140}
                           height={35}
                           alt="Baker Jones Holdings logo"

@@ -17,7 +17,7 @@ export default function Step0AccountType({ formData, updateFormData, onNext, onB
     <div className="max-w-3xl mx-auto px-5 sm:px-8 py-12 sm:py-16 font-inter w-full">
       {/* Header */}
       <div className="text-center mb-10 flex flex-col items-center">
-        <Image src="/logo.png" width={1280} height={290} alt="Logo" className="w-auto h-7 object-contain mb-6" />
+        <Image src="/logo/logo.svg" width={1280} height={290} alt="Logo" className="w-auto h-7 object-contain mb-6" />
         <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-slate-400 mb-2">Client Portal</p>
         <h1 className="text-[2rem] sm:text-[2.25rem] font-semibold text-slate-900 tracking-tight mb-2">Choose account type</h1>
         <p className="text-[14px] text-slate-500 max-w-sm leading-relaxed">Select the type of account you&apos;d like to open.</p>

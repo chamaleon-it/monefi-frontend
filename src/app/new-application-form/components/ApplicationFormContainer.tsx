@@ -126,11 +126,11 @@ export default function ApplicationFormContainer() {
               {/* Column 1: Brand */}
               <div className="lg:col-span-1">
                 <Image
-                  src="/logo-2.png"
+                  src="/logo/logo-white.svg"
                   width={140}
                   height={44}
                   alt="Baker Jones Holdings"
-                  className="h-6 w-auto object-contain brightness-0 invert mb-4"
+                  className="h-6 w-auto object-contain  mb-4"
                 />
                 <p className="text-[13px] text-white/50 leading-relaxed">
                   Institutional-grade fixed-income solutions for private and corporate investors.

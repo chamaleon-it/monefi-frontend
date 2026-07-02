@@ -16,7 +16,7 @@ export default function PublicFooter() {
           <div className="lg:col-span-2 space-y-6">
             <Link href={paths.home} className="inline-block">
               <Image
-                src="/logo.png"
+                src="/logo/logo.svg"
                 width={164}
                 height={40}
                 alt="Baker Jones Holdings logo"
