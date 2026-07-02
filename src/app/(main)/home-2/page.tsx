@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 export default function Home2Page() {
   return (
     <div className="bg-corporate-white text-slate-900 font-inter antialiased pb-10">
-      
+
       {/* Sticky Header */}
       <header className="sticky top-0 bg-white/95 backdrop-blur-md py-4 lg:py-5 border-b border-gray-100 z-[100] shadow-sm transition-all duration-300">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-8 flex justify-between items-center">
           <Link href="/home-2" className="flex-shrink-0">
             <Image src="/logo/logo.svg" width={180} height={45} alt="Baker Jones Holdings logo" className="w-[140px] sm:w-[180px]" />
           </Link>
-          
+
           <nav className="hidden lg:flex items-center space-x-9">
             <Link href="/home-2" className="text-[14px] font-bold text-[#082348] pb-1">Home</Link>
             <Link href="/about" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">About Us</Link>
@@ -32,7 +32,7 @@ export default function Home2Page() {
             <Link href="/how-it-works" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">How It Works</Link>
             <Link href="/contact" className="text-[14px] font-medium text-slate-500 hover:text-[#082348] transition-colors">Contact Us</Link>
           </nav>
-          
+
           <div className="hidden lg:flex items-center space-x-3">
             <Link href="/login" className="px-6 py-2 rounded-full border border-slate-300 text-[#082348] text-[14px] font-bold hover:border-[#082348] transition-all">
               Log In
@@ -41,10 +41,10 @@ export default function Home2Page() {
               Register <ArrowUpRight className="ml-1 w-3.5 h-3.5 stroke-[2.5]" />
             </Link>
           </div>
-          
+
           {/* Mobile menu button placeholder for visual accuracy */}
           <button className="lg:hidden p-2 text-slate-500">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
         </div>
       </header>
@@ -58,17 +58,19 @@ export default function Home2Page() {
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex gap-1 text-[#FBBF24]">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current border-none" />
+                    <svg key={i} className="w-4 h-4 fill-current border-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
                   ))}
                 </div>
                 <span className="text-[13px] font-semibold text-slate-500 uppercase tracking-widest">Rated 4.9/5 by 5000+ Clients</span>
               </div>
-              
+
               <h1 className="text-5xl lg:text-[4rem] font-semibold tracking-tighter leading-[1.05] text-[#082348]">
                 Building Value Through <br /> Strategic Investments.
               </h1>
             </div>
-            
+
             <div className="flex flex-col items-start lg:items-end gap-5 lg:pb-3">
               <p className="text-slate-500 text-[14px] max-w-[280px] lg:text-right leading-relaxed">
                 Expertly managed structural growth and Pre-IPO investments tailored for long-term scalability.
@@ -78,16 +80,16 @@ export default function Home2Page() {
               </Link>
             </div>
           </div>
-          
+
           <div className="w-full h-[300px] lg:h-[420px] shrink-0 rounded-[2rem] overflow-hidden shadow-2xl relative mb-8">
-            <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-              alt="Corporate building" 
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+              alt="Corporate building"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#082348]/40 to-transparent"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 mt-auto shrink-0 pt-2 pb-4">
             <div className="flex flex-col border-l-2 border-corporate-gold pl-5">
               <span className="text-3xl font-semibold text-[#082348] tracking-tight">$10B+</span>
@@ -115,7 +117,7 @@ export default function Home2Page() {
               <p className="text-[15px] text-slate-500 mb-8 leading-relaxed max-w-2xl">
                 At Baker Jones Holdings, we provide tailored corporate strategies that prioritise capital preservation, operational efficiency, and long-term scalable growth.
               </p>
-              
+
               {/* As Featured In */}
               <div className="mb-8">
                 <span className="block text-[12px] text-slate-400 font-medium mb-4 uppercase tracking-wider">As Featured in</span>
@@ -127,12 +129,12 @@ export default function Home2Page() {
                   <span className="text-slate-700 text-[14px] font-bold">Investing.com</span>
                 </div>
               </div>
-              
+
               <Link href="/about" className="inline-flex items-center justify-center px-8 py-3.5 bg-corporate-gold text-white hover:bg-yellow-600 rounded-full font-bold text-[14px] transition-all hover:-translate-y-0.5">
                 Discover More
               </Link>
             </div>
-            
+
             <div className="flex flex-col gap-8 lg:pt-4">
               <div className="flex gap-6 group">
                 <div className="shrink-0 mt-1 w-10 h-10 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
@@ -144,7 +146,7 @@ export default function Home2Page() {
                   <span className="inline-block px-3 py-1 bg-slate-100 text-slate-500 text-[11px] font-bold uppercase tracking-widest rounded-md">Strategic</span>
                 </div>
               </div>
-              
+
               <div className="flex gap-6 group">
                 <div className="shrink-0 mt-1 w-10 h-10 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
                   <Shield className="w-5 h-5" />
@@ -155,7 +157,7 @@ export default function Home2Page() {
                   <span className="inline-block px-3 py-1 bg-slate-100 text-slate-500 text-[11px] font-bold uppercase tracking-widest rounded-md">Secure</span>
                 </div>
               </div>
-              
+
               <div className="flex gap-6 group">
                 <div className="shrink-0 mt-1 w-10 h-10 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
                   <CheckCircle2 className="w-5 h-5" />
@@ -176,7 +178,7 @@ export default function Home2Page() {
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Your Gateway</span>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-[#082348] mb-6">Manage Your Investments<br/>From Our Secure Online Portal</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-[#082348] mb-6">Manage Your Investments<br />From Our Secure Online Portal</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="max-w-lg mx-auto lg:mx-0 lg:ml-auto text-center lg:text-left">
@@ -197,11 +199,11 @@ export default function Home2Page() {
                 <div className="flex-1 p-6 flex flex-col gap-4">
                   <div className="w-32 h-4 bg-white/10 rounded-full"></div>
                   <div className="flex gap-4">
-                     <div className="flex-1 h-24 bg-corporate-gold/20 rounded-xl border border-corporate-gold/30"></div>
-                     <div className="flex-1 h-24 bg-white/5 rounded-xl"></div>
+                    <div className="flex-1 h-24 bg-corporate-gold/20 rounded-xl border border-corporate-gold/30"></div>
+                    <div className="flex-1 h-24 bg-white/5 rounded-xl"></div>
                   </div>
                 </div>
-                
+
                 <div className="absolute -bottom-6 -left-6 w-32 h-40 bg-white border border-slate-100 rounded-2xl shadow-2xl flex flex-col p-4 gap-3 z-10">
                   <div className="w-10 h-10 rounded-full bg-corporate-gold/10 text-corporate-gold flex items-center justify-center">
                     <TrendingUp className="w-5 h-5" />
@@ -236,7 +238,7 @@ export default function Home2Page() {
               <h3 className="text-[17px] font-bold mb-3 text-[#082348]">Strategic Investments</h3>
               <p className="text-slate-500 text-[14px] leading-relaxed">Long-term capital allocation across high-growth markets designed for sustainable corporate growth.</p>
             </div>
-            
+
             <div className="bg-[#FAFAFA] p-8 rounded-2xl group hover:shadow-lg transition-all duration-300">
               <div className="flex justify-between items-start mb-12">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-corporate-gold shadow-sm">
@@ -283,35 +285,35 @@ export default function Home2Page() {
       <section className="py-10 lg:py-12 bg-white overflow-hidden">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            
+
             <div className="order-2 lg:order-1 relative h-[500px] w-full flex items-center justify-center">
-               
-               {/* Floating soft cards */}
-               <div className="absolute z-10 w-64 p-6 bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-gray-50 transform -rotate-6 -translate-x-16 -translate-y-10 animate-float-reverse group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 text-[#082348] flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
-                     <TrendingUp className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-bold text-[#082348] mb-1">Growth Equity</h3>
-                  <p className="text-[14px] text-slate-500">Access to rapidly scaling private companies.</p>
-               </div>
-               
-               <div className="absolute z-20 w-72 p-8 bg-[#082348] text-white rounded-[2.5rem] shadow-2xl transform rotate-3 translate-x-12 translate-y-8 animate-float group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
-                  <div className="w-14 h-14 rounded-full bg-white/10 text-corporate-gold flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-                     <Star className="w-7 h-7" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">Pre-IPO Access</h3>
-                  <p className="text-[13px] text-white/70">Exclusive entry to unicorns before they go public.</p>
-               </div>
-               
-               <div className="absolute z-10 w-56 p-5 bg-corporate-gold text-white rounded-[1.5rem] shadow-xl transform rotate-12 translate-x-32 -translate-y-24 animate-float-delayed group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-3 transition-transform group-hover:scale-110">
-                     <Shield className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-bold mb-1">Bonds</h3>
-                  <p className="text-[11px] text-white/80">Stable yield generation.</p>
-               </div>
+
+              {/* Floating soft cards */}
+              <div className="absolute z-10 w-64 p-6 bg-white rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-gray-50 transform -rotate-6 -translate-x-16 -translate-y-10 animate-float-reverse group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
+                <div className="w-12 h-12 rounded-full bg-blue-50 text-[#082348] flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-[#082348] mb-1">Growth Equity</h3>
+                <p className="text-[14px] text-slate-500">Access to rapidly scaling private companies.</p>
+              </div>
+
+              <div className="absolute z-20 w-72 p-8 bg-[#082348] text-white rounded-[2.5rem] shadow-2xl transform rotate-3 translate-x-12 translate-y-8 animate-float group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
+                <div className="w-14 h-14 rounded-full bg-white/10 text-corporate-gold flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                  <Star className="w-7 h-7" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">Pre-IPO Access</h3>
+                <p className="text-[13px] text-white/70">Exclusive entry to unicorns before they go public.</p>
+              </div>
+
+              <div className="absolute z-10 w-56 p-5 bg-corporate-gold text-white rounded-[1.5rem] shadow-xl transform rotate-12 translate-x-32 -translate-y-24 animate-float-delayed group hover:rotate-0 transition-transform duration-500 cursor-pointer hover:z-30">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-3 transition-transform group-hover:scale-110">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold mb-1">Bonds</h3>
+                <p className="text-[11px] text-white/80">Stable yield generation.</p>
+              </div>
             </div>
-            
+
             <div className="order-1 lg:order-2">
               <span className="inline-block px-4 py-1.5 bg-corporate-gold/10 text-corporate-gold font-bold tracking-wider uppercase text-[11px] rounded-full mb-6">Curated Portfolios</span>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-[#082348] mb-6">
@@ -324,7 +326,7 @@ export default function Home2Page() {
                 Explore Collections <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
-            
+
           </div>
         </ScrollAnimation>
       </section>
@@ -338,12 +340,12 @@ export default function Home2Page() {
             <div>
               <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Global reach, Local precision</span>
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-white mb-6">
-                Capital Markets <br/><span className="text-white/50">Without Borders.</span>
+                Capital Markets <br /><span className="text-white/50">Without Borders.</span>
               </h2>
               <p className="text-slate-300 text-[16px] leading-relaxed mb-10 max-w-lg">
                 Your portfolio should not be limited by geography. We execute high-conviction strategies across developed and emerging markets, leveraging on-the-ground intelligence to uncover asymmetric opportunities.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-x-8 gap-y-10">
                 <div>
                   <div className="text-corporate-gold text-2xl font-bold mb-1">London</div>
@@ -363,23 +365,23 @@ export default function Home2Page() {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative h-[400px] lg:h-[550px] w-full rounded-[2rem] overflow-hidden shadow-2xl shadow-[#041225]">
               <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=1200&auto=format&fit=crop" alt="Global Markets" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-[#082348] mix-blend-color opacity-80"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-transparent to-transparent"></div>
-              
+
               <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10 lg:right-10 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-6">
-                 <div className="flex justify-between items-end mb-4">
-                   <div>
-                     <div className="text-white/60 text-[12px] uppercase tracking-wider mb-1">Global Fund Return</div>
-                     <div className="text-white text-3xl font-bold">18.4% <span className="text-corporate-gold text-[16px] font-normal">IRR</span></div>
-                   </div>
-                   <TrendingUp className="text-corporate-gold w-8 h-8" />
-                 </div>
-                 <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                   <div className="w-3/4 h-full bg-corporate-gold rounded-full"></div>
-                 </div>
+                <div className="flex justify-between items-end mb-4">
+                  <div>
+                    <div className="text-white/60 text-[12px] uppercase tracking-wider mb-1">Global Fund Return</div>
+                    <div className="text-white text-3xl font-bold">18.4% <span className="text-corporate-gold text-[16px] font-normal">IRR</span></div>
+                  </div>
+                  <TrendingUp className="text-corporate-gold w-8 h-8" />
+                </div>
+                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                  <div className="w-3/4 h-full bg-corporate-gold rounded-full"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -391,28 +393,28 @@ export default function Home2Page() {
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1 relative">
-               {/* Offset abstract blocks */}
-               <div className="bg-[#FAFAFA] rounded-[2rem] p-10 lg:p-14 border border-gray-100 shadow-2xl relative z-10">
-                 <div className="text-[12px] font-bold text-corporate-gold uppercase tracking-widest mb-6">Audited Performance</div>
-                 
-                 <div className="mb-10">
-                   <div className="text-5xl lg:text-6xl font-semibold tracking-tighter text-[#082348] mb-2">12.8%</div>
-                   <div className="text-slate-500 text-[14px]">Average annualized return over 5 years (net of fees)</div>
-                 </div>
-                 
-                 <div className="mb-10">
-                   <div className="text-5xl lg:text-6xl font-semibold tracking-tighter text-[#082348] mb-2">$2.4B</div>
-                   <div className="text-slate-500 text-[14px]">Active capital deployed in alternative markets</div>
-                 </div>
-                 
-                 <Link href="/register" className="inline-flex w-full items-center justify-center px-8 py-4 bg-[#082348] text-white hover:bg-[#051630] rounded-xl font-bold text-[14px] transition-all shadow-xl hover:-translate-y-0.5">
-                   Begin Investing <ArrowRight className="ml-2 w-4 h-4" />
-                 </Link>
-               </div>
-               {/* Background offset block */}
-               <div className="absolute top-8 -right-8 w-full h-full border-2 border-corporate-gold/20 rounded-[2rem] -z-10 hidden md:block"></div>
+              {/* Offset abstract blocks */}
+              <div className="bg-[#FAFAFA] rounded-[2rem] p-10 lg:p-14 border border-gray-100 shadow-2xl relative z-10">
+                <div className="text-[12px] font-bold text-corporate-gold uppercase tracking-widest mb-6">Audited Performance</div>
+
+                <div className="mb-10">
+                  <div className="text-5xl lg:text-6xl font-semibold tracking-tighter text-[#082348] mb-2">12.8%</div>
+                  <div className="text-slate-500 text-[14px]">Average annualized return over 5 years (net of fees)</div>
+                </div>
+
+                <div className="mb-10">
+                  <div className="text-5xl lg:text-6xl font-semibold tracking-tighter text-[#082348] mb-2">$2.4B</div>
+                  <div className="text-slate-500 text-[14px]">Active capital deployed in alternative markets</div>
+                </div>
+
+                <Link href="/register" className="inline-flex w-full items-center justify-center px-8 py-4 bg-[#082348] text-white hover:bg-[#051630] rounded-xl font-bold text-[14px] transition-all shadow-xl hover:-translate-y-0.5">
+                  Begin Investing <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </div>
+              {/* Background offset block */}
+              <div className="absolute top-8 -right-8 w-full h-full border-2 border-corporate-gold/20 rounded-[2rem] -z-10 hidden md:block"></div>
             </div>
-            
+
             <div className="lg:col-span-7 order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-[#082348] mb-6">
                 Outperforming Through Precision.
@@ -453,24 +455,24 @@ export default function Home2Page() {
             <div className="flex gap-4 justify-center items-center h-[300px] lg:h-[450px]">
               <div className="w-1/3 h-full animate-float">
                 <div className="w-full h-full rounded-full overflow-hidden shadow-lg transform -translate-y-6">
-                   <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" alt="" />
+                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" alt="" />
                 </div>
               </div>
               <div className="w-1/3 h-[110%] z-10 animate-float-reverse">
                 <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
-                   <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale" alt="" />
+                  <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale" alt="" />
                 </div>
               </div>
               <div className="w-1/3 h-full animate-float-delayed">
                 <div className="w-full h-full rounded-full overflow-hidden shadow-lg transform translate-y-6">
-                   <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" alt="" />
+                  <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply" alt="" />
                 </div>
               </div>
             </div>
-            
+
             <div className="max-w-xl mx-auto lg:mx-0 lg:ml-12">
               <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Trusted Experience</span>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-[#082348] mb-6">Trusted Advice.<br/>Backed by Experience.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.15] text-[#082348] mb-6">Trusted Advice.<br />Backed by Experience.</h2>
               <p className="text-[15px] text-slate-500 mb-8 leading-relaxed max-w-2xl">
                 At Baker Jones Holdings, our experienced partners work closely with you to build personalised corporate strategies tailored to your enterprise goals. We take the time to understand your needs — from operational scaling and capital preservation to digital transformation objectives.
               </p>
@@ -657,17 +659,11 @@ export default function Home2Page() {
           </div>
         </div>
 
-        <div className="bg-[#FAFAFA] py-4 border-y border-gray-100">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-8 text-center">
-            <p className="text-[10px] text-slate-400 font-medium">
-              *This website is for informational purposes only and does not constitute financial advice. Investments involve risk and past performance is not indicative of future results.
-            </p>
-          </div>
-        </div>
+
 
         <div className="py-4 text-center">
           <p className="text-[10px] text-slate-400 font-medium">
-            © 2002 - {new Date().getFullYear()} Baker Jones Holdings Ltd. All Rights Reserved.
+            ©{new Date().getFullYear()} Baker Jones Holdings Ltd. All Rights Reserved.
           </p>
         </div>
       </footer>
