@@ -5,18 +5,34 @@ import Image from 'next/image';
 import { User, Users, Building2, ShieldCheck, Check, ChevronLeft } from 'lucide-react';
 import { AccountTypeOption, StepProps } from './types';
 
-const options: { id: AccountTypeOption; label: string; description: string; icon: React.ReactNode }[] = [
-  { id: 'Individual', label: 'Individual', description: 'Personal investment accounts for a single investor', icon: <User className="w-5 h-5" strokeWidth={1.5} /> },
-  { id: 'Joint',      label: 'Joint',      description: 'Shared accounts held by two or more people',       icon: <Users className="w-5 h-5" strokeWidth={1.5} /> },
-  { id: 'Company',    label: 'Company',    description: 'Corporate investment accounts for businesses',      icon: <Building2 className="w-5 h-5" strokeWidth={1.5} /> },
-  { id: 'Trust',      label: 'Trust',      description: 'Investment accounts managed under a trust',        icon: <ShieldCheck className="w-5 h-5" strokeWidth={1.5} /> },
+const options = [
+  {
+    id: 'Individual' as AccountTypeOption, label: 'Individual', description: 'For personal investment accounts',
+    Icon: User,
+    colorTheme: { idle: 'bg-[#F0F4FF] text-[#2563EB]', active: 'bg-[#2563EB] text-white', border: 'border-[#2563EB]' }
+  },
+  {
+    id: 'Joint' as AccountTypeOption, label: 'Joint', description: 'For shared investment accounts',
+    Icon: Users,
+    colorTheme: { idle: 'bg-[#F0FDF4] text-[#16A34A]', active: 'bg-[#16A34A] text-white', border: 'border-[#16A34A]' }
+  },
+  {
+    id: 'Company' as AccountTypeOption, label: 'Company', description: 'For corporate investment accounts',
+    Icon: Building2,
+    colorTheme: { idle: 'bg-[#F5F3FF] text-[#7C3AED]', active: 'bg-[#7C3AED] text-white', border: 'border-[#7C3AED]' }
+  },
+  {
+    id: 'Trust' as AccountTypeOption, label: 'Trust', description: 'For trust accounts',
+    Icon: ShieldCheck,
+    colorTheme: { idle: 'bg-[#FFFBEB] text-[#D97706]', active: 'bg-[#D97706] text-white', border: 'border-[#D97706]' }
+  },
 ];
 
 export default function Step0AccountType({ formData, updateFormData, onNext, onBack }: StepProps) {
   return (
-    <div className="max-w-3xl mx-auto px-5 sm:px-8 py-12 sm:py-16 font-inter w-full">
+    <div className="max-w-4xl mx-auto px-5 sm:px-8 py-12 sm:py-16 font-inter w-full">
       {/* Header */}
-      <div className="text-center mb-10 flex flex-col items-center">
+      <div className="text-center mb-12 flex flex-col items-center">
         <Image src="/logo/logo.svg" width={1280} height={290} alt="Logo" className="w-auto h-7 object-contain mb-6" />
         <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-slate-400 mb-2">Client Portal</p>
         <h1 className="text-[2rem] sm:text-[2.25rem] font-semibold text-slate-900 tracking-tight mb-2">Choose account type</h1>
@@ -43,8 +59,8 @@ export default function Step0AccountType({ formData, updateFormData, onNext, onB
                   <Check className="w-3 h-3" strokeWidth={2.5} />
                 </div>
               )}
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-colors ${sel ? 'bg-corporate-charcoal text-white' : 'bg-slate-100 text-slate-600'}`}>
-                {opt.icon}
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-colors duration-300 ${sel ? opt.colorTheme.active : opt.colorTheme.idle}`}>
+                <opt.Icon className="w-5 h-5" strokeWidth={1.5} />
               </div>
               <div>
                 <p className={`text-[15px] font-semibold mb-0.5 ${sel ? 'text-corporate-charcoal' : 'text-slate-800'}`}>{opt.label}</p>
@@ -60,12 +76,12 @@ export default function Step0AccountType({ formData, updateFormData, onNext, onB
         <button
           type="button"
           onClick={onNext}
-          className="w-full sm:w-auto sm:min-w-[240px] bg-corporate-charcoal hover:bg-[#12144A] active:scale-[0.99] text-white text-[14px] font-semibold py-3.5 px-10 rounded-xl shadow-md shadow-corporate-charcoal/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full sm:w-auto sm:min-w-[280px] bg-corporate-charcoal hover:bg-[#12144A] active:scale-[0.99] text-white text-[15px] font-semibold py-3.5 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           Continue
         </button>
         {onBack && (
-          <button type="button" onClick={onBack} className="inline-flex items-center gap-1.5 text-[13px] text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+          <button type="button" onClick={onBack} className="inline-flex items-center gap-1.5 text-[13px] text-slate-400 hover:text-slate-700 transition-colors cursor-pointer mt-2">
             <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.5} />Back to registration
           </button>
         )}
