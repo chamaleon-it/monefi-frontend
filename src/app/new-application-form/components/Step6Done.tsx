@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Check, Home, Phone, Mail } from 'lucide-react';
+import { Check, Home, Mail, Phone } from 'lucide-react';
 import { StepProps } from './types';
 import Link from 'next/link';
 
@@ -9,75 +9,102 @@ export default function Step6Done({ formData }: StepProps) {
   const refNum = formData.referenceNumber || 'SE3977W';
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 animate-fade-in font-general text-center w-full">
-      {/* Animated Green Checkmark Icon */}
-      <div className="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-        <div className="absolute inset-0 rounded-full bg-emerald-100 animate-ping opacity-75" />
-        <div className="relative w-20 h-20 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-600/30">
-          <Check className="w-10 h-10 stroke-[3]" />
+    <div className="max-w-2xl mx-auto px-5 sm:px-8 lg:px-10 py-14 sm:py-20 font-inter text-center w-full">
+      {/* Success icon */}
+      <div className="relative w-20 h-20 mx-auto mb-8 flex items-center justify-center">
+        <div className="absolute inset-0 rounded-full bg-emerald-100 animate-ping opacity-50" />
+        <div className="relative w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/30">
+          <Check className="w-7 h-7" strokeWidth={2} />
         </div>
       </div>
 
-      {/* Main Titles */}
-      <h1 className="text-3xl sm:text-5xl font-extrabold text-corporate-charcoal tracking-tight mb-4">
-        Application Submitted — {refNum}
+      {/* Headline */}
+      <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-slate-400 mb-3">
+        Application Submitted
+      </p>
+      <h1 className="text-[2rem] sm:text-[2.5rem] font-light text-corporate-charcoal tracking-[-0.02em] mb-3">
+        We&apos;ve received your application
       </h1>
-      <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-        Thank you for submitting your application. Your reference number is <strong className="font-mono text-corporate-black">{refNum}</strong>. Please keep this for your records.
+      <p className="text-[15px] text-slate-600 leading-relaxed max-w-md mx-auto mb-2">
+        Your reference number is{' '}
+        <span className="font-mono text-[13px] text-corporate-charcoal bg-slate-100 px-2 py-0.5 rounded">
+          {refNum}
+        </span>
+        . Please keep this for your records.
       </p>
 
-      {/* Information Card */}
-      <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-8 sm:p-12 text-left max-w-3xl mx-auto mb-12">
-        <h2 className="text-xl sm:text-2xl font-bold text-corporate-charcoal mb-4 pb-4 border-b border-slate-100">
+      {/* What happens next */}
+      <div className="mt-10 bg-white rounded-2xl border border-slate-200 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-8 sm:p-10 text-left">
+        <p className="text-[15px] font-medium text-slate-800 mb-6 pb-4 border-b border-slate-100">
           What happens next?
-        </h2>
+        </p>
 
-        <div className="space-y-6 text-gray-600 text-sm sm:text-base leading-relaxed">
-          <div>
-            <h3 className="font-bold text-corporate-black text-base sm:text-lg mb-1.5">1. Application Review</h3>
-            <p>
-              Our compliance and onboarding team has received your application. We will review your personal details and settlement instructions within 1-2 business days.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-corporate-black text-base sm:text-lg mb-1.5">2. Important identification validation</h3>
-            <p>
-              If you opted to email your identity or proof of address documents later, please send high-resolution scans or photos to <a href="mailto:onboarding@monefi.com" className="text-corporate-charcoal font-bold underline hover:text-corporate-gold">onboarding@monefi.com</a>, quoting your reference number (<strong className="font-mono text-corporate-black">{refNum}</strong>) in the subject line.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-corporate-black text-base sm:text-lg mb-1.5">3. Account Activation</h3>
-            <p>
-              Once identity verification is complete, you will receive an email with your account confirmation, login credentials for the client portal, and instructions for funding your fixed-income portfolio.
-            </p>
-          </div>
+        <div className="space-y-6">
+          {[
+            {
+              num: '1',
+              title: 'Application review',
+              body: 'Our compliance and onboarding team has received your application. We will review your details within 1–2 business days.',
+            },
+            {
+              num: '2',
+              title: 'Identity validation',
+              body: (
+                <>
+                  If you opted to email documents later, please send high-resolution scans to{' '}
+                  <a href="mailto:info@bakerjonesholdings.com" className="text-corporate-charcoal underline hover:text-corporate-gold transition-colors">
+                    info@bakerjonesholdings.com
+                  </a>{' '}
+                  quoting reference{' '}
+                  <span className="font-mono text-[12px] text-corporate-charcoal bg-slate-100 px-1.5 py-0.5 rounded">{refNum}</span>.
+                </>
+              ),
+            },
+            {
+              num: '3',
+              title: 'Account activation',
+              body: 'Once verification is complete, you will receive login credentials for the client portal and instructions for funding your portfolio.',
+            },
+          ].map((item) => (
+            <div key={item.num} className="flex gap-4">
+              <div className="w-6 h-6 rounded-full bg-slate-100 text-slate-500 text-[11px] font-medium flex items-center justify-center shrink-0 mt-0.5">
+                {item.num}
+              </div>
+              <div>
+                <p className="text-[14px] font-medium text-slate-700 mb-1">{item.title}</p>
+                <p className="text-[13px] text-slate-400 font-light leading-relaxed">{item.body}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Contact Info Footer inside card */}
-        <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs sm:text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4 text-corporate-charcoal shrink-0" />
-            <span>Support: <strong className="text-corporate-black">support@monefi.com</strong></span>
+        {/* Contact strip */}
+        <div className="mt-7 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-[13px] text-slate-400 font-light">
+            <Mail className="w-3.5 h-3.5 text-slate-300" strokeWidth={1.5} />
+            info@bakerjonesholdings.com
           </div>
-          <div className="flex items-center gap-2">
-            <Phone className="w-4 h-4 text-corporate-charcoal shrink-0" />
-            <span>Phone: <strong className="text-corporate-black">+44 (0) 20 7123 4567</strong></span>
+          <div className="flex items-center gap-2 text-[13px] text-slate-400 font-light">
+            <Phone className="w-3.5 h-3.5 text-slate-300" strokeWidth={1.5} />
+            +44 203 355 0894
           </div>
         </div>
       </div>
 
-      {/* Return Home Button */}
-      <div className="flex justify-center">
+      {/* CTA */}
+      <div className="mt-8">
         <Link
           href="/"
-          className="bg-corporate-charcoal hover:bg-corporate-charcoal/90 active:scale-[0.99] text-white font-semibold py-4 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/20 transition-all inline-flex items-center gap-2.5 cursor-pointer text-base"
+          className="inline-flex items-center gap-2 bg-corporate-charcoal hover:bg-corporate-charcoal/90 active:scale-[0.99] text-white text-[14px] font-normal py-3 px-8 rounded-lg shadow-sm transition-all cursor-pointer"
         >
-          <Home className="w-5 h-5" />
-          <span>Return to Homepage</span>
+          <Home className="w-4 h-4" strokeWidth={1.5} />
+          Return to Homepage
         </Link>
       </div>
+
+      <p className="mt-8 text-[12px] text-slate-300 font-light">
+        &copy; {new Date().getFullYear()} Baker Jones Holdings. All rights reserved.
+      </p>
     </div>
   );
 }

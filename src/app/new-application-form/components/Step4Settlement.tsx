@@ -43,49 +43,48 @@ export default function Step4Settlement({ formData, updateFormData, onNext, onBa
   };
 
   const inputClass = (err?: string) =>
-    `w-full px-4 py-3.5 rounded-xl border ${
-      err ? 'border-red-500 bg-red-50/20' : 'border-slate-200 bg-slate-50/50 hover:bg-slate-50'
-    } focus:bg-white focus:border-corporate-charcoal focus:ring-4 focus:ring-corporate-charcoal/10 outline-none transition-all text-sm sm:text-base font-medium text-corporate-black placeholder:text-gray-400`;
+    `w-full px-4 py-3 rounded-xl border text-[15px] font-normal text-slate-900 placeholder:text-slate-400 transition-all outline-none ${err
+      ? 'border-red-400 bg-red-50/60 focus:border-red-500 focus:ring-2 focus:ring-red-400/15'
+      : 'border-slate-300 bg-white hover:border-slate-400 focus:border-corporate-charcoal focus:ring-2 focus:ring-corporate-charcoal/10'
+    }`;
 
-  const labelClass = "block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wider";
+  const labelClass = "block text-[11px] font-semibold tracking-[0.1em] uppercase text-slate-600 mb-2";
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 animate-fade-in font-general w-full">
-      {/* Top Step Header */}
-      <div className="text-center mb-10 sm:mb-14 flex flex-col items-center">
-        <span className="inline-block bg-slate-200/80 text-slate-700 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-3">
-          Step 4 of 6
-        </span>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-corporate-charcoal tracking-tight mb-2">
+    <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-10 py-10 sm:py-14 font-inter w-full">
+      {/* Page header */}
+      <div className="mb-10">
+        <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400 mb-3">Step 4 of 6</p>
+        <h1 className="text-[1.875rem] sm:text-[2.125rem] font-semibold text-slate-900 tracking-tight leading-tight mb-2">
           Settlement details
         </h1>
-        <p className="text-gray-500 text-sm sm:text-base max-w-xl">
+        <p className="text-[15px] text-slate-600 leading-relaxed">
           Provide the bank account details for settlement instructions.
         </p>
       </div>
 
-      <div className="space-y-8 sm:space-y-10">
+      <div className="space-y-5">
         {/* Bank Account Card */}
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/40 border border-slate-100 p-6 sm:p-10">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-corporate-charcoal">
-              <CreditCard className="w-6 h-6" />
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-8 sm:p-10">
+          <div className="flex items-start gap-4 mb-8 pb-6 border-b border-slate-100">
+            <div className="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+              <CreditCard className="w-4.5 h-4.5" strokeWidth={1.5} />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-corporate-charcoal">
+              <p className="text-[17px] font-semibold text-slate-900">
                 Bank Account
-              </h2>
+              </p>
               <p className="text-xs sm:text-sm text-gray-500">Designated account for transfers and disbursements</p>
             </div>
           </div>
 
           {/* Alert Banner */}
-          <div className="bg-slate-100/80 border border-slate-200/60 p-5 rounded-xl flex items-center gap-3.5 text-sm sm:text-base text-slate-700 mb-8 font-medium">
-            <AlertCircle className="w-6 h-6 text-slate-500 shrink-0" />
+          <div className="bg-amber-50/60 border border-amber-200/60 p-4 rounded-lg flex items-center gap-3 text-[13px] text-amber-700 mb-7 font-normal">
+            <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" strokeWidth={1.5} />
             <span>The account name must match the name on this application.</span>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {/* Beneficiary Account Name */}
             <div id="field-beneficiaryAccountName">
               <label className={labelClass}>Beneficiary Account Name *</label>
@@ -96,7 +95,7 @@ export default function Step4Settlement({ formData, updateFormData, onNext, onBa
                 onChange={(e) => handleChange('beneficiaryAccountName', e.target.value)}
                 className={inputClass(errors.beneficiaryAccountName)}
               />
-              {errors.beneficiaryAccountName && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.beneficiaryAccountName}</p>}
+              {errors.beneficiaryAccountName && <p className="text-[12px] text-red-600 mt-2">{errors.beneficiaryAccountName}</p>}
             </div>
 
             {/* Name of Bank */}
@@ -109,7 +108,7 @@ export default function Step4Settlement({ formData, updateFormData, onNext, onBa
                 onChange={(e) => handleChange('nameOfBank', e.target.value)}
                 className={inputClass(errors.nameOfBank)}
               />
-              {errors.nameOfBank && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.nameOfBank}</p>}
+              {errors.nameOfBank && <p className="text-[12px] text-red-600 mt-2">{errors.nameOfBank}</p>}
             </div>
 
             {/* Account Number & Sort Code */}
@@ -123,7 +122,7 @@ export default function Step4Settlement({ formData, updateFormData, onNext, onBa
                   onChange={(e) => handleChange('accountNumber', e.target.value)}
                   className={inputClass(errors.accountNumber)}
                 />
-                {errors.accountNumber && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.accountNumber}</p>}
+                {errors.accountNumber && <p className="text-[12px] text-red-600 mt-2">{errors.accountNumber}</p>}
               </div>
 
               <div id="field-sortCode">
@@ -135,30 +134,29 @@ export default function Step4Settlement({ formData, updateFormData, onNext, onBa
                   onChange={(e) => handleChange('sortCode', e.target.value)}
                   className={inputClass(errors.sortCode)}
                 />
-                {errors.sortCode && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.sortCode}</p>}
+                {errors.sortCode && <p className="text-[12px] text-red-600 mt-2">{errors.sortCode}</p>}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Action Bar */}
-      <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Action bar */}
+      <div className="mt-10 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 pt-7 border-t border-slate-200">
         <button
           type="button"
           onClick={onBack}
-          className="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 active:scale-[0.99] text-slate-800 font-semibold py-4 px-8 rounded-xl transition-all text-center cursor-pointer order-2 sm:order-1 text-base"
+          className="w-full sm:w-auto text-[14px] font-medium text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl border border-slate-300 hover:border-slate-400 hover:bg-slate-50 transition-all cursor-pointer bg-white"
         >
           Back
         </button>
-
         <button
           type="button"
           onClick={validateAndNext}
-          className="w-full sm:w-auto bg-corporate-charcoal hover:bg-corporate-charcoal/90 active:scale-[0.99] text-white font-semibold py-4 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/20 transition-all flex items-center justify-center gap-2.5 cursor-pointer order-1 sm:order-2 text-base"
+          className="w-full sm:w-auto bg-corporate-charcoal hover:bg-[#12144A] active:scale-[0.99] text-white text-[14px] font-semibold py-3.5 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
         >
           <span>Review Application</span>
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
         </button>
       </div>
     </div>

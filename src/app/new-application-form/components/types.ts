@@ -7,6 +7,7 @@ export interface PersonalDetails {
   lastName: string;
   dateOfBirth: string;
   occupation: string;
+  role?: string;
 }
 
 export interface ResidentialAddress {
@@ -19,7 +20,9 @@ export interface ResidentialAddress {
 }
 
 export interface ContactDetails {
+  homePhoneCode?: string;
   homePhone?: string;
+  mobilePhoneCode: string;
   mobilePhone: string;
   emailAddress: string;
 }
@@ -31,6 +34,14 @@ export interface DocumentsDetails {
   proofOfAddressEmailLater?: boolean;
   sourceOfFundsFile?: string | null;
   sourceOfFundsEmailLater?: boolean;
+  // Company specific
+  certificateOfIncorporationFile?: string | null;
+  certificateOfIncorporationEmailLater?: boolean;
+  proofOfRegisteredAddressFile?: string | null;
+  proofOfRegisteredAddressEmailLater?: boolean;
+  // Trust specific
+  trustDeedFile?: string | null;
+  trustDeedEmailLater?: boolean;
 }
 
 export interface AdditionalQuestions {
@@ -46,6 +57,42 @@ export interface SettlementDetails {
   sortCode: string;
 }
 
+// Company specific
+export interface CompanyDetails {
+  companyName: string;
+  registrationNumber: string;
+  vatNumber?: string;
+  dateOfIncorporation: string;
+  natureOfBusiness: string;
+  registeredAddress: ResidentialAddress;
+  companyClassification: string;
+  taxClassification: string;
+  officers: PersonalDetails[];
+  owns25Percent: 'Yes' | 'No' | '';
+}
+
+// Joint specific
+export interface JointDetails {
+  personalDetails: PersonalDetails;
+  residentialAddress: ResidentialAddress;
+  contactDetails: ContactDetails;
+  documents: DocumentsDetails; // Joint ID
+}
+
+// Trust specific
+export interface TrustDetails {
+  trusteeType: 'Individual' | 'Corporate' | '';
+  trustName: string;
+  trustType: string;
+  vatNumber?: string;
+  taxReference: string;
+  countryEstablished: string;
+  natureOfTrust: string;
+  taxClassification: string;
+  hasGIIN: 'Yes' | 'No' | '';
+  giinValue?: string;
+}
+
 export interface ApplicationFormData {
   referenceNumber: string;
   accountType: AccountTypeOption;
@@ -56,6 +103,10 @@ export interface ApplicationFormData {
   additionalQuestions: AdditionalQuestions;
   settlementDetails: SettlementDetails;
   agreedToTerms: boolean;
+  
+  companyDetails?: CompanyDetails;
+  jointDetails?: JointDetails;
+  trustDetails?: TrustDetails;
 }
 
 export interface StepProps {

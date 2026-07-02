@@ -1,357 +1,350 @@
 "use client";
 
 import React, { useState } from 'react';
-import { User, MapPin, Phone, Mail, AlertCircle, ArrowRight } from 'lucide-react';
+import { User, MapPin, Phone, AlertCircle, ArrowRight } from 'lucide-react';
+import { format, parse } from "date-fns";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { StepProps } from './types';
+
+const COUNTRIES = [
+  "United States", "United Kingdom", "Canada", "Australia", "Afghanistan", "Albania", "Algeria",
+  "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Austria", "Azerbaijan",
+  "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+  "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso",
+  "Burundi", "Côte d'Ivoire", "Cabo Verde", "Cambodia", "Cameroon", "Central African Republic", "Chad",
+  "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba",
+  "Cyprus", "Czechia (Czech Republic)", "Democratic Republic of the Congo", "Denmark", "Djibouti",
+  "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea",
+  "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia",
+  "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti",
+  "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland",
+  "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait",
+  "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania",
+  "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands",
+  "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro",
+  "Morocco", "Mozambique", "Myanmar (formerly Burma)", "Namibia", "Nauru", "Nepal", "Netherlands",
+  "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman",
+  "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines",
+  "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+  "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia",
+  "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands",
+  "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname",
+  "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga",
+  "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine",
+  "United Arab Emirates", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
+
+const COUNTRY_CODES = [
+  { code: '+1', label: '+1 (US/CA)' }, { code: '+7', label: '+7 (RU/KZ)' },
+  { code: '+20', label: '+20 (EG)' }, { code: '+27', label: '+27 (ZA)' },
+  { code: '+30', label: '+30 (GR)' }, { code: '+31', label: '+31 (NL)' },
+  { code: '+32', label: '+32 (BE)' }, { code: '+33', label: '+33 (FR)' },
+  { code: '+34', label: '+34 (ES)' }, { code: '+39', label: '+39 (IT)' },
+  { code: '+44', label: '+44 (UK)' }, { code: '+45', label: '+45 (DK)' },
+  { code: '+46', label: '+46 (SE)' }, { code: '+49', label: '+49 (DE)' },
+  { code: '+55', label: '+55 (BR)' }, { code: '+61', label: '+61 (AU)' },
+  { code: '+65', label: '+65 (SG)' }, { code: '+81', label: '+81 (JP)' },
+  { code: '+86', label: '+86 (CN)' }, { code: '+91', label: '+91 (IN)' },
+  { code: '+92', label: '+92 (PK)' }, { code: '+971', label: '+971 (AE)' },
+  { code: '+966', label: '+966 (SA)' }, { code: '+972', label: '+972 (IL)' },
+];
+
+// --- Shared design tokens (consistent across all steps) ---
+const FIELD_LABEL = "block text-[11px] font-semibold tracking-[0.1em] uppercase text-slate-600 mb-2";
+const INPUT_BASE = "w-full px-4 py-2.5 rounded-lg border text-[14px] font-normal text-slate-800 placeholder:text-slate-300 transition-all outline-none";
+const INPUT_NORMAL = `${INPUT_BASE} border-slate-300 bg-white hover:border-slate-400 focus:border-corporate-charcoal focus:ring-2 focus:ring-corporate-charcoal/10 shadow-sm`;
+const INPUT_ERROR = `${INPUT_BASE} border-red-400 bg-red-50/60 focus:border-red-500 focus:ring-2 focus:ring-red-400/15`;
+const SECTION_CARD = "bg-white rounded-2xl border border-slate-200 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-8 sm:p-10";
+const SECTION_ICON = "w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0";
+const SECTION_TITLE = "text-[17px] font-semibold text-slate-900";
+const SECTION_DESC = "text-[13px] text-slate-500 mt-1";
+const ERROR_MSG = "text-[12px] text-red-600 mt-2 flex items-center gap-1";
+
+const inputClass = (err?: string) => err ? INPUT_ERROR : INPUT_NORMAL;
 
 export default function Step1AboutYou({ formData, updateFormData, onNext, onBack }: StepProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
-
   const { personalDetails, residentialAddress, contactDetails } = formData;
 
   const handlePersonalChange = (field: keyof typeof personalDetails, value: string) => {
-    updateFormData('personalDetails', {
-      ...personalDetails,
-      [field]: value,
-    });
+    updateFormData('personalDetails', { ...personalDetails, [field]: value });
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }));
   };
 
   const handleAddressChange = (field: keyof typeof residentialAddress, value: string) => {
-    updateFormData('residentialAddress', {
-      ...residentialAddress,
-      [field]: value,
-    });
+    updateFormData('residentialAddress', { ...residentialAddress, [field]: value });
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }));
   };
 
   const handleContactChange = (field: keyof typeof contactDetails, value: string) => {
-    updateFormData('contactDetails', {
-      ...contactDetails,
-      [field]: value,
-    });
+    updateFormData('contactDetails', { ...contactDetails, [field]: value });
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }));
   };
 
   const validateAndNext = () => {
     const newErrors: Record<string, string> = {};
-
     if (!personalDetails.title) newErrors.title = 'Title is required';
     if (!personalDetails.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!personalDetails.lastName.trim()) newErrors.lastName = 'Last name is required';
     if (!personalDetails.dateOfBirth) newErrors.dateOfBirth = 'Date of birth is required';
     if (!personalDetails.occupation.trim()) newErrors.occupation = 'Occupation is required';
-
     if (!residentialAddress.address.trim()) newErrors.address = 'Address is required';
     if (!residentialAddress.streetName.trim()) newErrors.streetName = 'Street name is required';
     if (!residentialAddress.country.trim()) newErrors.country = 'Country is required';
     if (!residentialAddress.state.trim()) newErrors.state = 'State is required';
     if (!residentialAddress.city.trim()) newErrors.city = 'City is required';
     if (!residentialAddress.postcode.trim()) newErrors.postcode = 'Postcode is required';
-
     if (!contactDetails.mobilePhone.trim()) newErrors.mobilePhone = 'Mobile phone is required';
     if (!contactDetails.emailAddress.trim() || !contactDetails.emailAddress.includes('@')) {
       newErrors.emailAddress = 'Valid email is required';
     }
-
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      // Scroll to top-most error
-      const firstErrorKey = Object.keys(newErrors)[0];
-      const el = document.getElementById(`field-${firstErrorKey}`);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const firstKey = Object.keys(newErrors)[0];
+      document.getElementById(`field-${firstKey}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-
     onNext();
   };
 
-  const inputClass = (err?: string) =>
-    `w-full px-4 py-3.5 rounded-xl border ${
-      err ? 'border-red-500 bg-red-50/20' : 'border-slate-200 bg-slate-50/50 hover:bg-slate-50'
-    } focus:bg-white focus:border-corporate-charcoal focus:ring-4 focus:ring-corporate-charcoal/10 outline-none transition-all text-sm sm:text-base font-medium text-corporate-black placeholder:text-gray-400`;
-
-  const labelClass = "block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wider";
-
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 animate-fade-in font-general w-full">
-      {/* Top Step Header */}
-      <div className="text-center mb-10 sm:mb-14 flex flex-col items-center">
-        <span className="inline-block bg-slate-200/80 text-slate-700 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-3">
-          Step 1 of 6
-        </span>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-corporate-charcoal tracking-tight mb-2">
+    <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-10 py-10 sm:py-14 font-inter w-full">
+      {/* Page header */}
+      <div className="mb-10">
+        <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-400 mb-3">Step 1 of 6</p>
+        <h1 className="text-[1.875rem] sm:text-[2.125rem] font-semibold text-slate-900 tracking-tight leading-tight mb-2">
           Tell us about yourself
         </h1>
-        <p className="text-gray-500 text-sm sm:text-base max-w-xl">
-          Please provide your personal details, residential address, and contact information.
+        <p className="text-[15px] text-slate-600 leading-relaxed">
+          Please provide your personal, address, and contact details.
         </p>
       </div>
 
-      <div className="space-y-8 sm:space-y-10">
-        {/* Card 1: Personal Details */}
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/40 border border-slate-100 p-6 sm:p-10">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-corporate-charcoal">
-              <User className="w-6 h-6" />
+      <div className="space-y-6">
+        {/* Personal Details */}
+        <div className={SECTION_CARD}>
+          <div className="flex items-start gap-4 mb-8 pb-6 border-b border-slate-100">
+            <div className={SECTION_ICON}>
+              <User className="w-4.5 h-4.5" strokeWidth={1.5} />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-corporate-charcoal">
-                Personal Details
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-500">Your full name and demographic information</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
-            <div id="field-title">
-              <label className={labelClass}>Title *</label>
-              <select
-                value={personalDetails.title}
-                onChange={(e) => handlePersonalChange('title', e.target.value)}
-                className={inputClass(errors.title)}
-              >
-                <option value="">Select...</option>
-                <option value="Mr">Mr</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Ms">Ms</option>
-                <option value="Miss">Miss</option>
-                <option value="Dr">Dr</option>
-                <option value="Prof">Prof</option>
-                <option value="Other">Other</option>
-              </select>
-              {errors.title && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.title}</p>}
-            </div>
-
-            <div id="field-firstName" className="sm:col-span-2">
-              <label className={labelClass}>First name *</label>
-              <input
-                type="text"
-                placeholder="First name *"
-                value={personalDetails.firstName}
-                onChange={(e) => handlePersonalChange('firstName', e.target.value)}
-                className={inputClass(errors.firstName)}
-              />
-              {errors.firstName && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.firstName}</p>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-            <div id="field-middleName">
-              <label className={labelClass}>Middle name</label>
-              <input
-                type="text"
-                placeholder="Middle name (optional)"
-                value={personalDetails.middleName || ''}
-                onChange={(e) => handlePersonalChange('middleName', e.target.value)}
-                className={inputClass()}
-              />
-            </div>
-
-            <div id="field-lastName">
-              <label className={labelClass}>Last name *</label>
-              <input
-                type="text"
-                placeholder="Last name *"
-                value={personalDetails.lastName}
-                onChange={(e) => handlePersonalChange('lastName', e.target.value)}
-                className={inputClass(errors.lastName)}
-              />
-              {errors.lastName && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.lastName}</p>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div id="field-dateOfBirth">
-              <label className={labelClass}>Date of birth *</label>
-              <input
-                type="date"
-                value={personalDetails.dateOfBirth}
-                onChange={(e) => handlePersonalChange('dateOfBirth', e.target.value)}
-                className={inputClass(errors.dateOfBirth)}
-              />
-              {errors.dateOfBirth && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.dateOfBirth}</p>}
-            </div>
-
-            <div id="field-occupation">
-              <label className={labelClass}>Occupation *</label>
-              <input
-                type="text"
-                placeholder="Occupation *"
-                value={personalDetails.occupation}
-                onChange={(e) => handlePersonalChange('occupation', e.target.value)}
-                className={inputClass(errors.occupation)}
-              />
-              {errors.occupation && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.occupation}</p>}
-            </div>
-          </div>
-        </div>
-
-        {/* Card 2: Residential Address */}
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/40 border border-slate-100 p-6 sm:p-10">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-corporate-charcoal">
-              <MapPin className="w-6 h-6" />
-            </div>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-corporate-charcoal">
-                Residential Address
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-500">Where you currently reside</p>
+              <p className={SECTION_TITLE}>Personal Details</p>
+              <p className={SECTION_DESC}>Your full name and demographic information</p>
             </div>
           </div>
 
           <div className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div id="field-title">
+                <label className={FIELD_LABEL}>Title *</label>
+                <select value={personalDetails.title} onChange={(e) => handlePersonalChange('title', e.target.value)} className={inputClass(errors.title)}>
+                  <option value="">Select...</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Dr">Dr</option>
+                  <option value="Prof">Prof</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.title && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.title}</p>}
+              </div>
+              <div id="field-firstName">
+                <label className={FIELD_LABEL}>First name *</label>
+                <input type="text" placeholder="First name" value={personalDetails.firstName} onChange={(e) => handlePersonalChange('firstName', e.target.value)} className={inputClass(errors.firstName)} />
+                {errors.firstName && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.firstName}</p>}
+              </div>
+              <div id="field-lastName">
+                <label className={FIELD_LABEL}>Last name *</label>
+                <input type="text" placeholder="Last name" value={personalDetails.lastName} onChange={(e) => handlePersonalChange('lastName', e.target.value)} className={inputClass(errors.lastName)} />
+                {errors.lastName && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.lastName}</p>}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div id="field-dateOfBirth">
+                <label className={FIELD_LABEL}>Date of birth *</label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "w-full px-4 py-2.5 h-auto rounded-lg border flex items-center justify-start text-left font-normal text-[14px] shadow-sm transition-all",
+                        !personalDetails.dateOfBirth && "text-slate-300",
+                        errors.dateOfBirth ? "border-red-400 bg-red-50/40" : "border-slate-200 bg-white hover:border-slate-300"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-3.5 w-3.5 text-slate-400" strokeWidth={1.5} />
+                      {personalDetails.dateOfBirth
+                        ? format(parse(personalDetails.dateOfBirth, 'yyyy-MM-dd', new Date()), "PPP")
+                        : <span>Date of birth</span>}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      captionLayout="dropdown"
+                      startMonth={new Date(1900, 0)}
+                      endMonth={new Date()}
+                      selected={personalDetails.dateOfBirth ? parse(personalDetails.dateOfBirth, 'yyyy-MM-dd', new Date()) : undefined}
+                      onSelect={(date) => handlePersonalChange('dateOfBirth', date ? format(date, 'yyyy-MM-dd') : '')}
+                      disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                    />
+                  </PopoverContent>
+                </Popover>
+                {errors.dateOfBirth && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.dateOfBirth}</p>}
+              </div>
+              <div id="field-occupation">
+                <label className={FIELD_LABEL}>Occupation *</label>
+                <input type="text" placeholder="Occupation" value={personalDetails.occupation} onChange={(e) => handlePersonalChange('occupation', e.target.value)} className={inputClass(errors.occupation)} />
+                {errors.occupation && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.occupation}</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Residential Address */}
+        <div className={SECTION_CARD}>
+          <div className="flex items-start gap-4 mb-8 pb-6 border-b border-slate-100">
+            <div className={SECTION_ICON}>
+              <MapPin className="w-4.5 h-4.5" strokeWidth={1.5} />
+            </div>
+            <div>
+              <p className={SECTION_TITLE}>Residential Address</p>
+              <p className={SECTION_DESC}>Where you currently reside</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
             <div id="field-address">
-              <label className={labelClass}>Address *</label>
-              <input
-                type="text"
-                placeholder="Address line 1 *"
-                value={residentialAddress.address}
-                onChange={(e) => handleAddressChange('address', e.target.value)}
-                className={inputClass(errors.address)}
-              />
-              {errors.address && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.address}</p>}
+              <label className={FIELD_LABEL}>Address *</label>
+              <input type="text" placeholder="Address line 1" value={residentialAddress.address} onChange={(e) => handleAddressChange('address', e.target.value)} className={inputClass(errors.address)} />
+              {errors.address && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.address}</p>}
             </div>
-
             <div id="field-streetName">
-              <label className={labelClass}>Street name *</label>
-              <input
-                type="text"
-                placeholder="Street name *"
-                value={residentialAddress.streetName}
-                onChange={(e) => handleAddressChange('streetName', e.target.value)}
-                className={inputClass(errors.streetName)}
-              />
-              {errors.streetName && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.streetName}</p>}
+              <label className={FIELD_LABEL}>Street name *</label>
+              <input type="text" placeholder="Street name" value={residentialAddress.streetName} onChange={(e) => handleAddressChange('streetName', e.target.value)} className={inputClass(errors.streetName)} />
+              {errors.streetName && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.streetName}</p>}
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div id="field-country">
-                <label className={labelClass}>Country *</label>
-                <input
-                  type="text"
-                  placeholder="Country *"
-                  value={residentialAddress.country}
-                  onChange={(e) => handleAddressChange('country', e.target.value)}
-                  className={inputClass(errors.country)}
-                />
-                {errors.country && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.country}</p>}
+                <label className={FIELD_LABEL}>Country *</label>
+                <select value={residentialAddress.country} onChange={(e) => handleAddressChange('country', e.target.value)} className={inputClass(errors.country)}>
+                  <option value="">Select country...</option>
+                  {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+                {errors.country && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.country}</p>}
               </div>
-
               <div id="field-state">
-                <label className={labelClass}>State / Province *</label>
-                <input
-                  type="text"
-                  placeholder="State / Province *"
-                  value={residentialAddress.state}
-                  onChange={(e) => handleAddressChange('state', e.target.value)}
-                  className={inputClass(errors.state)}
-                />
-                {errors.state && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.state}</p>}
+                <label className={FIELD_LABEL}>State / Province *</label>
+                <input type="text" placeholder="State / Province" value={residentialAddress.state} onChange={(e) => handleAddressChange('state', e.target.value)} className={inputClass(errors.state)} />
+                {errors.state && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.state}</p>}
               </div>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div id="field-city">
-                <label className={labelClass}>City / Town *</label>
-                <input
-                  type="text"
-                  placeholder="City / Town *"
-                  value={residentialAddress.city}
-                  onChange={(e) => handleAddressChange('city', e.target.value)}
-                  className={inputClass(errors.city)}
-                />
-                {errors.city && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.city}</p>}
+                <label className={FIELD_LABEL}>City / Town *</label>
+                <input type="text" placeholder="City / Town" value={residentialAddress.city} onChange={(e) => handleAddressChange('city', e.target.value)} className={inputClass(errors.city)} />
+                {errors.city && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.city}</p>}
               </div>
-
               <div id="field-postcode">
-                <label className={labelClass}>Postcode / ZIP *</label>
-                <input
-                  type="text"
-                  placeholder="Postcode / ZIP *"
-                  value={residentialAddress.postcode}
-                  onChange={(e) => handleAddressChange('postcode', e.target.value)}
-                  className={inputClass(errors.postcode)}
-                />
-                {errors.postcode && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.postcode}</p>}
+                <label className={FIELD_LABEL}>Postcode / ZIP *</label>
+                <input type="text" placeholder="Postcode / ZIP" value={residentialAddress.postcode} onChange={(e) => handleAddressChange('postcode', e.target.value)} className={inputClass(errors.postcode)} />
+                {errors.postcode && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.postcode}</p>}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Card 3: Contact Details */}
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/40 border border-slate-100 p-6 sm:p-10">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-corporate-charcoal">
-              <Phone className="w-6 h-6" />
+        {/* Contact Details */}
+        <div className={SECTION_CARD}>
+          <div className="flex items-start gap-4 mb-8 pb-6 border-b border-slate-100">
+            <div className={SECTION_ICON}>
+              <Phone className="w-4.5 h-4.5" strokeWidth={1.5} />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-corporate-charcoal">
-                Contact Details
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-500">How we can get in touch with you</p>
+              <p className={SECTION_TITLE}>Contact Details</p>
+              <p className={SECTION_DESC}>How we can reach you</p>
             </div>
           </div>
 
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div id="field-homePhone">
-                <label className={labelClass}>Home phone</label>
-                <input
-                  type="tel"
-                  placeholder="Home phone (optional)"
-                  value={contactDetails.homePhone || ''}
-                  onChange={(e) => handleContactChange('homePhone', e.target.value)}
-                  className={inputClass()}
-                />
+                <label className={FIELD_LABEL}>Home phone</label>
+                <div className="flex items-center rounded-lg border border-slate-200 bg-white hover:border-slate-300 focus-within:border-corporate-charcoal focus-within:ring-1 focus-within:ring-corporate-charcoal/20 transition-all overflow-hidden shadow-sm">
+                  <select
+                    value={contactDetails.homePhoneCode || '+1'}
+                    onChange={(e) => handleContactChange('homePhoneCode', e.target.value)}
+                    className="w-[100px] px-3 py-2.5 bg-transparent outline-none text-[13px] text-slate-600 border-r border-slate-200 cursor-pointer shrink-0"
+                  >
+                    {COUNTRY_CODES.map(c => <option key={`home-${c.code}`} value={c.code}>{c.label}</option>)}
+                  </select>
+                  <input
+                    type="tel"
+                    placeholder="Home phone (optional)"
+                    value={contactDetails.homePhone || ''}
+                    onChange={(e) => handleContactChange('homePhone', e.target.value)}
+                    className="flex-1 px-3 py-2.5 bg-transparent outline-none text-[14px] text-slate-800 placeholder:text-slate-300"
+                  />
+                </div>
               </div>
 
               <div id="field-mobilePhone">
-                <label className={labelClass}>Mobile phone *</label>
-                <input
-                  type="tel"
-                  placeholder="Mobile phone *"
-                  value={contactDetails.mobilePhone}
-                  onChange={(e) => handleContactChange('mobilePhone', e.target.value)}
-                  className={inputClass(errors.mobilePhone)}
-                />
-                {errors.mobilePhone && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.mobilePhone}</p>}
+                <label className={FIELD_LABEL}>Mobile phone *</label>
+                <div className={`flex items-center rounded-lg border bg-white transition-all overflow-hidden shadow-sm ${errors.mobilePhone ? 'border-red-400' : 'border-slate-200 hover:border-slate-300 focus-within:border-corporate-charcoal focus-within:ring-1 focus-within:ring-corporate-charcoal/20'}`}>
+                  <select
+                    value={contactDetails.mobilePhoneCode || '+1'}
+                    onChange={(e) => handleContactChange('mobilePhoneCode', e.target.value)}
+                    className="w-[100px] px-3 py-2.5 bg-transparent outline-none text-[13px] text-slate-600 border-r border-slate-200 cursor-pointer shrink-0"
+                  >
+                    {COUNTRY_CODES.map(c => <option key={`mobile-${c.code}`} value={c.code}>{c.label}</option>)}
+                  </select>
+                  <input
+                    type="tel"
+                    placeholder="Mobile phone"
+                    value={contactDetails.mobilePhone}
+                    onChange={(e) => handleContactChange('mobilePhone', e.target.value)}
+                    className="flex-1 px-3 py-2.5 bg-transparent outline-none text-[14px] text-slate-800 placeholder:text-slate-300"
+                  />
+                </div>
+                {errors.mobilePhone && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.mobilePhone}</p>}
               </div>
             </div>
 
             <div id="field-emailAddress">
-              <label className={labelClass}>Email address *</label>
-              <input
-                type="email"
-                placeholder="Email address *"
-                value={contactDetails.emailAddress}
-                onChange={(e) => handleContactChange('emailAddress', e.target.value)}
-                className={inputClass(errors.emailAddress)}
-              />
-              {errors.emailAddress && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.emailAddress}</p>}
+              <label className={FIELD_LABEL}>Email address *</label>
+              <input type="email" placeholder="Email address" value={contactDetails.emailAddress} onChange={(e) => handleContactChange('emailAddress', e.target.value)} className={inputClass(errors.emailAddress)} />
+              {errors.emailAddress && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.emailAddress}</p>}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Action Bar */}
-      <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Action bar */}
+      <div className="mt-10 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 pt-7 border-t border-slate-200">
         <button
           type="button"
           onClick={onBack}
-          className="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 active:scale-[0.99] text-slate-800 font-semibold py-4 px-8 rounded-xl transition-all text-center cursor-pointer order-2 sm:order-1 text-base"
+          className="w-full sm:w-auto text-[14px] font-medium text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl border border-slate-300 hover:border-slate-400 hover:bg-slate-50 transition-all cursor-pointer bg-white"
         >
           Back
         </button>
-
         <button
           type="button"
           onClick={validateAndNext}
-          className="w-full sm:w-auto bg-corporate-charcoal hover:bg-corporate-charcoal/90 active:scale-[0.99] text-white font-semibold py-4 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/20 transition-all flex items-center justify-center gap-2.5 cursor-pointer order-1 sm:order-2 text-base"
+          className="w-full sm:w-auto bg-corporate-charcoal hover:bg-[#12144A] active:scale-[0.99] text-white text-[14px] font-semibold py-3.5 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
         >
           <span>Continue to Documents</span>
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
         </button>
       </div>
     </div>

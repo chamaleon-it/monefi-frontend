@@ -2,122 +2,145 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Check, HelpCircle } from 'lucide-react';
+import { Check, HeadphonesIcon } from 'lucide-react';
 import { ApplicationFormData } from './types';
 
 interface StepperHeaderProps {
-  currentStep: number; // 0 (Register), 1 (Account Type), 2 to 7 (Steps 1 to 6)
+  currentStepIndex: number;
+  stepsFlow: string[];
   formData: ApplicationFormData;
   onJumpToStep: (step: number) => void;
 }
 
-const steps = [
-  { number: 1, label: 'About You', targetStep: 2 },
-  { number: 2, label: 'Documents', targetStep: 3 },
-  { number: 3, label: 'Additional', targetStep: 4 },
-  { number: 4, label: 'Settlement', targetStep: 5 },
-  { number: 5, label: 'Review', targetStep: 6 },
-  { number: 6, label: 'Done', targetStep: 7 },
-];
-
-export default function StepperHeader({ currentStep, formData, onJumpToStep }: StepperHeaderProps) {
-  // Stepper progress index (1 to 6)
-  const stepperIndex = currentStep - 1;
-
-  const getPercentage = () => {
-    if (currentStep <= 2) return '0%';
-    if (currentStep === 3) return '20%';
-    if (currentStep === 4) return '40%';
-    if (currentStep === 5) return '60%';
-    if (currentStep === 6) return '80%';
-    return '100%';
+const formatStepName = (name: string) => {
+  const map: Record<string, string> = {
+    AboutYou: 'About You',
+    Documents: 'Documents',
+    Additional: 'Additional',
+    Settlement: 'Settlement',
+    Review: 'Review',
+    Done: 'Done',
+    CompanyDetails: 'Company Details',
+    JointInfo: 'Joint Info',
+    JointDocuments: 'Joint ID',
+    TrusteeType: 'Trustee Type',
+    TrustDetails: 'Trust Details',
+    TrustTaxInfo: 'Trust Tax Info'
   };
+  return map[name] || name;
+};
+
+export default function StepperHeader({ currentStepIndex, stepsFlow, formData, onJumpToStep }: StepperHeaderProps) {
+  const stepperSteps = stepsFlow.slice(2).map((stepName, i) => ({
+    number: i + 1,
+    label: formatStepName(stepName),
+    targetStep: i + 2
+  }));
+
+  const stepperIndex = currentStepIndex - 1; // e.g. at index 2 (first stepper step), stepperIndex is 1. Wait.
+  // actually, if currentStepIndex is 2, it corresponds to stepperSteps[0] (which is number 1).
+  // so if we are at step number 1, active is number 1.
+  const currentStepNumber = currentStepIndex - 1;
+
+  const totalSteps = stepperSteps.length;
+  // If we are at index 2, completedCount = 0.
+  const completedCount = Math.max(0, currentStepIndex - 2);
+  const pct = Math.round((completedCount / totalSteps) * 100);
 
   return (
-    <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-40 shadow-xs">
-      {/* Top Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-corporate-charcoal">
-            <Image src="/logo.png" width={110} height={36} alt="Monefi Logo" className="h-8 w-auto object-contain" />
-          </div>
-          <div className="h-5 w-px bg-gray-200 hidden sm:block" />
-          <span className="text-gray-500 font-medium text-sm sm:text-base hidden sm:block">
-            {formData.accountType || 'Individual'} Application
-          </span>
-        </div>
+    <header className="w-full sticky top-0 z-40 font-inter">
 
-        <div className="flex items-center gap-4">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-200 font-semibold text-xs text-corporate-black bg-gray-50/50">
-            {getPercentage()}
+      {/* ── Primary nav bar ─────────────────────────────────── */}
+      <div className="bg-corporate-charcoal border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 h-[68px] flex items-center justify-between">
+
+          {/* Left: logo + context */}
+          <div className="flex items-center gap-5">
+            <Image
+              src="/logo-2.png"
+              width={140}
+              height={44}
+              alt="Baker Jones Holdings"
+              className="h-7 w-auto object-contain brightness-0 invert"
+            />
+            <div className="h-5 w-px bg-white/25 hidden sm:block" />
+            <span className="text-[13px] text-white/80 font-normal hidden sm:block">
+              {formData.accountType || 'Individual'} Application
+            </span>
           </div>
-          <button
-            type="button"
-            onClick={() => alert('For assistance, please contact our support team at +44 203 355 0894 or email info@bakerjonesholdings.com')}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-sm font-medium text-gray-700 transition-all shadow-2xs cursor-pointer"
-          >
-            <HelpCircle className="w-4 h-4 text-gray-500" />
-            <span>Need help?</span>
-          </button>
+
+          {/* Right: progress + help */}
+          <div className="flex items-center gap-6">
+            <div className="hidden sm:flex flex-col items-end gap-1">
+              <span className="text-[11px] text-white/60 uppercase tracking-widest font-medium">Progress</span>
+              <div className="flex items-center gap-2.5">
+                <div className="w-24 h-[3px] bg-white/20 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-corporate-gold rounded-full transition-all duration-700"
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+                <span className="text-[12px] text-white/70 tabular-nums">{pct}%</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => alert('Support: +44 203 355 0894 | info@bakerjonesholdings.com')}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-[13px] font-medium text-white/90 hover:text-white transition-all cursor-pointer"
+            >
+              <HeadphonesIcon className="w-3.5 h-3.5" strokeWidth={1.5} />
+              <span className="hidden sm:inline">Support</span>
+            </button>
+          </div>
+
         </div>
       </div>
 
-      {/* Stepper Bar (Only shown on Steps 1 to 6, i.e., currentStep >= 2) */}
-      {currentStep >= 2 && (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 overflow-x-auto">
-          <div className="flex items-center justify-between min-w-[600px] sm:min-w-0">
-            {steps.map((step, index) => {
-              const isCompleted = stepperIndex > step.number;
-              const isActive = stepperIndex === step.number;
-              const isClickable = isCompleted && currentStep !== 7;
+      {/* ── Stepper bar ─────────────────────────────────────── */}
+      {currentStepIndex >= 2 && (
+        <div className="bg-white border-b border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+          <div className="mx-auto px-6 sm:px-10 py-4 overflow-x-auto w-min">
+            <div className="flex items-center min-w-[560px] sm:min-w-0">
+              {stepperSteps.map((step, idx) => {
+                const done = currentStepNumber > step.number;
+                const active = currentStepNumber === step.number;
+                const isDoneStep = step.label === 'Done';
+                const click = done && stepsFlow[currentStepIndex] !== 'Done';
 
-              return (
-                <React.Fragment key={step.number}>
-                  {/* Step Item */}
-                  <div
-                    onClick={() => isClickable && onJumpToStep(step.targetStep)}
-                    className={`flex items-center gap-2 group ${
-                      isClickable ? 'cursor-pointer hover:opacity-80' : ''
-                    } transition-all`}
-                  >
+                return (
+                  <React.Fragment key={step.number}>
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-                        isCompleted
-                          ? 'bg-emerald-500 text-white shadow-xs'
-                          : isActive
-                          ? 'bg-white text-corporate-black border-2 border-corporate-black ring-4 ring-gray-100'
-                          : 'bg-gray-100 text-gray-400 border border-gray-200'
-                      }`}
+                      onClick={() => click && onJumpToStep(step.targetStep)}
+                      className={`flex items-center gap-2.5 shrink-0 transition-opacity ${click ? 'cursor-pointer hover:opacity-70' : ''}`}
                     >
-                      {isCompleted ? <Check className="w-4 h-4 stroke-[3]" /> : step.number}
+                      {/* Circle */}
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-semibold transition-all ${done
+                        ? 'bg-corporate-charcoal text-white shadow-sm'
+                        : active
+                          ? 'bg-white border-2 border-corporate-charcoal text-corporate-charcoal'
+                          : 'bg-slate-100 text-slate-400 border border-slate-200'
+                        }`}>
+                        {done ? <Check className="w-3.5 h-3.5" strokeWidth={2.5} /> : step.number}
+                      </div>
+                      {/* Label */}
+                      <span className={`text-[13px] font-medium whitespace-nowrap ${active ? 'text-slate-900' : done ? 'text-slate-500' : 'text-slate-300'
+                        }`}>
+                        {step.label}
+                      </span>
                     </div>
-                    <span
-                      className={`text-xs sm:text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'text-corporate-black font-semibold'
-                          : isCompleted
-                          ? 'text-gray-700'
-                          : 'text-gray-400'
-                      }`}
-                    >
-                      {step.label}
-                    </span>
-                  </div>
 
-                  {/* Connecting Line */}
-                  {index < steps.length - 1 && (
-                    <div
-                      className={`flex-1 mx-2 sm:mx-4 h-[2px] rounded-full transition-colors duration-300 ${
-                        stepperIndex > step.number ? 'bg-emerald-500' : 'bg-gray-100'
-                      }`}
-                    />
-                  )}
-                </React.Fragment>
-              );
-            })}
+                    {idx < stepperSteps.length - 1 && (
+                      <div className={`flex-1 mx-4 h-px rounded-full min-w-[20px] ${done ? 'bg-corporate-charcoal/30' : 'bg-slate-200'}`} />
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
+
     </header>
   );
 }
