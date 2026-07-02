@@ -90,10 +90,10 @@ export default function Step0Register({ formData, updateFormData, onNext }: Step
             Need Help?
           </span>
           <a
-            href="mailto:info@monefi.com"
+            href="mailto:info@bakerjonesholdings.com"
             className="text-white font-medium text-sm sm:text-base hover:text-corporate-gold hover:underline transition-colors"
           >
-            info@monefi.com
+            info@bakerjonesholdings.com
           </a>
         </div>
       </div>
