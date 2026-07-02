@@ -3,15 +3,18 @@
 import PublicFooter from '@/layout/PublicFooter'
 import PublicHeader from '@/layout/PublicHeader'
 import React from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function Layout({children}:{children:React.ReactNode}) {
+  const pathname = usePathname();
+  const isHome2 = pathname === '/home-2';
   return (
     <div className="bg-corporate-white min-h-screen text-corporate-black selection:bg-corporate-gold selection:text-white">
-      <PublicHeader />
-      <main className="pt-24">{/* pt-24 to offset the fixed header on non-home pages if needed, though home will handle it its own way */}
+      {!isHome2 && <PublicHeader />}
+      <main className={!isHome2 ? "pt-24" : ""}>
         {children}
       </main>
-      <PublicFooter />
+      {!isHome2 && <PublicFooter />}
     </div>
   )
 }

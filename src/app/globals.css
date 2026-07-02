@@ -46,6 +46,10 @@
   --font-general: var(--font-general-sans);
   --font-serif: var(--font-serif);
   
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-reverse: float-reverse 7s ease-in-out infinite;
+  --animate-float-delayed: float 5s ease-in-out infinite 1s;
+  
   --breakpoint-mac: 125rem;
 }
 
@@ -62,4 +66,14 @@ body {
 
 .tradingview-widget-copyright{
     display: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
 }
