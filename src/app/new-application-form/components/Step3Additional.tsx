@@ -30,6 +30,7 @@ export default function Step3Additional({ formData, updateFormData, onNext, onBa
       : 'border-slate-200 hover:border-slate-300 focus:border-corporate-charcoal focus:ring-4 focus:ring-corporate-charcoal/10'
     }`;
   const FIELD_LABEL = "block text-[13px] font-semibold text-slate-700 mb-2 uppercase tracking-wide";
+  const ERROR_MSG = "text-red-500 text-[13px] mt-2 flex items-center gap-1.5 font-medium";
 
   const validateAndNext = () => {
     const newErrors: Record<string, string> = {};
@@ -56,8 +57,9 @@ export default function Step3Additional({ formData, updateFormData, onNext, onBa
     onNext();
   };
 
-  const renderRadioCard = (isSelected: boolean, label: string, onClick: () => void) => (
+  const renderRadioCard = (isSelected: boolean, label: string, onClick: () => void, key?: string) => (
     <div
+      key={key}
       onClick={onClick}
       className={`px-4 py-3 rounded-lg border flex items-center gap-3 transition-all duration-150 cursor-pointer ${isSelected
           ? 'border-corporate-charcoal bg-corporate-charcoal/5 text-corporate-charcoal'
@@ -146,7 +148,7 @@ export default function Step3Additional({ formData, updateFormData, onNext, onBa
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {['Employed', 'Self-employed', 'Retired', 'Unemployed', 'Student', 'Homemaker'].map((opt) => 
-                      renderRadioCard(additionalQuestions.employmentStatus === opt, opt, () => handleSelect('employmentStatus', opt))
+                      renderRadioCard(additionalQuestions.employmentStatus === opt, opt, () => handleSelect('employmentStatus', opt), opt)
                     )}
                   </div>
                   {errors.employmentStatus && (
@@ -253,7 +255,7 @@ export default function Step3Additional({ formData, updateFormData, onNext, onBa
               'Property Sale',
               'Pension Lump Sum',
               'Other',
-            ].map((opt) => renderRadioCard(additionalQuestions.sourceOfFunds === opt, opt, () => handleSelect('sourceOfFunds', opt)))}
+            ].map((opt) => renderRadioCard(additionalQuestions.sourceOfFunds === opt, opt, () => handleSelect('sourceOfFunds', opt), opt))}
           </div>
           {errors.sourceOfFunds && (
             <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-600 animate-fade-in">
