@@ -162,10 +162,10 @@ export default function ApplicationFormContainer() {
                   <a href="/terms" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
                     Terms of Business
                   </a>
-                  <a href="#" className="block text-[13px] text-white/60 hover:text-white transition-colors">
+                  <a href="/cookie-policy" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
                     Cookie Policy
                   </a>
-                  <a href="#" className="block text-[13px] text-white/60 hover:text-white transition-colors">
+                  <a href="/regulatory-information" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
                     Regulatory Information
                   </a>
                 </div>
