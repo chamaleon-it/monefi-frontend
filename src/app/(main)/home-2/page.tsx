@@ -118,7 +118,7 @@ export default function Home2Page() {
                 </li>
               </ul>
 
-              <Link href="/about" className="inline-flex items-center justify-center px-8 py-3.5 bg-[#082348] text-white hover:bg-[#051630] rounded-full font-bold text-[14px] transition-all hover:-translate-y-0.5">
+              <Link href="/about-us" className="inline-flex items-center justify-center px-8 py-3.5 bg-[#082348] text-white hover:bg-[#051630] rounded-full font-bold text-[14px] transition-all hover:-translate-y-0.5">
                 Learn More About Us
               </Link>
             </div>
@@ -432,7 +432,7 @@ export default function Home2Page() {
             <Link href="/new-application-form" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 bg-corporate-gold text-[#082348] hover:bg-yellow-500 rounded-full font-bold text-[15px] transition-all">
               Open Account
             </Link>
-            <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-full font-bold text-[15px] transition-all">
+            <Link href="/contact-us" className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-full font-bold text-[15px] transition-all">
               Contact Us
             </Link>
           </div>
