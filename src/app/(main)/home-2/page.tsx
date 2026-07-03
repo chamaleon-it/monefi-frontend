@@ -79,7 +79,7 @@ export default function Home2Page() {
       </section>
 
       {/* 3. Deal Facilitation (SS1 & SS2 blend) */}
-      <section className="py-16 lg:py-24 bg-corporate-white">
+      <section className="py-8 lg:py-12 bg-corporate-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="relative">
@@ -127,16 +127,16 @@ export default function Home2Page() {
       </section>
 
       {/* 4. Investment Approach (Modern Bento Grid) */}
-      <section id="investment-approach" className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      <section id="investment-approach" className="py-8 lg:py-16 bg-white relative overflow-hidden">
         {/* Decorative background element */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-corporate-gold/5 rounded-full blur-[100px] -mr-[400px] -mt-[400px] pointer-events-none"></div>
 
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-corporate-gold/10 text-corporate-gold font-bold tracking-[0.15em] uppercase text-[11px] mb-6">
+          <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-corporate-gold/10 text-corporate-gold font-bold tracking-[0.15em] uppercase text-[11px] mb-4 lg:mb-6">
               Investment Approach
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight leading-[1.1] text-[#082348] mb-6">
+            <h2 className="text-3xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight leading-[1.1] text-[#082348] mb-4 lg:mb-6">
               Building Scalable <br />
               <span className="text-corporate-gold italic font-normal">Business Models.</span>
             </h2>
@@ -206,9 +206,9 @@ export default function Home2Page() {
       </section>
 
       {/* 4. Diverse Opportunities (SS1 Style) */}
-      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
+      <section className="py-8 lg:py-12 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 lg:mb-12">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Investment Solutions</span>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-serif font-bold tracking-tight leading-[1.15] text-[#082348] mb-4">
               Diverse Opportunities for <span className="text-corporate-gold">Every Investor</span>
@@ -266,9 +266,9 @@ export default function Home2Page() {
       </section>
 
       {/* 5. The Baker Jones Advantage (Grid of 6) */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-8 lg:py-12 bg-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 lg:mb-12">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Why Partner With Us</span>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-serif font-bold tracking-tight leading-[1.15] text-[#082348]">
               The Baker Jones <span className="text-corporate-gold">Advantage</span>
@@ -297,7 +297,7 @@ export default function Home2Page() {
       </section>
 
       {/* 6. Manage Platform Section (SS2 Blend) */}
-      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
+      <section className="py-8 lg:py-12 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="max-w-lg lg:pr-10">
@@ -357,9 +357,9 @@ export default function Home2Page() {
       </section>
 
       {/* 7. Testimonials */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-8 lg:py-12 bg-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 lg:mb-12">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Testimonials</span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight leading-[1.15] text-[#082348]">
               What Our <span className="text-corporate-gold">Clients Say</span>
@@ -391,11 +391,11 @@ export default function Home2Page() {
       </section>
 
       {/* 8. FAQ */}
-      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
+      <section className="py-8 lg:py-12 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[800px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 lg:mb-12">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight leading-[1.15] text-[#082348] mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight leading-[1.15] text-[#082348] mb-4 lg:mb-6">Frequently Asked Questions</h2>
           </div>
 
           <div className="space-y-0 border-t border-slate-200">
@@ -422,7 +422,7 @@ export default function Home2Page() {
       </section>
 
       {/* 9. CTA */}
-      <section className="bg-[#082348] py-16 lg:py-24">
+      <section className="bg-[#082348] py-10 lg:py-16">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to Access Institutional Opportunities?</h2>
           <p className="text-white/70 text-[16px] max-w-2xl mx-auto mb-10">
