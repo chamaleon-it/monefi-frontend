@@ -16,8 +16,8 @@ export default function Home2Page() {
     <div className="bg-corporate-white text-slate-900 font-inter antialiased">
       <Home2Header />
 
-      {/* 1. Hero Section (Modernized) */}
-      <section className="relative pt-32 pb-48 lg:pt-48 lg:pb-64 flex flex-col justify-center overflow-hidden min-h-[85vh]">
+      {/* 1. Hero Section (Centered Banner with Image) */}
+      <section className="relative pt-28 pb-32 lg:pt-0 lg:pb-16 flex flex-col items-center justify-center overflow-hidden min-h-[75vh] lg:h-[calc(100vh-120px)] lg:min-h-[600px]">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -25,44 +25,41 @@ export default function Home2Page() {
             alt="Cityscape"
             className="w-full h-full object-cover"
           />
-          {/* Modern overlay: Darker on the left where text is, fading out slightly to the right */}
-          <div className="absolute inset-0 bg-[#082348]/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#082348] via-[#082348]/60 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-transparent to-transparent opacity-90"></div>
+          {/* Heavy overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-[#082348]/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#082348]/80 via-transparent to-[#082348]/80"></div>
         </div>
 
-        <ScrollAnimation className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 w-full text-left">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-[2px] bg-corporate-gold"></div>
-              <span className="text-corporate-gold font-bold tracking-[0.25em] uppercase text-[12px]">
-                Baker Jones Holdings
-              </span>
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-[5rem] font-serif font-bold tracking-tight leading-[1.05] text-white mb-8">
-              Your Gateway to <br />
-              <span className="text-corporate-gold">Institutional</span> Investments
-            </h1>
-            
-            <p className="text-white/70 text-[16px] lg:text-[18px] max-w-xl leading-relaxed mb-10">
-              Premium alternative investments tailored for corporate entities and institutional clients. Build long-term wealth with exclusive market access.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <Link href="/new-application-form" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-corporate-gold text-[#082348] hover:bg-yellow-500 rounded-full font-bold text-[15px] transition-all shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:-translate-y-0.5">
-                Open Account <ArrowUpRight className="ml-2 w-4 h-4" strokeWidth={2.5} />
-              </Link>
-              <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-full font-bold text-[15px] transition-all hover:-translate-y-0.5">
-                Contact Us
-              </Link>
-            </div>
+        <ScrollAnimation className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 w-full text-center flex flex-col items-center">
+          
+          <div className="inline-flex items-center justify-center px-5 py-1.5 rounded-full border border-white/10 mb-8">
+            <span className="text-corporate-gold font-medium tracking-wide text-[13px]">
+              Strategic Investment Partners
+            </span>
+          </div>
+          
+          <h1 className="text-4xl sm:text-5xl lg:text-[5.5rem] font-serif font-bold tracking-tight leading-[1.1] text-white mb-8 max-w-5xl">
+            Building Long-Term <br className="hidden sm:block" />
+            Value Through <span className="text-corporate-gold italic font-normal">Strategic <br className="hidden sm:block" /> Investments</span>
+          </h1>
+          
+          <p className="text-white/60 text-[16px] lg:text-[18px] max-w-2xl mx-auto leading-relaxed mb-10">
+            Baker Jones Holdings partners with forward-thinking businesses across technology, infrastructure, real estate, and digital innovation.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+            <Link href="/portfolio" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-white text-[#082348] hover:bg-slate-100 rounded-full font-medium text-[15px] transition-all">
+              Explore Portfolio <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+            <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border border-white/20 text-white hover:bg-white/10 rounded-full font-medium text-[15px] transition-all">
+              Partner With Us
+            </Link>
           </div>
         </ScrollAnimation>
       </section>
 
       {/* 2. Floating Stats Bar */}
-      <section className="relative z-20 -mt-20 px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <section className="relative z-20 -mt-20 lg:-mt-24 px-6 lg:px-8 max-w-[1400px] mx-auto">
         <ScrollAnimation>
           <div className="bg-white rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] p-8 lg:p-12 border border-slate-100 flex flex-col lg:flex-row justify-between gap-10 lg:gap-6 items-center lg:divide-x divide-slate-200">
             <div className="flex-1 text-center lg:text-left lg:px-8 first:pl-0 last:pr-0 w-full">
@@ -82,7 +79,7 @@ export default function Home2Page() {
       </section>
 
       {/* 3. Deal Facilitation (SS1 & SS2 blend) */}
-      <section className="py-20 lg:py-32 bg-corporate-white">
+      <section className="py-16 lg:py-24 bg-corporate-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="relative">
@@ -130,7 +127,7 @@ export default function Home2Page() {
       </section>
 
       {/* 4. Diverse Opportunities (SS1 Style) */}
-      <section className="py-20 bg-[#FAFAFA]">
+      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Investment Solutions</span>
@@ -190,7 +187,7 @@ export default function Home2Page() {
       </section>
 
       {/* 5. The Baker Jones Advantage (Grid of 6) */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-16 lg:py-24 bg-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Why Partner With Us</span>
@@ -221,7 +218,7 @@ export default function Home2Page() {
       </section>
 
       {/* 6. Manage Platform Section (SS2 Blend) */}
-      <section className="py-20 lg:py-32 bg-[#FAFAFA]">
+      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="max-w-lg lg:pr-10">
@@ -281,7 +278,7 @@ export default function Home2Page() {
       </section>
 
       {/* 7. Testimonials */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-16 lg:py-24 bg-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Testimonials</span>
@@ -315,7 +312,7 @@ export default function Home2Page() {
       </section>
 
       {/* 8. FAQ */}
-      <section className="py-20 lg:py-32 bg-[#FAFAFA]">
+      <section className="py-16 lg:py-24 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[800px] mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">FAQ</span>
@@ -346,7 +343,7 @@ export default function Home2Page() {
       </section>
 
       {/* 9. CTA */}
-      <section className="bg-[#082348] py-20 lg:py-24">
+      <section className="bg-[#082348] py-16 lg:py-24">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Ready to Access Institutional Opportunities?</h2>
           <p className="text-white/70 text-[16px] max-w-2xl mx-auto mb-10">
