@@ -78,6 +78,43 @@ export default function Home2Page() {
         </ScrollAnimation>
       </section>
 
+      {/* As Featured In */}
+      <section className="pt-10 pb-6 lg:pt-16 lg:pb-12 bg-corporate-white relative z-10">
+        <ScrollAnimation className="max-w-[1400px] mx-auto px-4 lg:px-8">
+          <div className="flex flex-col items-center justify-center md:-mt-8">
+            <div className="w-full max-w-4xl bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100/60 px-4 py-6 md:px-12 md:py-8 flex flex-col items-center transition-transform hover:-translate-y-1 duration-500">
+              <span className="text-[10px] md:text-[12px] font-bold text-slate-400 tracking-[0.2em] uppercase mb-6 md:mb-8">As Featured In</span>
+              
+              <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 md:gap-16 w-full max-w-full overflow-hidden">
+                {/* Yahoo! */}
+                <div className="flex flex-col items-center justify-center gap-2 md:gap-3 group shrink-0 cursor-pointer">
+                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-[#6001D2] to-[#430297] flex items-center justify-center text-white font-bold text-[16px] md:text-[24px] italic shadow-[0_4px_12px_rgba(96,1,210,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(96,1,210,0.4)] group-hover:rotate-3">
+                    Y!
+                  </div>
+                  <span className="text-slate-600 font-bold text-[12px] sm:text-[14px] md:text-xl transition-colors duration-300 group-hover:text-[#430297]">Yahoo!</span>
+                </div>
+
+                {/* Bloomberg */}
+                <div className="flex flex-col items-center justify-center gap-2 md:gap-3 group shrink-0 cursor-pointer">
+                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-gray-800 to-black flex items-center justify-center text-white font-bold text-[16px] md:text-[24px] font-serif shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)] group-hover:-rotate-3">
+                    B
+                  </div>
+                  <span className="text-slate-600 font-bold text-[12px] sm:text-[14px] md:text-xl transition-colors duration-300 group-hover:text-black">Bloomberg</span>
+                </div>
+
+                {/* Investing.com */}
+                <div className="flex flex-col items-center justify-center gap-2 md:gap-3 group shrink-0 cursor-pointer">
+                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-[#F7931A] to-[#E37A00] flex items-center justify-center text-white font-bold text-[16px] md:text-[24px] font-serif shadow-[0_4px_12px_rgba(247,147,26,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(247,147,26,0.4)] group-hover:rotate-3">
+                    i
+                  </div>
+                  <span className="text-slate-600 font-bold text-[12px] sm:text-[14px] md:text-xl transition-colors duration-300 group-hover:text-[#F7931A]">Investing.com</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollAnimation>
+      </section>
+
       {/* 3. Deal Facilitation (SS1 & SS2 blend) */}
       <section className="py-8 lg:py-12 bg-corporate-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
