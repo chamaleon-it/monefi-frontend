@@ -126,6 +126,85 @@ export default function Home2Page() {
         </ScrollAnimation>
       </section>
 
+      {/* 4. Investment Approach (Modern Bento Grid) */}
+      <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
+        {/* Decorative background element */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-corporate-gold/5 rounded-full blur-[100px] -mr-[400px] -mt-[400px] pointer-events-none"></div>
+        
+        <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-corporate-gold/10 text-corporate-gold font-bold tracking-[0.15em] uppercase text-[11px] mb-6">
+              Investment Approach
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight leading-[1.1] text-[#082348] mb-6">
+              Building Scalable <br/>
+              <span className="text-corporate-gold italic font-normal">Business Models.</span>
+            </h2>
+            <p className="text-[16px] lg:text-[18px] text-slate-500 leading-relaxed">
+              Our portfolio companies benefit from our proprietary scaling frameworks. We transition businesses from founder-led operations to system-led enterprises.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {/* Card 1: Span 2 cols */}
+            <div className="md:col-span-2 group bg-white rounded-[2rem] p-8 lg:p-12 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+              <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-[#082348]/5 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-[#082348] text-white flex items-center justify-center mb-8 shadow-lg">
+                  <Users className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348] mb-4">Long-Term Strategic Partnerships</h3>
+              </div>
+              <p className="text-slate-500 text-[16px] leading-relaxed relative z-10 max-w-lg">
+                We don't just invest capital; we invest expertise. We partner with founders who have long-term vision but need operational structure.
+              </p>
+            </div>
+
+            {/* Card 2: Span 1 col, Dark Theme */}
+            <div className="md:col-span-1 group bg-[#082348] rounded-[2rem] p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(8,35,72,0.2)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+               <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/5 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+               <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-corporate-gold text-[#082348] flex items-center justify-center mb-8 shadow-lg">
+                  <Building2 className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-white mb-4">Operational Optimization</h3>
+              </div>
+              <p className="text-white/70 text-[15px] leading-relaxed relative z-10">
+                We deploy our internal systems and playbooks to streamline operations and increase profit margins.
+              </p>
+            </div>
+
+            {/* Card 3: Span 1 col, Gold Theme */}
+            <div className="md:col-span-1 group bg-corporate-gold rounded-[2rem] p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(212,175,55,0.2)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+               <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+               <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-white text-corporate-gold flex items-center justify-center mb-8 shadow-lg">
+                  <Globe className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-[#082348] mb-4">Digital Transformation</h3>
+              </div>
+              <p className="text-[#082348]/80 text-[15px] leading-relaxed relative z-10 font-medium">
+                Modernizing legacy systems and scaling digital infrastructure for exponential growth.
+              </p>
+            </div>
+
+            {/* Card 4: Span 2 cols */}
+            <div className="md:col-span-2 group bg-white rounded-[2rem] p-8 lg:p-12 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+               <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-corporate-gold/10 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+               <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-[#082348] text-white flex items-center justify-center mb-8 shadow-lg">
+                  <Shield className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348] mb-4">Sustainable Growth Focus</h3>
+              </div>
+              <p className="text-slate-500 text-[16px] leading-relaxed relative z-10 max-w-lg">
+                We prioritize cash flow, market dominance, and sustainable unit economics over rapid, unstable expansion.
+              </p>
+            </div>
+          </div>
+        </ScrollAnimation>
+      </section>
+
       {/* 4. Diverse Opportunities (SS1 Style) */}
       <section className="py-16 lg:py-24 bg-[#FAFAFA]">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
