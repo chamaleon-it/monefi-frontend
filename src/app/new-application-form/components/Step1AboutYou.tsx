@@ -272,7 +272,7 @@ export default function Step1AboutYou({ formData, updateFormData, onNext, onBack
                 <label className={FIELD_LABEL}>Home phone</label>
                 <div className="flex items-center rounded-lg border border-slate-200 bg-white hover:border-slate-300 focus-within:border-corporate-charcoal focus-within:ring-1 focus-within:ring-corporate-charcoal/20 transition-all overflow-hidden shadow-sm">
                   <select
-                    value={contactDetails.homePhoneCode || '+1'}
+                    value={contactDetails.homePhoneCode || '+44'}
                     onChange={(e) => handleContactChange('homePhoneCode', e.target.value)}
                     className="w-[100px] px-3 py-2.5 bg-transparent outline-none text-[13px] text-slate-600 border-r border-slate-200 cursor-pointer shrink-0"
                   >
@@ -292,7 +292,7 @@ export default function Step1AboutYou({ formData, updateFormData, onNext, onBack
                 <label className={FIELD_LABEL}>Mobile phone *</label>
                 <div className={`flex items-center rounded-lg border bg-white transition-all overflow-hidden shadow-sm ${errors.mobilePhone ? 'border-red-400' : 'border-slate-200 hover:border-slate-300 focus-within:border-corporate-charcoal focus-within:ring-1 focus-within:ring-corporate-charcoal/20'}`}>
                   <select
-                    value={contactDetails.mobilePhoneCode || '+1'}
+                    value={contactDetails.mobilePhoneCode || '+44'}
                     onChange={(e) => handleContactChange('mobilePhoneCode', e.target.value)}
                     className="w-[100px] px-3 py-2.5 bg-transparent outline-none text-[13px] text-slate-600 border-r border-slate-200 cursor-pointer shrink-0"
                   >

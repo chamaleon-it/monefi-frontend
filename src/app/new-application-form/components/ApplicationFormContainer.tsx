@@ -27,7 +27,7 @@ export default function ApplicationFormContainer() {
     accountType: 'Individual',
     personalDetails: { title: '', firstName: '', lastName: '', dateOfBirth: '', occupation: '' },
     residentialAddress: { addressLine1: '', addressLine2: '', city: '', postcode: '', country: 'United Kingdom' },
-    contactDetails: { homePhoneCode: '+1', homePhone: '', mobilePhoneCode: '+1', mobilePhone: '', emailAddress: '' },
+    contactDetails: { homePhoneCode: '+44', homePhone: '', mobilePhoneCode: '+44', mobilePhone: '', emailAddress: '' },
     documents: {
       identityVerificationFile: null, identityVerificationEmailLater: false,
       proofOfAddressFile: null, proofOfAddressEmailLater: false,
@@ -49,7 +49,7 @@ export default function ApplicationFormContainer() {
     jointDetails: {
       personalDetails: { title: '', firstName: '', lastName: '', dateOfBirth: '', occupation: '' },
       residentialAddress: { addressLine1: '', addressLine2: '', city: '', postcode: '', country: 'United Kingdom' },
-      contactDetails: { mobilePhoneCode: '+1', mobilePhone: '', emailAddress: '' },
+      contactDetails: { mobilePhoneCode: '+44', mobilePhone: '', emailAddress: '' },
       documents: {}
     },
     trustDetails: {
