@@ -214,8 +214,8 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
         {renderUploadCard({
           title: 'Identity Verification',
           icon: <ShieldCheck className="w-4.5 h-4.5" strokeWidth={1.5} />,
-          description: 'We need a copy of your identification. We accept: International travel document — a current passport or other identification documentation issued by the government.',
-          subtext: 'High resolution image — JPG, PNG or PDF',
+          description: 'Please upload a clear copy of your valid Passport or Driving Licence. Ensure that all four corners of the document are fully visible and all information is clearly readable.',
+          subtext: 'Accepted documents: Passport or Driving Licence (JPG, PNG or PDF).',
           fileField: 'identityVerificationFile',
           emailField: 'identityVerificationEmailLater',
           emailLabel: 'I will email my identity documents later',
