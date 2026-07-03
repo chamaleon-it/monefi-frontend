@@ -31,24 +31,24 @@ export default function Home2Page() {
         </div>
 
         <ScrollAnimation className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 w-full text-center flex flex-col items-center">
-          
+
           <div className="inline-flex items-center justify-center px-5 py-1.5 rounded-full border border-white/10 mb-8">
             <span className="text-corporate-gold font-medium tracking-wide text-[13px]">
               Strategic Investment Partners
             </span>
           </div>
-          
+
           <h1 className="text-4xl sm:text-5xl lg:text-[5.5rem] font-serif font-bold tracking-tight leading-[1.1] text-white mb-8 max-w-5xl">
             Building Long-Term <br className="hidden sm:block" />
             Value Through <span className="text-corporate-gold italic font-normal">Strategic <br className="hidden sm:block" /> Investments</span>
           </h1>
-          
+
           <p className="text-white/60 text-[16px] lg:text-[18px] max-w-2xl mx-auto leading-relaxed mb-10">
             Baker Jones Holdings partners with forward-thinking businesses across technology, infrastructure, real estate, and digital innovation.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-            <Link href="/portfolio" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-white text-[#082348] hover:bg-slate-100 rounded-full font-medium text-[15px] transition-all">
+            <Link href="#investment-approach" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-white text-[#082348] hover:bg-slate-100 rounded-full font-medium text-[15px] transition-all">
               Explore Portfolio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
             <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border border-white/20 text-white hover:bg-white/10 rounded-full font-medium text-[15px] transition-all">
@@ -96,7 +96,7 @@ export default function Home2Page() {
               <p className="text-[16px] text-slate-500 mb-8 leading-relaxed">
                 Baker Jones Holdings specialises in identifying, structuring, and facilitating premium private equity deals for institutional and high-net-worth clients globally.
               </p>
-              
+
               <ul className="space-y-5 mb-10">
                 <li className="flex items-start gap-4">
                   <div className="shrink-0 mt-1 w-6 h-6 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
@@ -117,7 +117,7 @@ export default function Home2Page() {
                   </div>
                 </li>
               </ul>
-              
+
               <Link href="/about" className="inline-flex items-center justify-center px-8 py-3.5 bg-[#082348] text-white hover:bg-[#051630] rounded-full font-bold text-[14px] transition-all hover:-translate-y-0.5">
                 Learn More About Us
               </Link>
@@ -127,17 +127,17 @@ export default function Home2Page() {
       </section>
 
       {/* 4. Investment Approach (Modern Bento Grid) */}
-      <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      <section id="investment-approach" className="py-20 lg:py-28 bg-white relative overflow-hidden">
         {/* Decorative background element */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-corporate-gold/5 rounded-full blur-[100px] -mr-[400px] -mt-[400px] pointer-events-none"></div>
-        
+
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-corporate-gold/10 text-corporate-gold font-bold tracking-[0.15em] uppercase text-[11px] mb-6">
               Investment Approach
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight leading-[1.1] text-[#082348] mb-6">
-              Building Scalable <br/>
+              Building Scalable <br />
               <span className="text-corporate-gold italic font-normal">Business Models.</span>
             </h2>
             <p className="text-[16px] lg:text-[18px] text-slate-500 leading-relaxed">
@@ -162,8 +162,8 @@ export default function Home2Page() {
 
             {/* Card 2: Span 1 col, Dark Theme */}
             <div className="md:col-span-1 group bg-[#082348] rounded-[2rem] p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(8,35,72,0.2)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
-               <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/5 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
-               <div className="relative z-10">
+              <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/5 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+              <div className="relative z-10">
                 <div className="w-14 h-14 rounded-2xl bg-corporate-gold text-[#082348] flex items-center justify-center mb-8 shadow-lg">
                   <Building2 className="w-7 h-7" />
                 </div>
@@ -176,8 +176,8 @@ export default function Home2Page() {
 
             {/* Card 3: Span 1 col, Gold Theme */}
             <div className="md:col-span-1 group bg-corporate-gold rounded-[2rem] p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(212,175,55,0.2)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
-               <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
-               <div className="relative z-10">
+              <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+              <div className="relative z-10">
                 <div className="w-14 h-14 rounded-2xl bg-white text-corporate-gold flex items-center justify-center mb-8 shadow-lg">
                   <Globe className="w-7 h-7" />
                 </div>
@@ -190,8 +190,8 @@ export default function Home2Page() {
 
             {/* Card 4: Span 2 cols */}
             <div className="md:col-span-2 group bg-white rounded-[2rem] p-8 lg:p-12 shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
-               <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-corporate-gold/10 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
-               <div className="relative z-10">
+              <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-corporate-gold/10 rounded-full group-hover:scale-[2] transition-transform duration-700"></div>
+              <div className="relative z-10">
                 <div className="w-14 h-14 rounded-2xl bg-[#082348] text-white flex items-center justify-center mb-8 shadow-lg">
                   <Shield className="w-7 h-7" />
                 </div>
@@ -312,7 +312,7 @@ export default function Home2Page() {
                 Client Login <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
-            
+
             <div className="relative w-full max-w-xl mx-auto lg:mx-0">
               <div className="aspect-[4/3] bg-[#082348] rounded-2xl shadow-2xl flex flex-col overflow-hidden relative border border-white/10">
                 {/* Mockup Header */}
