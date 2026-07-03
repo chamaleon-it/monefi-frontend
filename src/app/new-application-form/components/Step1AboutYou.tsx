@@ -96,12 +96,9 @@ export default function Step1AboutYou({ formData, updateFormData, onNext, onBack
     if (!personalDetails.lastName.trim()) newErrors.lastName = 'Last name is required';
     if (!personalDetails.dateOfBirth) newErrors.dateOfBirth = 'Date of birth is required';
     if (!personalDetails.occupation.trim()) newErrors.occupation = 'Occupation is required';
-    if (!residentialAddress.address.trim()) newErrors.address = 'Address is required';
-    if (!residentialAddress.streetName.trim()) newErrors.streetName = 'Street name is required';
-    if (!residentialAddress.country.trim()) newErrors.country = 'Country is required';
-    if (!residentialAddress.state.trim()) newErrors.state = 'State is required';
-    if (!residentialAddress.city.trim()) newErrors.city = 'City is required';
-    if (!residentialAddress.postcode.trim()) newErrors.postcode = 'Postcode is required';
+    if (!residentialAddress.addressLine1?.trim()) newErrors.addressLine1 = 'Address Line 1 is required';
+    if (!residentialAddress.city?.trim()) newErrors.city = 'City/Town is required';
+    if (!residentialAddress.postcode?.trim()) newErrors.postcode = 'Postcode/ZIP is required';
     if (!contactDetails.mobilePhone.trim()) newErrors.mobilePhone = 'Mobile phone is required';
     if (!contactDetails.emailAddress.trim() || !contactDetails.emailAddress.includes('@')) {
       newErrors.emailAddress = 'Valid email is required';
@@ -224,30 +221,15 @@ export default function Step1AboutYou({ formData, updateFormData, onNext, onBack
           </div>
 
           <div className="space-y-4">
-            <div id="field-address">
-              <label className={FIELD_LABEL}>Address *</label>
-              <input type="text" placeholder="Address line 1" value={residentialAddress.address} onChange={(e) => handleAddressChange('address', e.target.value)} className={inputClass(errors.address)} />
-              {errors.address && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.address}</p>}
+            <div id="field-addressLine1">
+              <label className={FIELD_LABEL}>Address Line 1 *</label>
+              <input type="text" placeholder="street name and house/building number" value={residentialAddress.addressLine1} onChange={(e) => handleAddressChange('addressLine1', e.target.value)} className={inputClass(errors.addressLine1)} />
+              {errors.addressLine1 && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.addressLine1}</p>}
             </div>
-            <div id="field-streetName">
-              <label className={FIELD_LABEL}>Street name *</label>
-              <input type="text" placeholder="Street name" value={residentialAddress.streetName} onChange={(e) => handleAddressChange('streetName', e.target.value)} className={inputClass(errors.streetName)} />
-              {errors.streetName && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.streetName}</p>}
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div id="field-country">
-                <label className={FIELD_LABEL}>Country *</label>
-                <select value={residentialAddress.country} onChange={(e) => handleAddressChange('country', e.target.value)} className={inputClass(errors.country)}>
-                  <option value="">Select country...</option>
-                  {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
-                </select>
-                {errors.country && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.country}</p>}
-              </div>
-              <div id="field-state">
-                <label className={FIELD_LABEL}>State / Province *</label>
-                <input type="text" placeholder="State / Province" value={residentialAddress.state} onChange={(e) => handleAddressChange('state', e.target.value)} className={inputClass(errors.state)} />
-                {errors.state && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.state}</p>}
-              </div>
+            <div id="field-addressLine2">
+              <label className={FIELD_LABEL}>Address Line 2</label>
+              <input type="text" placeholder="apartment, suite, building, floor – optional" value={residentialAddress.addressLine2 || ''} onChange={(e) => handleAddressChange('addressLine2', e.target.value)} className={inputClass(errors.addressLine2)} />
+              {errors.addressLine2 && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.addressLine2}</p>}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div id="field-city">
@@ -256,10 +238,18 @@ export default function Step1AboutYou({ formData, updateFormData, onNext, onBack
                 {errors.city && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.city}</p>}
               </div>
               <div id="field-postcode">
-                <label className={FIELD_LABEL}>Postcode / ZIP *</label>
-                <input type="text" placeholder="Postcode / ZIP" value={residentialAddress.postcode} onChange={(e) => handleAddressChange('postcode', e.target.value)} className={inputClass(errors.postcode)} />
+                <label className={FIELD_LABEL}>Postal Code / ZIP Code *</label>
+                <input type="text" placeholder="Postal Code / ZIP Code" value={residentialAddress.postcode} onChange={(e) => handleAddressChange('postcode', e.target.value)} className={inputClass(errors.postcode)} />
                 {errors.postcode && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.postcode}</p>}
               </div>
+            </div>
+            <div id="field-country">
+              <label className={FIELD_LABEL}>Country</label>
+              <select value={residentialAddress.country} onChange={(e) => handleAddressChange('country', e.target.value)} className={inputClass(errors.country)}>
+                <option value="">Select country...</option>
+                {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
+              {errors.country && <p className={ERROR_MSG}><AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{errors.country}</p>}
             </div>
           </div>
         </div>

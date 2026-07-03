@@ -72,12 +72,11 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
             {renderRow('Last name', personalDetails.lastName)}
             {renderRow('Date of birth', personalDetails.dateOfBirth)}
             {renderRow('Occupation', personalDetails.occupation)}
-            {renderRow('Address', residentialAddress.address)}
-            {renderRow('Street', residentialAddress.streetName)}
+            {renderRow('Address Line 1', residentialAddress.addressLine1)}
+            {residentialAddress.addressLine2 && renderRow('Address Line 2', residentialAddress.addressLine2)}
+            {renderRow('City / Town', residentialAddress.city)}
+            {renderRow('Postal Code / ZIP Code', residentialAddress.postcode)}
             {renderRow('Country', residentialAddress.country)}
-            {renderRow('State / Province', residentialAddress.state)}
-            {renderRow('City', residentialAddress.city)}
-            {renderRow('Postcode', residentialAddress.postcode)}
             {contactDetails.homePhone && renderRow('Home phone', `${contactDetails.homePhoneCode || ''} ${contactDetails.homePhone}`.trim())}
             {renderRow('Mobile', `${contactDetails.mobilePhoneCode || ''} ${contactDetails.mobilePhone}`.trim())}
             {renderRow('Email', contactDetails.emailAddress)}

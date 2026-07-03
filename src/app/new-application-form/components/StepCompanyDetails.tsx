@@ -11,7 +11,7 @@ const ERROR_MSG = "text-[12px] text-red-600 mt-2 flex items-center gap-1";
 
 export default function StepCompanyDetails({ formData, updateFormData, onNext, onBack }: StepProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const details = formData.companyDetails || { companyName: '', registrationNumber: '', dateOfIncorporation: '', natureOfBusiness: '', registeredAddress: { address: '', streetName: '', country: '', state: '', city: '', postcode: '' }, companyClassification: '', taxClassification: '', officers: [], owns25Percent: '' };
+  const details = formData.companyDetails || { companyName: '', registrationNumber: '', dateOfIncorporation: '', natureOfBusiness: '', registeredAddress: { addressLine1: '', addressLine2: '', city: '', postcode: '', country: 'United Kingdom' }, companyClassification: '', taxClassification: '', officers: [], owns25Percent: '' };
 
   const handleChange = (field: string, value: string) => {
     updateFormData('companyDetails', { ...details, [field]: value });

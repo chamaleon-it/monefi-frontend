@@ -11,12 +11,11 @@ export interface PersonalDetails {
 }
 
 export interface ResidentialAddress {
-  address: string;
-  streetName: string;
-  country: string;
-  state: string;
+  addressLine1: string;
+  addressLine2?: string;
   city: string;
   postcode: string;
+  country: string;
 }
 
 export interface ContactDetails {

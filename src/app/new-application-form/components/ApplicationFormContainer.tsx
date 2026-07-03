@@ -26,7 +26,7 @@ export default function ApplicationFormContainer() {
     referenceNumber: 'SE3977W',
     accountType: 'Individual',
     personalDetails: { title: '', firstName: '', lastName: '', dateOfBirth: '', occupation: '' },
-    residentialAddress: { address: '', streetName: '', country: '', state: '', city: '', postcode: '' },
+    residentialAddress: { addressLine1: '', addressLine2: '', city: '', postcode: '', country: 'United Kingdom' },
     contactDetails: { homePhoneCode: '+1', homePhone: '', mobilePhoneCode: '+1', mobilePhone: '', emailAddress: '' },
     documents: {
       identityVerificationFile: null, identityVerificationEmailLater: false,
@@ -43,12 +43,12 @@ export default function ApplicationFormContainer() {
     // Default initializers
     companyDetails: {
       companyName: '', registrationNumber: '', dateOfIncorporation: '', natureOfBusiness: '',
-      registeredAddress: { address: '', streetName: '', country: '', state: '', city: '', postcode: '' },
+      registeredAddress: { addressLine1: '', addressLine2: '', city: '', postcode: '', country: 'United Kingdom' },
       companyClassification: '', taxClassification: '', officers: [], owns25Percent: ''
     },
     jointDetails: {
       personalDetails: { title: '', firstName: '', lastName: '', dateOfBirth: '', occupation: '' },
-      residentialAddress: { address: '', streetName: '', country: '', state: '', city: '', postcode: '' },
+      residentialAddress: { addressLine1: '', addressLine2: '', city: '', postcode: '', country: 'United Kingdom' },
       contactDetails: { mobilePhoneCode: '+1', mobilePhone: '', emailAddress: '' },
       documents: {}
     },
