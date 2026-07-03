@@ -156,11 +156,18 @@ export default function ApplicationFormContainer() {
               <div>
                 <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Legal</p>
                 <div className="space-y-2.5">
-                  {['Privacy Policy', 'Terms of Business', 'Cookie Policy', 'Regulatory Information'].map(link => (
-                    <a key={link} href="#" className="block text-[13px] text-white/60 hover:text-white transition-colors">
-                      {link}
-                    </a>
-                  ))}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                  <a href="/terms" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
+                    Terms of Business
+                  </a>
+                  <a href="#" className="block text-[13px] text-white/60 hover:text-white transition-colors">
+                    Cookie Policy
+                  </a>
+                  <a href="#" className="block text-[13px] text-white/60 hover:text-white transition-colors">
+                    Regulatory Information
+                  </a>
                 </div>
               </div>
 
