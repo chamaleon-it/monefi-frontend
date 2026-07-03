@@ -473,9 +473,9 @@ export default function Home2Page() {
               <h4 className="text-[13px] font-bold text-[#082348] mb-4">Company</h4>
               <ul className="space-y-3">
                 <li><Link href="/home-2" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Home</Link></li>
-                <li><Link href="/about" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">About Us</Link></li>
+                <li><Link href="/about-us" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">About Us</Link></li>
                 <li><Link href="/login" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Platform</Link></li>
-                <li><Link href="/contact" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Contact</Link></li>
+                <li><Link href="/contact-us" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Contact</Link></li>
               </ul>
             </div>
           </div>
