@@ -17,7 +17,7 @@ export default function Home2Page() {
       <Home2Header />
 
       {/* 1. Hero Section (Centered Banner with Image) */}
-      <section className="relative pt-28 pb-32 lg:pt-0 lg:pb-16 flex flex-col items-center justify-center overflow-hidden min-h-[75vh] lg:h-[calc(100vh-120px)] lg:min-h-[600px]">
+      <section className="relative pt-28 pb-28 lg:pt-28 lg:pb-36 flex flex-col items-center justify-center overflow-hidden min-h-[75vh] lg:min-h-[calc(100vh-120px)]">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -32,8 +32,8 @@ export default function Home2Page() {
 
         <ScrollAnimation className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 w-full text-center flex flex-col items-center">
 
-          <div className="inline-flex items-center justify-center px-5 py-1.5 rounded-full border border-white/10 mb-8">
-            <span className="text-corporate-gold font-medium tracking-wide text-[13px]">
+          <div className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-corporate-gold/15 border border-corporate-gold/30 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(212,175,55,0.15)]">
+            <span className="text-[#F1C40F] font-bold tracking-[0.15em] uppercase text-[11px] md:text-[12px] drop-shadow-md">
               Strategic Investment Partners
             </span>
           </div>
@@ -47,13 +47,43 @@ export default function Home2Page() {
             Baker Jones Holdings partners with forward-thinking businesses across technology, infrastructure, real estate, and digital innovation.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-6 lg:mb-6">
             <Link href="#investment-approach" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-white text-[#082348] hover:bg-slate-100 rounded-full font-medium text-[15px] transition-all">
               Explore Portfolio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
             <Link href="/contact-us" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border border-white/20 text-white hover:bg-white/10 rounded-full font-medium text-[15px] transition-all">
               Partner With Us
             </Link>
+          </div>
+
+          {/* Small As Featured In (Banner Integrated) */}
+          <div className="flex flex-col items-center justify-center border-t border-white/10 pt-6 w-full max-w-2xl mx-auto">
+            <span className="text-[9px] font-bold text-white/40 tracking-[0.2em] uppercase mb-4">As Featured In</span>
+            <div className="flex flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 w-full max-w-full overflow-hidden opacity-75 hover:opacity-100 transition-opacity duration-300">
+              {/* Yahoo! */}
+              <div className="flex items-center gap-2 shrink-0">
+                <div className="w-5 h-5 md:w-6 md:h-6 rounded flex items-center justify-center text-white font-bold text-[11px] md:text-[13px] italic bg-[#6001D2]">
+                  Y!
+                </div>
+                <span className="text-white/90 font-semibold text-[12px] sm:text-[13px] md:text-[14px]">Yahoo!</span>
+              </div>
+
+              {/* Bloomberg */}
+              <div className="flex items-center gap-2 shrink-0">
+                <div className="w-5 h-5 md:w-6 md:h-6 rounded flex items-center justify-center text-white font-bold text-[11px] md:text-[13px] font-serif bg-black shadow-[0_0_0_1px_rgba(255,255,255,0.1)]">
+                  B
+                </div>
+                <span className="text-white/90 font-semibold text-[12px] sm:text-[13px] md:text-[14px]">Bloomberg</span>
+              </div>
+
+              {/* Investing.com */}
+              <div className="flex items-center gap-2 shrink-0">
+                <div className="w-5 h-5 md:w-6 md:h-6 rounded flex items-center justify-center text-white font-bold text-[11px] md:text-[13px] font-serif bg-[#F7931A]">
+                  i
+                </div>
+                <span className="text-white/90 font-semibold text-[12px] sm:text-[13px] md:text-[14px]">Investing.com</span>
+              </div>
+            </div>
           </div>
         </ScrollAnimation>
       </section>
@@ -78,42 +108,6 @@ export default function Home2Page() {
         </ScrollAnimation>
       </section>
 
-      {/* As Featured In */}
-      <section className="pt-10 pb-6 lg:pt-16 lg:pb-12 bg-corporate-white relative z-10">
-        <ScrollAnimation className="max-w-[1400px] mx-auto px-4 lg:px-8">
-          <div className="flex flex-col items-center justify-center md:-mt-8">
-            <div className="w-full max-w-4xl bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-slate-100/60 px-4 py-6 md:px-12 md:py-8 flex flex-col items-center transition-transform hover:-translate-y-1 duration-500">
-              <span className="text-[10px] md:text-[12px] font-bold text-slate-400 tracking-[0.2em] uppercase mb-6 md:mb-8">As Featured In</span>
-              
-              <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 md:gap-16 w-full max-w-full overflow-hidden">
-                {/* Yahoo! */}
-                <div className="flex flex-col items-center justify-center gap-2 md:gap-3 group shrink-0 cursor-pointer">
-                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-[#6001D2] to-[#430297] flex items-center justify-center text-white font-bold text-[16px] md:text-[24px] italic shadow-[0_4px_12px_rgba(96,1,210,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(96,1,210,0.4)] group-hover:rotate-3">
-                    Y!
-                  </div>
-                  <span className="text-slate-600 font-bold text-[12px] sm:text-[14px] md:text-xl transition-colors duration-300 group-hover:text-[#430297]">Yahoo!</span>
-                </div>
-
-                {/* Bloomberg */}
-                <div className="flex flex-col items-center justify-center gap-2 md:gap-3 group shrink-0 cursor-pointer">
-                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-gray-800 to-black flex items-center justify-center text-white font-bold text-[16px] md:text-[24px] font-serif shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)] group-hover:-rotate-3">
-                    B
-                  </div>
-                  <span className="text-slate-600 font-bold text-[12px] sm:text-[14px] md:text-xl transition-colors duration-300 group-hover:text-black">Bloomberg</span>
-                </div>
-
-                {/* Investing.com */}
-                <div className="flex flex-col items-center justify-center gap-2 md:gap-3 group shrink-0 cursor-pointer">
-                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-[#F7931A] to-[#E37A00] flex items-center justify-center text-white font-bold text-[16px] md:text-[24px] font-serif shadow-[0_4px_12px_rgba(247,147,26,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_8px_20px_rgba(247,147,26,0.4)] group-hover:rotate-3">
-                    i
-                  </div>
-                  <span className="text-slate-600 font-bold text-[12px] sm:text-[14px] md:text-xl transition-colors duration-300 group-hover:text-[#F7931A]">Investing.com</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ScrollAnimation>
-      </section>
 
       {/* 3. Deal Facilitation (SS1 & SS2 blend) */}
       <section className="py-8 lg:py-12 bg-corporate-white">
