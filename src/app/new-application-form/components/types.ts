@@ -31,8 +31,6 @@ export interface DocumentsDetails {
   identityVerificationEmailLater?: boolean;
   proofOfAddressFile?: string | null;
   proofOfAddressEmailLater?: boolean;
-  sourceOfFundsFile?: string | null;
-  sourceOfFundsEmailLater?: boolean;
   // Company specific
   certificateOfIncorporationFile?: string | null;
   certificateOfIncorporationEmailLater?: boolean;
@@ -45,8 +43,17 @@ export interface DocumentsDetails {
 
 export interface AdditionalQuestions {
   financialAdviser: 'Yes' | 'No' | '';
+  employmentStatus: string;
+  occupation: string;
+  employerName: string;
+  industrySector: string;
+  annualIncomeRange: string;
+  netWorth: string;
+  liquidAssets: string;
+  expectedInvestmentAmount: string;
   sourceOfFunds: string;
-  purposeOfAccount: string;
+  pep: 'Yes' | 'No' | '';
+  pepFamily: 'Yes' | 'No' | '';
 }
 
 export interface SettlementDetails {

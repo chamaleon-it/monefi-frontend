@@ -31,12 +31,12 @@ export default function ApplicationFormContainer() {
     documents: {
       identityVerificationFile: null, identityVerificationEmailLater: false,
       proofOfAddressFile: null, proofOfAddressEmailLater: false,
-      sourceOfFundsFile: null, sourceOfFundsEmailLater: false,
+
       certificateOfIncorporationFile: null, certificateOfIncorporationEmailLater: false,
       proofOfRegisteredAddressFile: null, proofOfRegisteredAddressEmailLater: false,
       trustDeedFile: null, trustDeedEmailLater: false
     },
-    additionalQuestions: { financialAdviser: '', sourceOfFunds: '', purposeOfAccount: '' },
+    additionalQuestions: { financialAdviser: '', employmentStatus: '', occupation: '', employerName: '', industrySector: '', annualIncomeRange: '', netWorth: '', liquidAssets: '', expectedInvestmentAmount: '', sourceOfFunds: '', pep: '', pepFamily: '' },
     settlementDetails: { beneficiaryAccountName: '', nameOfBank: '', accountNumber: '', sortCode: '' },
     agreedToTerms: false,
 

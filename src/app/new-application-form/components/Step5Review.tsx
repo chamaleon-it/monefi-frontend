@@ -89,7 +89,6 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
           <div>
             {renderRow('Identity verification', documents.identityVerificationFile ? `Uploaded: ${documents.identityVerificationFile}` : documents.identityVerificationEmailLater ? 'Will email later' : 'Pending')}
             {renderRow('Proof of address', documents.proofOfAddressFile ? `Uploaded: ${documents.proofOfAddressFile}` : documents.proofOfAddressEmailLater ? 'Will email later' : 'Pending')}
-            {renderRow('Source of funds', documents.sourceOfFundsFile ? `Uploaded: ${documents.sourceOfFundsFile}` : documents.sourceOfFundsEmailLater ? 'Will email later' : 'Pending')}
           </div>
         </div>
 
@@ -98,8 +97,17 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
           {renderCardHeader('Additional Information', 4)}
           <div>
             {renderRow('Financial adviser?', additionalQuestions.financialAdviser)}
+            {renderRow('Employment status', additionalQuestions.employmentStatus)}
+            {renderRow('Occupation', additionalQuestions.occupation)}
+            {additionalQuestions.employerName && renderRow('Employer name', additionalQuestions.employerName)}
+            {additionalQuestions.industrySector && renderRow('Industry/Sector', additionalQuestions.industrySector)}
+            {renderRow('Annual income', additionalQuestions.annualIncomeRange)}
+            {renderRow('Net worth', additionalQuestions.netWorth)}
+            {renderRow('Liquid assets', additionalQuestions.liquidAssets)}
+            {renderRow('Expected investment', additionalQuestions.expectedInvestmentAmount)}
             {renderRow('Source of funds', additionalQuestions.sourceOfFunds)}
-            {renderRow('Purpose of account', additionalQuestions.purposeOfAccount)}
+            {renderRow('Politically exposed person?', additionalQuestions.pep)}
+            {renderRow('PEP family member/associate?', additionalQuestions.pepFamily)}
           </div>
         </div>
 

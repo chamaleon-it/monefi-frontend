@@ -8,14 +8,14 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { documents } = formData;
 
-  const handleFileUpload = (field: 'identityVerificationFile' | 'proofOfAddressFile' | 'sourceOfFundsFile', file: File | null) => {
+  const handleFileUpload = (field: 'identityVerificationFile' | 'proofOfAddressFile', file: File | null) => {
     if (file) {
       updateFormData('documents', {
         ...documents,
         [field]: file.name,
         ...(field === 'identityVerificationFile' ? { identityVerificationEmailLater: false } : {}),
         ...(field === 'proofOfAddressFile' ? { proofOfAddressEmailLater: false } : {}),
-        ...(field === 'sourceOfFundsFile' ? { sourceOfFundsEmailLater: false } : {}),
+
       });
       const errorKey = field.replace('File', '');
       if (errors[errorKey]) setErrors(prev => ({ ...prev, [errorKey]: '' }));
@@ -27,7 +27,7 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
     }
   };
 
-  const handleEmailLaterToggle = (field: 'identityVerificationEmailLater' | 'proofOfAddressEmailLater' | 'sourceOfFundsEmailLater') => {
+  const handleEmailLaterToggle = (field: 'identityVerificationEmailLater' | 'proofOfAddressEmailLater') => {
     const currentVal = !!documents[field];
     const newDocs = {
       ...documents,
@@ -36,7 +36,7 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
     if (!currentVal) {
       if (field === 'identityVerificationEmailLater') newDocs.identityVerificationFile = null;
       if (field === 'proofOfAddressEmailLater') newDocs.proofOfAddressFile = null;
-      if (field === 'sourceOfFundsEmailLater') newDocs.sourceOfFundsFile = null;
+
     }
     updateFormData('documents', newDocs);
     const errorKey = field.replace('EmailLater', '');
@@ -52,9 +52,7 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
     if (!documents.proofOfAddressFile && !documents.proofOfAddressEmailLater) {
       newErrors.proofOfAddress = 'Please upload a file or select "email later"';
     }
-    if (!documents.sourceOfFundsFile && !documents.sourceOfFundsEmailLater) {
-      newErrors.sourceOfFunds = 'Please upload a file or select "email later"';
-    }
+
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -82,8 +80,8 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
     icon: React.ReactNode;
     description: string;
     subtext: string;
-    fileField: 'identityVerificationFile' | 'proofOfAddressFile' | 'sourceOfFundsFile';
-    emailField: 'identityVerificationEmailLater' | 'proofOfAddressEmailLater' | 'sourceOfFundsEmailLater';
+    fileField: 'identityVerificationFile' | 'proofOfAddressFile';
+    emailField: 'identityVerificationEmailLater' | 'proofOfAddressEmailLater';
     emailLabel: string;
     errorKey: string;
   }) => {
@@ -235,16 +233,7 @@ export default function Step2Documents({ formData, updateFormData, onNext, onBac
           errorKey: 'proofOfAddress',
         })}
 
-        {renderUploadCard({
-          title: 'Source of Funds',
-          icon: <DollarSign className="w-4.5 h-4.5" strokeWidth={1.5} />,
-          description: 'Please provide evidence of the source of funds for your investment. Bank statement showing the funds available (dated within the last 3 months).',
-          subtext: 'Bank statement showing source of funds',
-          fileField: 'sourceOfFundsFile',
-          emailField: 'sourceOfFundsEmailLater',
-          emailLabel: 'I will email my source of funds later',
-          errorKey: 'sourceOfFunds',
-        })}
+
       </div>
 
       {/* Action bar */}
