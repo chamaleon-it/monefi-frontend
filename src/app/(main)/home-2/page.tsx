@@ -51,7 +51,7 @@ export default function Home2Page() {
             <Link href="#investment-approach" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-white text-[#082348] hover:bg-slate-100 rounded-full font-medium text-[15px] transition-all">
               Explore Portfolio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
-            <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border border-white/20 text-white hover:bg-white/10 rounded-full font-medium text-[15px] transition-all">
+            <Link href="/contact-us" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border border-white/20 text-white hover:bg-white/10 rounded-full font-medium text-[15px] transition-all">
               Partner With Us
             </Link>
           </div>
