@@ -234,7 +234,7 @@ export default function Step3Additional({ formData, updateFormData, onNext, onBa
             </div>
             <div>
               <p className="text-[17px] font-semibold text-slate-900">
-                Source Of Funds
+                Source Of Funds/Wealth
               </p>
               <p className="text-[13px] text-slate-500 mt-1">Origin of investment capital</p>
             </div>

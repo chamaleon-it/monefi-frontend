@@ -105,7 +105,7 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
             {renderRow('Net worth', additionalQuestions.netWorth)}
             {renderRow('Liquid assets', additionalQuestions.liquidAssets)}
             {renderRow('Expected investment', additionalQuestions.expectedInvestmentAmount)}
-            {renderRow('Source of funds', additionalQuestions.sourceOfFunds)}
+            {renderRow('Source of funds/wealth', additionalQuestions.sourceOfFunds)}
             {renderRow('Politically exposed person?', additionalQuestions.pep)}
             {renderRow('PEP family member/associate?', additionalQuestions.pepFamily)}
           </div>
