@@ -106,7 +106,7 @@ api.interceptors.response.use(
       try {
         const { refreshToken } = getTokens();
         if (!refreshToken) {
-          throw new Error("No refresh token available");
+          return Promise.reject(new Error("No refresh token available"));
         }
 
         const res = await axios.post(
