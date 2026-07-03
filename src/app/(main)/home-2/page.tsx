@@ -218,7 +218,7 @@ export default function Home2Page() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Card 1 */}
-            <div className="group relative h-[380px] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
+            <Link href="/capital-markets" className="group relative block h-[380px] rounded-2xl overflow-hidden shadow-lg">
               <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop" alt="Capital Markets" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-[#082348]/40 to-transparent opacity-90 transition-opacity group-hover:opacity-100"></div>
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
@@ -227,9 +227,9 @@ export default function Home2Page() {
                   Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
-            </div>
+            </Link>
             {/* Card 2 */}
-            <div className="group relative h-[380px] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
+            <Link href="/private-equity" className="group relative block h-[380px] rounded-2xl overflow-hidden shadow-lg">
               <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop" alt="Private Equity" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-[#082348]/40 to-transparent opacity-90 transition-opacity group-hover:opacity-100"></div>
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
@@ -238,9 +238,9 @@ export default function Home2Page() {
                   Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
-            </div>
+            </Link>
             {/* Card 3 */}
-            <div className="group relative h-[380px] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
+            <Link href="/structured-holdings" className="group relative block h-[380px] rounded-2xl overflow-hidden shadow-lg">
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Structured Holdings" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-[#082348]/40 to-transparent opacity-90 transition-opacity group-hover:opacity-100"></div>
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
@@ -249,9 +249,9 @@ export default function Home2Page() {
                   Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
-            </div>
+            </Link>
             {/* Card 4 */}
-            <div className="group relative h-[380px] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
+            <Link href="/digital-assets" className="group relative block h-[380px] rounded-2xl overflow-hidden shadow-lg">
               <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1969&auto=format&fit=crop" alt="Digital Assets" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-[#082348]/40 to-transparent opacity-90 transition-opacity group-hover:opacity-100"></div>
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
@@ -260,7 +260,7 @@ export default function Home2Page() {
                   Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
-            </div>
+            </Link>
           </div>
         </ScrollAnimation>
       </section>
@@ -454,10 +454,10 @@ export default function Home2Page() {
             <div className="md:col-span-2 lg:col-span-2">
               <h4 className="text-[13px] font-bold text-[#082348] mb-4">Products</h4>
               <ul className="space-y-3">
-                <li><Link href="#" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Capital Markets</Link></li>
-                <li><Link href="#" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Private Equity</Link></li>
-                <li><Link href="#" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Structured Holdings</Link></li>
-                <li><Link href="#" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Digital Assets</Link></li>
+                <li><Link href="/capital-markets" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Capital Markets</Link></li>
+                <li><Link href="/private-equity" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Private Equity</Link></li>
+                <li><Link href="/structured-holdings" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Structured Holdings</Link></li>
+                <li><Link href="/digital-assets" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Digital Assets</Link></li>
               </ul>
             </div>
             <div className="md:col-span-2 lg:col-span-2">
