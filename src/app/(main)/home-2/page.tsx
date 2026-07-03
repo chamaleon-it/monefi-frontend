@@ -118,19 +118,31 @@ export default function Home2Page() {
       {/* 3. Deal Facilitation (SS1 & SS2 blend) */}
       <section className="py-8 lg:py-12 bg-corporate-white">
         <ScrollAnimation className="max-w-[1400px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
+            {/* Mobile Header (Hidden on Desktop) */}
+            <div className="lg:hidden mb-2">
+              <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Corporate Strategy</span>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight leading-[1.15] text-[#082348]">
+                Private Equity <span className="text-corporate-gold">Deal Facilitation</span>
+              </h2>
+            </div>
+
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative z-10">
                 <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" alt="Corporate Meeting" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-corporate-gold/10 rounded-full blur-3xl z-0"></div>
             </div>
+            
             <div>
-              <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Corporate Strategy</span>
-              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-serif font-bold tracking-tight leading-[1.15] text-[#082348] mb-6">
-                Private Equity <span className="text-corporate-gold">Deal Facilitation</span>
-              </h2>
-              <p className="text-[16px] text-slate-500 mb-8 leading-relaxed">
+              {/* Desktop Header (Hidden on Mobile) */}
+              <div className="hidden lg:block">
+                <span className="inline-block text-corporate-gold font-bold tracking-wider uppercase text-[11px] mb-4">Corporate Strategy</span>
+                <h2 className="text-[2.75rem] font-serif font-bold tracking-tight leading-[1.15] text-[#082348] mb-6">
+                  Private Equity <span className="text-corporate-gold">Deal Facilitation</span>
+                </h2>
+              </div>
+              <p className="text-[16px] text-slate-500 mb-8 leading-relaxed mt-2 lg:mt-0">
                 Baker Jones Holdings specialises in identifying, structuring, and facilitating premium private equity deals for institutional and high-net-worth clients globally.
               </p>
 
