@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { useLenis } from "lenis/react";
 
 // Interface definitions
 interface BondDetails {
@@ -39,22 +38,96 @@ export default function BondClientPage() {
   // Downloading factsheet animation states
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
-  const lenis = useLenis();
+  // DOM refs to bypass Lenis scroll interception
+  const drawerScrollRef = React.useRef<HTMLDivElement>(null);
+  const drawerBackdropRef = React.useRef<HTMLDivElement>(null);
+  const modalScrollRef = React.useRef<HTMLDivElement>(null);
+  const modalBackdropRef = React.useRef<HTMLDivElement>(null);
+
+  // Native scroll event managers for drawer scroll lock bypass
+  React.useEffect(() => {
+    const scrollEl = drawerScrollRef.current;
+    const backdropEl = drawerBackdropRef.current;
+
+    const stopScrollPropagation = (e: Event) => {
+      e.stopPropagation();
+    };
+
+    const preventScrollDefault = (e: Event) => {
+      e.preventDefault();
+    };
+
+    if (scrollEl) {
+      scrollEl.addEventListener("wheel", stopScrollPropagation, { passive: true });
+      scrollEl.addEventListener("touchmove", stopScrollPropagation, { passive: true });
+    }
+
+    if (backdropEl) {
+      backdropEl.addEventListener("wheel", preventScrollDefault, { passive: false });
+      backdropEl.addEventListener("touchmove", preventScrollDefault, { passive: false });
+    }
+
+    return () => {
+      if (scrollEl) {
+        scrollEl.removeEventListener("wheel", stopScrollPropagation);
+        scrollEl.removeEventListener("touchmove", stopScrollPropagation);
+      }
+      if (backdropEl) {
+        backdropEl.removeEventListener("wheel", preventScrollDefault);
+        backdropEl.removeEventListener("touchmove", preventScrollDefault);
+      }
+    };
+  }, [activeDrawer]);
+
+  // Native scroll event managers for modal scroll lock bypass
+  React.useEffect(() => {
+    const scrollEl = modalScrollRef.current;
+    const backdropEl = modalBackdropRef.current;
+
+    const stopScrollPropagation = (e: Event) => {
+      e.stopPropagation();
+    };
+
+    const preventScrollDefault = (e: Event) => {
+      e.preventDefault();
+    };
+
+    if (scrollEl) {
+      scrollEl.addEventListener("wheel", stopScrollPropagation, { passive: true });
+      scrollEl.addEventListener("touchmove", stopScrollPropagation, { passive: true });
+    }
+
+    if (backdropEl) {
+      backdropEl.addEventListener("wheel", preventScrollDefault, { passive: false });
+      backdropEl.addEventListener("touchmove", preventScrollDefault, { passive: false });
+    }
+
+    return () => {
+      if (scrollEl) {
+        scrollEl.removeEventListener("wheel", stopScrollPropagation);
+        scrollEl.removeEventListener("touchmove", stopScrollPropagation);
+      }
+      if (backdropEl) {
+        backdropEl.removeEventListener("wheel", preventScrollDefault);
+        backdropEl.removeEventListener("touchmove", preventScrollDefault);
+      }
+    };
+  }, [activeProceedModal]);
 
   // Lock body scroll when drawer or modal is open
   React.useEffect(() => {
     if (activeDrawer || activeProceedModal) {
       document.body.style.overflow = "hidden";
-      if (lenis) lenis.stop();
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      if (lenis) lenis.start();
+      document.documentElement.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
-      if (lenis) lenis.start();
+      document.documentElement.style.overflow = "";
     };
-  }, [lenis, activeDrawer, activeProceedModal]);
+  }, [activeDrawer, activeProceedModal]);
 
   // Detailed bond data
   const bondData: BondDetails[] = [
@@ -758,13 +831,15 @@ export default function BondClientPage() {
       {/* --- SLIDE-OUT ADVISER DRAWER --- */}
       <AnimatePresence>
         {activeDrawer && (
-          <>
-            {/* Backdrop Blur */}
+                     {/* Backdrop Blur */}
             <motion.div
+              ref={drawerBackdropRef}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveDrawer(false)}
+              onWheel={(e) => e.preventDefault()}
+              onTouchMove={(e) => e.preventDefault()}
               className="fixed inset-0 bg-black z-50 cursor-pointer"
             />
             
@@ -774,6 +849,8 @@ export default function BondClientPage() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
               className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-white shadow-2xl z-50 border-l border-black/5 text-corporate-charcoal flex flex-col h-full"
             >
               {/* Header (Fixed at the top of the drawer) */}
@@ -791,7 +868,11 @@ export default function BondClientPage() {
               </div>
 
               {/* Scrollable Content inside the drawer */}
-              <div className="flex-1 overflow-y-auto p-6 md:px-8 md:pb-8 md:pt-6 space-y-6">
+              <div
+                ref={drawerScrollRef}
+                data-lenis-prevent
+                className="flex-1 overflow-y-auto p-6 md:px-8 md:pb-8 md:pt-6 space-y-6"
+              >
                 {selectedBond && (
                   <div className="bg-corporate-white rounded-2xl p-4 border border-black/5 text-xs flex items-center justify-between">
                     <div>
@@ -918,23 +999,34 @@ export default function BondClientPage() {
       {/* --- PROCEED EXECUTION MODAL --- */}
       <AnimatePresence>
         {activeProceedModal && selectedBond && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+          >
             {/* Backdrop Blur */}
             <motion.div
+              ref={modalBackdropRef}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveProceedModal(false)}
+              onWheel={(e) => e.preventDefault()}
+              onTouchMove={(e) => e.preventDefault()}
               className="fixed inset-0 bg-black cursor-pointer"
             />
 
             {/* Modal Body */}
             <motion.div
+              ref={modalScrollRef}
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ type: "spring", duration: 0.5 }}
-              className="bg-white rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative z-10 border border-black/5 text-corporate-charcoal p-6 md:p-8"
+              data-lenis-prevent
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative z-10 border border-black/5 text-corporate-charcoal p-6 md:p-8 max-h-[90vh] overflow-y-auto"
             >
               {/* Header */}
               <div className="flex items-center justify-between border-b border-black/5 pb-4 mb-6">
