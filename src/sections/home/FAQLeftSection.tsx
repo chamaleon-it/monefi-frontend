@@ -6,59 +6,59 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     id: 0,
-    question: "What does it mean that you are an independent firm?",
+    question: "What exactly does Baker Jones do?",
     answer:
-      "Being an independent firm means we have zero commercial ties, quotas, or restrictions tied to specific financial institutions. We research the entire UK market to select the absolute best financial plans, platforms, and investment vehicles tailored exclusively to your goals.",
+      "We operate as a private equity deal facilitator. Our role is to connect individual investors with institutional-grade market opportunities that are typically out of reach, such as Pre-IPO allocations (including SpaceX, OpenAI, and Revolut), private equity, and fixed-income securities. We provide the vital infrastructure and market access required to transact these deals, ensuring you always keep full control of your capital.",
   },
   {
     id: 1,
-    question: "Why should I work with you instead of my high street bank branch?",
+    question: "Can I access institutional-grade investments as an individual?",
     answer:
       <>
-        High street banks often treat clients like  a herd, funneling them into restrictive, standardized products. Because we are an independent boutique, we offer an entirely different experience: <br />True Personalisation: Your adviser capped at 50 clients means tailored strategies, not institutional templates. <br />Institutional-Grade Products: We access institutional fixed-income products and terms from tier-one global banks that high street branches cannot offer retail clients. <br />Unbiased Representation: Bank employees represent the bank’s product line; we exclusively represent you.
+        Yes. Providing this access is our core service. Baker Jones Holdings opens the door to exclusive opportunities usually reserved for large institutional players, including Pre-IPO allocations, private equity placements, corporate bonds, and other premium assets.
       </>,
   },
   {
     id: 2,
-    question: "How do you ensure I won’t just become another number?",
+    question: "What types of investment opportunities do you offer?",
     answer:
-      `We strictly limit our client capacity to a maximum of 50 clients per adviser. This intentional cap guarantees that your adviser knows your name, remembers your unique family dynamics, understands your long-term vision, and remains highly responsive to your needs.`,
+      `We facilitate access to a diverse range of alternative placements. These include Pre-IPO shares in high-profile companies before they list publicly, private equity deals, fixed-income corporate bonds, public equities, and select digital asset positions.`,
   },
   {
     id: 3,
-    question: "What is the difference between your financial planning and wealth management services?",
+    question: "Does Baker Jones hold my money?",
     answer:
-      "Financial planning is the architectural blueprint for your life goals—mapping out timelines for retirement, property purchases, or business exits. Wealth management is the engineering that powers it—actively building, monitoring, and executing the investment portfolios required to fund that exact blueprint.",
+      "No. We never take custody of client funds. When you participate in market opportunities through Baker Jones Holdings, your money remains inside a designated client account set up in your own name. It is never placed into a pooled fund or an account under our control. Your capital stays ring-fenced and under your direct ownership at all times.",
   },
   {
     id: 4,
-    question: "Can you help with my estate planning and Inheritance Tax (IHT)?",
+    question: "How is this different from a traditional wealth manager?",
     answer:
-      "Yes. We employ detailed lifetime cashflow modelling to map your wealth against future needs, structuring legitimate gifting strategies and trusts to mitigate UK Inheritance Tax while ensuring your family legacy passes smoothly to the next generation.",
+      "Traditional wealth managers typically hold and manage your assets directly under their discretionary control, which requires specialized FCA asset-custody licensing. As a deal facilitator, we do not manage portfolios or hold client assets. We simply give you direct access to institutional deals while your money stays safely in an account you control.",
   },
   {
     id: 5,
-    question: "How do you secure better rates on fixed-income products?",
+    question: "What is your regulatory status?",
     answer:
-      "Because our independent firm manages and raises substantial tranches of capital collectively, major tier-one global institutions grant us access to high-yield fixed-income assets. These institutional-grade bonds and fixed-term rates offer significantly higher yields and more flexible terms than the standard savings accounts or fixed bonds available to the general public.",
+      "Baker Jones Holdings is a registered UK company (No: 12127676) and is fully authorised by the Financial Conduct Authority (FRN: 969487) to meet the requirements for institutional market reporting and execution. Over our 6+ years of operation, we have maintained a clean record with zero FCA warnings, complaints, or regulatory flags.",
   },
   {
     id: 6,
-    question: "How are your fees structured?",
+    question: "How long has Baker Jones been operating?",
     answer:
-      "We believe in absolute transparency. Because every client’s financial blueprint is unique, our fees vary depending on the specific advisory services and asset structures required. You will receive a complete, itemised breakdown of all costs before committing to any service, ensuring there are never any hidden surprises or exit penalties.",
+      "We have been active since 2019. Over the past six years, we have served more than 6,000 clients across the UK and facilitated over £3 billion in deal flow annually.",
   },
   {
     id: 7,
-    question: "How safe is my money?",
+    question: "How much do I need to participate in a deal?",
     answer:
-      "Your capital is never held directly by our firm. All client assets are securely held by independent, heavily regulated third-party custodian institutions. This structure keeps your investments completely isolated and fully safe, even in the highly unlikely event that our advisory firm closes.",
+      "Minimum participation amounts vary depending on the specific asset class and the structure of the individual deal. Please contact our team directly to get exact details on our current open opportunities, as we work with a wide range of investment sizes.",
   },
   {
     id: 8,
-    question: "How do you adapt my financial plan when UK tax laws change?",
+    question: "Can I speak with someone before participating?",
     answer:
-      "As an independent boutique, we proactively monitor Autumn Statements and Spring Budgets. Because of our strict 50-client limit, your adviser can instantly assess how new tax legislation impacts your portfolio and tweak your ISA, SIPP, or capital gains structures before the changes take effect.",
+      "Absolutely. We strongly encourage all prospective clients to arrange a consultation with our team first. This discussion allows us to learn about your objectives, explain our transaction framework, answer your questions, and ensure our services match your goals.",
   },
 
 ];
