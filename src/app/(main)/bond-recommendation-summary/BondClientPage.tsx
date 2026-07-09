@@ -831,7 +831,8 @@ export default function BondClientPage() {
       {/* --- SLIDE-OUT ADVISER DRAWER --- */}
       <AnimatePresence>
         {activeDrawer && (
-                     {/* Backdrop Blur */}
+          <>
+            {/* Backdrop Blur */}
             <motion.div
               ref={drawerBackdropRef}
               initial={{ opacity: 0 }}
