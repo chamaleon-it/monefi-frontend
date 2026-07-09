@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import Modal from "@/components/ui/Modal";
 
 // Interface definitions
 interface BondDetails {
@@ -20,15 +21,14 @@ interface BondDetails {
   recommended?: boolean;
   label?: string;
   lseUrl: string;
+  factSheetUrl?: string; // Configurable PDF Fact Sheet URL
 }
 
 export default function BondClientPage() {
   // Client portal states
-  const [activeDrawer, setActiveDrawer] = useState<boolean>(false);
+  const [activeAdviserModal, setActiveAdviserModal] = useState<boolean>(false);
   const [activeProceedModal, setActiveProceedModal] = useState<boolean>(false);
   const [selectedBond, setSelectedBond] = useState<BondDetails | null>(null);
-  const [messageText, setMessageText] = useState<string>("");
-  const [messageSent, setMessageSent] = useState<boolean>(false);
   const [proceedConfirmed, setProceedConfirmed] = useState<boolean>(false);
   const [proceedSubmitted, setProceedSubmitted] = useState<boolean>(false);
   
@@ -38,46 +38,17 @@ export default function BondClientPage() {
   // Downloading factsheet animation states
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
-  // DOM refs to bypass Lenis scroll interception
-  const drawerScrollRef = React.useRef<HTMLDivElement>(null);
-  const drawerBackdropRef = React.useRef<HTMLDivElement>(null);
+  // DOM refs to bypass Lenis scroll interception for proceed modal
   const modalScrollRef = React.useRef<HTMLDivElement>(null);
   const modalBackdropRef = React.useRef<HTMLDivElement>(null);
 
-  // Native scroll event managers for drawer scroll lock bypass
-  React.useEffect(() => {
-    const scrollEl = drawerScrollRef.current;
-    const backdropEl = drawerBackdropRef.current;
-
-    const stopScrollPropagation = (e: Event) => {
-      e.stopPropagation();
-    };
-
-    const preventScrollDefault = (e: Event) => {
-      e.preventDefault();
-    };
-
-    if (scrollEl) {
-      scrollEl.addEventListener("wheel", stopScrollPropagation, { passive: true });
-      scrollEl.addEventListener("touchmove", stopScrollPropagation, { passive: true });
-    }
-
-    if (backdropEl) {
-      backdropEl.addEventListener("wheel", preventScrollDefault, { passive: false });
-      backdropEl.addEventListener("touchmove", preventScrollDefault, { passive: false });
-    }
-
-    return () => {
-      if (scrollEl) {
-        scrollEl.removeEventListener("wheel", stopScrollPropagation);
-        scrollEl.removeEventListener("touchmove", stopScrollPropagation);
-      }
-      if (backdropEl) {
-        backdropEl.removeEventListener("wheel", preventScrollDefault);
-        backdropEl.removeEventListener("touchmove", preventScrollDefault);
-      }
-    };
-  }, [activeDrawer]);
+  // Adviser details
+  const adviser = {
+    name: "Alexander Jones",
+    title: "Senior Fixed-Income Director",
+    phone: "+44 (0) 20 7123 4567",
+    email: "alexander.jones@bakerjonesholdings.com"
+  };
 
   // Native scroll event managers for modal scroll lock bypass
   React.useEffect(() => {
@@ -114,9 +85,9 @@ export default function BondClientPage() {
     };
   }, [activeProceedModal]);
 
-  // Lock body scroll when drawer or modal is open
+  // Lock body scroll when proceed modal is open
   React.useEffect(() => {
-    if (activeDrawer || activeProceedModal) {
+    if (activeProceedModal) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
@@ -127,9 +98,9 @@ export default function BondClientPage() {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
-  }, [activeDrawer, activeProceedModal]);
+  }, [activeProceedModal]);
 
-  // Detailed bond data
+  // Detailed bond data with configurable factsheet URLs
   const bondData: BondDetails[] = [
     {
       id: "bond-featured",
@@ -147,7 +118,8 @@ export default function BondClientPage() {
         "Tier 1 banking institution"
       ],
       recommended: true,
-      lseUrl: "https://www.londonstockexchange.com/stock/65XS/abcd-bank-plc/analysis"
+      lseUrl: "https://www.londonstockexchange.com/stock/65XS/abcd-bank-plc/analysis",
+      factSheetUrl: "/docs/1234-plc-factsheet.pdf"
     },
     {
       id: "bond-alt-1",
@@ -164,7 +136,8 @@ export default function BondClientPage() {
         "Flexible income options",
         "Diversifies bond exposure"
       ],
-      lseUrl: "https://www.londonstockexchange.com/stock/65EF/efgh-plc/analysis"
+      lseUrl: "https://www.londonstockexchange.com/stock/65EF/efgh-plc/analysis",
+      factSheetUrl: "/docs/efgh-plc-factsheet.pdf"
     },
     {
       id: "bond-alt-2",
@@ -182,31 +155,61 @@ export default function BondClientPage() {
         "Higher yield"
       ],
       label: "Higher Income",
-      lseUrl: "https://www.londonstockexchange.com/stock/70IJ/ijkl-corporation/analysis"
+      lseUrl: "https://www.londonstockexchange.com/stock/70IJ/ijkl-corporation/analysis",
+      factSheetUrl: "/docs/ijkl-corporation-factsheet.pdf"
     }
   ];
 
-  // Simulated factsheet downloader
-  const handleDownloadFactsheet = (id: string, name: string) => {
+  // Configurable factsheet downloader with fallback
+  const handleDownloadFactsheet = async (bond: BondDetails) => {
+    if (!bond.factSheetUrl) {
+      toast.error("Fact sheet URL is not configured for this bond.");
+      return;
+    }
+
     if (downloadingId) return;
-    setDownloadingId(id);
-    toast.loading(`Preparing factsheet for ${name}...`, { id: "download" });
+    setDownloadingId(bond.id);
+    toast.loading(`Preparing factsheet download for ${bond.companyName}...`, { id: "download" });
     
-    setTimeout(() => {
-      setDownloadingId(null);
-      toast.success(`Factsheet for ${name} downloaded successfully.`, {
+    try {
+      const response = await fetch(bond.factSheetUrl);
+      if (!response.ok) {
+        throw new Error(`File fetch returned status ${response.status}`);
+      }
+      
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      const cleanName = bond.companyName.toLowerCase().replace(/[^a-z0-9]/g, "-");
+      link.download = `${cleanName}-factsheet.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+      
+      toast.success(`Factsheet for ${bond.companyName} downloaded successfully.`, {
         id: "download",
         duration: 3000,
       });
-    }, 1500);
+    } catch (error) {
+      console.warn("Direct download failed, opening PDF in a new tab as fallback:", error);
+      // Fallback
+      window.open(bond.factSheetUrl, "_blank", "noopener,noreferrer");
+      toast.success(`Factsheet for ${bond.companyName} opened in a new tab.`, {
+        id: "download",
+        duration: 3000,
+      });
+    } finally {
+      setDownloadingId(null);
+    }
   };
 
-  // Open advisor contact panel
+  // Open advisor contact modal
   const triggerDiscuss = (bond: BondDetails) => {
     setSelectedBond(bond);
-    setMessageSent(false);
-    setMessageText("");
-    setActiveDrawer(true);
+    setActiveAdviserModal(true);
   };
 
   // Open proceed confirmation modal
@@ -215,21 +218,6 @@ export default function BondClientPage() {
     setProceedConfirmed(false);
     setProceedSubmitted(false);
     setActiveProceedModal(true);
-  };
-
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!messageText.trim()) {
-      toast.error("Please enter a message.");
-      return;
-    }
-    
-    // Simulate sending message
-    toast.loading("Sending secure message...", { id: "message" });
-    setTimeout(() => {
-      setMessageSent(true);
-      toast.success("Message sent to Alexander Jones.", { id: "message" });
-    }, 1000);
   };
 
   const handleConfirmProceed = () => {
@@ -488,7 +476,7 @@ export default function BondClientPage() {
                       onClick={() => triggerProceed(bond)}
                       className="flex-1 sm:flex-initial text-center px-8 py-3.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-sm shadow-md cursor-pointer"
                     >
-                      Proceed with this option
+                      Apply Now
                     </button>
                     <button
                       onClick={() => triggerDiscuss(bond)}
@@ -496,6 +484,25 @@ export default function BondClientPage() {
                     >
                       Discuss with your adviser
                     </button>
+                    {bond.factSheetUrl && (
+                      <button
+                        onClick={() => handleDownloadFactsheet(bond)}
+                        disabled={downloadingId === bond.id}
+                        className="flex-1 sm:flex-initial text-center px-8 py-3.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-sm cursor-pointer flex items-center justify-center gap-2"
+                      >
+                        {downloadingId === bond.id ? (
+                          <>
+                            <i className="fa-solid fa-spinner animate-spin" />
+                            <span>Downloading...</span>
+                          </>
+                        ) : (
+                          <>
+                            <i className="fa-solid fa-file-pdf text-red-500" />
+                            <span>Download Fact Sheet</span>
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -582,19 +589,38 @@ export default function BondClientPage() {
 
               {/* Action Buttons & Links */}
               <div className="border-t border-black/5 pt-6 mt-4">
-                <div className="flex gap-4">
+                <div className="flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => triggerProceed(bond)}
-                    className="flex-1 text-center px-4 py-2.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-xs shadow-sm cursor-pointer"
+                    className="flex-1 sm:flex-initial text-center px-4 py-2.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-xs shadow-sm cursor-pointer"
                   >
-                    Proceed
+                    Apply Now
                   </button>
                   <button
                     onClick={() => triggerDiscuss(bond)}
-                    className="flex-1 text-center px-4 py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-xs cursor-pointer"
+                    className="flex-1 sm:flex-initial text-center px-4 py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-xs cursor-pointer whitespace-nowrap"
                   >
                     Discuss with adviser
                   </button>
+                  {bond.factSheetUrl && (
+                    <button
+                      onClick={() => handleDownloadFactsheet(bond)}
+                      disabled={downloadingId === bond.id}
+                      className="flex-1 sm:flex-initial text-center px-4 py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-xs cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                    >
+                      {downloadingId === bond.id ? (
+                        <>
+                          <i className="fa-solid fa-spinner animate-spin" />
+                          <span>Downloading...</span>
+                        </>
+                      ) : (
+                        <>
+                          <i className="fa-solid fa-file-pdf text-red-500" />
+                          <span>Download Fact Sheet</span>
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -828,174 +854,110 @@ export default function BondClientPage() {
 
       </div>
 
-      {/* --- SLIDE-OUT ADVISER DRAWER --- */}
-      <AnimatePresence>
-        {activeDrawer && (
-          <>
-            {/* Backdrop Blur */}
-            <motion.div
-              ref={drawerBackdropRef}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveDrawer(false)}
-              onWheel={(e) => e.preventDefault()}
-              onTouchMove={(e) => e.preventDefault()}
-              className="fixed inset-0 bg-black z-50 cursor-pointer"
-            />
+      {/* --- ADVISER CONTACT MODAL --- */}
+      <Modal
+        isOpen={activeAdviserModal}
+        onClose={() => setActiveAdviserModal(false)}
+        title="Consult with Adviser"
+      >
+        <div className="space-y-6">
+          {selectedBond && (
+            <div className="bg-corporate-white rounded-2xl p-4 border border-black/5 text-xs flex items-center justify-between">
+              <div>
+                <span className="text-corporate-charcoal/50 uppercase block font-bold tracking-wider text-[10px]">Reference Selection</span>
+                <strong className="text-corporate-charcoal text-sm">{selectedBond.companyName} ({selectedBond.coupon})</strong>
+              </div>
+              <span className="px-2.5 py-1 bg-corporate-charcoal text-white rounded-full font-semibold">
+                {selectedBond.maturity}
+              </span>
+            </div>
+          )}
+
+          {/* Adviser profile Card */}
+          <div className="flex items-center gap-4 bg-corporate-charcoal text-white p-5 rounded-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-corporate-gold/10 rounded-full blur-xl pointer-events-none" />
             
-            {/* Drawer Container */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              onWheel={(e) => e.stopPropagation()}
-              onTouchMove={(e) => e.stopPropagation()}
-              className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-white shadow-2xl z-50 border-l border-black/5 text-corporate-charcoal flex flex-col h-full"
-            >
-              {/* Header (Fixed at the top of the drawer) */}
-              <div className="flex items-center justify-between p-6 md:px-8 md:pt-8 md:pb-5 border-b border-black/5 flex-shrink-0">
-                <div className="flex items-center gap-2">
-                  <i className="fa-solid fa-user-tie text-corporate-gold text-lg" />
-                  <h3 className="font-bold text-lg font-serif">Consult with Adviser</h3>
-                </div>
-                <button
-                  onClick={() => setActiveDrawer(false)}
-                  className="w-8 h-8 rounded-full bg-corporate-white hover:bg-black/5 flex items-center justify-center text-corporate-charcoal transition-colors cursor-pointer"
-                >
-                  <i className="fa-solid fa-xmark text-sm" />
-                </button>
-              </div>
+            {/* Styled Avatar */}
+            <div className="w-14 h-14 rounded-full bg-corporate-gold/20 flex-shrink-0 flex items-center justify-center border border-corporate-gold/30">
+              <i className="fa-solid fa-user-check text-corporate-gold text-2xl" />
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-base font-serif text-white">{adviser.name}</h4>
+              <p className="text-xs text-corporate-gold">{adviser.title}</p>
+              <p className="text-[10px] text-white/50 mt-1">Baker Jones Wealth Advisory</p>
+            </div>
+          </div>
 
-              {/* Scrollable Content inside the drawer */}
-              <div
-                ref={drawerScrollRef}
-                data-lenis-prevent
-                className="flex-1 overflow-y-auto p-6 md:px-8 md:pb-8 md:pt-6 space-y-6"
+          {/* Secure Contact Details */}
+          <div className="space-y-4">
+            <h5 className="font-bold text-xs uppercase tracking-wider text-corporate-charcoal/40">Direct Channels</h5>
+            
+            <div className="grid grid-cols-1 gap-3">
+              <Link
+                href={`tel:${adviser.phone.replace(/[^0-9+]/g, "")}`}
+                className="flex items-center justify-between p-4 bg-corporate-white hover:bg-corporate-beige/40 rounded-2xl border border-black/5 transition-colors group"
               >
-                {selectedBond && (
-                  <div className="bg-corporate-white rounded-2xl p-4 border border-black/5 text-xs flex items-center justify-between">
-                    <div>
-                      <span className="text-corporate-charcoal/50 uppercase block font-bold tracking-wider text-[10px]">Reference Selection</span>
-                      <strong className="text-corporate-charcoal text-sm">{selectedBond.companyName} ({selectedBond.coupon})</strong>
-                    </div>
-                    <span className="px-2.5 py-1 bg-corporate-charcoal text-white rounded-full font-semibold">
-                      {selectedBond.maturity}
-                    </span>
-                  </div>
-                )}
-
-                {/* Adviser profile Card */}
-                <div className="flex items-center gap-4 bg-corporate-charcoal text-white p-5 rounded-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-corporate-gold/10 rounded-full blur-xl pointer-events-none" />
-                  
-                  {/* Styled Avatar */}
-                  <div className="w-14 h-14 rounded-full bg-corporate-gold/20 flex-shrink-0 flex items-center justify-center border border-corporate-gold/30">
-                    <i className="fa-solid fa-user-check text-corporate-gold text-2xl" />
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-bold text-base font-serif text-white">Alexander Jones</h4>
-                    <p className="text-xs text-corporate-gold">Senior Fixed-Income Director</p>
-                    <p className="text-[10px] text-white/50 mt-1">Baker Jones Wealth Advisory</p>
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <span className="w-9 h-9 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold text-sm group-hover:scale-105 transition-transform flex-shrink-0">
+                    <i className="fa-solid fa-phone" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block">Call Direct</span>
+                    <span className="text-xs font-semibold text-corporate-charcoal break-all">{adviser.phone}</span>
                   </div>
                 </div>
+                <i className="fa-solid fa-chevron-right text-xs text-corporate-gold opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2" />
+              </Link>
 
-                {/* Secure Contact Details */}
-                <div className="space-y-4">
-                  <h5 className="font-bold text-xs uppercase tracking-wider text-corporate-charcoal/40">Direct Channels</h5>
-                  
-                  <Link
-                    href="tel:+442071234567"
-                    className="flex items-center justify-between p-4 bg-corporate-white hover:bg-corporate-beige/40 rounded-2xl border border-black/5 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold text-sm group-hover:scale-105 transition-transform">
-                        <i className="fa-solid fa-phone" />
-                      </span>
-                      <div>
-                        <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block">Call Direct</span>
-                        <span className="text-sm font-semibold text-corporate-charcoal">+44 (0) 20 7123 4567</span>
-                      </div>
-                    </div>
-                    <i className="fa-solid fa-chevron-right text-xs text-corporate-gold opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-
-                  <Link
-                    href="mailto:alexander.jones@bakerjonesholdings.com"
-                    className="flex items-center justify-between p-4 bg-corporate-white hover:bg-corporate-beige/40 rounded-2xl border border-black/5 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold text-sm group-hover:scale-105 transition-transform">
-                        <i className="fa-solid fa-envelope" />
-                      </span>
-                      <div>
-                        <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block">Secure Email</span>
-                        <span className="text-sm font-semibold text-corporate-charcoal">alex.jones@bakerjones.com</span>
-                      </div>
-                    </div>
-                    <i className="fa-solid fa-chevron-right text-xs text-corporate-gold opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
+              <Link
+                href={`mailto:${adviser.email}`}
+                className="flex items-center justify-between p-4 bg-corporate-white hover:bg-corporate-beige/40 rounded-2xl border border-black/5 transition-colors group"
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <span className="w-9 h-9 rounded-full bg-corporate-gold/10 flex items-center justify-center text-corporate-gold text-sm group-hover:scale-105 transition-transform flex-shrink-0">
+                    <i className="fa-solid fa-envelope" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block">Secure Email</span>
+                    <span className="text-xs font-semibold text-corporate-charcoal break-all">{adviser.email}</span>
+                  </div>
                 </div>
+                <i className="fa-solid fa-chevron-right text-xs text-corporate-gold opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2" />
+              </Link>
+            </div>
+          </div>
 
-                {/* Secure message option */}
-                <div className="space-y-4 border-t border-black/5 pt-6">
-                  <h5 className="font-bold text-xs uppercase tracking-wider text-corporate-charcoal/40">Send Message</h5>
-                  
-                  {!messageSent ? (
-                    <form onSubmit={handleSendMessage} className="space-y-4">
-                      <div>
-                        <label htmlFor="msg-area" className="sr-only">Message Content</label>
-                        <textarea
-                          id="msg-area"
-                          rows={4}
-                          value={messageText}
-                          onChange={(e) => setMessageText(e.target.value)}
-                          placeholder="Tell Alexander about your portfolio requirements, desired allocation amount, or questions about this secondary market opportunity..."
-                          className="w-full text-sm bg-corporate-white border border-black/10 rounded-2xl p-4 focus:outline-none focus:border-corporate-gold transition-colors text-corporate-charcoal placeholder-corporate-charcoal/30 resize-none font-medium"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        className="w-full py-3 bg-corporate-charcoal text-white font-semibold rounded-full hover:bg-corporate-gold transition-colors duration-300 text-sm shadow-md cursor-pointer"
-                      >
-                        <i className="fa-solid fa-paper-plane mr-2" /> Send Secure Request
-                      </button>
-                    </form>
-                  ) : (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="bg-emerald-50 border border-emerald-100 rounded-2xl p-6 text-center space-y-3"
-                    >
-                      <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-xl">
-                        <i className="fa-solid fa-circle-check" />
-                      </div>
-                      <h4 className="font-bold text-emerald-800 text-base font-serif">Request Dispatched</h4>
-                      <p className="text-xs text-emerald-700 leading-relaxed">
-                        Alexander Jones has been notified. A confirmation transcript has been sent to your registered email address.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setMessageSent(false)}
-                        className="text-xs text-corporate-charcoal font-semibold hover:underline mt-2 inline-block cursor-pointer"
-                      >
-                        Send another message
-                      </button>
-                    </motion.div>
-                  )}
-                </div>
+          {/* Action Row */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-end gap-3 border-t border-black/5 pt-6 w-full">
+            <Link
+              href={`tel:${adviser.phone.replace(/[^0-9+]/g, "")}`}
+              className="text-center px-6 py-3 bg-corporate-gold text-white font-semibold rounded-full hover:bg-corporate-charcoal transition-colors duration-300 text-sm shadow-md flex items-center justify-center gap-2"
+            >
+              <i className="fa-solid fa-phone" /> Call Adviser
+            </Link>
+            
+            <Link
+              href={`mailto:${adviser.email}`}
+              className="text-center px-6 py-3 bg-corporate-charcoal text-white font-semibold rounded-full hover:bg-corporate-gold transition-colors duration-300 text-sm shadow-md flex items-center justify-center gap-2"
+            >
+              <i className="fa-solid fa-envelope" /> Send Email
+            </Link>
 
-                {/* Legal Notice */}
-                <div className="border-t border-black/5 pt-5 text-[10px] text-corporate-charcoal/40 leading-relaxed">
-                  Communications through this channel are subject to standard security encryption. Records of requests are archived in accordance with FCA client records requirements.
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            <button
+              onClick={() => setActiveAdviserModal(false)}
+              className="py-3 px-6 border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-sm transition-colors cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
+
+          {/* Legal Notice */}
+          <div className="border-t border-black/5 pt-4 text-[10px] text-corporate-charcoal/40 leading-relaxed text-center">
+            Communications through this channel are subject to standard security encryption. Records of requests are archived in accordance with FCA client records requirements.
+          </div>
+        </div>
+      </Modal>
 
       {/* --- PROCEED EXECUTION MODAL --- */}
       <AnimatePresence>
