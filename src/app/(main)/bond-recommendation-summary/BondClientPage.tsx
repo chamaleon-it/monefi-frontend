@@ -31,7 +31,7 @@ export default function BondClientPage() {
   const [selectedBond, setSelectedBond] = useState<BondDetails | null>(null);
   const [proceedConfirmed, setProceedConfirmed] = useState<boolean>(false);
   const [proceedSubmitted, setProceedSubmitted] = useState<boolean>(false);
-  
+
   // Accordion state (null if all closed, or index of open accordion)
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -104,14 +104,14 @@ export default function BondClientPage() {
   const bondData: BondDetails[] = [
     {
       id: "bond-featured",
-      companyName: "1234 plc",
-      issuer: "ABCD Bank plc",
+      companyName: "Lloyds Bank plc",
+      issuer: "Lloyds Bank plc",
       coupon: "6.50% Fixed",
       maturity: "July 2028",
       isin: "XS2648591038",
       type: "Fixed Rate",
       whySelected: "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
-      aboutIssuer: "ABCD Bank plc is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
+      aboutIssuer: "Lloyds Bank plc is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
       keyConsiderations: [
         "One-year rolling contract available until maturity",
         "Flexible income options",
@@ -123,14 +123,14 @@ export default function BondClientPage() {
     },
     {
       id: "bond-alt-1",
-      companyName: "EFGH plc",
-      issuer: "EFGH Infrastructure plc",
+      companyName: "National Grid plc",
+      issuer: "National Grid Infrastructure plc",
       coupon: "6.50% Fixed",
       maturity: "December 2028",
       isin: "XS2739485029",
       type: "Fixed Rate",
       whySelected: "Provides exposure to a regulated UK utility company often selected for defensive income characteristics.",
-      aboutIssuer: "EFGH plc operates essential water and environmental infrastructure systems across the United Kingdom, offering stable, long-term regulated revenues.",
+      aboutIssuer: "National Grid plc operates essential water and environmental infrastructure systems across the United Kingdom, offering stable, long-term regulated revenues.",
       keyConsiderations: [
         "Blue chip utility company",
         "Flexible income options",
@@ -141,14 +141,14 @@ export default function BondClientPage() {
     },
     {
       id: "bond-alt-2",
-      companyName: "IJKL Corporation",
-      issuer: "IJKL International Group plc",
+      companyName: "Bank of America Corporation",
+      issuer: "Bank of America Corporation International Group plc",
       coupon: "7.00% Fixed",
       maturity: "October 2028",
       isin: "XS2859103948",
       type: "Fixed Rate",
       whySelected: "Provides exposure to a higher yielding bond issued by a Tier 1 bank. Suitable for investors seeking enhanced income with higher minimum investment levels.",
-      aboutIssuer: "IJKL Corporation is a globally systemically important financial services institution operating in over 50 countries with a robust balance sheet.",
+      aboutIssuer: "Bank of America Corporation is a globally systemically important financial services institution operating in over 50 countries with a robust balance sheet.",
       keyConsiderations: [
         "Flexible income options",
         "Globally systemically important bank",
@@ -170,16 +170,16 @@ export default function BondClientPage() {
     if (downloadingId) return;
     setDownloadingId(bond.id);
     toast.loading(`Preparing factsheet download for ${bond.companyName}...`, { id: "download" });
-    
+
     try {
       const response = await fetch(bond.factSheetUrl);
       if (!response.ok) {
         throw new Error(`File fetch returned status ${response.status}`);
       }
-      
+
       const blob = await response.blob();
       const blobUrl = window.URL.createObjectURL(blob);
-      
+
       const link = document.createElement("a");
       link.href = blobUrl;
       const cleanName = bond.companyName.toLowerCase().replace(/[^a-z0-9]/g, "-");
@@ -188,7 +188,7 @@ export default function BondClientPage() {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(blobUrl);
-      
+
       toast.success(`Factsheet for ${bond.companyName} downloaded successfully.`, {
         id: "download",
         duration: 3000,
@@ -240,7 +240,7 @@ export default function BondClientPage() {
   // SVG Logo Renderers
   const renderLogo = (companyName: string) => {
     switch (companyName) {
-      case "1234 plc":
+      case "Lloyds Bank plc":
         return (
           <svg className="w-10 h-10 text-corporate-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="4" />
@@ -249,7 +249,7 @@ export default function BondClientPage() {
             <circle cx="50" cy="50" r="10" fill="currentColor" />
           </svg>
         );
-      case "EFGH plc":
+      case "National Grid plc":
         return (
           <svg className="w-10 h-10 text-teal-600" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="15" y="15" width="70" height="70" rx="16" stroke="currentColor" strokeWidth="4" />
@@ -258,7 +258,7 @@ export default function BondClientPage() {
             <circle cx="50" cy="30" r="6" fill="currentColor" />
           </svg>
         );
-      case "IJKL Corporation":
+      case "Bank of America Corporation Corporation":
         return (
           <svg className="w-10 h-10 text-slate-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M50 10L85 30V70L50 90L15 70V30L50 10Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" />
@@ -344,7 +344,7 @@ export default function BondClientPage() {
 
       {/* --- CONTENT CONTAINER --- */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16 lg:mt-24">
-        
+
         {/* SECTION HEADER: RECOMMENDATIONS */}
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -367,7 +367,7 @@ export default function BondClientPage() {
           >
             {/* Soft decorative visual background elements inside card */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-corporate-gold/5 rounded-full blur-3xl pointer-events-none -z-10 group-hover:bg-corporate-gold/8 transition-colors duration-500" />
-            
+
             {/* Top Badge & Logo Row */}
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/5 pb-8 mb-8">
               <div className="flex items-center gap-4">
@@ -387,7 +387,7 @@ export default function BondClientPage() {
 
             {/* Grid for Coupon Rate, Maturity & At-a-Glance Factsheet */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-              
+
               {/* Financial Highlight */}
               <div className="lg:col-span-4 flex flex-col justify-center bg-corporate-charcoal text-white rounded-2xl p-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-corporate-gold/20 via-transparent to-transparent pointer-events-none" />
@@ -644,7 +644,7 @@ export default function BondClientPage() {
             <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-dashed-gold border-t border-dashed border-corporate-gold/30 -translate-y-1/2 hidden md:block" />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-              
+
               {/* Step 1 */}
               <div className="flex flex-col items-center text-center group">
                 <div className="w-16 h-16 rounded-full bg-corporate-charcoal text-white flex items-center justify-center font-bold text-lg mb-6 border-4 border-corporate-white shadow-lg transition-transform duration-300 group-hover:scale-110 relative">
@@ -691,7 +691,7 @@ export default function BondClientPage() {
           </div>
 
           <div className="space-y-4">
-            
+
             {/* Accordion 1: Regulation Status */}
             <div className="bg-white border border-black/5 rounded-2xl overflow-hidden shadow-sm">
               <button
@@ -704,7 +704,7 @@ export default function BondClientPage() {
                 </span>
                 <i className={`fa-solid fa-chevron-down text-sm text-corporate-gold transition-transform duration-300 ${openAccordion === 0 ? "rotate-180" : ""}`} />
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {openAccordion === 0 && (
                   <motion.div
@@ -745,7 +745,7 @@ export default function BondClientPage() {
                 </span>
                 <i className={`fa-solid fa-chevron-down text-sm text-corporate-gold transition-transform duration-300 ${openAccordion === 1 ? "rotate-180" : ""}`} />
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {openAccordion === 1 && (
                   <motion.div
@@ -776,7 +776,7 @@ export default function BondClientPage() {
                 </span>
                 <i className={`fa-solid fa-chevron-down text-sm text-corporate-gold transition-transform duration-300 ${openAccordion === 2 ? "rotate-180" : ""}`} />
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {openAccordion === 2 && (
                   <motion.div
@@ -827,7 +827,7 @@ export default function BondClientPage() {
                 </span>
                 <i className={`fa-solid fa-chevron-down text-sm text-corporate-gold transition-transform duration-300 ${openAccordion === 3 ? "rotate-180" : ""}`} />
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {openAccordion === 3 && (
                   <motion.div
@@ -876,12 +876,12 @@ export default function BondClientPage() {
           {/* Adviser profile Card */}
           <div className="flex items-center gap-4 bg-corporate-charcoal text-white p-5 rounded-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-corporate-gold/10 rounded-full blur-xl pointer-events-none" />
-            
+
             {/* Styled Avatar */}
             <div className="w-14 h-14 rounded-full bg-corporate-gold/20 flex-shrink-0 flex items-center justify-center border border-corporate-gold/30">
               <i className="fa-solid fa-user-check text-corporate-gold text-2xl" />
             </div>
-            
+
             <div>
               <h4 className="font-bold text-base font-serif text-white">{adviser.name}</h4>
               <p className="text-xs text-corporate-gold">{adviser.title}</p>
@@ -892,7 +892,7 @@ export default function BondClientPage() {
           {/* Secure Contact Details */}
           <div className="space-y-4">
             <h5 className="font-bold text-xs uppercase tracking-wider text-corporate-charcoal/40">Direct Channels</h5>
-            
+
             <div className="grid grid-cols-1 gap-3">
               <Link
                 href={`tel:${adviser.phone.replace(/[^0-9+]/g, "")}`}
@@ -936,7 +936,7 @@ export default function BondClientPage() {
             >
               <i className="fa-solid fa-phone" /> Call Adviser
             </Link>
-            
+
             <Link
               href={`mailto:${adviser.email}`}
               className="text-center px-6 py-3 bg-corporate-charcoal text-white font-semibold rounded-full hover:bg-corporate-gold transition-colors duration-300 text-sm shadow-md flex items-center justify-center gap-2"
@@ -962,7 +962,7 @@ export default function BondClientPage() {
       {/* --- PROCEED EXECUTION MODAL --- */}
       <AnimatePresence>
         {activeProceedModal && selectedBond && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
@@ -1017,7 +1017,7 @@ export default function BondClientPage() {
                       <span className="text-corporate-charcoal/50 font-bold uppercase tracking-wider">Asset Selected</span>
                       <span className="px-2.5 py-0.5 bg-corporate-charcoal text-white rounded-full font-semibold">{selectedBond.companyName}</span>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4 text-xs pt-1">
                       <div className="space-y-1">
                         <span className="text-corporate-charcoal/50">Expected Return</span>
@@ -1074,12 +1074,12 @@ export default function BondClientPage() {
                   <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-3xl">
                     <i className="fa-solid fa-circle-check" />
                   </div>
-                  
+
                   <h4 className="text-2xl font-bold font-serif text-corporate-charcoal">Request Received</h4>
                   <p className="text-sm text-corporate-charcoal/70 leading-relaxed max-w-sm mx-auto">
                     Your intent to proceed with <strong className="text-corporate-charcoal">{selectedBond.companyName} ({selectedBond.coupon})</strong> has been logged.
                   </p>
-                  
+
                   <div className="bg-corporate-white p-4 rounded-xl text-left border border-black/5 text-xs space-y-2 max-w-sm mx-auto">
                     <h5 className="font-semibold text-corporate-charcoal">Next Steps:</h5>
                     <ol className="list-decimal pl-4 space-y-1.5 text-corporate-charcoal/60">
