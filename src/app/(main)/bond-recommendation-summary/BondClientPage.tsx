@@ -38,6 +38,12 @@ export default function BondClientPage() {
   // Downloading factsheet animation states
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
+  // Redesigned card details expand/collapse state
+  const [expandedBonds, setExpandedBonds] = useState<Record<string, boolean>>({});
+  const toggleExpand = (id: string) => {
+    setExpandedBonds(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   // DOM refs to bypass Lenis scroll interception for proceed modal
   const modalScrollRef = React.useRef<HTMLDivElement>(null);
   const modalBackdropRef = React.useRef<HTMLDivElement>(null);
@@ -363,250 +369,71 @@ export default function BondClientPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white rounded-3xl p-8 lg:p-12 shadow-2xl shadow-black/5 border border-black/5 relative overflow-hidden mb-12 hover:shadow-black/10 transition-all duration-300 group"
+            className="bg-white rounded-3xl border-2 border-corporate-gold shadow-2xl relative overflow-hidden mb-12 hover:shadow-black/10 transition-all duration-300 group"
           >
-            {/* Soft decorative visual background elements inside card */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-corporate-gold/5 rounded-full blur-3xl pointer-events-none -z-10 group-hover:bg-corporate-gold/8 transition-colors duration-500" />
-
-            {/* Top Badge & Logo Row */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/5 pb-8 mb-8">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-corporate-white rounded-2xl border border-black/5 shadow-inner">
-                  {renderLogo(bond.companyName)}
-                </div>
-                <div>
-                  <span className="text-xs uppercase tracking-wider font-semibold text-corporate-charcoal/40">Issuer Entity</span>
-                  <h3 className="text-2xl font-bold text-corporate-charcoal font-serif">{bond.companyName}</h3>
-                </div>
+            <div className="p-6 md:p-10 relative">
+              {/* Top Recommended Ribbon Badge */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <span className="flex items-center gap-1.5 px-3 py-1 bg-corporate-gold text-white font-bold text-[10px] uppercase tracking-wider rounded-full shadow-md animate-pulse">
+                  <i className="fa-solid fa-star text-[9px]" /> Recommended Selection
+                </span>
               </div>
 
-              <div className="flex items-center gap-2 px-4 py-2 bg-corporate-gold/10 text-corporate-gold font-semibold text-sm rounded-full border border-corporate-gold/20 shadow-sm animate-pulse">
-                <i className="fa-solid fa-star text-xs" /> Recommended Selection
-              </div>
-            </div>
+              {/* Soft decorative background visual */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-corporate-gold/5 rounded-full blur-3xl pointer-events-none -z-10 group-hover:bg-corporate-gold/8 transition-colors duration-500" />
 
-            {/* Grid for Coupon Rate, Maturity & At-a-Glance Factsheet */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-
-              {/* Financial Highlight */}
-              <div className="lg:col-span-4 flex flex-col justify-center bg-corporate-charcoal text-white rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-corporate-gold/20 via-transparent to-transparent pointer-events-none" />
-                <span className="text-sm font-medium uppercase tracking-wider text-corporate-gold mb-2">Annualized Return</span>
-                <div className="text-5xl lg:text-6xl font-bold tracking-tight text-white mb-2 font-serif">{bond.coupon}</div>
-                <div className="text-sm text-white/60 mb-6 flex items-center gap-2">
-                  <i className="fa-solid fa-calendar-days text-corporate-gold" /> Maturity: {bond.maturity}
-                </div>
-                <div className="w-full h-[1px] bg-white/10 my-4" />
-                <div className="text-xs text-white/50 leading-relaxed">
-                  Fixed income paid semi-annually. Principal returned fully at maturity date.
-                </div>
-              </div>
-
-              {/* At a Glance Table & Detail */}
-              <div className="lg:col-span-8 flex flex-col justify-between">
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-corporate-charcoal/40 mb-4">At a Glance Specifications</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 border-b border-black/5 pb-8">
-                    <div className="space-y-1">
-                      <span className="text-xs text-corporate-charcoal/50">Guarantor / Issuer</span>
-                      <p className="font-semibold text-corporate-charcoal text-sm md:text-base">{bond.issuer}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-xs text-corporate-charcoal/50">Maturity Date</span>
-                      <p className="font-semibold text-corporate-charcoal text-sm md:text-base">{bond.maturity}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-xs text-corporate-charcoal/50">ISIN Reference</span>
-                      <p className="font-semibold text-corporate-charcoal text-sm md:text-base font-mono tracking-tight">{bond.isin}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-xs text-corporate-charcoal/50">Coupon Schedule</span>
-                      <p className="font-semibold text-corporate-charcoal text-sm md:text-base">{bond.coupon}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-xs text-corporate-charcoal/50">Asset Structure</span>
-                      <p className="font-semibold text-corporate-charcoal text-sm md:text-base">{bond.type}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-xs text-corporate-charcoal/50">Account Minimum</span>
-                      <p className="font-semibold text-corporate-charcoal text-sm md:text-base">£100,000</p>
-                    </div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                {/* Col 1: Issuer Logo & Identity */}
+                <div className="lg:col-span-3 flex items-center gap-4">
+                  <div className="p-3 bg-corporate-white rounded-2xl border border-black/5 shadow-inner flex-shrink-0">
+                    {renderLogo(bond.companyName)}
                   </div>
-
-                  {/* Why Selected & About Issuer */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div className="space-y-2">
-                      <h5 className="font-bold text-sm text-corporate-charcoal flex items-center gap-2">
-                        <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
-                      </h5>
-                      <p className="text-sm text-corporate-charcoal/70 leading-relaxed">
-                        {bond.whySelected}
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <h5 className="font-bold text-sm text-corporate-charcoal flex items-center gap-2">
-                        <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
-                      </h5>
-                      <p className="text-sm text-corporate-charcoal/70 leading-relaxed">
-                        {bond.aboutIssuer}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Key Considerations list */}
-                  <div className="bg-corporate-white/50 rounded-2xl p-6 border border-black/5 mb-8">
-                    <h5 className="font-bold text-xs uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
-                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                      {bond.keyConsiderations.map((consideration, idx) => (
-                        <li key={idx} className="flex items-center gap-2.5 text-sm text-corporate-charcoal font-medium">
-                          <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
-                            <i className="fa-solid fa-check" />
-                          </span>
-                          <span>{consideration}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="min-w-0">
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-corporate-charcoal/40 block">Issuer Entity</span>
+                    <h3 className="text-xl font-bold text-corporate-charcoal font-serif truncate leading-snug">{bond.companyName}</h3>
+                    <span className="text-[10px] text-corporate-charcoal/60 font-mono block mt-0.5 truncate">ISIN: {bond.isin}</span>
                   </div>
                 </div>
 
-                {/* Card Action Row */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4">
-                  <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+                {/* Col 2: Specifications Row Grid */}
+                <div className="lg:col-span-5 grid grid-cols-3 gap-2 border-y lg:border-y-0 lg:border-x border-black/5 py-4 lg:py-0 lg:px-6">
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Rate (AER)</span>
+                    <strong className="text-lg md:text-xl font-bold text-corporate-gold block leading-none">{bond.coupon}</strong>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Term</span>
+                    <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">{bond.maturity}</strong>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Min Deposit</span>
+                    <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">£100,000</strong>
+                  </div>
+                </div>
+
+                {/* Col 3: Action CTAs Column */}
+                <div className="lg:col-span-4 flex flex-col gap-2 w-full sm:w-auto lg:w-full">
+                  <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-2 w-full">
                     <button
                       onClick={() => triggerProceed(bond)}
-                      className="flex-1 sm:flex-initial text-center px-8 py-3.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-sm shadow-md cursor-pointer"
+                      className="flex-1 text-center py-2.5 bg-corporate-charcoal hover:bg-corporate-gold text-white font-semibold rounded-full text-xs shadow-sm cursor-pointer transition-colors duration-300"
                     >
                       Apply Now
                     </button>
                     <button
                       onClick={() => triggerDiscuss(bond)}
-                      className="flex-1 sm:flex-initial text-center px-8 py-3.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-sm cursor-pointer"
+                      className="flex-1 text-center py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-xs cursor-pointer transition-colors duration-300"
                     >
                       Discuss with your adviser
                     </button>
-                    {bond.factSheetUrl && (
-                      <button
-                        onClick={() => handleDownloadFactsheet(bond)}
-                        disabled={downloadingId === bond.id}
-                        className="flex-1 sm:flex-initial text-center px-8 py-3.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-sm cursor-pointer flex items-center justify-center gap-2"
-                      >
-                        {downloadingId === bond.id ? (
-                          <>
-                            <i className="fa-solid fa-spinner animate-spin" />
-                            <span>Downloading...</span>
-                          </>
-                        ) : (
-                          <>
-                            <i className="fa-solid fa-file-pdf text-red-500" />
-                            <span>Download Fact Sheet</span>
-                          </>
-                        )}
-                      </button>
-                    )}
                   </div>
-                </div>
-
-              </div>
-
-            </div>
-          </motion.div>
-        ))}
-
-        {/* SECTION HEADER: ALTERNATIVE OPTIONS */}
-        <div className="mt-20 mb-10">
-          <span className="text-corporate-gold font-semibold uppercase tracking-wider text-sm">Diversification Options</span>
-          <h2 className="text-3xl font-bold font-serif text-corporate-charcoal mt-1 font-serif">Alternative Fixed-Income Assets</h2>
-        </div>
-
-        {/* --- ALTERNATIVES GRID --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {bondData.filter(b => !b.recommended).map((bond) => (
-            <motion.div
-              key={bond.id}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-black/5 relative overflow-hidden flex flex-col justify-between hover:shadow-2xl transition-all duration-300 group"
-            >
-              <div>
-                {/* Logo & Corporate Tag */}
-                <div className="flex items-center justify-between border-b border-black/5 pb-5 mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-corporate-white rounded-xl border border-black/5 shadow-inner">
-                      {renderLogo(bond.companyName)}
-                    </div>
-                    <div>
-                      <span className="text-[10px] uppercase tracking-wider font-semibold text-corporate-charcoal/40">Issuer</span>
-                      <h4 className="text-xl font-bold text-corporate-charcoal font-serif">{bond.companyName}</h4>
-                    </div>
-                  </div>
-
-                  {bond.label && (
-                    <span className="px-3 py-1 bg-amber-100 border border-amber-200 text-amber-800 text-xs font-semibold rounded-full shadow-sm">
-                      <i className="fa-solid fa-percent text-[10px] mr-1" /> {bond.label}
-                    </span>
-                  )}
-                </div>
-
-                {/* Big Rate Box */}
-                <div className="bg-corporate-white rounded-2xl p-5 mb-6 flex justify-between items-center border border-black/5">
-                  <div>
-                    <span className="text-xs text-corporate-charcoal/50 block">Annualized Coupon</span>
-                    <strong className="text-2xl md:text-3xl font-bold text-corporate-charcoal font-serif">{bond.coupon}</strong>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs text-corporate-charcoal/50 block">Maturity Date</span>
-                    <span className="text-sm font-semibold text-corporate-charcoal">{bond.maturity}</span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div className="space-y-4 mb-6">
-                  <div className="space-y-1">
-                    <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
-                      <i className="fa-solid fa-circle-question text-corporate-gold" /> Why this is included
-                    </h5>
-                    <p className="text-sm text-corporate-charcoal/70 leading-relaxed">
-                      {bond.whySelected}
-                    </p>
-                  </div>
-
-                  {/* Key Considerations bullets */}
-                  <div className="space-y-2 border-t border-black/5 pt-4">
-                    <h5 className="font-bold text-xs uppercase tracking-wider text-corporate-charcoal/40">Key Considerations</h5>
-                    <ul className="space-y-2">
-                      {bond.keyConsiderations.map((consideration, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm text-corporate-charcoal">
-                          <span className="w-1.5 h-1.5 rounded-full bg-corporate-gold flex-shrink-0" />
-                          <span>{consideration}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons & Links */}
-              <div className="border-t border-black/5 pt-6 mt-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={() => triggerProceed(bond)}
-                    className="flex-1 sm:flex-initial text-center px-4 py-2.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-xs shadow-sm cursor-pointer"
-                  >
-                    Apply Now
-                  </button>
-                  <button
-                    onClick={() => triggerDiscuss(bond)}
-                    className="flex-1 sm:flex-initial text-center px-4 py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-xs cursor-pointer whitespace-nowrap"
-                  >
-                    Discuss with adviser
-                  </button>
+                  
                   {bond.factSheetUrl && (
                     <button
                       onClick={() => handleDownloadFactsheet(bond)}
                       disabled={downloadingId === bond.id}
-                      className="flex-1 sm:flex-initial text-center px-4 py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-xs cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                      className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5"
                     >
                       {downloadingId === bond.id ? (
                         <>
@@ -622,8 +449,318 @@ export default function BondClientPage() {
                     </button>
                   )}
                 </div>
+
               </div>
 
+              {/* Row Bottom Info bar */}
+              <div className="mt-6 pt-4 border-t border-black/5 flex flex-wrap items-center justify-between gap-3">
+                <div className="text-xs text-corporate-charcoal/60 flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-info text-corporate-gold text-[10px]" />
+                  <span>Asset Structure: {bond.type} | Semi-annual interest frequency.</span>
+                </div>
+                <button
+                  onClick={() => toggleExpand(bond.id)}
+                  className="text-xs text-corporate-gold font-semibold flex items-center gap-1 hover:underline cursor-pointer"
+                >
+                  {expandedBonds[bond.id] ? (
+                    <>
+                      <span>Hide details</span>
+                      <i className="fa-solid fa-chevron-up text-[10px]" />
+                    </>
+                  ) : (
+                    <>
+                      <span>Show details</span>
+                      <i className="fa-solid fa-chevron-down text-[10px]" />
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Expanded details dropdown */}
+              <AnimatePresence initial={false}>
+                {expandedBonds[bond.id] && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-6 border-t border-black/5 mt-4 space-y-6">
+                      
+                      {/* Technical Specs Grid */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-corporate-white p-5 rounded-2xl border border-black/5">
+                        <div>
+                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Guarantor / Issuer</span>
+                          <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.issuer}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">ISIN Reference</span>
+                          <span className="text-xs font-semibold text-corporate-charcoal font-mono block mt-0.5">{bond.isin}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Asset Structure</span>
+                          <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.type}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">London Stock Exchange</span>
+                          <Link
+                            href={bond.lseUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-semibold text-corporate-gold hover:underline block mt-0.5 flex items-center gap-1"
+                          >
+                            <span>View Analysis</span>
+                            <i className="fa-solid fa-up-right-from-square text-[9px]" />
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Why Selected & About Issuer */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-1.5">
+                          <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                            <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
+                          </h5>
+                          <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                            {bond.whySelected}
+                          </p>
+                        </div>
+                        <div className="space-y-1.5">
+                          <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                            <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
+                          </h5>
+                          <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                            {bond.aboutIssuer}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Key Considerations checkmarks */}
+                      <div className="bg-corporate-white p-5 rounded-2xl border border-black/5">
+                        <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
+                        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {bond.keyConsiderations.map((consideration, idx) => (
+                            <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
+                              <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
+                                <i className="fa-solid fa-check" />
+                              </span>
+                              <span>{consideration}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+            </div>
+          </motion.div>
+        ))}
+
+        {/* SECTION HEADER: ALTERNATIVE OPTIONS */}
+        <div className="mt-20 mb-10">
+          <span className="text-corporate-gold font-semibold uppercase tracking-wider text-sm">Diversification Options</span>
+          <h2 className="text-3xl font-bold font-serif text-corporate-charcoal mt-1 font-serif">Alternative Fixed-Income Assets</h2>
+        </div>
+
+        {/* --- ALTERNATIVES LIST --- */}
+        <div className="space-y-6">
+          {bondData.filter(b => !b.recommended).map((bond) => (
+            <motion.div
+              key={bond.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="bg-white rounded-3xl border border-black/5 shadow-xl relative overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+            >
+              <div className="p-6 md:p-8">
+                {/* Top Optional Badge */}
+                {bond.label && (
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <span className="px-3 py-1 bg-amber-100 border border-amber-200 text-amber-800 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-sm">
+                      <i className="fa-solid fa-percent text-[9px] mr-1" /> {bond.label}
+                    </span>
+                  </div>
+                )}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                  
+                  {/* Col 1: Issuer Logo & Identity */}
+                  <div className="lg:col-span-3 flex items-center gap-4">
+                    <div className="p-3 bg-corporate-white rounded-2xl border border-black/5 shadow-inner flex-shrink-0">
+                      {renderLogo(bond.companyName)}
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-corporate-charcoal/40 block">Issuer</span>
+                      <h3 className="text-lg font-bold text-corporate-charcoal font-serif truncate leading-snug">{bond.companyName}</h3>
+                      <span className="text-[10px] text-corporate-charcoal/60 font-mono block mt-0.5 truncate">ISIN: {bond.isin}</span>
+                    </div>
+                  </div>
+
+                  {/* Col 2: Specifications Row Grid */}
+                  <div className="lg:col-span-5 grid grid-cols-3 gap-2 border-y lg:border-y-0 lg:border-x border-black/5 py-4 lg:py-0 lg:px-6">
+                    <div className="space-y-0.5">
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Rate (AER)</span>
+                      <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">{bond.coupon}</strong>
+                    </div>
+                    <div className="space-y-0.5">
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Term</span>
+                      <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">{bond.maturity}</strong>
+                    </div>
+                    <div className="space-y-0.5">
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Min Deposit</span>
+                      <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">£100,000</strong>
+                    </div>
+                  </div>
+
+                  {/* Col 3: Action CTAs Column */}
+                  <div className="lg:col-span-4 flex flex-col gap-2 w-full sm:w-auto lg:w-full">
+                    <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-2 w-full">
+                      <button
+                        onClick={() => triggerProceed(bond)}
+                        className="flex-1 text-center py-2.5 bg-corporate-charcoal hover:bg-corporate-gold text-white font-semibold rounded-full text-xs shadow-sm cursor-pointer transition-colors duration-300"
+                      >
+                        Apply Now
+                      </button>
+                      <button
+                        onClick={() => triggerDiscuss(bond)}
+                        className="flex-1 text-center py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-xs cursor-pointer transition-colors duration-300 whitespace-nowrap"
+                      >
+                        Discuss with adviser
+                      </button>
+                    </div>
+                    
+                    {bond.factSheetUrl && (
+                      <button
+                        onClick={() => handleDownloadFactsheet(bond)}
+                        disabled={downloadingId === bond.id}
+                        className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                      >
+                        {downloadingId === bond.id ? (
+                          <>
+                            <i className="fa-solid fa-spinner animate-spin" />
+                            <span>Downloading...</span>
+                          </>
+                        ) : (
+                          <>
+                            <i className="fa-solid fa-file-pdf text-red-500" />
+                            <span>Download Fact Sheet</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                </div>
+
+                {/* Row Bottom Info bar */}
+                <div className="mt-6 pt-4 border-t border-black/5 flex flex-wrap items-center justify-between gap-3">
+                  <div className="text-xs text-corporate-charcoal/60 flex items-center gap-1.5">
+                    <i className="fa-solid fa-circle-info text-corporate-gold text-[10px]" />
+                    <span>Asset Structure: {bond.type} | Regulated secondary market asset.</span>
+                  </div>
+                  <button
+                    onClick={() => toggleExpand(bond.id)}
+                    className="text-xs text-corporate-gold font-semibold flex items-center gap-1 hover:underline cursor-pointer"
+                  >
+                    {expandedBonds[bond.id] ? (
+                      <>
+                        <span>Hide details</span>
+                        <i className="fa-solid fa-chevron-up text-[10px]" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Show details</span>
+                        <i className="fa-solid fa-chevron-down text-[10px]" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Expanded details dropdown */}
+                <AnimatePresence initial={false}>
+                  {expandedBonds[bond.id] && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-6 border-t border-black/5 mt-4 space-y-6">
+                        
+                        {/* Technical Specs Grid */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-corporate-white p-5 rounded-2xl border border-black/5">
+                          <div>
+                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Guarantor / Issuer</span>
+                            <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.issuer}</span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">ISIN Reference</span>
+                            <span className="text-xs font-semibold text-corporate-charcoal font-mono block mt-0.5">{bond.isin}</span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Asset Structure</span>
+                            <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.type}</span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">London Stock Exchange</span>
+                            <Link
+                              href={bond.lseUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs font-semibold text-corporate-gold hover:underline block mt-0.5 flex items-center gap-1"
+                            >
+                              <span>View Analysis</span>
+                              <i className="fa-solid fa-up-right-from-square text-[9px]" />
+                            </Link>
+                          </div>
+                        </div>
+
+                        {/* Why Selected & About Issuer */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-1.5">
+                            <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                              <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
+                            </h5>
+                            <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                              {bond.whySelected}
+                            </p>
+                          </div>
+                          <div className="space-y-1.5">
+                            <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                              <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
+                            </h5>
+                            <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                              {bond.aboutIssuer}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Key Considerations checkmarks */}
+                        <div className="bg-corporate-white p-5 rounded-2xl border border-black/5">
+                          <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
+                          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {bond.keyConsiderations.map((consideration, idx) => (
+                              <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
+                                <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
+                                  <i className="fa-solid fa-check" />
+                                </span>
+                                <span>{consideration}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+              </div>
             </motion.div>
           ))}
         </div>
