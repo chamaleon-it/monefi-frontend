@@ -50,12 +50,41 @@ export default function BondClientPage() {
   const modalBackdropRef = React.useRef<HTMLDivElement>(null);
 
   // Adviser details
-  const adviser = {
-    name: "Alexander Jones",
+  const [adviser, setAdviser] = useState({
+    name: "Peter Cooke",
     title: "Senior Fixed-Income Director",
     phone: "+44 (0) 20 7123 4567",
-    email: "alexander.jones@bakerjonesholdings.com"
-  };
+    email: "peter.cooke@bakerjonesholdings.com",
+    photo: "/peter_cooke.png"
+  });
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const dealerParam = params.get("dealer") || params.get("advisor") || params.get("ref");
+      const hash = window.location.hash.replace("#", "").toLowerCase();
+      
+      const isJS = (dealerParam?.toLowerCase() === "js" || hash === "js");
+      if (isJS) {
+        setAdviser({
+          name: "John Sterling",
+          title: "Senior Fixed-Income Director",
+          phone: "+44 (0) 20 7123 4568",
+          email: "john.sterling@bakerjonesholdings.com",
+          photo: "/john_sterling.png"
+        });
+      } else {
+        // Default is Peter Cooke
+        setAdviser({
+          name: "Peter Cooke",
+          title: "Senior Fixed-Income Director",
+          phone: "+44 (0) 20 7123 4567",
+          email: "peter.cooke@bakerjonesholdings.com",
+          photo: "/peter_cooke.png"
+        });
+      }
+    }
+  }, []);
 
   // Native scroll event managers for modal scroll lock bypass
   React.useEffect(() => {
@@ -113,7 +142,7 @@ export default function BondClientPage() {
       id: "bond-featured",
       companyName: "Lloyds Bank plc",
       issuer: "Lloyds Bank plc",
-      coupon: "6.625% Fixed",
+      coupon: "6.625%",
       maturity: "1 year",
       isin: "XS2591847970",
       type: "Fixed Rate",
@@ -133,7 +162,7 @@ export default function BondClientPage() {
       id: "bond-alt-1",
       companyName: "UK Government",
       issuer: "UK Government",
-      coupon: "4.375% Fixed",
+      coupon: "4.375%",
       maturity: "1 year",
       isin: "GB00BPSNBB36",
       type: "Fixed Rate | Government Bond",
@@ -153,7 +182,7 @@ export default function BondClientPage() {
       id: "bond-alt-2",
       companyName: "National Grid plc",
       issuer: "National Grid plc",
-      coupon: "6.50% Fixed",
+      coupon: "6.50%",
       maturity: "1 year",
       isin: "XS0132735373",
       type: "Fixed Rate",
@@ -172,48 +201,26 @@ export default function BondClientPage() {
   ];
 
   // Configurable factsheet downloader with fallback
-  const handleDownloadFactsheet = async (bond: BondDetails) => {
+  const handleDownloadFactsheet = (bond: BondDetails) => {
     if (!bond.factSheetUrl) {
       toast.error("Fact sheet URL is not configured for this bond.");
       return;
     }
 
-    if (downloadingId) return;
-    setDownloadingId(bond.id);
-    toast.loading(`Preparing factsheet download for ${bond.companyName}...`, { id: "download" });
-
     try {
-      const response = await fetch(bond.factSheetUrl);
-      if (!response.ok) {
-        throw new Error(`File fetch returned status ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
-
       const link = document.createElement("a");
-      link.href = blobUrl;
+      link.href = bond.factSheetUrl;
       const cleanName = bond.companyName.toLowerCase().replace(/[^a-z0-9]/g, "-");
       link.download = `${cleanName}-factsheet.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(blobUrl);
 
-      toast.success(`Factsheet for ${bond.companyName} downloaded successfully.`, {
-        id: "download",
-        duration: 3000,
-      });
+      toast.success(`Factsheet for ${bond.companyName} downloaded successfully.`);
     } catch (error) {
       console.warn("Direct download failed, opening PDF in a new tab as fallback:", error);
-      // Fallback
       window.open(bond.factSheetUrl, "_blank", "noopener,noreferrer");
-      toast.success(`Factsheet for ${bond.companyName} opened in a new tab.`, {
-        id: "download",
-        duration: 3000,
-      });
-    } finally {
-      setDownloadingId(null);
+      toast.success(`Factsheet for ${bond.companyName} opened in a new tab.`);
     }
   };
 
@@ -266,12 +273,7 @@ export default function BondClientPage() {
         );
       case "UK Government":
         return (
-          <svg className="w-10 h-10 text-corporate-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 15 L80 35 L70 75 L30 75 L20 35 Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" fill="none" />
-            <circle cx="50" cy="50" r="10" stroke="currentColor" strokeWidth="4" />
-            <path d="M50 15 V40" stroke="currentColor" strokeWidth="4" />
-            <path d="M35 50 L65 50" stroke="currentColor" strokeWidth="4" />
-          </svg>
+          <img src="/bank logos/uk-government.svg" alt="UK Government logo" className="w-10 h-10 object-contain" />
         );
       default:
         return (
@@ -356,7 +358,7 @@ export default function BondClientPage() {
                 {/* Col 2: Specifications Row Grid */}
                 <div className="lg:col-span-5 grid grid-cols-3 gap-2 border-y lg:border-y-0 lg:border-x border-black/5 py-4 lg:py-0 lg:px-6">
                   <div className="space-y-0.5">
-                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Rate (AER)</span>
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Rate</span>
                     <strong className="text-lg md:text-xl font-bold text-corporate-gold block leading-none">{bond.coupon}</strong>
                   </div>
                   <div className="space-y-0.5">
@@ -389,20 +391,10 @@ export default function BondClientPage() {
                   {bond.factSheetUrl && (
                     <button
                       onClick={() => handleDownloadFactsheet(bond)}
-                      disabled={downloadingId === bond.id}
-                      className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5"
+                      className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5"
                     >
-                      {downloadingId === bond.id ? (
-                        <>
-                          <i className="fa-solid fa-spinner animate-spin" />
-                          <span>Downloading...</span>
-                        </>
-                      ) : (
-                        <>
-                          <i className="fa-solid fa-file-pdf text-red-500" />
-                          <span>Download Fact Sheet</span>
-                        </>
-                      )}
+                      <i className="fa-solid fa-file-pdf text-red-500" />
+                      <span>Download Fact Sheet</span>
                     </button>
                   )}
                 </div>
@@ -471,7 +463,7 @@ export default function BondClientPage() {
                 {/* Key Considerations checkmarks */}
                 <div className="bg-white p-5 rounded-2xl border border-black/5">
                   <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
-                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <ul className="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-x-8 gap-y-3">
                     {bond.keyConsiderations.map((consideration, idx) => (
                       <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
                         <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
@@ -532,7 +524,7 @@ export default function BondClientPage() {
                   {/* Col 2: Specifications Row Grid */}
                   <div className="lg:col-span-5 grid grid-cols-3 gap-2 border-y lg:border-y-0 lg:border-x border-black/5 py-4 lg:py-0 lg:px-6">
                     <div className="space-y-0.5">
-                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Rate (AER)</span>
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Rate</span>
                       <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">{bond.coupon}</strong>
                     </div>
                     <div className="space-y-0.5">
@@ -565,20 +557,10 @@ export default function BondClientPage() {
                     {bond.factSheetUrl && (
                       <button
                         onClick={() => handleDownloadFactsheet(bond)}
-                        disabled={downloadingId === bond.id}
-                        className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white disabled:opacity-50 transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                        className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
                       >
-                        {downloadingId === bond.id ? (
-                          <>
-                            <i className="fa-solid fa-spinner animate-spin" />
-                            <span>Downloading...</span>
-                          </>
-                        ) : (
-                          <>
-                            <i className="fa-solid fa-file-pdf text-red-500" />
-                            <span>Download Fact Sheet</span>
-                          </>
-                        )}
+                        <i className="fa-solid fa-file-pdf text-red-500" />
+                        <span>Download Fact Sheet</span>
                       </button>
                     )}
                   </div>
@@ -589,7 +571,7 @@ export default function BondClientPage() {
                 <div className="mt-6 pt-4 border-t border-black/5 flex flex-wrap items-center justify-between gap-3">
                   <div className="text-xs text-corporate-charcoal/60 flex items-center gap-1.5">
                     <i className="fa-solid fa-circle-info text-corporate-gold text-[10px]" />
-                    <span>Asset Structure: {bond.type} | Regulated secondary market asset.</span>
+                    <span>Asset Structure: {bond.type}</span>
                   </div>
                 </div>
 
@@ -647,7 +629,7 @@ export default function BondClientPage() {
                   {/* Key Considerations checkmarks */}
                   <div className="bg-white p-5 rounded-2xl border border-black/5">
                     <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
-                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <ul className="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-x-8 gap-y-3">
                       {bond.keyConsiderations.map((consideration, idx) => (
                         <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
                           <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
@@ -672,53 +654,120 @@ export default function BondClientPage() {
         <section className="mt-28 bg-white border border-black/5 rounded-3xl p-8 lg:p-12 shadow-xl">
           <div className="text-center max-w-xl mx-auto mb-16">
             <span className="text-corporate-gold font-semibold uppercase tracking-wider text-sm">Action Plan</span>
-            <h2 className="text-3xl font-bold font-serif text-corporate-charcoal mt-1">How to Proceed</h2>
+            <h2 className="text-3xl font-bold font-serif text-corporate-charcoal mt-1">Ready to Invest? How It Works</h2>
             <p className="text-sm text-corporate-charcoal/60 mt-3 leading-relaxed">
               We aim to make execution as seamless as possible. Follow these simple steps to finalize your transaction details.
             </p>
           </div>
 
-          {/* Horizontal Timeline */}
-          <div className="relative">
-            {/* Progress line */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-dashed-gold border-t border-dashed border-corporate-gold/30 -translate-y-1/2 hidden md:block" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
+            {/* Divider line between Phase 1 and Phase 2 on larger screens */}
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-black/5 -translate-x-1/2" />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-
-              {/* Step 1 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="w-16 h-16 rounded-full bg-corporate-charcoal text-white flex items-center justify-center font-bold text-lg mb-6 border-4 border-corporate-white shadow-lg transition-transform duration-300 group-hover:scale-110 relative">
-                  <div className="absolute -inset-1 rounded-full bg-corporate-gold/20 animate-ping -z-10 group-hover:-inset-2 transition-all duration-300" />
-                  1
+            {/* PHASE 1: DIGITAL SETUP */}
+            <div className="space-y-8">
+              <div className="flex items-center gap-3 pb-4 border-b border-black/5">
+                <span className="w-8 h-8 rounded-lg bg-corporate-charcoal/5 flex items-center justify-center text-corporate-charcoal font-bold text-xs">
+                  I
+                </span>
+                <div>
+                  <h3 className="font-bold text-sm uppercase tracking-wider text-corporate-charcoal/40">Phase 1</h3>
+                  <h4 className="font-bold text-lg text-corporate-charcoal font-serif">Digital Setup</h4>
                 </div>
-                <h3 className="font-bold text-lg text-corporate-charcoal mb-2 font-serif">Reply to adviser email</h3>
-                <p className="text-sm text-corporate-charcoal/60 leading-relaxed max-w-xs">
-                  Respond directly to the summary message sent to your registered inbox by your adviser.
-                </p>
               </div>
 
-              {/* Step 2 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="w-16 h-16 rounded-full bg-corporate-charcoal text-white flex items-center justify-center font-bold text-lg mb-6 border-4 border-corporate-white shadow-lg transition-transform duration-300 group-hover:scale-110">
-                  2
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Step 1 */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-full bg-corporate-charcoal text-white flex items-center justify-center font-bold text-sm shadow-md">
+                      01
+                    </span>
+                    <span className="w-10 h-10 rounded-xl bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
+                      <i className="fa-solid fa-mouse-pointer text-lg" />
+                    </span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-base text-corporate-charcoal font-serif mb-2">1. Apply Online</h5>
+                    <ul className="text-xs text-corporate-charcoal/70 space-y-1.5 list-disc pl-4">
+                      <li>Click Apply Now next to your chosen bond.</li>
+                      <li>Start your secure application.</li>
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="font-bold text-lg text-corporate-charcoal mb-2 font-serif">Request to proceed</h3>
-                <p className="text-sm text-corporate-charcoal/60 leading-relaxed max-w-xs">
-                  Specify which bond option and allocation size you would like to proceed with.
-                </p>
+
+                {/* Step 2 */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-full bg-corporate-charcoal text-white flex items-center justify-center font-bold text-sm shadow-md">
+                      02
+                    </span>
+                    <span className="w-10 h-10 rounded-xl bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
+                      <i className="fa-solid fa-shield-halved text-lg" />
+                    </span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-base text-corporate-charcoal font-serif mb-2">2. Instant KYC</h5>
+                    <ul className="text-xs text-corporate-charcoal/70 space-y-1.5 list-disc pl-4">
+                      <li>Complete the brief form.</li>
+                      <li>Securely upload your ID documents in under 5 minutes.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* PHASE 2: FINALISE & FUND */}
+            <div className="space-y-8">
+              <div className="flex items-center gap-3 pb-4 border-b border-black/5">
+                <span className="w-8 h-8 rounded-lg bg-corporate-gold/10 flex items-center justify-center text-corporate-gold font-bold text-xs">
+                  II
+                </span>
+                <div>
+                  <h3 className="font-bold text-sm uppercase tracking-wider text-corporate-gold/80">Phase 2</h3>
+                  <h4 className="font-bold text-lg text-corporate-charcoal font-serif">Finalise & Fund</h4>
+                </div>
               </div>
 
-              {/* Step 3 */}
-              <div className="flex flex-col items-center text-center group">
-                <div className="w-16 h-16 rounded-full bg-corporate-gold text-white flex items-center justify-center font-bold text-lg mb-6 border-4 border-corporate-white shadow-lg transition-transform duration-300 group-hover:scale-110">
-                  3
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Step 3 */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-full bg-corporate-gold text-white flex items-center justify-center font-bold text-sm shadow-md">
+                      03
+                    </span>
+                    <span className="w-10 h-10 rounded-xl bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
+                      <i className="fa-solid fa-envelope text-lg" />
+                    </span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-base text-corporate-charcoal font-serif mb-2">3. Tailor Your Order</h5>
+                    <ul className="text-xs text-corporate-charcoal/70 space-y-1.5 list-disc pl-4">
+                      <li>Once approved, your adviser will email you.</li>
+                      <li>Confirm your exact invested amount and term.</li>
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="font-bold text-lg text-corporate-charcoal mb-2 font-serif">Adviser confirms</h3>
-                <p className="text-sm text-corporate-charcoal/60 leading-relaxed max-w-xs">
-                  Your adviser verifies availability in the secondary market, confirms rates and executes the allocation.
-                </p>
-              </div>
 
+                {/* Step 4 */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-full bg-corporate-gold text-white flex items-center justify-center font-bold text-sm shadow-md">
+                      04
+                    </span>
+                    <span className="w-10 h-10 rounded-xl bg-corporate-gold/10 flex items-center justify-center text-corporate-gold">
+                      <i className="fa-solid fa-building-columns text-lg" />
+                    </span>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-base text-corporate-charcoal font-serif mb-2">4. Secure Bond</h5>
+                    <ul className="text-xs text-corporate-charcoal/70 space-y-1.5 list-disc pl-4">
+                      <li>Review your official Bond Purchase Agreement.</li>
+                      <li>Receive our secure settlement bank details.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -915,8 +964,12 @@ export default function BondClientPage() {
             <div className="absolute top-0 right-0 w-24 h-24 bg-corporate-gold/10 rounded-full blur-xl pointer-events-none" />
 
             {/* Styled Avatar */}
-            <div className="w-14 h-14 rounded-full bg-corporate-gold/20 flex-shrink-0 flex items-center justify-center border border-corporate-gold/30">
-              <i className="fa-solid fa-user-check text-corporate-gold text-2xl" />
+            <div className="w-14 h-14 rounded-full bg-corporate-gold/20 flex-shrink-0 flex items-center justify-center border border-corporate-gold/30 overflow-hidden">
+              {adviser.photo ? (
+                <img src={adviser.photo} className="w-full h-full object-cover" alt={adviser.name} />
+              ) : (
+                <i className="fa-solid fa-user-check text-corporate-gold text-2xl" />
+              )}
             </div>
 
             <div>
