@@ -666,32 +666,7 @@ export default function BondClientPage() {
           ))}
         </div>
 
-        {/* --- FEES SECTION --- */}
-        <section className="mt-20 bg-white border border-black/5 rounded-3xl p-8 lg:p-12 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-corporate-gold/5 rounded-full blur-3xl pointer-events-none" />
-          <span className="text-corporate-gold font-semibold uppercase tracking-wider text-xs">Transparent Pricing</span>
-          <h2 className="text-3xl font-bold font-serif text-corporate-charcoal mt-1 mb-6">Our Fees</h2>
-          <p className="text-sm text-corporate-charcoal/70 max-w-3xl leading-relaxed mb-8">
-            We operate a transparent client fee structure. By processing transactions digitally, we remove manual admin tasks to keep our fixed-income advisory and custody service costs as low as possible:
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 bg-corporate-white rounded-2xl border border-black/5 text-center">
-              <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Dealing Fees</span>
-              <span className="text-2xl font-bold text-corporate-charcoal">£7.95</span>
-              <span className="text-xs text-corporate-charcoal/60 block mt-1">per buy or sell trade</span>
-            </div>
-            <div className="p-6 bg-corporate-white rounded-2xl border border-black/5 text-center">
-              <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Platform Fees</span>
-              <span className="text-2xl font-bold text-corporate-charcoal">0.12%</span>
-              <span className="text-xs text-corporate-charcoal/60 block mt-1">annually</span>
-            </div>
-            <div className="p-6 bg-corporate-white rounded-2xl border border-black/5 text-center">
-              <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Early Exit Fees</span>
-              <span className="text-2xl font-bold text-corporate-charcoal">0.5%</span>
-              <span className="text-xs text-corporate-charcoal/60 block mt-1">applicable to buyback agreements only</span>
-            </div>
-          </div>
-        </section>
+
 
         {/* --- 2. HOW TO PROCEED SECTION --- */}
         <section className="mt-28 bg-white border border-black/5 rounded-3xl p-8 lg:p-12 shadow-xl">
@@ -850,30 +825,27 @@ export default function BondClientPage() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="px-6 pb-6 pt-2 border-t border-black/5 text-sm text-corporate-charcoal/70 leading-relaxed space-y-4">
+                    <div className="px-6 pb-6 pt-4 border-t border-black/5 text-sm text-corporate-charcoal/70 leading-relaxed space-y-4">
                       <p>
-                        We operate a transparent client fee structure. Our fixed-income advisory and custody services are detailed as follows:
+                        We operate a transparent client fee structure. By processing transactions digitally, we remove manual admin tasks to keep our fixed-income advisory and custody service costs as low as possible:
                       </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-corporate-white p-4 rounded-xl border border-black/5">
-                        <div className="space-y-1">
-                          <span className="text-[10px] uppercase font-bold text-corporate-charcoal/40">Portfolio Advisory</span>
-                          <p className="font-bold text-corporate-charcoal text-sm">0.50% per annum</p>
-                          <span className="text-xs text-corporate-charcoal/60">Billed semi-annually</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="p-4 bg-corporate-white rounded-xl border border-black/5 text-center">
+                          <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Dealing Fees</span>
+                          <span className="text-xl font-bold text-corporate-charcoal">£7.95</span>
+                          <span className="text-xs text-corporate-charcoal/60 block mt-1">per buy or sell trade</span>
                         </div>
-                        <div className="space-y-1">
-                          <span className="text-[10px] uppercase font-bold text-corporate-charcoal/40">Secondary Execution</span>
-                          <p className="font-bold text-corporate-charcoal text-sm">At-Cost Brokerage</p>
-                          <span className="text-xs text-corporate-charcoal/60">No hidden commissions</span>
+                        <div className="p-4 bg-corporate-white rounded-xl border border-black/5 text-center">
+                          <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Platform Fees</span>
+                          <span className="text-xl font-bold text-corporate-charcoal">0.12%</span>
+                          <span className="text-xs text-corporate-charcoal/60 block mt-1">annually</span>
                         </div>
-                        <div className="space-y-1">
-                          <span className="text-[10px] uppercase font-bold text-corporate-charcoal/40">Account Custody</span>
-                          <p className="font-bold text-corporate-charcoal text-sm">£0.00 / Free</p>
-                          <span className="text-xs text-corporate-charcoal/60">Standard client storage</span>
+                        <div className="p-4 bg-corporate-white rounded-xl border border-black/5 text-center">
+                          <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Early Exit Fees</span>
+                          <span className="text-xl font-bold text-corporate-charcoal">0.5%</span>
+                          <span className="text-xs text-corporate-charcoal/60 block mt-1">applicable to buyback agreements only</span>
                         </div>
                       </div>
-                      <p className="text-xs text-corporate-charcoal/50">
-                        *Note: Full details regarding structural execution fees are outlined in your Client Agreement. There are no additional transaction-entry fees.
-                      </p>
                     </div>
                   </motion.div>
                 )}
