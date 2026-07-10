@@ -22,6 +22,7 @@ interface BondDetails {
   label?: string;
   lseUrl: string;
   factSheetUrl?: string; // Configurable PDF Fact Sheet URL
+  minDeposit: string; // Dynamic minimum deposit value
 }
 
 export default function BondClientPage() {
@@ -112,9 +113,9 @@ export default function BondClientPage() {
       id: "bond-featured",
       companyName: "Lloyds Bank plc",
       issuer: "Lloyds Bank plc",
-      coupon: "6.50% Fixed",
-      maturity: "July 2028",
-      isin: "XS2648591038",
+      coupon: "6.625% Fixed",
+      maturity: "1 year",
+      isin: "XS2591847970",
       type: "Fixed Rate",
       whySelected: "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
       aboutIssuer: "Lloyds Bank plc is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
@@ -124,45 +125,49 @@ export default function BondClientPage() {
         "Tier 1 banking institution"
       ],
       recommended: true,
-      lseUrl: "https://www.londonstockexchange.com/stock/65XS/abcd-bank-plc/analysis",
-      factSheetUrl: "/docs/1234-plc-factsheet.pdf"
+      lseUrl: "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
+      factSheetUrl: "/docs/1234-plc-factsheet.pdf",
+      minDeposit: "£10,000"
     },
     {
       id: "bond-alt-1",
+      companyName: "UK Government",
+      issuer: "UK Government",
+      coupon: "4.375% Fixed",
+      maturity: "1 year",
+      isin: "GB00BPSNBB36",
+      type: "Fixed Rate | Government Bond",
+      whySelected: "This choice gives you a simple, steady income. It is backed by the UK government, making it one of the safest ways to save your money and earn regular cash payments.",
+      aboutIssuer: "The United Kingdom Government issues debt via the Debt Management Office to fund public infrastructure, health, and national services, offering revenue backed entirely by the taxing power of the state.",
+      keyConsiderations: [
+        "One-year rolling contract available until maturity",
+        "AAA rated sovereign credit profile",
+        "Exemption from UK Capital Gains Tax (CGT)",
+        "Government Backed"
+      ],
+      lseUrl: "https://www.londonstockexchange.com/stock/GB00BPSNBB36/uk-government/analysis",
+      factSheetUrl: "/docs/uk-government-factsheet.pdf",
+      minDeposit: "£10,000"
+    },
+    {
+      id: "bond-alt-2",
       companyName: "National Grid plc",
-      issuer: "National Grid Infrastructure plc",
+      issuer: "National Grid plc",
       coupon: "6.50% Fixed",
-      maturity: "December 2028",
-      isin: "XS2739485029",
+      maturity: "1 year",
+      isin: "XS0132735373",
       type: "Fixed Rate",
       whySelected: "Provides exposure to a regulated UK utility company often selected for defensive income characteristics.",
-      aboutIssuer: "National Grid plc operates essential water and environmental infrastructure systems across the United Kingdom, offering stable, long-term regulated revenues.",
+      aboutIssuer: "National Grid plc transmits and distributes electricity and gas across the United Kingdom and northeastern United States, operating high-voltage networks under strict price controls set by the energy regulator, Ofgem.",
       keyConsiderations: [
+        "One-year rolling contract available until maturity",
         "Blue chip utility company",
         "Flexible income options",
         "Diversifies bond exposure"
       ],
-      lseUrl: "https://www.londonstockexchange.com/stock/65EF/efgh-plc/analysis",
-      factSheetUrl: "/docs/efgh-plc-factsheet.pdf"
-    },
-    {
-      id: "bond-alt-2",
-      companyName: "Bank of America Corporation",
-      issuer: "Bank of America Corporation International Group plc",
-      coupon: "7.00% Fixed",
-      maturity: "October 2028",
-      isin: "XS2859103948",
-      type: "Fixed Rate",
-      whySelected: "Provides exposure to a higher yielding bond issued by a Tier 1 bank. Suitable for investors seeking enhanced income with higher minimum investment levels.",
-      aboutIssuer: "Bank of America Corporation is a globally systemically important financial services institution operating in over 50 countries with a robust balance sheet.",
-      keyConsiderations: [
-        "Flexible income options",
-        "Globally systemically important bank",
-        "Higher yield"
-      ],
-      label: "Higher Income",
-      lseUrl: "https://www.londonstockexchange.com/stock/70IJ/ijkl-corporation/analysis",
-      factSheetUrl: "/docs/ijkl-corporation-factsheet.pdf"
+      lseUrl: "https://www.londonstockexchange.com/stock/XS0132735373/national-grid-plc/analysis",
+      factSheetUrl: "/docs/ijkl-corporation-factsheet.pdf",
+      minDeposit: "£10,000"
     }
   ];
 
@@ -243,33 +248,29 @@ export default function BondClientPage() {
     setOpenAccordion(openAccordion === index ? null : index);
   };
 
-  // SVG Logo Renderers
+  // Logo Renderers
   const renderLogo = (companyName: string) => {
     switch (companyName) {
       case "Lloyds Bank plc":
         return (
-          <svg className="w-10 h-10 text-corporate-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="4" />
-            <path d="M50 20V80" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-            <path d="M35 35L50 20L65 35" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="50" cy="50" r="10" fill="currentColor" />
-          </svg>
+          <img src="/bank logos/lloyds-logo.svg" alt="Lloyds Bank logo" className="w-10 h-10 object-contain" />
         );
       case "National Grid plc":
         return (
-          <svg className="w-10 h-10 text-teal-600" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="15" y="15" width="70" height="70" rx="16" stroke="currentColor" strokeWidth="4" />
-            <path d="M30 50C40 35 60 35 70 50" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-            <path d="M30 62C40 47 60 47 70 62" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-            <circle cx="50" cy="30" r="6" fill="currentColor" />
-          </svg>
+          <img src="/bank logos/national-grid-logo.png" alt="National Grid logo" className="w-10 h-10 object-contain animate-fade-in" />
         );
+      case "Bank of America Corporation":
       case "Bank of America Corporation Corporation":
         return (
-          <svg className="w-10 h-10 text-slate-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 10L85 30V70L50 90L15 70V30L50 10Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" />
-            <path d="M35 40H65" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-            <path d="M50 40V70" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+          <img src="/bank logos/bank-of-america.svg" alt="Bank of America logo" className="w-10 h-10 object-contain" />
+        );
+      case "UK Government":
+        return (
+          <svg className="w-10 h-10 text-corporate-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 15 L80 35 L70 75 L30 75 L20 35 Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" fill="none" />
+            <circle cx="50" cy="50" r="10" stroke="currentColor" strokeWidth="4" />
+            <path d="M50 15 V40" stroke="currentColor" strokeWidth="4" />
+            <path d="M35 50 L65 50" stroke="currentColor" strokeWidth="4" />
           </svg>
         );
       default:
@@ -292,72 +293,28 @@ export default function BondClientPage() {
         referrerPolicy="no-referrer"
       />
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative overflow-hidden bg-corporate-charcoal text-white pt-24 pb-20 lg:pt-32 lg:pb-28">
-        <div className="absolute inset-0 z-0">
-          {/* Subtle gold-blue gradient background */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-corporate-gold/15 via-corporate-charcoal to-corporate-charcoal" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-semibold uppercase tracking-wider text-corporate-gold"
-          >
-            <i className="fa-solid fa-lock text-[10px]" /> Private Client Portal
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 font-serif text-white"
-          >
-            Bond Recommendation Summary
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/70 max-w-3xl mb-12 leading-relaxed"
-          >
-            Following your consultation, we&apos;ve reviewed current fixed-income opportunities and selected three bond options that align with your investment objectives.
-          </motion.p>
-
-          {/* Glass Notice Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="max-w-2xl w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 flex items-start gap-4 text-left"
-          >
-            <div className="w-10 h-10 rounded-full bg-corporate-gold/20 flex-shrink-0 flex items-center justify-center text-corporate-gold">
-              <i className="fa-solid fa-triangle-exclamation text-lg" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-white text-base mb-1">Market Notice</h4>
-              <p className="text-white/75 text-sm leading-relaxed">
-                These opportunities are sourced from the secondary bond market and availability may change without notice.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* --- CONTENT CONTAINER --- */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16 lg:mt-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 md:pt-16">
+
+        {/* Brand/Header Section */}
+        <div className="mb-12 max-w-4xl border-b border-black/5 pb-8">
+          <h1 className="text-4xl md:text-5xl font-bold font-serif text-[#1e3a8a] mb-4">
+            Bond recommendation summary
+          </h1>
+          <p className="text-sm md:text-base text-corporate-charcoal/70 mb-4 leading-relaxed">
+            Following your consultation, we&apos;ve reviewed current fixed-income opportunities and selected three bond options that align with your investment objectives.
+          </p>
+          <span className="text-corporate-gold font-semibold uppercase tracking-wider text-xs block mt-2">
+            Tailored Selection
+          </span>
+        </div>
 
         {/* SECTION HEADER: RECOMMENDATIONS */}
-        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-corporate-gold font-semibold uppercase tracking-wider text-sm">Tailored Selection</span>
-            <h2 className="text-3xl lg:text-4xl font-bold font-serif text-corporate-charcoal mt-1">Recommended Assets</h2>
+            <h2 className="text-2xl font-bold font-serif text-corporate-charcoal">Recommended Bonds</h2>
           </div>
-          <div className="text-sm text-corporate-charcoal/60 max-w-md">
+          <div className="text-xs text-corporate-charcoal/60 max-w-md">
             Prepared exclusively for <strong className="text-corporate-charcoal">Private Client Accounts</strong>. Rates and specifications valid for execution request.
           </div>
         </div>
@@ -375,7 +332,7 @@ export default function BondClientPage() {
               {/* Top Recommended Ribbon Badge */}
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 <span className="flex items-center gap-1.5 px-3 py-1 bg-corporate-gold text-white font-bold text-[10px] uppercase tracking-wider rounded-full shadow-md animate-pulse">
-                  <i className="fa-solid fa-star text-[9px]" /> Recommended Selection
+                  <i className="fa-solid fa-star text-[9px]" /> Our Choice
                 </span>
               </div>
 
@@ -408,7 +365,7 @@ export default function BondClientPage() {
                   </div>
                   <div className="space-y-0.5">
                     <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Min Deposit</span>
-                    <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">£100,000</strong>
+                    <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">{bond.minDeposit}</strong>
                   </div>
                 </div>
 
@@ -425,7 +382,7 @@ export default function BondClientPage() {
                       onClick={() => triggerDiscuss(bond)}
                       className="flex-1 text-center py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-xs cursor-pointer transition-colors duration-300"
                     >
-                      Discuss with your adviser
+                      Speak to adviser
                     </button>
                   </div>
                   
@@ -458,103 +415,75 @@ export default function BondClientPage() {
                   <i className="fa-solid fa-circle-info text-corporate-gold text-[10px]" />
                   <span>Asset Structure: {bond.type} | Semi-annual interest frequency.</span>
                 </div>
-                <button
-                  onClick={() => toggleExpand(bond.id)}
-                  className="text-xs text-corporate-gold font-semibold flex items-center gap-1 hover:underline cursor-pointer"
-                >
-                  {expandedBonds[bond.id] ? (
-                    <>
-                      <span>Hide details</span>
-                      <i className="fa-solid fa-chevron-up text-[10px]" />
-                    </>
-                  ) : (
-                    <>
-                      <span>Show details</span>
-                      <i className="fa-solid fa-chevron-down text-[10px]" />
-                    </>
-                  )}
-                </button>
               </div>
 
-              {/* Expanded details dropdown */}
-              <AnimatePresence initial={false}>
-                {expandedBonds[bond.id] && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
-                  >
-                    <div className="pt-6 border-t border-black/5 mt-4 space-y-6">
-                      
-                      {/* Technical Specs Grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-corporate-white p-5 rounded-2xl border border-black/5">
-                        <div>
-                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Guarantor / Issuer</span>
-                          <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.issuer}</span>
-                        </div>
-                        <div>
-                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">ISIN Reference</span>
-                          <span className="text-xs font-semibold text-corporate-charcoal font-mono block mt-0.5">{bond.isin}</span>
-                        </div>
-                        <div>
-                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Asset Structure</span>
-                          <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.type}</span>
-                        </div>
-                        <div>
-                          <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">London Stock Exchange</span>
-                          <Link
-                            href={bond.lseUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-semibold text-corporate-gold hover:underline block mt-0.5 flex items-center gap-1"
-                          >
-                            <span>View Analysis</span>
-                            <i className="fa-solid fa-up-right-from-square text-[9px]" />
-                          </Link>
-                        </div>
-                      </div>
+              {/* Permanently Expanded details container */}
+              <div className="pt-6 border-t border-black/5 mt-6 space-y-6 bg-corporate-beige/30 p-5 rounded-2xl border border-corporate-gold/15">
+                
+                {/* Technical Specs Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-black/5">
+                  <div>
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Issuer</span>
+                    <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.issuer}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">ISIN Reference</span>
+                    <span className="text-xs font-semibold text-corporate-charcoal font-mono block mt-0.5">{bond.isin}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Asset Structure</span>
+                    <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.type}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Verify Bond</span>
+                    <Link
+                      href={bond.lseUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-corporate-gold hover:underline block mt-0.5 flex items-center gap-1"
+                    >
+                      <span>Click here</span>
+                      <i className="fa-solid fa-up-right-from-square text-[9px]" />
+                    </Link>
+                  </div>
+                </div>
 
-                      {/* Why Selected & About Issuer */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-1.5">
-                          <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
-                            <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
-                          </h5>
-                          <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
-                            {bond.whySelected}
-                          </p>
-                        </div>
-                        <div className="space-y-1.5">
-                          <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
-                            <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
-                          </h5>
-                          <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
-                            {bond.aboutIssuer}
-                          </p>
-                        </div>
-                      </div>
+                {/* Why Selected & About Issuer */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-1.5">
+                    <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                      <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
+                    </h5>
+                    <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                      {bond.whySelected}
+                    </p>
+                  </div>
+                  <div className="space-y-1.5">
+                    <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                      <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
+                    </h5>
+                    <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                      {bond.aboutIssuer}
+                    </p>
+                  </div>
+                </div>
 
-                      {/* Key Considerations checkmarks */}
-                      <div className="bg-corporate-white p-5 rounded-2xl border border-black/5">
-                        <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
-                        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          {bond.keyConsiderations.map((consideration, idx) => (
-                            <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
-                              <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
-                                <i className="fa-solid fa-check" />
-                              </span>
-                              <span>{consideration}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                {/* Key Considerations checkmarks */}
+                <div className="bg-white p-5 rounded-2xl border border-black/5">
+                  <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {bond.keyConsiderations.map((consideration, idx) => (
+                      <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
+                        <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
+                          <i className="fa-solid fa-check" />
+                        </span>
+                        <span>{consideration}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              </div>
 
             </div>
           </motion.div>
@@ -612,7 +541,7 @@ export default function BondClientPage() {
                     </div>
                     <div className="space-y-0.5">
                       <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Min Deposit</span>
-                      <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">£100,000</strong>
+                      <strong className="text-base md:text-lg font-bold text-corporate-charcoal block leading-none">{bond.minDeposit}</strong>
                     </div>
                   </div>
 
@@ -629,7 +558,7 @@ export default function BondClientPage() {
                         onClick={() => triggerDiscuss(bond)}
                         className="flex-1 text-center py-2.5 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-xs cursor-pointer transition-colors duration-300 whitespace-nowrap"
                       >
-                        Discuss with adviser
+                        Speak to adviser
                       </button>
                     </div>
                     
@@ -662,108 +591,107 @@ export default function BondClientPage() {
                     <i className="fa-solid fa-circle-info text-corporate-gold text-[10px]" />
                     <span>Asset Structure: {bond.type} | Regulated secondary market asset.</span>
                   </div>
-                  <button
-                    onClick={() => toggleExpand(bond.id)}
-                    className="text-xs text-corporate-gold font-semibold flex items-center gap-1 hover:underline cursor-pointer"
-                  >
-                    {expandedBonds[bond.id] ? (
-                      <>
-                        <span>Hide details</span>
-                        <i className="fa-solid fa-chevron-up text-[10px]" />
-                      </>
-                    ) : (
-                      <>
-                        <span>Show details</span>
-                        <i className="fa-solid fa-chevron-down text-[10px]" />
-                      </>
-                    )}
-                  </button>
                 </div>
 
-                {/* Expanded details dropdown */}
-                <AnimatePresence initial={false}>
-                  {expandedBonds[bond.id] && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pt-6 border-t border-black/5 mt-4 space-y-6">
-                        
-                        {/* Technical Specs Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-corporate-white p-5 rounded-2xl border border-black/5">
-                          <div>
-                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Guarantor / Issuer</span>
-                            <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.issuer}</span>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">ISIN Reference</span>
-                            <span className="text-xs font-semibold text-corporate-charcoal font-mono block mt-0.5">{bond.isin}</span>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Asset Structure</span>
-                            <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.type}</span>
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">London Stock Exchange</span>
-                            <Link
-                              href={bond.lseUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-xs font-semibold text-corporate-gold hover:underline block mt-0.5 flex items-center gap-1"
-                            >
-                              <span>View Analysis</span>
-                              <i className="fa-solid fa-up-right-from-square text-[9px]" />
-                            </Link>
-                          </div>
-                        </div>
+                {/* Permanently Expanded details container */}
+                <div className="pt-6 border-t border-black/5 mt-6 space-y-6 bg-corporate-beige/30 p-5 rounded-2xl border border-corporate-gold/15">
+                  
+                  {/* Technical Specs Grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-black/5">
+                    <div>
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Issuer</span>
+                      <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.issuer}</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">ISIN Reference</span>
+                      <span className="text-xs font-semibold text-corporate-charcoal font-mono block mt-0.5">{bond.isin}</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Asset Structure</span>
+                      <span className="text-xs font-semibold text-corporate-charcoal block mt-0.5">{bond.type}</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-corporate-charcoal/40 font-semibold uppercase block">Verify Bond</span>
+                      <Link
+                        href={bond.lseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-semibold text-corporate-gold hover:underline block mt-0.5 flex items-center gap-1"
+                      >
+                        <span>Click here</span>
+                        <i className="fa-solid fa-up-right-from-square text-[9px]" />
+                      </Link>
+                    </div>
+                  </div>
 
-                        {/* Why Selected & About Issuer */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-1.5">
-                            <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
-                              <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
-                            </h5>
-                            <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
-                              {bond.whySelected}
-                            </p>
-                          </div>
-                          <div className="space-y-1.5">
-                            <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
-                              <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
-                            </h5>
-                            <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
-                              {bond.aboutIssuer}
-                            </p>
-                          </div>
-                        </div>
+                  {/* Why Selected & About Issuer */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-1.5">
+                      <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                        <i className="fa-solid fa-compass text-corporate-gold" /> Why this has been selected for you
+                      </h5>
+                      <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                        {bond.whySelected}
+                      </p>
+                    </div>
+                    <div className="space-y-1.5">
+                      <h5 className="font-bold text-xs text-corporate-charcoal flex items-center gap-1.5">
+                        <i className="fa-solid fa-building-columns text-corporate-gold" /> About the issuer
+                      </h5>
+                      <p className="text-xs text-corporate-charcoal/70 leading-relaxed">
+                        {bond.aboutIssuer}
+                      </p>
+                    </div>
+                  </div>
 
-                        {/* Key Considerations checkmarks */}
-                        <div className="bg-corporate-white p-5 rounded-2xl border border-black/5">
-                          <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
-                          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {bond.keyConsiderations.map((consideration, idx) => (
-                              <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
-                                <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
-                                  <i className="fa-solid fa-check" />
-                                </span>
-                                <span>{consideration}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                  {/* Key Considerations checkmarks */}
+                  <div className="bg-white p-5 rounded-2xl border border-black/5">
+                    <h5 className="font-bold text-[10px] uppercase tracking-wider text-corporate-charcoal/50 mb-3">Key Benefits & Considerations</h5>
+                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {bond.keyConsiderations.map((consideration, idx) => (
+                        <li key={idx} className="flex items-center gap-2.5 text-xs text-corporate-charcoal font-medium">
+                          <span className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0 text-xs">
+                            <i className="fa-solid fa-check" />
+                          </span>
+                          <span>{consideration}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                </div>
 
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* --- FEES SECTION --- */}
+        <section className="mt-20 bg-white border border-black/5 rounded-3xl p-8 lg:p-12 shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-corporate-gold/5 rounded-full blur-3xl pointer-events-none" />
+          <span className="text-corporate-gold font-semibold uppercase tracking-wider text-xs">Transparent Pricing</span>
+          <h2 className="text-3xl font-bold font-serif text-corporate-charcoal mt-1 mb-6">Our Fees</h2>
+          <p className="text-sm text-corporate-charcoal/70 max-w-3xl leading-relaxed mb-8">
+            We operate a transparent client fee structure. By processing transactions digitally, we remove manual admin tasks to keep our fixed-income advisory and custody service costs as low as possible:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 bg-corporate-white rounded-2xl border border-black/5 text-center">
+              <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Dealing Fees</span>
+              <span className="text-2xl font-bold text-corporate-charcoal">£7.95</span>
+              <span className="text-xs text-corporate-charcoal/60 block mt-1">per buy or sell trade</span>
+            </div>
+            <div className="p-6 bg-corporate-white rounded-2xl border border-black/5 text-center">
+              <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Platform Fees</span>
+              <span className="text-2xl font-bold text-corporate-charcoal">0.12%</span>
+              <span className="text-xs text-corporate-charcoal/60 block mt-1">annually</span>
+            </div>
+            <div className="p-6 bg-corporate-white rounded-2xl border border-black/5 text-center">
+              <span className="text-[10px] text-corporate-charcoal/50 uppercase font-bold block mb-1">Early Exit Fees</span>
+              <span className="text-2xl font-bold text-corporate-charcoal">0.5%</span>
+              <span className="text-xs text-corporate-charcoal/60 block mt-1">applicable to buyback agreements only</span>
+            </div>
+          </div>
+        </section>
 
         {/* --- 2. HOW TO PROCEED SECTION --- */}
         <section className="mt-28 bg-white border border-black/5 rounded-3xl p-8 lg:p-12 shadow-xl">

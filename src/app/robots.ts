@@ -5,7 +5,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/dashboard/", "/bond-recommendation-summary"],
+      disallow: [
+        "/dashboard/",
+        "/bond-recommendation-summary",
+        "/genius-bond-recommendation-summary",
+        "/july-bond-recommendation-summary"
+      ],
     },
     sitemap: "https://bakerjonesholdings.com/sitemap.xml",
   };
