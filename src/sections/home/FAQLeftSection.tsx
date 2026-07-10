@@ -62,7 +62,7 @@ const faqs = [
   },
   {
     id: 9,
-    question: <>How much does Baker Jones have under <br /> management (AUM)</>,
+    question: <>How much does Baker Jones have under <br /> management (AUM)?</>,
     answer:
       "Baker Jones currently manages over £500 million in assets under management (AUM). This reflects the trust our clients place in us and our commitment to delivering disciplined, long-term investment management and financial planning services.",
   },
