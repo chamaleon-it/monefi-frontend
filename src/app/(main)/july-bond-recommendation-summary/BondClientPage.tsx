@@ -260,24 +260,24 @@ export default function BondClientPage() {
     switch (companyName) {
       case "Lloyds Bank plc":
         return (
-          <img src="/bank logos/lloyds-logo.svg" alt="Lloyds Bank logo" className="w-10 h-10 object-contain" />
+          <img src="/bank logos/lloyds-logo.svg" alt="Lloyds Bank logo" className="w-full h-full object-contain" />
         );
       case "National Grid plc":
         return (
-          <img src="/bank logos/national-grid-logo.png" alt="National Grid logo" className="w-10 h-10 object-contain animate-fade-in" />
+          <img src="/bank logos/national-grid-logo.png" alt="National Grid logo" className="w-full h-full object-contain animate-fade-in" />
         );
       case "Bank of America Corporation":
       case "Bank of America Corporation Corporation":
         return (
-          <img src="/bank logos/bank-of-america.svg" alt="Bank of America logo" className="w-10 h-10 object-contain" />
+          <img src="/bank logos/bank-of-america.svg" alt="Bank of America logo" className="w-full h-full object-contain" />
         );
       case "UK Government":
         return (
-          <img src="/bank logos/uk-government.svg" alt="UK Government logo" className="w-10 h-10 object-contain" />
+          <img src="/bank logos/uk-government.svg" alt="UK Government logo" className="w-full h-full object-contain" />
         );
       default:
         return (
-          <svg className="w-10 h-10 text-corporate-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-full h-full text-corporate-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="4" strokeDasharray="6 6" />
           </svg>
         );
@@ -345,7 +345,7 @@ export default function BondClientPage() {
                 
                 {/* Col 1: Issuer Logo & Identity */}
                 <div className="lg:col-span-3 flex items-center gap-4">
-                  <div className="p-3 bg-corporate-white rounded-2xl border border-black/5 shadow-inner flex-shrink-0">
+                  <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-sm flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
                     {renderLogo(bond.companyName)}
                   </div>
                   <div className="min-w-0">
@@ -511,7 +511,7 @@ export default function BondClientPage() {
                   
                   {/* Col 1: Issuer Logo & Identity */}
                   <div className="lg:col-span-3 flex items-center gap-4">
-                    <div className="p-3 bg-corporate-white rounded-2xl border border-black/5 shadow-inner flex-shrink-0">
+                    <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-sm flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
                       {renderLogo(bond.companyName)}
                     </div>
                     <div className="min-w-0">
