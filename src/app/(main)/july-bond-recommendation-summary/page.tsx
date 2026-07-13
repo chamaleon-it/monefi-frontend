@@ -5,15 +5,15 @@ export const metadata: Metadata = {
   title: "Bond Recommendation Summary | Baker Jones Holdings",
   description: "Review personalized secondary market bond opportunities selected to match your specific investment objectives.",
   robots: {
-    index: false,
-    follow: false,
-    noarchive: true,
-    nocache: true,
+    index: true,
+    follow: true,
+    noarchive: false,
+    nocache: false,
     googleBot: {
-      index: false,
-      follow: false,
-      noarchive: true,
-      nocache: true,
+      index: true,
+      follow: true,
+      noarchive: false,
+      nocache: false,
     },
   },
 };

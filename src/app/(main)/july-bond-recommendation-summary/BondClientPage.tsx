@@ -30,8 +30,6 @@ export default function BondClientPage() {
   const [activeAdviserModal, setActiveAdviserModal] = useState<boolean>(false);
   const [activeProceedModal, setActiveProceedModal] = useState<boolean>(false);
   const [selectedBond, setSelectedBond] = useState<BondDetails | null>(null);
-  const [proceedConfirmed, setProceedConfirmed] = useState<boolean>(false);
-  const [proceedSubmitted, setProceedSubmitted] = useState<boolean>(false);
 
   // Accordion state (null if all closed, or index of open accordion)
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -61,10 +59,10 @@ export default function BondClientPage() {
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const dealerParam = params.get("dealer") || params.get("advisor") || params.get("ref");
+      const advisorParam = params.get("advisor") || params.get("Advisor") || params.get("dealer") || params.get("ref");
       const hash = window.location.hash.replace("#", "").toLowerCase();
       
-      const isJS = (dealerParam?.toLowerCase() === "js" || hash === "js");
+      const isJS = (advisorParam?.toLowerCase() === "js" || hash === "js");
       if (isJS) {
         setAdviser({
           name: "John Sterling",
@@ -233,22 +231,7 @@ export default function BondClientPage() {
   // Open proceed confirmation modal
   const triggerProceed = (bond: BondDetails) => {
     setSelectedBond(bond);
-    setProceedConfirmed(false);
-    setProceedSubmitted(false);
     setActiveProceedModal(true);
-  };
-
-  const handleConfirmProceed = () => {
-    if (!proceedConfirmed) {
-      toast.error("Please check the confirmation box.");
-      return;
-    }
-
-    toast.loading("Registering selection...", { id: "proceed" });
-    setTimeout(() => {
-      setProceedSubmitted(true);
-      toast.success("Selection confirmed.", { id: "proceed" });
-    }, 1500);
   };
 
   const toggleAccordion = (index: number) => {
@@ -927,7 +910,7 @@ export default function BondClientPage() {
                         All client cash and assets are held in segregated client accounts with Tier 1 custodian banks under the Client Assets Sourcebook (CASS) rules. This ensures maximum protection of your capital at all times.
                       </p>
                       <p>
-                        Eligible investments may be protected by the Financial Services Compensation Scheme (FSCS) up to £85,000 per person, per firm. This protection operates in case of default or insolvency of the registered broker/custodian.
+                        Eligible investments may be protected by the Financial Services Compensation Scheme (FSCS) up to £120,000 per person, per firm. This protection operates in case of default or insolvency of the registered broker/custodian.
                       </p>
                     </div>
                   </motion.div>
@@ -1085,7 +1068,7 @@ export default function BondClientPage() {
               <div className="flex items-center justify-between border-b border-black/5 pb-4 mb-6">
                 <div className="flex items-center gap-2">
                   <i className="fa-solid fa-file-invoice-dollar text-corporate-gold text-lg" />
-                  <h3 className="font-bold text-lg font-serif">Confirm Execution Intent</h3>
+                  <h3 className="font-bold text-lg font-serif">Apply for Bond</h3>
                 </div>
                 <button
                   onClick={() => setActiveProceedModal(false)}
@@ -1095,100 +1078,43 @@ export default function BondClientPage() {
                 </button>
               </div>
 
-              {!proceedSubmitted ? (
-                <div className="space-y-6">
-                  <p className="text-sm text-corporate-charcoal/70 leading-relaxed">
-                    You have requested to proceed with the following fixed-income asset selection. Please review details below and confirm.
-                  </p>
+              <div className="space-y-6">
+                <p className="text-sm text-corporate-charcoal/75 leading-relaxed">
+                  If you wish to apply for the{" "}
+                  <strong className="text-corporate-charcoal font-semibold">
+                    {selectedBond.companyName.includes("Lloyds") ? "Lloyds" : selectedBond.companyName} {selectedBond.coupon} bond
+                  </strong>{" "}
+                  please click on the application link below.
+                </p>
 
-                  {/* Summary Card */}
-                  <div className="bg-corporate-white border border-black/5 rounded-2xl p-5 space-y-3">
-                    <div className="flex justify-between items-center text-xs border-b border-black/5 pb-3">
-                      <span className="text-corporate-charcoal/50 font-bold uppercase tracking-wider">Asset Selected</span>
-                      <span className="px-2.5 py-0.5 bg-corporate-charcoal text-white rounded-full font-semibold">{selectedBond.companyName}</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4 text-xs pt-1">
-                      <div className="space-y-1">
-                        <span className="text-corporate-charcoal/50">Expected Return</span>
-                        <p className="font-bold text-sm text-corporate-charcoal">{selectedBond.coupon}</p>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-corporate-charcoal/50">Maturity Date</span>
-                        <p className="font-bold text-sm text-corporate-charcoal">{selectedBond.maturity}</p>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-corporate-charcoal/50">ISIN Number</span>
-                        <p className="font-bold text-sm text-corporate-charcoal font-mono">{selectedBond.isin}</p>
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-corporate-charcoal/50">Issuer entity</span>
-                        <p className="font-bold text-sm text-corporate-charcoal">{selectedBond.issuer}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Confirmation Box */}
-                  <div className="flex items-start gap-3 bg-amber-50/50 border border-amber-100 p-4 rounded-xl">
-                    <input
-                      type="checkbox"
-                      id="confirm-cb"
-                      checked={proceedConfirmed}
-                      onChange={(e) => setProceedConfirmed(e.target.checked)}
-                      className="mt-1 w-4 h-4 text-corporate-gold border-black/10 focus:ring-corporate-gold focus:ring-offset-0 rounded cursor-pointer"
-                    />
-                    <label htmlFor="confirm-cb" className="text-xs text-corporate-charcoal/70 leading-relaxed cursor-pointer font-medium select-none">
-                      I confirm that I want to submit my execution request for this secondary market bond and I understand that availability and rates will be finalized by my adviser.
-                    </label>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-4 pt-2">
-                    <button
-                      onClick={() => setActiveProceedModal(false)}
-                      className="flex-1 py-3 border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-sm transition-colors cursor-pointer"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={handleConfirmProceed}
-                      disabled={!proceedConfirmed}
-                      className="flex-1 py-3 bg-corporate-charcoal text-white hover:bg-corporate-gold disabled:bg-slate-200 disabled:text-slate-400 font-semibold rounded-full text-sm transition-all duration-300 shadow-md cursor-pointer"
-                    >
-                      Submit Intent
-                    </button>
+                <div className="py-4 text-center space-y-3">
+                  <Link
+                    href={`/new-application-form?advisor=${adviser.name === "John Sterling" ? "js" : "pc"}`}
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-[#1e3a8a] text-white hover:bg-corporate-gold font-semibold rounded-full text-sm shadow-md transition-colors duration-300"
+                  >
+                    <span>Apply Online Now</span>
+                    <i className="fa-solid fa-arrow-right text-xs" />
+                  </Link>
+                  <div className="text-xs text-corporate-gold hover:underline">
+                    <Link href={`/new-application-form?advisor=${adviser.name === "John Sterling" ? "js" : "pc"}`}>
+                      {typeof window !== "undefined" ? `${window.location.origin}/new-application-form` : "/new-application-form"}
+                    </Link>
                   </div>
                 </div>
-              ) : (
-                <div className="text-center py-6 space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-3xl">
-                    <i className="fa-solid fa-circle-check" />
-                  </div>
 
-                  <h4 className="text-2xl font-bold font-serif text-corporate-charcoal">Request Received</h4>
-                  <p className="text-sm text-corporate-charcoal/70 leading-relaxed max-w-sm mx-auto">
-                    Your intent to proceed with <strong className="text-corporate-charcoal">{selectedBond.companyName} ({selectedBond.coupon})</strong> has been logged.
-                  </p>
+                <p className="text-xs text-corporate-charcoal/60 leading-relaxed text-center font-medium">
+                  Once completed your advisor will contact you to confirm the amount you wish to invest and the term.
+                </p>
 
-                  <div className="bg-corporate-white p-4 rounded-xl text-left border border-black/5 text-xs space-y-2 max-w-sm mx-auto">
-                    <h5 className="font-semibold text-corporate-charcoal">Next Steps:</h5>
-                    <ol className="list-decimal pl-4 space-y-1.5 text-corporate-charcoal/60">
-                      <li>Your adviser will check availability in the secondary market.</li>
-                      <li>A secure allocation call will be placed to confirm execution.</li>
-                      <li>Funding instructions will be issued via your secure client inbox.</li>
-                    </ol>
-                  </div>
-
-                  <div className="pt-6">
-                    <button
-                      onClick={() => setActiveProceedModal(false)}
-                      className="px-8 py-2.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-sm shadow-sm cursor-pointer"
-                    >
-                      Return to Portal
-                    </button>
-                  </div>
+                <div className="flex justify-end pt-4 border-t border-black/5">
+                  <button
+                    onClick={() => setActiveProceedModal(false)}
+                    className="px-6 py-2 border border-black/10 text-corporate-charcoal hover:bg-corporate-white font-semibold rounded-full text-xs transition-colors cursor-pointer"
+                  >
+                    Close
+                  </button>
                 </div>
-              )}
+              </div>
             </motion.div>
           </div>
         )}
