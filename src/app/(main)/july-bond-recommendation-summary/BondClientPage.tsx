@@ -1087,7 +1087,7 @@ export default function BondClientPage() {
                   please click on the application link below.
                 </p>
 
-                <div className="py-4 text-center space-y-3">
+                <div className="py-4 text-center">
                   <Link
                     href={`/new-application-form?advisor=${adviser.name === "John Sterling" ? "js" : "pc"}`}
                     className="inline-flex items-center gap-2 px-8 py-3 bg-[#1e3a8a] text-white hover:bg-corporate-gold font-semibold rounded-full text-sm shadow-md transition-colors duration-300"
@@ -1095,11 +1095,6 @@ export default function BondClientPage() {
                     <span>Apply Online Now</span>
                     <i className="fa-solid fa-arrow-right text-xs" />
                   </Link>
-                  <div className="text-xs text-corporate-gold hover:underline">
-                    <Link href={`/new-application-form?advisor=${adviser.name === "John Sterling" ? "js" : "pc"}`}>
-                      {typeof window !== "undefined" ? `${window.location.origin}/new-application-form` : "/new-application-form"}
-                    </Link>
-                  </div>
                 </div>
 
                 <p className="text-xs text-corporate-charcoal/60 leading-relaxed text-center font-medium">
