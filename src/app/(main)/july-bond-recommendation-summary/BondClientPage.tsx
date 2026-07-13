@@ -94,7 +94,7 @@ export default function BondClientPage() {
       const params = new URLSearchParams(window.location.search);
       const advisorParam = params.get("advisor") || params.get("Advisor") || params.get("dealer") || params.get("ref");
       const hash = window.location.hash.replace("#", "").toLowerCase();
-      
+
       const isJS = (advisorParam?.toLowerCase() === "js" || hash === "js");
       if (isJS) {
         setAdviser({
@@ -171,14 +171,14 @@ export default function BondClientPage() {
   const bondData: BondDetails[] = [
     {
       id: "bond-featured",
-      companyName: "Lloyds Bank plc",
-      issuer: "Lloyds Bank plc",
+      companyName: "Lloyds Bank",
+      issuer: "Lloyds Bank",
       coupon: "6.625%",
       maturity: "1 year",
       isin: "XS2591847970",
       type: "Fixed Rate",
       whySelected: "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
-      aboutIssuer: "Lloyds Bank plc is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
+      aboutIssuer: "Lloyds Bank is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
       keyConsiderations: [
         "One-year rolling contract available until maturity",
         "Flexible income options",
@@ -356,7 +356,7 @@ export default function BondClientPage() {
                     <div className="absolute top-0 right-0 w-80 h-80 bg-corporate-gold/5 rounded-full blur-3xl pointer-events-none -z-10 group-hover:bg-corporate-gold/8 transition-colors duration-500" />
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                      
+
                       {/* Col 1: Issuer Logo & Identity */}
                       <div className="lg:col-span-3 flex items-center gap-4">
                         <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-sm flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
@@ -401,7 +401,7 @@ export default function BondClientPage() {
                             Speak to adviser
                           </button>
                         </div>
-                        
+
                         {bond.factSheetUrl && (
                           <a
                             href={bond.factSheetUrl}
@@ -428,7 +428,7 @@ export default function BondClientPage() {
 
                     {/* Permanently Expanded details container */}
                     <div className="pt-6 border-t border-black/5 mt-6 space-y-6 bg-corporate-beige/30 p-5 rounded-2xl border border-corporate-gold/15">
-                      
+
                       {/* Technical Specs Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-black/5">
                         <div>
@@ -517,7 +517,7 @@ export default function BondClientPage() {
                       </div>
                     )}
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                      
+
                       {/* Col 1: Issuer Logo & Identity */}
                       <div className="lg:col-span-3 flex items-center gap-4">
                         <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-sm flex items-center justify-center p-2 flex-shrink-0 overflow-hidden">
@@ -562,7 +562,7 @@ export default function BondClientPage() {
                             Speak to adviser
                           </button>
                         </div>
-                        
+
                         {bond.factSheetUrl && (
                           <a
                             href={bond.factSheetUrl}
@@ -589,7 +589,7 @@ export default function BondClientPage() {
 
                     {/* Permanently Expanded details container */}
                     <div className="pt-6 border-t border-black/5 mt-6 space-y-6 bg-corporate-beige/30 p-5 rounded-2xl border border-corporate-gold/15">
-                      
+
                       {/* Technical Specs Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-black/5">
                         <div>
