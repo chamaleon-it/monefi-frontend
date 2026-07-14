@@ -30,6 +30,7 @@ export default function BondClientPage() {
   const [activeAdviserModal, setActiveAdviserModal] = useState<boolean>(false);
   const [activeProceedModal, setActiveProceedModal] = useState<boolean>(false);
   const [selectedBond, setSelectedBond] = useState<BondDetails | null>(null);
+  const [currentAdvisorParam, setCurrentAdvisorParam] = useState<string>("jsi");
 
   // Accordion state (null if all closed, or index of open accordion)
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -82,11 +83,11 @@ export default function BondClientPage() {
 
   // Adviser details
   const [adviser, setAdviser] = useState({
-    name: "Peter Cooke",
+    name: "John Sinclair",
     title: "Senior Fixed-Income Director",
     phone: "+44 (0) 20 7123 4567",
-    email: "peter.cooke@bakerjonesholdings.com",
-    photo: "/peter_cooke.png"
+    email: "johnsinclair@bakerjonesholdings.com",
+    photo: "/john_sinclair.png"
   });
 
   React.useEffect(() => {
@@ -95,23 +96,31 @@ export default function BondClientPage() {
       const advisorParam = params.get("advisor") || params.get("Advisor") || params.get("dealer") || params.get("ref");
       const hash = window.location.hash.replace("#", "").toLowerCase();
 
-      const isJS = (advisorParam?.toLowerCase() === "js" || hash === "js");
+      if (advisorParam) {
+        setCurrentAdvisorParam(advisorParam);
+      } else if (hash) {
+        setCurrentAdvisorParam(hash);
+      } else {
+        setCurrentAdvisorParam("jsi");
+      }
+
+      const isJS = (advisorParam?.toLowerCase() === "js" || advisorParam?.toLowerCase() === "sterling" || hash === "js" || hash === "sterling");
       if (isJS) {
         setAdviser({
           name: "John Sterling",
           title: "Senior Fixed-Income Director",
           phone: "+44 (0) 20 7123 4568",
-          email: "john.sterling@bakerjonesholdings.com",
+          email: "johnsterling@bakerjonesholdings.com",
           photo: "/john_sterling.png"
         });
       } else {
-        // Default is Peter Cooke
+        // Default is John Sinclair
         setAdviser({
-          name: "Peter Cooke",
+          name: "John Sinclair",
           title: "Senior Fixed-Income Director",
           phone: "+44 (0) 20 7123 4567",
-          email: "peter.cooke@bakerjonesholdings.com",
-          photo: "/peter_cooke.png"
+          email: "johnsinclair@bakerjonesholdings.com",
+          photo: "/john_sinclair.png"
         });
       }
     }
@@ -1158,7 +1167,7 @@ export default function BondClientPage() {
 
                 <div className="py-4 text-center">
                   <Link
-                    href={`/new-application-form?advisor=${adviser.name === "John Sterling" ? "js" : "pc"}`}
+                    href={`/new-application-form?advisor=${currentAdvisorParam}`}
                     className="inline-flex items-center gap-2 px-8 py-3 bg-[#1e3a8a] text-white hover:bg-corporate-gold font-semibold rounded-full text-sm shadow-md transition-colors duration-300"
                   >
                     <span>Apply Online Now</span>
