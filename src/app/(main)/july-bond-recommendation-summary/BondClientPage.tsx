@@ -186,7 +186,7 @@ export default function BondClientPage() {
       ],
       recommended: true,
       lseUrl: "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
-      factSheetUrl: "/docs/1234-plc-factsheet.pdf",
+      factSheetUrl: "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
       minDeposit: "£10,000"
     },
     {
@@ -206,7 +206,7 @@ export default function BondClientPage() {
         "Government Backed"
       ],
       lseUrl: "https://www.londonstockexchange.com/stock/GB00BPSNBB36/uk-government/analysis",
-      factSheetUrl: "/docs/uk-government-factsheet.pdf",
+      factSheetUrl: "/fact-sheet-pdf/4.375__ united kingdom __bakerjones.pdf",
       minDeposit: "£10,000"
     },
     {
@@ -226,30 +226,37 @@ export default function BondClientPage() {
         "Diversifies bond exposure"
       ],
       lseUrl: "https://www.londonstockexchange.com/stock/XS0132735373/national-grid-plc/analysis",
-      factSheetUrl: "/docs/ijkl-corporation-factsheet.pdf",
+      factSheetUrl: "/fact-sheet-pdf/6.5_ National Grid Electricity Transmission_bakerjones.pdf",
       minDeposit: "£10,000"
     }
   ];
 
-  // Configurable factsheet downloader with fallback
-  const handleDownloadFactsheet = (bond: BondDetails) => {
+  // Configurable factsheet downloader using fetch and blob to force download
+  const handleDownloadFactsheet = async (bond: BondDetails) => {
     if (!bond.factSheetUrl) {
       toast.error("Fact sheet URL is not configured for this bond.");
       return;
     }
 
     try {
+      const response = await fetch(bond.factSheetUrl);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
       const link = document.createElement("a");
-      link.href = bond.factSheetUrl;
+      link.href = url;
       const cleanName = bond.companyName.toLowerCase().replace(/[^a-z0-9]/g, "-");
       link.download = `${cleanName}-factsheet.pdf`;
+
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
 
       toast.success(`Factsheet for ${bond.companyName} downloaded successfully.`);
     } catch (error) {
-      console.warn("Direct download failed, opening PDF in a new tab as fallback:", error);
+      console.warn("Direct blob download failed, opening PDF in a new tab as fallback:", error);
       window.open(bond.factSheetUrl, "_blank", "noopener,noreferrer");
       toast.success(`Factsheet for ${bond.companyName} opened in a new tab.`);
     }
@@ -403,16 +410,13 @@ export default function BondClientPage() {
                         </div>
 
                         {bond.factSheetUrl && (
-                          <a
-                            href={bond.factSheetUrl}
-                            download={`${bond.companyName.toLowerCase().replace(/[^a-z0-9]/g, "-")}-factsheet.pdf`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            onClick={() => handleDownloadFactsheet(bond)}
                             className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5"
                           >
                             <i className="fa-solid fa-file-pdf text-red-500" />
                             <span>Download Fact Sheet</span>
-                          </a>
+                          </button>
                         )}
                       </div>
 
@@ -564,16 +568,13 @@ export default function BondClientPage() {
                         </div>
 
                         {bond.factSheetUrl && (
-                          <a
-                            href={bond.factSheetUrl}
-                            download={`${bond.companyName.toLowerCase().replace(/[^a-z0-9]/g, "-")}-factsheet.pdf`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            onClick={() => handleDownloadFactsheet(bond)}
                             className="w-full text-center py-2 bg-white border border-black/10 text-corporate-charcoal hover:bg-corporate-white transition-colors duration-300 font-semibold rounded-full text-[10px] cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
                           >
                             <i className="fa-solid fa-file-pdf text-red-500" />
                             <span>Download Fact Sheet</span>
-                          </a>
+                          </button>
                         )}
                       </div>
 
