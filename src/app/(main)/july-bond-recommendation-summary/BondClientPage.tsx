@@ -211,14 +211,14 @@ export default function BondClientPage() {
     },
     {
       id: "bond-alt-2",
-      companyName: "National Grid plc",
-      issuer: "National Grid plc",
+      companyName: "National Grid",
+      issuer: "National Grid",
       coupon: "6.50%",
       maturity: "1 year",
       isin: "XS0132735373",
       type: "Fixed Rate",
       whySelected: "Provides exposure to a regulated UK utility company often selected for defensive income characteristics.",
-      aboutIssuer: "National Grid plc transmits and distributes electricity and gas across the United Kingdom and northeastern United States, operating high-voltage networks under strict price controls set by the energy regulator, Ofgem.",
+      aboutIssuer: "National Grid transmits and distributes electricity and gas across the United Kingdom and northeastern United States, operating high-voltage networks under strict price controls set by the energy regulator, Ofgem.",
       keyConsiderations: [
         "One-year rolling contract available until maturity",
         "Blue chip utility company",
@@ -274,11 +274,11 @@ export default function BondClientPage() {
   // Logo Renderers
   const renderLogo = (companyName: string) => {
     switch (companyName) {
-      case "Lloyds Bank plc":
+      case "Lloyds Bank":
         return (
           <img src="/bank logos/lloyds-logo.svg" alt="Lloyds Bank logo" className="w-full h-full object-contain" />
         );
-      case "National Grid plc":
+      case "National Grid":
         return (
           <img src="/bank logos/national-grid-logo.png" alt="National Grid logo" className="w-full h-full object-contain animate-fade-in" />
         );
