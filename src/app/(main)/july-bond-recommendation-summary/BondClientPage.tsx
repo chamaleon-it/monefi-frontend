@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Modal from "@/components/ui/Modal";
+import { useLenis } from "lenis/react";
 
 // Interface definitions
 interface BondDetails {
@@ -105,7 +106,7 @@ export default function BondClientPage() {
       }
 
       const cleanParam = advisorParam?.toLowerCase() || hash;
-      const isJS = (cleanParam === "js" || cleanParam === "sterling");
+      const isJS = (cleanParam === "js" || cleanParam === "sterling" || cleanParam === "sterling-2");
       const isPC = (cleanParam === "pc" || cleanParam === "cooke" || cleanParam === "peter");
 
       if (isJS) {
@@ -137,76 +138,61 @@ export default function BondClientPage() {
     }
   }, []);
 
-  // Native scroll event managers for modal scroll lock bypass
-  React.useEffect(() => {
-    const scrollEl = modalScrollRef.current;
-    const backdropEl = modalBackdropRef.current;
+  const lenis = useLenis();
 
-    const stopScrollPropagation = (e: Event) => {
-      e.stopPropagation();
-    };
-
-    const preventScrollDefault = (e: Event) => {
-      e.preventDefault();
-    };
-
-    if (scrollEl) {
-      scrollEl.addEventListener("wheel", stopScrollPropagation, { passive: true });
-      scrollEl.addEventListener("touchmove", stopScrollPropagation, { passive: true });
-    }
-
-    if (backdropEl) {
-      backdropEl.addEventListener("wheel", preventScrollDefault, { passive: false });
-      backdropEl.addEventListener("touchmove", preventScrollDefault, { passive: false });
-    }
-
-    return () => {
-      if (scrollEl) {
-        scrollEl.removeEventListener("wheel", stopScrollPropagation);
-        scrollEl.removeEventListener("touchmove", stopScrollPropagation);
+  // Control scrolling with Lenis when proceed modal is active
+  useEffect(() => {
+    if (lenis) {
+      if (activeProceedModal) {
+        lenis.stop();
+      } else {
+        lenis.start();
       }
-      if (backdropEl) {
-        backdropEl.removeEventListener("wheel", preventScrollDefault);
-        backdropEl.removeEventListener("touchmove", preventScrollDefault);
-      }
-    };
-  }, [activeProceedModal]);
-
-  // Lock body scroll when proceed modal is open
-  React.useEffect(() => {
-    if (activeProceedModal) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
+      if (activeProceedModal) {
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
     }
     return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
+      if (lenis) {
+        lenis.start();
+      } else {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
     };
-  }, [activeProceedModal]);
+  }, [activeProceedModal, lenis]);
+
+  const isSterling2 = currentAdvisorParam.toLowerCase() === "sterling-2";
 
   // Detailed bond data with configurable factsheet URLs
   const bondData: BondDetails[] = [
     {
       id: "bond-featured",
-      companyName: "Lloyds Bank",
-      issuer: "Lloyds Bank",
-      coupon: "6.625%",
+      companyName: isSterling2 ? "HSBC Holdings" : "Lloyds Bank",
+      issuer: isSterling2 ? "HSBC Holdings plc" : "Lloyds Bank",
+      coupon: isSterling2 ? "7.00%" : "6.625%",
       maturity: "1 year",
-      isin: "XS2591847970",
+      isin: isSterling2 ? "XS0356452929" : "XS2591847970",
       type: "Fixed Rate",
       whySelected: "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
-      aboutIssuer: "Lloyds Bank is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
+      aboutIssuer: isSterling2
+        ? "HSBC Holdings plc is one of the world's largest banking and financial services organisations with a deeply established history of global financial strength."
+        : "Lloyds Bank is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
       keyConsiderations: [
         "One-year rolling contract available until maturity",
         "Flexible income options",
         "Tier 1 banking institution"
       ],
       recommended: true,
-      lseUrl: "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
-      factSheetUrl: "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
+      lseUrl: isSterling2
+        ? "https://www.londonstockexchange.com/stock/XS0356452929/hsbc-holdings-plc/analysis"
+        : "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
+      factSheetUrl: isSterling2 ? "/fact-sheet-pdf/HSBC_7___bakerjones.pdf" : "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
       minDeposit: "£10,000"
     },
     {
@@ -301,6 +287,12 @@ export default function BondClientPage() {
   // Logo Renderers
   const renderLogo = (companyName: string) => {
     switch (companyName) {
+      case "HSBC Holdings":
+        return (
+          <svg className="w-full h-full text-[#db0011] p-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="m24 12.007-5.996 5.997V5.996L24 12.007zm-5.996-6.01H6.01l5.996 6.01 5.997-6.01zM0 12.006l6.01 5.997V5.996L0 12.007zm6.01 5.997h11.994l-5.997-5.997-5.996 5.997z"/>
+          </svg>
+        );
       case "Lloyds Bank":
         return (
           <img src="/bank logos/lloyds-logo.svg" alt="Lloyds Bank logo" className="w-full h-full object-contain" />

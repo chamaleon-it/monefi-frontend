@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useLenis } from "lenis/react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -39,6 +40,8 @@ export default function Modal({
     };
   }, [isOpen, onClose]);
 
+  const lenis = useLenis();
+
   // Handle native scroll event managers for scroll lock bypass on touch/wheel
   useEffect(() => {
     if (!isOpen) return;
@@ -64,9 +67,13 @@ export default function Modal({
       backdropEl.addEventListener("touchmove", preventScrollDefault, { passive: false });
     }
 
-    // Lock body scroll
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
+    if (lenis) {
+      lenis.stop();
+    } else {
+      // Lock body scroll fallback
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
 
     return () => {
       if (scrollEl) {
@@ -77,10 +84,14 @@ export default function Modal({
         backdropEl.removeEventListener("wheel", preventScrollDefault);
         backdropEl.removeEventListener("touchmove", preventScrollDefault);
       }
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
+      if (lenis) {
+        lenis.start();
+      } else {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
     };
-  }, [isOpen]);
+  }, [isOpen, lenis]);
 
   return (
     <AnimatePresence>
