@@ -104,7 +104,10 @@ export default function BondClientPage() {
         setCurrentAdvisorParam("jsi");
       }
 
-      const isJS = (advisorParam?.toLowerCase() === "js" || advisorParam?.toLowerCase() === "sterling" || hash === "js" || hash === "sterling");
+      const cleanParam = advisorParam?.toLowerCase() || hash;
+      const isJS = (cleanParam === "js" || cleanParam === "sterling");
+      const isPC = (cleanParam === "pc" || cleanParam === "cooke" || cleanParam === "peter");
+
       if (isJS) {
         setAdviser({
           name: "John Sterling",
@@ -112,6 +115,14 @@ export default function BondClientPage() {
           phone: "+44 (0) 118 211 8521",
           email: "johnsterling@bakerjonesholdings.com",
           photo: "/john_sterling.png"
+        });
+      } else if (isPC) {
+        setAdviser({
+          name: "Peter Cooke",
+          title: "Wealth Advisor",
+          phone: "+44 (0) 118 211 8521",
+          email: "petercooke@bakerjonesholdings.com",
+          photo: "/peter_cooke.png"
         });
       } else {
         // Default is John Sinclair
