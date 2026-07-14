@@ -84,8 +84,8 @@ export default function BondClientPage() {
   // Adviser details
   const [adviser, setAdviser] = useState({
     name: "John Sinclair",
-    title: "Senior Fixed-Income Director",
-    phone: "+44 (0) 20 7123 4567",
+    title: "Wealth Advisor",
+    phone: "+44 (0) 118 211 8521",
     email: "johnsinclair@bakerjonesholdings.com",
     photo: "/john_sinclair.png"
   });
@@ -108,8 +108,8 @@ export default function BondClientPage() {
       if (isJS) {
         setAdviser({
           name: "John Sterling",
-          title: "Senior Fixed-Income Director",
-          phone: "+44 (0) 20 7123 4568",
+          title: "Wealth Advisor",
+          phone: "+44 (0) 118 211 8521",
           email: "johnsterling@bakerjonesholdings.com",
           photo: "/john_sterling.png"
         });
@@ -117,8 +117,8 @@ export default function BondClientPage() {
         // Default is John Sinclair
         setAdviser({
           name: "John Sinclair",
-          title: "Senior Fixed-Income Director",
-          phone: "+44 (0) 20 7123 4567",
+          title: "Wealth Advisor",
+          phone: "+44 (0) 118 211 8521",
           email: "johnsinclair@bakerjonesholdings.com",
           photo: "/john_sinclair.png"
         });
