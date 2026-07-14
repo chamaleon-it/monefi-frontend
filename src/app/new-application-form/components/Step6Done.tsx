@@ -86,7 +86,7 @@ export default function Step6Done({ formData }: StepProps) {
           </div>
           <div className="flex items-center gap-2 text-[13px] text-slate-400 font-light">
             <Phone className="w-3.5 h-3.5 text-slate-300" strokeWidth={1.5} />
-            +44 203 355 0894
+            0118 211 8521
           </div>
         </div>
       </div>

@@ -145,9 +145,9 @@ export default function ApplicationFormContainer() {
                     <Mail className="w-3.5 h-3.5 text-corporate-gold/60 shrink-0" strokeWidth={1.5} />
                     info@bakerjonesholdings.com
                   </a>
-                  <a href="tel:+442033550894" className="flex items-center gap-2.5 text-[13px] text-white/70 hover:text-white transition-colors">
+                  <a href="tel:+441182118521" className="flex items-center gap-2.5 text-[13px] text-white/70 hover:text-white transition-colors">
                     <Phone className="w-3.5 h-3.5 text-corporate-gold/60 shrink-0" strokeWidth={1.5} />
-                    +44 203 355 0894
+                    0118 211 8521
                   </a>
                 </div>
               </div>

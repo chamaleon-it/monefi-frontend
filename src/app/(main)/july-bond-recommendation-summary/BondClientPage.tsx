@@ -843,7 +843,7 @@ export default function BondClientPage() {
                       </p>
                       <div>
                         <Link
-                          href="https://register.fca.org.uk/"
+                          href="https://register.fca.org.uk/s/firm?id=0014G00002sZU58QAG"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-5 py-2.5 bg-corporate-charcoal text-white hover:bg-corporate-gold transition-colors duration-300 font-semibold rounded-full text-xs shadow-sm"

@@ -133,7 +133,7 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
               This application is made to <span className="text-slate-700 font-normal">Baker Jones Holdings</span> for the purpose of establishing and maintaining an investment and/or custody relationship.
             </p>
             <p>
-              Please read our <a href="#" className="text-corporate-charcoal underline hover:text-corporate-gold transition-colors">Terms of Business</a> before submitting.
+              Please read our <a href="/terms" className="text-corporate-charcoal underline hover:text-corporate-gold transition-colors">Terms of Business</a> before submitting.
             </p>
             <p className="text-[13px]">
               By submitting, you confirm all information provided is true and accurate, and authorise Baker Jones Holdings to collect and use this information for regulatory compliance and account administration.

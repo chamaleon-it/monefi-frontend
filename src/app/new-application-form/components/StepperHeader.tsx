@@ -89,7 +89,7 @@ export default function StepperHeader({ currentStepIndex, stepsFlow, formData, o
 
             <button
               type="button"
-              onClick={() => alert('Support: +44 203 355 0894 | info@bakerjonesholdings.com')}
+              onClick={() => alert('Support: 0118 211 8521 | info@bakerjonesholdings.com')}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-[13px] font-medium text-white/90 hover:text-white transition-all cursor-pointer"
             >
               <HeadphonesIcon className="w-3.5 h-3.5" strokeWidth={1.5} />
