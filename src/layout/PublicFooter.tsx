@@ -1,85 +1,55 @@
 "use client";
 
-import usePaths from "@/hooks/usePaths";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PublicFooter() {
-  const paths = usePaths();
-
   return (
-    <footer className="bg-corporate-white text-corporate-charcoal pt-24 pb-12 border-t border-black/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
-
-          <div className="lg:col-span-2 space-y-6">
-            <Link href={paths.home} className="inline-block">
-              <Image
-                src="/logo/logo.svg"
-                width={164}
-                height={40}
-                alt="Baker Jones Holdings logo"
-              />
+    <footer className="bg-corporate-white border-t border-gray-200 pt-16">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 mb-12">
+          <div className="md:col-span-5 lg:col-span-6">
+            <Link href="/" className="inline-block mb-4">
+              <Image src="/logo/logo.svg" width={160} height={40} alt="Baker Jones Holdings logo" />
             </Link>
-            <p className="text-corporate-charcoal/70 max-w-sm text-lg leading-relaxed">
-              Building long-term value through strategic investments and digital infrastructure.
+            <p className="text-[12px] text-slate-500 leading-relaxed max-w-[280px]">
+              Baker Jones Holdings Ltd. LEI: 2138006FBDND9MVSV504. Company No: 04473176.
             </p>
           </div>
-
-          <div>
-            <h4 className="font-semibold text-lg mb-6 text-corporate-charcoal/90">Company</h4>
-            <ul className="space-y-4">
-              <li>
-                <Link href={paths.aboutUs} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
-                  About Us <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              {/* <li>
-                <Link href={paths.insurance} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
-                  Insurance <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li> */}
-              <li>
-                <Link href={paths.careers} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
-                  Careers <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
+          <div className="md:col-span-2 lg:col-span-2">
+            <h4 className="text-[13px] font-bold text-[#082348] mb-4">Products</h4>
+            <ul className="space-y-3">
+              <li><Link href="/capital-markets" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Capital Markets</Link></li>
+              <li><Link href="/private-equity" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Private Equity</Link></li>
+              <li><Link href="/structured-holdings" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Structured Holdings</Link></li>
+              <li><Link href="/digital-assets" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Digital Assets</Link></li>
             </ul>
           </div>
-
-          <div>
-            <h4 className="font-semibold text-lg mb-6 text-corporate-charcoal/90">Legal</h4>
-            <ul className="space-y-4">
-              <li>
-                <Link href={paths.privacy} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
-                  Privacy Policy <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              <li>
-                <Link href={paths.terms} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
-                  Terms of Service <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
-              <li>
-                <Link href={paths.contactUs} className="text-corporate-charcoal/70 hover:text-corporate-charcoal transition-colors flex items-center group">
-                  Contact <ArrowUpRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </li>
+          <div className="md:col-span-2 lg:col-span-2">
+            <h4 className="text-[13px] font-bold text-[#082348] mb-4">Legal</h4>
+            <ul className="space-y-3">
+              <li><Link href="/terms" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Terms of Use</Link></li>
+              <li><Link href="/privacy" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Privacy Policy</Link></li>
+              <li><Link href="/cookie-policy" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Cookie Policy</Link></li>
+              <li><Link href="/regulatory-information" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Regulatory Info</Link></li>
+            </ul>
+          </div>
+          <div className="md:col-span-3 lg:col-span-2">
+            <h4 className="text-[13px] font-bold text-[#082348] mb-4">Company</h4>
+            <ul className="space-y-3">
+              <li><Link href="/" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Home</Link></li>
+              <li><Link href="/about-us" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">About Us</Link></li>
+              <li><Link href="/login" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Platform</Link></li>
+              <li><Link href="/contact-us" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Contact</Link></li>
             </ul>
           </div>
         </div>
-
-        <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-corporate-charcoal/60 text-sm">
-            © {new Date().getFullYear()} Baker Jones Holdings. All rights reserved.
-          </div>
-          <div className="flex space-x-6">
-            {/* Social Placeholders */}
-            {/* <a href="#" className="text-white/40 hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="text-white/40 hover:text-white transition-colors">Twitter</a> */}
-          </div>
-        </div>
+      </div>
+      <div className="py-6 border-t border-slate-100 text-center">
+        <p className="text-[11px] text-slate-400 font-medium">
+          ©{new Date().getFullYear()} Baker Jones Holdings Ltd. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

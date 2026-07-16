@@ -1,10 +1,12 @@
-import React from 'react'
-import Form from './Form'
+import React from 'react';
+import type { Metadata } from 'next';
+import ApplicationFormContainer from './components/ApplicationFormContainer';
 
-export default function ApplicationFormPage() {
-  return (
-    <div>
-      <Form/>
-    </div>
-  )
+export const metadata: Metadata = {
+  title: 'Client Portal | Online Application Form - Baker Jones Holdings',
+  description: 'Apply for an online investment account in minutes with our fast, secure application form.',
+};
+
+export default function NewApplicationFormPage() {
+  return <ApplicationFormContainer />;
 }

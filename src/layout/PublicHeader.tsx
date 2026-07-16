@@ -1,147 +1,154 @@
 "use client";
 
-import usePaths from "@/hooks/usePaths";
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import LoginButton from "./LoginButton";
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { ChevronDown, ArrowUpRight, Menu, X } from 'lucide-react';
 
 export default function PublicHeader() {
-  const paths = usePaths();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navigationItems = [
-    { href: paths.home, label: "Home" },
-    // { href: paths.insurance, label: "Insurance" },
-    // { href: paths.loans, label: "Loan Types" },
-    // { href: paths.mortgages, label: "Mortgages" },
-    { href: paths.financialplanning, label: "Financial Planning" },
-    { href: paths.expertise, label: "Expertise" },
-    { href: paths.approach, label: "Our Approach" },
-    { href: paths.aboutUs, label: "About Us" },
-    { href: paths.contactUs, label: "Contact Us" },
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(path);
+  };
+
+  const getLinkClass = (path: string) => {
+    const base = "text-[14px] transition-colors pb-1 border-b-2";
+    if (isActive(path)) {
+      return `${base} font-bold text-[#082348] border-[#082348]`;
+    }
+    return `${base} font-medium text-slate-500 hover:text-[#082348] border-transparent hover:border-slate-300`;
+  };
+
+  const productPaths = [
+    '/capital-markets',
+    '/private-equity',
+    '/structured-holdings',
+    '/digital-assets'
   ];
+  const isProductsActive = productPaths.some(path => pathname.startsWith(path));
 
   return (
     <>
-      <header className="fixed z-50 top-0 left-0 w-full bg-corporate-white/95 backdrop-blur-xl border-b border-black/10 py-4 shadow-xl">
-        <div className="max-w-[98%] 2xl:max-w-[90%] mx-auto px-4 lg:px-8">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <Link
-              href={paths.home}
-              aria-label="Home Page"
-              className="flex-shrink-0"
+      <header className={`sticky top-0 bg-white/95 backdrop-blur-md border-b transition-all duration-300 z-[100] ${scrolled ? 'py-3 border-gray-200 shadow-sm' : 'py-4 lg:py-5 border-transparent'}`}>
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-8 flex justify-between items-center">
+          <Link href="/" className="flex-shrink-0">
+            <Image src="/logo/logo.svg" width={180} height={45} alt="Baker Jones Holdings logo" className="w-[140px] sm:w-[180px]" />
+          </Link>
+
+          <nav className="hidden lg:flex items-center space-x-9">
+            <Link href="/" className={getLinkClass('/')}>Home</Link>
+            <Link href="/about-us" className={getLinkClass('/about-us')}>About Us</Link>
+            
+            {/* Desktop Products Dropdown */}
+            <div 
+              className="relative py-2"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              <Image
-                src="/logo/logo.svg"
-                width={164}
-                height={40}
-                alt="Baker Jones Holdings logo"
-                className="hidden sm:block"
-              />
-              <Image
-                src="/logo/logo.svg"
-                width={120}
-                height={30}
-                alt="Baker Jones Holdings logo"
-                className="sm:hidden"
-              />
-            </Link>
-
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-2 bg-black/5 backdrop-blur-md px-6 py-2.5 rounded-full border border-black/10">
-              <ul className="flex items-center space-x-1">
-                {navigationItems.map((item) => (
-                  <li key={item.label}>
-                    <Link href={item.href}>
-                      <span className="px-2 xl:px-3 py-2 rounded-full font-medium text-sm text-corporate-charcoal/80 transition-all duration-300 hover:text-corporate-charcoal hover:bg-black/5 whitespace-nowrap">
-                        {item.label}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {/* Desktop Right Actions */}
-            <div className="hidden lg:flex items-center space-x-6">
-              <LoginButton isDashboard={false} />
+              <button className={`flex items-center text-[14px] transition-colors cursor-pointer outline-none ${isProductsActive ? 'font-bold text-[#082348]' : 'font-medium text-slate-500 hover:text-[#082348]'}`}>
+                Financial Products <ChevronDown className={`ml-1 w-3.5 h-3.5 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isDropdownOpen && (
+                <div className="absolute left-0 mt-2 w-60 bg-white rounded-2xl shadow-xl border border-slate-100 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <Link href="/capital-markets" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/capital-markets' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
+                    Capital Markets
+                  </Link>
+                  <Link href="/private-equity" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/private-equity' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
+                    Private Equity
+                  </Link>
+                  <Link href="/structured-holdings" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/structured-holdings' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
+                    Structured Holdings
+                  </Link>
+                  <Link href="/digital-assets" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/digital-assets' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
+                    Digital Assets
+                  </Link>
+                </div>
+              )}
             </div>
 
-            {/* Mobile Menu */}
-            <div className="lg:hidden flex items-center space-x-3">
-              <div className="block">
-                <LoginButton isDashboard={false} />
+            <Link href="/login" className={getLinkClass('/login')}>Investment Platform</Link>
+            <Link href="/our-approach" className={getLinkClass('/our-approach')}>Our Approach</Link>
+            <Link href="/contact-us" className={getLinkClass('/contact-us')}>Contact Us</Link>
+          </nav>
+
+          <div className="hidden lg:flex items-center space-x-3">
+            <Link href="/login" className="px-6 py-2 rounded-full border border-slate-300 text-[#082348] text-[14px] font-bold hover:border-[#082348] transition-all">
+              Log In
+            </Link>
+            <Link href="/application-form" className="px-6 py-2 rounded-full bg-[#082348] text-white text-[14px] font-bold hover:bg-[#051630] transition-all flex items-center">
+              Register <ArrowUpRight className="ml-1 w-3.5 h-3.5 stroke-[2.5]" />
+            </Link>
+          </div>
+
+          <button 
+            className="lg:hidden p-2 text-slate-500 hover:text-[#082348] transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 pt-[80px] z-[90] bg-white lg:hidden flex flex-col overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex flex-col px-6 py-8 space-y-6">
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${isActive('/') ? 'text-[#082348]' : 'text-slate-600'}`}>Home</Link>
+            <Link href="/about-us" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${isActive('/about-us') ? 'text-[#082348]' : 'text-slate-600'}`}>About Us</Link>
+            
+            <div className="flex flex-col space-y-4">
+              <span className={`text-xl font-bold ${isProductsActive ? 'text-[#082348]' : 'text-slate-600'} flex items-center justify-between`}>
+                Financial Products
+              </span>
+              <div className="pl-4 flex flex-col space-y-4 border-l-2 border-slate-100">
+                <Link href="/capital-markets" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium ${pathname === '/capital-markets' ? 'text-[#082348] font-bold' : 'text-slate-500'}`}>
+                  Capital Markets
+                </Link>
+                <Link href="/private-equity" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium ${pathname === '/private-equity' ? 'text-[#082348] font-bold' : 'text-slate-500'}`}>
+                  Private Equity
+                </Link>
+                <Link href="/structured-holdings" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium ${pathname === '/structured-holdings' ? 'text-[#082348] font-bold' : 'text-slate-500'}`}>
+                  Structured Holdings
+                </Link>
+                <Link href="/digital-assets" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium ${pathname === '/digital-assets' ? 'text-[#082348] font-bold' : 'text-slate-500'}`}>
+                  Digital Assets
+                </Link>
               </div>
+            </div>
 
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-corporate-charcoal hover:bg-black/5">
-                    <Menu width={24} height={24} />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full sm:w-[400px] p-0 border-0 bg-corporate-white">
-                  <div className="flex flex-col h-full text-corporate-charcoal">
-                    <div className="flex items-center justify-between p-6 border-b border-black/10">
-                      <Link
-                        href={paths.home}
-                        onClick={() => setIsOpen(false)}
-                        className="flex-shrink-0 "
-                      >
-                        <Image
-                          src="/logo/logo.svg"
-                          width={140}
-                          height={35}
-                          alt="Baker Jones Holdings logo"
-                        />
-                      </Link>
-                      <SheetClose asChild>
-                        <X onClick={() => setIsOpen(false)} width={24} height={24} className="cursor-pointer text-corporate-charcoal/80 hover:text-corporate-charcoal" />
-                      </SheetClose>
-                    </div>
-
-                    <nav className="flex-1 p-6 overflow-y-auto">
-                      <ul className="space-y-4">
-                        {navigationItems.map((item, index) => (
-                          <li key={item.label}>
-                            <Link
-                              href={item.href}
-                              onClick={() => setIsOpen(false)}
-                              className="block px-4 py-3 rounded-lg font-medium text-lg text-corporate-charcoal/90 hover:text-corporate-charcoal hover:bg-black/5 transition-all"
-                            >
-                              {item.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </nav>
-
-                    <div className="p-6 border-t border-black/10">
-                      <div className="text-sm text-corporate-charcoal/60 text-center">
-                        © {new Date().getFullYear()} Baker Jones Holdings.
-                      </div>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
+            <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${isActive('/login') ? 'text-[#082348]' : 'text-slate-600'}`}>Investment Platform</Link>
+            <Link href="/our-approach" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${isActive('/our-approach') ? 'text-[#082348]' : 'text-slate-600'}`}>Our Approach</Link>
+            <Link href="/contact-us" onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold ${isActive('/contact-us') ? 'text-[#082348]' : 'text-slate-600'}`}>Contact Us</Link>
+            
+            <div className="pt-8 mt-4 border-t border-slate-100 flex flex-col space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300 delay-100">
+              <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full py-4 text-center rounded-full border-2 border-[#082348] text-[#082348] text-[16px] font-bold hover:bg-slate-50 transition-colors">
+                Log In
+              </Link>
+              <Link href="/application-form" onClick={() => setIsMobileMenuOpen(false)} className="w-full py-4 text-center rounded-full bg-[#082348] text-white text-[16px] font-bold flex items-center justify-center hover:bg-[#051630] transition-colors">
+                Register <ArrowUpRight className="ml-2 w-4 h-4 stroke-[2.5]" />
+              </Link>
             </div>
           </div>
         </div>
-      </header>
+      )}
     </>
   );
 }

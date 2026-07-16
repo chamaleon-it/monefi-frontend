@@ -1170,7 +1170,7 @@ export default function BondClientPage() {
 
                 <div className="py-4 text-center">
                   <Link
-                    href={`/new-application-form?advisor=${currentAdvisorParam}`}
+                    href={`/application-form?advisor=${currentAdvisorParam}`}
                     className="inline-flex items-center gap-2 px-8 py-3 bg-[#1e3a8a] text-white hover:bg-corporate-gold font-semibold rounded-full text-sm shadow-md transition-colors duration-300"
                   >
                     <span>Apply Online Now</span>

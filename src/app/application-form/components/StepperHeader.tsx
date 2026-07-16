@@ -57,7 +57,7 @@ export default function StepperHeader({ currentStepIndex, stepsFlow, formData, o
 
           {/* Left: logo + context */}
           <div className="flex items-center gap-5">
-            <Link href="/home-2">
+            <Link href="/">
               <Image
                 src="/logo/logo-white.svg"
                 width={140}

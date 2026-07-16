@@ -7,14 +7,14 @@ import { usePathname } from 'next/navigation'
 
 export default function Layout({children}:{children:React.ReactNode}) {
   const pathname = usePathname();
-  const isHome2 = pathname === '/home-2';
+  const isHome = pathname === '/';
   return (
     <div className="bg-corporate-white min-h-screen text-corporate-black selection:bg-corporate-gold selection:text-white">
-      {!isHome2 && <PublicHeader />}
-      <main className={!isHome2 ? "pt-24" : ""}>
+      <PublicHeader />
+      <main>
         {children}
       </main>
-      {!isHome2 && <PublicFooter />}
+      <PublicFooter />
     </div>
   )
 }

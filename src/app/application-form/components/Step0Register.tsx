@@ -37,7 +37,7 @@ export default function Step0Register({ formData, updateFormData, onNext }: Step
         <div className="absolute -bottom-20 -left-10 w-[350px] h-[350px] bg-white/3 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="relative z-10">
-          <Link href="/home-2"><Image src="/logo/logo-white.svg" width={180} height={56} alt="Baker Jones Holdings" className="h-8 w-auto object-contain" /></Link>
+          <Link href="/"><Image src="/logo/logo-white.svg" width={180} height={56} alt="Baker Jones Holdings" className="h-8 w-auto object-contain" /></Link>
         </div>
 
         <div className="relative z-10 my-auto py-8 lg:py-0">
@@ -70,7 +70,7 @@ export default function Step0Register({ formData, updateFormData, onNext }: Step
           <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_4px_32px_rgba(0,0,0,0.08)] p-8 sm:p-10">
             {/* Mobile Logo */}
             <div className="mb-8 lg:hidden flex justify-center border-b border-slate-100 pb-6">
-              <Link href="/home-2">
+              <Link href="/">
                 <Image src="/logo/logo.svg" width={160} height={40} alt="Baker Jones Holdings" className="h-8 w-auto object-contain" />
               </Link>
             </div>
