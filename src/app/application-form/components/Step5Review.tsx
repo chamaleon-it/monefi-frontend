@@ -266,7 +266,7 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
               This application is made to <span className="text-slate-700 font-normal">Baker Jones Holdings</span> for the purpose of establishing and maintaining an investment and/or custody relationship.
             </p>
             <p>
-              Please read our <a href="/terms" className="text-corporate-charcoal underline hover:text-corporate-gold transition-colors">Terms of Business</a> before submitting.
+              Please read our <a target="_blank" href="/terms" className="text-corporate-charcoal underline hover:text-corporate-gold transition-colors">Terms of Business</a> before submitting.
             </p>
             <p className="text-[13px]">
               By submitting, you confirm all information provided is true and accurate, and authorise Baker Jones Holdings to collect and use this information for regulatory compliance and account administration.
@@ -277,16 +277,16 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
           <div
             onClick={handleToggleTerms}
             className={`p-4 rounded-lg border transition-all cursor-pointer flex items-start gap-3.5 ${agreedToTerms
-                ? 'border-corporate-charcoal bg-slate-50'
-                : error
-                  ? 'border-red-400 bg-red-50/30'
-                  : 'border-slate-200 hover:border-slate-300 bg-white'
+              ? 'border-corporate-charcoal bg-slate-50'
+              : error
+                ? 'border-red-400 bg-red-50/30'
+                : 'border-slate-200 hover:border-slate-300 bg-white'
               }`}
           >
             <div
               className={`w-5 h-5 rounded border-[1.5px] flex items-center justify-center shrink-0 mt-0.5 transition-colors ${agreedToTerms
-                  ? 'border-corporate-charcoal bg-corporate-charcoal text-white'
-                  : 'border-slate-300 bg-white'
+                ? 'border-corporate-charcoal bg-corporate-charcoal text-white'
+                : 'border-slate-300 bg-white'
                 }`}
             >
               {agreedToTerms && <Check className="w-3 h-3" strokeWidth={2.5} />}
