@@ -19,6 +19,7 @@ import StepJointDocuments from './StepJointDocuments';
 import StepTrusteeType from './StepTrusteeType';
 import StepTrustDetails from './StepTrustDetails';
 import StepTrustTaxInfo from './StepTrustTaxInfo';
+import PublicFooter from '@/layout/PublicFooter';
 
 export default function ApplicationFormContainer() {
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
@@ -96,7 +97,7 @@ export default function ApplicationFormContainer() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#F5F4F2] text-corporate-black flex flex-col font-inter ${currentStepIndex < 2 ? 'lg:h-screen lg:overflow-hidden' : ''}`}>
+    <div className={`min-h-screen bg-[#F5F4F2] text-corporate-black flex flex-col font-inter ${currentStepIndex === 0 ? 'lg:h-screen lg:overflow-hidden' : ''}`}>
       {currentStepIndex >= 2 && (
         <StepperHeader currentStepIndex={currentStepIndex} stepsFlow={stepsFlow} formData={formData} onJumpToStep={handleJumpToStep} />
       )}
@@ -117,91 +118,7 @@ export default function ApplicationFormContainer() {
         {currentStepName === 'TrustTaxInfo' && <StepTrustTaxInfo {...stepProps} />}
       </main>
 
-      {currentStepIndex >= 1 && (
-        <footer className="bg-corporate-charcoal text-white font-inter mt-auto">
-          {/* Main footer content */}
-          <div className="max-w-6xl mx-auto px-6 sm:px-10 py-10 sm:py-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-
-              {/* Column 1: Brand */}
-              <div className="lg:col-span-1">
-                <Image
-                  src="/logo/logo-white.svg"
-                  width={140}
-                  height={44}
-                  alt="Baker Jones Holdings"
-                  className="h-6 w-auto object-contain  mb-4"
-                />
-                <p className="text-[13px] text-white/50 leading-relaxed">
-                  Institutional-grade fixed-income solutions for private and corporate investors.
-                </p>
-              </div>
-
-              {/* Column 2: Contact */}
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Contact</p>
-                <div className="space-y-3">
-                  <a href="mailto:info@bakerjonesholdings.com" className="flex items-center gap-2.5 text-[13px] text-white/70 hover:text-white transition-colors">
-                    <Mail className="w-3.5 h-3.5 text-corporate-gold/60 shrink-0" strokeWidth={1.5} />
-                    info@bakerjonesholdings.com
-                  </a>
-                  <a href="tel:+441182118521" className="flex items-center gap-2.5 text-[13px] text-white/70 hover:text-white transition-colors">
-                    <Phone className="w-3.5 h-3.5 text-corporate-gold/60 shrink-0" strokeWidth={1.5} />
-                    0118 211 8521
-                  </a>
-                </div>
-              </div>
-
-              {/* Column 3: Legal */}
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Legal</p>
-                <div className="space-y-2.5">
-                  <a href="/privacy" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
-                    Privacy Policy
-                  </a>
-                  <a href="/terms" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
-                    Terms of Business
-                  </a>
-                  <a href="/cookie-policy" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
-                    Cookie Policy
-                  </a>
-                  <a href="/regulatory-information" target="_blank" rel="noopener noreferrer" className="block text-[13px] text-white/60 hover:text-white transition-colors">
-                    Regulatory Information
-                  </a>
-                </div>
-              </div>
-
-              {/* Column 4: Security */}
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Security</p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2.5">
-                    <Shield className="w-4 h-4 text-corporate-gold/50 shrink-0" strokeWidth={1.5} />
-                    <span className="text-[13px] text-white/60">FCA Regulated</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <Lock className="w-4 h-4 text-corporate-gold/50 shrink-0" strokeWidth={1.5} />
-                    <span className="text-[13px] text-white/60">256-bit SSL Encryption</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="border-t border-white/10">
-            <div className="max-w-6xl mx-auto px-6 sm:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <p className="text-[12px] text-white/40">
-                &copy; {new Date().getFullYear()} Baker Jones Holdings. All rights reserved.
-              </p>
-              <p className="text-[11px] text-white/30 text-center sm:text-right max-w-md">
-                Baker Jones Holdings is authorised and regulated by the Financial Conduct Authority.
-              </p>
-            </div>
-          </div>
-        </footer>
-      )}
+      {currentStepIndex >= 1 && <PublicFooter />}
     </div>
   );
 }

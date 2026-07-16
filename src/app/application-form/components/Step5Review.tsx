@@ -1,25 +1,56 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Edit2, Check, AlertCircle, ArrowRight } from 'lucide-react';
+import { Edit2, Check, AlertCircle, ArrowRight, Loader2 } from 'lucide-react';
 import { StepProps } from './types';
+import api from '@/services/api';
 
 export default function Step5Review({ formData, updateFormData, onNext, onBack, onJumpToStep }: StepProps) {
   const [error, setError] = useState<string>('');
-  const { personalDetails, residentialAddress, contactDetails, documents, additionalQuestions, settlementDetails, agreedToTerms } = formData;
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const {
+    accountType,
+    personalDetails,
+    residentialAddress,
+    contactDetails,
+    documents,
+    additionalQuestions,
+    settlementDetails,
+    agreedToTerms,
+    companyDetails,
+    jointDetails,
+    trustDetails,
+  } = formData;
 
   const handleToggleTerms = () => {
     updateFormData('agreedToTerms', !agreedToTerms);
     if (error) setError('');
   };
 
-  const handleSubmit = () => {
+  const getCleanFileName = (path: string | null | undefined) => {
+    if (!path) return '';
+    return path.substring(path.lastIndexOf('/') + 1);
+  };
+
+  const handleSubmit = async () => {
     if (!agreedToTerms) {
       setError('You must read and agree to the declaration before submitting your application.');
       document.getElementById('declaration-box')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-    onNext();
+
+    try {
+      setSubmitting(true);
+      setError('');
+
+      await api.post('/application_form', formData);
+
+      onNext();
+    } catch (err: any) {
+      setError(err?.response?.data?.message || 'An error occurred while submitting your application. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const renderRow = (label: string, value?: string | null) => (
@@ -39,6 +70,7 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
           type="button"
           onClick={() => onJumpToStep(stepNumber)}
           className="inline-flex items-center gap-1 text-[12px] font-normal text-slate-400 hover:text-corporate-charcoal transition-colors cursor-pointer"
+          disabled={submitting}
         >
           <Edit2 className="w-3 h-3" strokeWidth={1.5} />
           <span>Edit</span>
@@ -63,15 +95,25 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
       </div>
 
       <div className="space-y-4">
+        {/* Account Type */}
+        <div className={CARD}>
+          {renderCardHeader('Account Type', 1)}
+          <div>
+            {renderRow('Account Type Chosen', accountType)}
+          </div>
+        </div>
+
         {/* Personal Information */}
         <div className={CARD}>
           {renderCardHeader('Personal Information', 2)}
           <div>
             {renderRow('Title', personalDetails.title)}
             {renderRow('First name', personalDetails.firstName)}
+            {personalDetails.middleName && renderRow('Middle name', personalDetails.middleName)}
             {renderRow('Last name', personalDetails.lastName)}
             {renderRow('Date of birth', personalDetails.dateOfBirth)}
             {renderRow('Occupation', personalDetails.occupation)}
+            {personalDetails.role && renderRow('Role / Capacity', personalDetails.role)}
             {renderRow('Address Line 1', residentialAddress.addressLine1)}
             {residentialAddress.addressLine2 && renderRow('Address Line 2', residentialAddress.addressLine2)}
             {renderRow('City / Town', residentialAddress.city)}
@@ -83,16 +125,107 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
           </div>
         </div>
 
-        {/* Identification */}
+        {/* Company Details (Only if Company) */}
+        {accountType === 'Company' && companyDetails && (
+          <div className={CARD}>
+            {renderCardHeader('Company Information', 2)}
+            <div>
+              {renderRow('Company Name', companyDetails.companyName)}
+              {renderRow('Registration Number', companyDetails.registrationNumber)}
+              {companyDetails.vatNumber && renderRow('VAT Number', companyDetails.vatNumber)}
+              {renderRow('Date of Incorporation', companyDetails.dateOfIncorporation)}
+              {renderRow('Nature of Business', companyDetails.natureOfBusiness)}
+              {renderRow('Registered Address 1', companyDetails.registeredAddress.addressLine1)}
+              {companyDetails.registeredAddress.addressLine2 && renderRow('Registered Address 2', companyDetails.registeredAddress.addressLine2)}
+              {renderRow('City', companyDetails.registeredAddress.city)}
+              {renderRow('Postcode', companyDetails.registeredAddress.postcode)}
+              {renderRow('Country', companyDetails.registeredAddress.country)}
+              {renderRow('Classification', companyDetails.companyClassification)}
+              {renderRow('Tax Classification', companyDetails.taxClassification)}
+              {renderRow('Shareholder owns 25% or more?', companyDetails.owns25Percent)}
+            </div>
+
+            {companyDetails.officers && companyDetails.officers.length > 0 && (
+              <div className="mt-6 pt-5 border-t border-slate-100">
+                <p className="text-[13px] font-semibold text-slate-800 mb-3">Company Officers &amp; Directors</p>
+                <div className="space-y-4">
+                  {companyDetails.officers.map((officer, index) => (
+                    <div key={index} className="bg-slate-50 p-4 rounded-lg">
+                      <p className="text-[12px] font-semibold text-slate-600 mb-2">Officer #{index + 1}</p>
+                      {renderRow('Name', `${officer.title} ${officer.firstName} ${officer.lastName}`)}
+                      {renderRow('DOB', officer.dateOfBirth)}
+                      {renderRow('Occupation', officer.occupation)}
+                      {officer.role && renderRow('Role / Capacity', officer.role)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Joint Holder Details (Only if Joint) */}
+        {accountType === 'Joint' && jointDetails && (
+          <div className={CARD}>
+            {renderCardHeader('Joint Applicant Details', 4)}
+            <div>
+              {renderRow('Title', jointDetails.personalDetails.title)}
+              {renderRow('First name', jointDetails.personalDetails.firstName)}
+              {jointDetails.personalDetails.middleName && renderRow('Middle name', jointDetails.personalDetails.middleName)}
+              {renderRow('Last name', jointDetails.personalDetails.lastName)}
+              {renderRow('Date of birth', jointDetails.personalDetails.dateOfBirth)}
+              {renderRow('Occupation', jointDetails.personalDetails.occupation)}
+              {renderRow('Address Line 1', jointDetails.residentialAddress.addressLine1)}
+              {jointDetails.residentialAddress.addressLine2 && renderRow('Address Line 2', jointDetails.residentialAddress.addressLine2)}
+              {renderRow('City / Town', jointDetails.residentialAddress.city)}
+              {renderRow('Postal Code', jointDetails.residentialAddress.postcode)}
+              {renderRow('Country', jointDetails.residentialAddress.country)}
+              {renderRow('Mobile', `${jointDetails.contactDetails.mobilePhoneCode || ''} ${jointDetails.contactDetails.mobilePhone}`.trim())}
+              {renderRow('Email', jointDetails.contactDetails.emailAddress)}
+            </div>
+          </div>
+        )}
+
+        {/* Trust Details (Only if Trust) */}
+        {accountType === 'Trust' && trustDetails && (
+          <div className={CARD}>
+            {renderCardHeader('Trust Information', 3)}
+            <div>
+              {renderRow('Trustee Type', trustDetails.trusteeType)}
+              {renderRow('Trust Name', trustDetails.trustName)}
+              {renderRow('Trust Type', trustDetails.trustType)}
+              {trustDetails.vatNumber && renderRow('VAT Number', trustDetails.vatNumber)}
+              {renderRow('Tax Reference / UTR', trustDetails.taxReference)}
+              {renderRow('Country Established', trustDetails.countryEstablished)}
+              {renderRow('Nature of Trust / Activities', trustDetails.natureOfTrust)}
+              {renderRow('Tax Classification', trustDetails.taxClassification)}
+              {renderRow('Has GIIN?', trustDetails.hasGIIN)}
+              {trustDetails.giinValue && renderRow('GIIN Code', trustDetails.giinValue)}
+            </div>
+          </div>
+        )}
+
+        {/* Identification Documents */}
         <div className={CARD}>
           {renderCardHeader('Identification Documents', 3)}
           <div>
-            {renderRow('Identity verification', documents.identityVerificationFile ? `Uploaded: ${documents.identityVerificationFile}` : documents.identityVerificationEmailLater ? 'Will email later' : 'Pending')}
-            {renderRow('Proof of address', documents.proofOfAddressFile ? `Uploaded: ${documents.proofOfAddressFile}` : documents.proofOfAddressEmailLater ? 'Will email later' : 'Pending')}
+            {renderRow('Identity verification', documents.identityVerificationFile ? `Uploaded: ${getCleanFileName(documents.identityVerificationFile)}` : documents.identityVerificationEmailLater ? 'Will email later' : 'Pending')}
+            {renderRow('Proof of address', documents.proofOfAddressFile ? `Uploaded: ${getCleanFileName(documents.proofOfAddressFile)}` : documents.proofOfAddressEmailLater ? 'Will email later' : 'Pending')}
+            {accountType === 'Company' && (
+              <>
+                {renderRow('Certificate of Incorporation', documents.certificateOfIncorporationFile ? `Uploaded: ${getCleanFileName(documents.certificateOfIncorporationFile)}` : documents.certificateOfIncorporationEmailLater ? 'Will email later' : 'Pending')}
+                {renderRow('Proof of Registered Address', documents.proofOfRegisteredAddressFile ? `Uploaded: ${getCleanFileName(documents.proofOfRegisteredAddressFile)}` : documents.proofOfRegisteredAddressEmailLater ? 'Will email later' : 'Pending')}
+              </>
+            )}
+            {accountType === 'Trust' && (
+              <>
+                {renderRow('Trust Deed', documents.trustDeedFile ? `Uploaded: ${getCleanFileName(documents.trustDeedFile)}` : documents.trustDeedEmailLater ? 'Will email later' : 'Pending')}
+              </>
+            )}
           </div>
         </div>
 
-        {/* Additional */}
+        {/* Additional Information */}
         <div className={CARD}>
           {renderCardHeader('Additional Information', 4)}
           <div>
@@ -147,7 +280,7 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
                 ? 'border-corporate-charcoal bg-slate-50'
                 : error
                   ? 'border-red-400 bg-red-50/30'
-                  : 'border-slate-200 hover:border-slate-300'
+                  : 'border-slate-200 hover:border-slate-300 bg-white'
               }`}
           >
             <div
@@ -163,7 +296,7 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
             </span>
           </div>
           {error && (
-            <p className="text-[12px] text-red-500 mt-2 flex items-center gap-1.5 font-normal">
+            <p className="text-[12px] text-red-500 mt-2 flex items-center gap-1.5 font-normal animate-fade-in">
               <AlertCircle className="w-3.5 h-3.5" strokeWidth={1.5} />{error}
             </p>
           )}
@@ -175,17 +308,28 @@ export default function Step5Review({ formData, updateFormData, onNext, onBack, 
         <button
           type="button"
           onClick={onBack}
-          className="w-full sm:w-auto text-[14px] font-medium text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl border border-slate-300 hover:border-slate-400 hover:bg-slate-50 transition-all cursor-pointer bg-white"
+          disabled={submitting}
+          className="w-full sm:w-auto text-[14px] font-medium text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl border border-slate-300 hover:border-slate-400 hover:bg-slate-50 transition-all cursor-pointer bg-white disabled:opacity-50"
         >
           Back
         </button>
         <button
           type="button"
           onClick={handleSubmit}
-          className="w-full sm:w-auto bg-corporate-charcoal hover:bg-[#12144A] active:scale-[0.99] text-white text-[14px] font-semibold py-3.5 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+          disabled={submitting}
+          className="w-full sm:w-auto bg-corporate-charcoal hover:bg-[#12144A] active:scale-[0.99] text-white text-[14px] font-semibold py-3.5 px-10 rounded-xl shadow-lg shadow-corporate-charcoal/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
         >
-          <span>Submit Application</span>
-          <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+          {submitting ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              <span>Submitting...</span>
+            </>
+          ) : (
+            <>
+              <span>Submit Application</span>
+              <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+            </>
+          )}
         </button>
       </div>
     </div>

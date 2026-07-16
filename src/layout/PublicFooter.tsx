@@ -14,7 +14,7 @@ export default function PublicFooter() {
               <Image src="/logo/logo.svg" width={160} height={40} alt="Baker Jones Holdings logo" />
             </Link>
             <p className="text-[12px] text-slate-500 leading-relaxed max-w-[280px]">
-              Baker Jones Holdings Ltd. LEI: 2138006FBDND9MVSV504. Company No: 04473176.
+              Building long-term value through strategic investments and digital infrastructure.
             </p>
           </div>
           <div className="md:col-span-2 lg:col-span-2">

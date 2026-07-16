@@ -9,8 +9,49 @@ import api from "@/services/api";
 import getConfig from "@/config/configuration";
 
 interface Application {
-  email: string;
-  accountType: "Individual" | "Joint" | "Company";
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  accountType: "Individual" | "Joint" | "Company" | "Trust";
+  referenceNumber?: string;
+
+  // Old flat schema fields (legacy support)
+  email?: string;
+  title?: string;
+  firstName?: string;
+  lastName?: string;
+  dateOfBirth?: string;
+  occupation?: string;
+  occupationCategory?: string;
+  homePhone?: string;
+  mobilePhone?: string;
+  country?: string;
+  houseNumberOrName?: string;
+  streetName?: string;
+  town?: string;
+  region?: string;
+  postcode?: string;
+  identityVerification?: string;
+  identityVerificationFile?: string;
+  backIdentityVerificationFile?: string;
+  proofOfAddress?: string;
+  proofOfAddressFile?: string;
+  backProofOfAddressFile?: string;
+  purposeOfAccount?: string;
+  bankAccount?: string;
+  bankAccountDetails?: {
+    bankName?: string;
+    branchName?: string;
+    accountName?: string;
+    accountNumber?: string;
+    sortCode?: string;
+  };
+  nextOfKinName?: {
+    name: string;
+    homePhone: string;
+    mobilePhone: string;
+    email: string;
+  };
   company?: {
     name?: string;
     companyType?: "Public" | "Proprietary";
@@ -19,42 +60,16 @@ interface Application {
     taxCodeExemption?: "Yes" | "No";
     dateOfRegistration?: string;
     natureOfBusiness?: string;
-    category?:
-      | "Limited Company"
-      | "Publicly Listed Company"
-      | "Majority owned subsidiary of a listed company"
-      | "Regulated company"
-      | "None of the above";
+    category?: string;
     address?: string;
     streetName?: string;
     town?: string;
     region?: string;
     postcode?: string;
     country?: string;
-    companyTaxInformation?:
-      | "Financial Institution"
-      | "Public Listed Company, Majority owned subsidiary of a Public Listed Company or a Registered Charity"
-      | " Active Non-Financial Entity (NFE)"
-      | "None of the above";
-
+    companyTaxInformation?: string;
     companyOwnership?: "Yes" | "No";
   };
-  title: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  occupation: string;
-  occupationCategory: string;
-  homePhone: string;
-  mobilePhone: string;
-  password: string;
-  confirmPassword: string;
-  country: string;
-  houseNumberOrName: string;
-  streetName: string;
-  town: string;
-  region: string;
-  postcode: string;
   jointHolder?: {
     title?: string;
     firstName?: string;
@@ -71,41 +86,133 @@ interface Application {
     region?: string;
     postcode?: string;
   };
-  identityVerification:
-    | "International travel document"
-    | "Driving Licence"
-    | "Email Identification";
-    identityVerificationFile:string,
-      backIdentityVerificationFile?:string,
-  proofOfAddress: "Utility Bill" | "Driving Licence" | "Email Proof of Address";
-  proofOfAddressFile:string
-  backProofOfAddressFile?:string
-  purposeOfAccount:
-    | "Savings"
-    | "Growth"
-    | "Income"
-    | "Retirement"
-    | "Business account"
-    | "Other";
-  bankAccount:
-    | "Provide Existing Bank Account Details"
-    | "Email Existing Bank Account Details";
-  bankAccountDetails?: {
-    bankName?: string;
-    branchName?: string;
-    accountName?: string;
-    accountNumber?: string;
-    sortCode?: string;
+
+  // New schema fields
+  personalDetails?: {
+    title: string;
+    firstName: string;
+    middleName?: string;
+    lastName: string;
+    dateOfBirth: string;
+    occupation: string;
+    role?: string;
   };
-  nextOfKinName: {
-    name: string;
-    homePhone: string;
+  residentialAddress?: {
+    addressLine1: string;
+    addressLine2?: string;
+    city: string;
+    postcode: string;
+    country: string;
+  };
+  contactDetails?: {
+    homePhoneCode?: string;
+    homePhone?: string;
+    mobilePhoneCode: string;
     mobilePhone: string;
-    email: string;
+    emailAddress: string;
   };
-  _id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  documents?: {
+    identityVerificationFile?: string | null;
+    identityVerificationEmailLater?: boolean;
+    proofOfAddressFile?: string | null;
+    proofOfAddressEmailLater?: boolean;
+    certificateOfIncorporationFile?: string | null;
+    certificateOfIncorporationEmailLater?: boolean;
+    proofOfRegisteredAddressFile?: string | null;
+    proofOfRegisteredAddressEmailLater?: boolean;
+    trustDeedFile?: string | null;
+    trustDeedEmailLater?: boolean;
+  };
+  additionalQuestions?: {
+    financialAdviser: string;
+    employmentStatus: string;
+    occupation: string;
+    employerName: string;
+    industrySector: string;
+    annualIncomeRange: string;
+    netWorth: string;
+    liquidAssets: string;
+    expectedInvestmentAmount: string;
+    sourceOfFunds: string;
+    pep: string;
+    pepFamily: string;
+  };
+  settlementDetails?: {
+    beneficiaryAccountName: string;
+    nameOfBank: string;
+    accountNumber: string;
+    sortCode: string;
+  };
+  agreedToTerms?: boolean;
+  companyDetails?: {
+    companyName: string;
+    registrationNumber: string;
+    vatNumber?: string;
+    dateOfIncorporation: string;
+    natureOfBusiness: string;
+    registeredAddress: {
+      addressLine1: string;
+      addressLine2?: string;
+      city: string;
+      postcode: string;
+      country: string;
+    };
+    companyClassification: string;
+    taxClassification: string;
+    officers: {
+      title: string;
+      firstName: string;
+      middleName?: string;
+      lastName: string;
+      dateOfBirth: string;
+      occupation: string;
+      role?: string;
+    }[];
+    owns25Percent: string;
+  };
+  jointDetails?: {
+    personalDetails: {
+      title: string;
+      firstName: string;
+      middleName?: string;
+      lastName: string;
+      dateOfBirth: string;
+      occupation: string;
+      role?: string;
+    };
+    residentialAddress: {
+      addressLine1: string;
+      addressLine2?: string;
+      city: string;
+      postcode: string;
+      country: string;
+    };
+    contactDetails: {
+      homePhoneCode?: string;
+      homePhone?: string;
+      mobilePhoneCode: string;
+      mobilePhone: string;
+      emailAddress: string;
+    };
+    documents: {
+      identityVerificationFile?: string | null;
+      identityVerificationEmailLater?: boolean;
+      proofOfAddressFile?: string | null;
+      proofOfAddressEmailLater?: boolean;
+    };
+  };
+  trustDetails?: {
+    trusteeType: string;
+    trustName: string;
+    trustType: string;
+    vatNumber?: string;
+    taxReference: string;
+    countryEstablished: string;
+    natureOfTrust: string;
+    taxClassification: string;
+    hasGIIN: string;
+    giinValue?: string;
+  };
 }
 
 interface Pagination {
@@ -131,7 +238,7 @@ export default function ApplicationTable() {
     return `/application_form?${params.toString()}`;
   }, [filter]);
 
-  const { data, isLoading,mutate } = useSWR<ApplicationsApiResponse>(apiUrl);
+  const { data, isLoading, mutate } = useSWR<ApplicationsApiResponse>(apiUrl);
 
   const applications = data?.data ?? [];
   const pagination = data?.pagination;
@@ -166,7 +273,10 @@ export default function ApplicationTable() {
   const [selectedApplication, setSelectedApplication] =
     useState<Application | null>(null);
 
-  
+  const getCleanFileName = (path: string | null | undefined) => {
+    if (!path) return '';
+    return path.substring(path.lastIndexOf('/') + 1);
+  };
 
   const SkeletonRow = () => (
     <tr className="animate-pulse">
@@ -213,41 +323,43 @@ export default function ApplicationTable() {
 
               {!isLoading && applications.length > 0 && (
                 <>
-                  {applications.map((application, i) => (
-                    <tr
-                      key={application._id}
-                      className="border-b bg-bakerjonesholdings-off-pink"
-                    >
-                      <td className="py-3 px-4 text-sm">
-                        {(filter.page - 1) * filter.limit + i + 1}
-                      </td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        <div className="flex flex-col">
-                          <p className="font-bold">
-                            {" "}
-                            {fName(
-                              `${application.title} ${application.firstName} ${application.lastName}`
-                            )}
-                          </p>
-                          <p className="text-sm">{application.email}</p>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        {application.accountType}
-                      </td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        {fDateAndTime(application.createdAt)}
-                      </td>
-                      <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                        <button
-                          className="text-yellow-600 hover:text-yellow-800 text-sm font-medium cursor-pointer"
-                          onClick={() => setSelectedApplication(application)}
-                        >
-                          View
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {applications.map((application, i) => {
+                    const name = application.personalDetails
+                      ? `${application.personalDetails.title || ''} ${application.personalDetails.firstName || ''} ${application.personalDetails.lastName || ''}`.trim()
+                      : `${application.title || ''} ${application.firstName || ''} ${application.lastName || ''}`.trim();
+                    const email = application.contactDetails?.emailAddress || application.email || '—';
+
+                    return (
+                      <tr
+                        key={application._id}
+                        className="border-b bg-bakerjonesholdings-off-pink"
+                      >
+                        <td className="py-3 px-4 text-sm">
+                          {(filter.page - 1) * filter.limit + i + 1}
+                        </td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          <div className="flex flex-col">
+                            <p className="font-bold">{fName(name || '—')}</p>
+                            <p className="text-sm">{email}</p>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          {application.accountType}
+                        </td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          {fDateAndTime(application.createdAt)}
+                        </td>
+                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          <button
+                            className="text-yellow-600 hover:text-yellow-800 text-sm font-medium cursor-pointer"
+                            onClick={() => setSelectedApplication(application)}
+                          >
+                            View
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </>
               )}
 
@@ -305,15 +417,15 @@ export default function ApplicationTable() {
       )}
 
       {selectedApplication && (
-        <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex items-center justify-center z-50" data-lenis-prevent>
-          <div className="bg-white rounded-xl p-6 max-w-4xl w-full mx-4 shadow-xl overflow-y-auto max-h-[90vh] space-y-4 overflow-auto">
+        <div className="fixed inset-0 bg-black/35 bg-opacity-50 flex items-center justify-center z-50" data-lenis-prevent>
+          <div className="bg-white rounded-xl p-6 max-w-4xl w-full mx-4 shadow-xl overflow-y-auto max-h-[90vh] space-y-6">
             <div className="flex justify-between items-center border-b pb-2">
               <h2 className="text-xl font-semibold text-gray-900">
-                Application Details
+                Application Details - <span className="font-mono text-base bg-slate-100 px-2 py-0.5 rounded">{selectedApplication.referenceNumber || '—'}</span>
               </h2>
               <button
                 onClick={() => setSelectedApplication(null)}
-                className="text-gray-500 text-2xl"
+                className="text-gray-500 hover:text-black text-2xl font-bold cursor-pointer"
               >
                 &times;
               </button>
@@ -321,212 +433,290 @@ export default function ApplicationTable() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-800">
               <p>
-                <strong>Email:</strong> {selectedApplication.email}
+                <strong>Email Address:</strong> {selectedApplication.contactDetails?.emailAddress || selectedApplication.email || '—'}
               </p>
               <p>
                 <strong>Account Type:</strong> {selectedApplication.accountType}
               </p>
               <p>
-                <strong>Title:</strong> {selectedApplication.title}
+                <strong>Title:</strong> {selectedApplication.personalDetails?.title || selectedApplication.title || '—'}
               </p>
               <p>
-                <strong>Name:</strong>{" "}
-                {`${selectedApplication.firstName} ${selectedApplication.lastName}`}
+                <strong>First Name:</strong> {selectedApplication.personalDetails?.firstName || selectedApplication.firstName || '—'}
+              </p>
+              {(selectedApplication.personalDetails?.middleName) && (
+                <p>
+                  <strong>Middle Name:</strong> {selectedApplication.personalDetails?.middleName}
+                </p>
+              )}
+              <p>
+                <strong>Last Name:</strong> {selectedApplication.personalDetails?.lastName || selectedApplication.lastName || '—'}
               </p>
               <p>
-                <strong>Date of Birth:</strong>{" "}
-                {selectedApplication.dateOfBirth}
+                <strong>Date of Birth:</strong> {selectedApplication.personalDetails?.dateOfBirth || selectedApplication.dateOfBirth || '—'}
               </p>
               <p>
-                <strong>Occupation:</strong> {selectedApplication.occupation}
+                <strong>Occupation:</strong> {selectedApplication.personalDetails?.occupation || selectedApplication.occupation || '—'}
+              </p>
+              {selectedApplication.personalDetails?.role && (
+                <p>
+                  <strong>Role / Capacity:</strong> {selectedApplication.personalDetails?.role}
+                </p>
+              )}
+              <p>
+                <strong>Home Phone:</strong> {selectedApplication.contactDetails ? (selectedApplication.contactDetails.homePhone ? `${selectedApplication.contactDetails.homePhoneCode || ''} ${selectedApplication.contactDetails.homePhone}` : '—') : (selectedApplication.homePhone || '—')}
               </p>
               <p>
-                <strong>Occupation Category:</strong>{" "}
-                {selectedApplication.occupationCategory}
+                <strong>Mobile Phone:</strong> {selectedApplication.contactDetails ? (selectedApplication.contactDetails.mobilePhone ? `${selectedApplication.contactDetails.mobilePhoneCode || ''} ${selectedApplication.contactDetails.mobilePhone}` : '—') : (selectedApplication.mobilePhone || '—')}
               </p>
               <p>
-                <strong>Home Phone:</strong> {selectedApplication.homePhone}
-              </p>
-              <p>
-                <strong>Mobile Phone:</strong> {selectedApplication.mobilePhone}
-              </p>
-              <p>
-                <strong>Address:</strong>{" "}
-                {`${selectedApplication.houseNumberOrName}, ${selectedApplication.streetName}, ${selectedApplication.town}, ${selectedApplication.region}, ${selectedApplication.postcode}, ${selectedApplication.country}`}
-              </p>
-              <p>
-                <strong>Identity Verification:</strong>{" "}
-                {selectedApplication.identityVerification}
-              </p>
-              {selectedApplication.identityVerification !== "Email Identification" &&<p>
-                <strong>Identity File:</strong>{" "}
-                <div className="flex gap-2.5">
-
-               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.identityVerificationFile} target="_blank" rel="noopener noreferrer">View File</a>
-                {selectedApplication.backIdentityVerificationFile && <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.backIdentityVerificationFile} target="_blank" rel="noopener noreferrer">View Back File</a>}
-                </div>
-              </p>}
-              <p>
-                <strong>Proof of Address:</strong>{" "}
-                {selectedApplication.proofOfAddress}
-              </p>
-               {selectedApplication.proofOfAddress !== "Email Proof of Address" &&<p>
-                <strong>Proof of Address File:</strong>{" "}
-                <div className="flex gap-2.5">
-
-               <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.proofOfAddressFile} target="_blank" rel="noopener noreferrer">View File</a>
-              {selectedApplication.backProofOfAddressFile && <a className="px-2 py-0.5 rounded-md border" href={getConfig().backendURL+selectedApplication.backProofOfAddressFile} target="_blank" rel="noopener noreferrer">View Back File</a>}
-                </div>
-              </p>}
-              <p>
-                <strong>Purpose of Account:</strong>{" "}
-                {selectedApplication.purposeOfAccount}
-              </p>
-              <p>
-                <strong>Bank Account:</strong> {selectedApplication.bankAccount}
-              </p>
-              <p>
-                <strong>Bank Name:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.bankName}
-              </p>
-              <p>
-                <strong>Branch Name:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.branchName}
-              </p>
-              <p>
-                <strong>Account Name:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.accountName}
-              </p>
-              <p>
-                <strong>Account Number:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.accountNumber}
-              </p>
-              <p>
-                <strong>Sort Code:</strong>{" "}
-                {selectedApplication.bankAccountDetails?.sortCode}
+                <strong>Residential Address:</strong>{" "}
+                {selectedApplication.residentialAddress ? (
+                  `${selectedApplication.residentialAddress.addressLine1}, ${selectedApplication.residentialAddress.addressLine2 || ''}, ${selectedApplication.residentialAddress.city}, ${selectedApplication.residentialAddress.postcode}, ${selectedApplication.residentialAddress.country}`.replace(/, ,/g, ',').trim()
+                ) : (
+                  `${selectedApplication.houseNumberOrName || ''} ${selectedApplication.streetName || ''}, ${selectedApplication.town || ''}, ${selectedApplication.region || ''}, ${selectedApplication.postcode || ''}, ${selectedApplication.country || ''}`.replace(/^[ ,]+|[ ,]+$/g, '').replace(/, ,/g, ',').trim() || '—'
+                )}
               </p>
             </div>
 
-            {selectedApplication.accountType === "Company" &&
-              selectedApplication.company && (
-                <div className="border-t pt-4 space-y-2">
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    Company Information
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <p>
-                      <strong>Name:</strong> {selectedApplication.company.name}
-                    </p>
-                    <p>
-                      <strong>Company Type:</strong>{" "}
-                      {selectedApplication.company.companyType}
-                    </p>
-                    <p>
-                      <strong>Company Number:</strong>{" "}
-                      {selectedApplication.company.companyNumber}
-                    </p>
-                    <p>
-                      <strong>Tax Code:</strong>{" "}
-                      {selectedApplication.company.taxCode}
-                    </p>
-                    <p>
-                      <strong>Tax Exemption:</strong>{" "}
-                      {selectedApplication.company.taxCodeExemption}
-                    </p>
-                    <p>
-                      <strong>Registration Date:</strong>{" "}
-                      {selectedApplication.company.dateOfRegistration}
-                    </p>
-                    <p>
-                      <strong>Nature of Business:</strong>{" "}
-                      {selectedApplication.company.natureOfBusiness}
-                    </p>
-                    <p>
-                      <strong>Category:</strong>{" "}
-                      {selectedApplication.company.category}
-                    </p>
-                    <p>
-                      <strong>Company Ownership:</strong>{" "}
-                      {selectedApplication.company.companyOwnership}
-                    </p>
-                    <p>
-                      <strong>Tax Information:</strong>{" "}
-                      {selectedApplication.company.companyTaxInformation}
-                    </p>
-                    <p>
-                      <strong>Company Address:</strong>{" "}
-                      {`${selectedApplication.company.streetName}, ${selectedApplication.company.town}, ${selectedApplication.company.region}, ${selectedApplication.company.postcode}, ${selectedApplication.company.country}`}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-            {selectedApplication.accountType === "Joint" &&
-              selectedApplication.jointHolder && (
-                <div className="border-t pt-4 space-y-2">
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    Joint Holder Details
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <p>
-                      <strong>Title:</strong>{" "}
-                      {selectedApplication.jointHolder.title}
-                    </p>
-                    <p>
-                      <strong>Name:</strong>{" "}
-                      {`${selectedApplication.jointHolder.firstName} ${selectedApplication.jointHolder.lastName}`}
-                    </p>
-                    <p>
-                      <strong>Date of Birth:</strong>{" "}
-                      {selectedApplication.jointHolder.dateOfBirth}
-                    </p>
-                    <p>
-                      <strong>Occupation:</strong>{" "}
-                      {selectedApplication.jointHolder.occupation}
-                    </p>
-                    <p>
-                      <strong>Occupation Category:</strong>{" "}
-                      {selectedApplication.jointHolder.occupationCategory}
-                    </p>
-                    <p>
-                      <strong>Home Phone:</strong>{" "}
-                      {selectedApplication.jointHolder.homePhone}
-                    </p>
-                    <p>
-                      <strong>Mobile Phone:</strong>{" "}
-                      {selectedApplication.jointHolder.mobilePhone}
-                    </p>
-                    <p>
-                      <strong>Address:</strong>{" "}
-                      {`${selectedApplication.jointHolder.houseNumberOrName}, ${selectedApplication.jointHolder.streetName}, ${selectedApplication.jointHolder.town}, ${selectedApplication.jointHolder.region}, ${selectedApplication.jointHolder.postcode}, ${selectedApplication.jointHolder.country}`}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-            <div className="border-t pt-4 space-y-2">
-              <h3 className="text-lg font-semibold text-gray-800">
-                Next of Kin
-              </h3>
+            {/* Document Verification Files */}
+            <div className="border-t pt-4 space-y-3">
+              <h3 className="text-lg font-semibold text-gray-800">Verification Documents</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <p>
-                  <strong>Name:</strong>{" "}
-                  {selectedApplication.nextOfKinName.name}
-                </p>
-                <p>
-                  <strong>Email:</strong>{" "}
-                  {selectedApplication.nextOfKinName.email}
-                </p>
-                <p>
-                  <strong>Home Phone:</strong>{" "}
-                  {selectedApplication.nextOfKinName.homePhone}
-                </p>
-                <p>
-                  <strong>Mobile Phone:</strong>{" "}
-                  {selectedApplication.nextOfKinName.mobilePhone}
-                </p>
+                <div>
+                  <p className="font-semibold text-gray-600 mb-1">Identity Verification:</p>
+                  {(() => {
+                    const idFile = selectedApplication.documents?.identityVerificationFile || selectedApplication.identityVerificationFile;
+                    const idEmailLater = selectedApplication.documents?.identityVerificationEmailLater || selectedApplication.identityVerification === 'Email Identification';
+                    if (idFile) {
+                      return (
+                        <a
+                          className="inline-flex items-center text-blue-600 hover:text-blue-800 underline font-medium"
+                          href={getConfig().backendURL + idFile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View ID ({getCleanFileName(idFile)})
+                        </a>
+                      );
+                    } else if (idEmailLater) {
+                      return <span className="text-amber-600 font-medium">Will email later</span>;
+                    } else {
+                      return <span className="text-red-500">Not provided</span>;
+                    }
+                  })()}
+                </div>
+
+                <div>
+                  <p className="font-semibold text-gray-600 mb-1">Proof of Address:</p>
+                  {(() => {
+                    const proofFile = selectedApplication.documents?.proofOfAddressFile || selectedApplication.proofOfAddressFile;
+                    const proofEmailLater = selectedApplication.documents?.proofOfAddressEmailLater || selectedApplication.proofOfAddress === 'Email Proof of Address';
+                    if (proofFile) {
+                      return (
+                        <a
+                          className="inline-flex items-center text-blue-600 hover:text-blue-800 underline font-medium"
+                          href={getConfig().backendURL + proofFile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Proof ({getCleanFileName(proofFile)})
+                        </a>
+                      );
+                    } else if (proofEmailLater) {
+                      return <span className="text-amber-600 font-medium">Will email later</span>;
+                    } else {
+                      return <span className="text-red-500">Not provided</span>;
+                    }
+                  })()}
+                </div>
+
+                {selectedApplication.accountType === 'Company' && (
+                  <>
+                    <div>
+                      <p className="font-semibold text-gray-600 mb-1">Certificate of Incorporation:</p>
+                      {selectedApplication.documents?.certificateOfIncorporationFile ? (
+                        <a
+                          className="inline-flex items-center text-blue-600 hover:text-blue-800 underline font-medium"
+                          href={getConfig().backendURL + selectedApplication.documents.certificateOfIncorporationFile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Certificate ({getCleanFileName(selectedApplication.documents.certificateOfIncorporationFile)})
+                        </a>
+                      ) : selectedApplication.documents?.certificateOfIncorporationEmailLater ? (
+                        <span className="text-amber-600 font-medium">Will email later</span>
+                      ) : (
+                        <span className="text-red-500">Not provided</span>
+                      )}
+                    </div>
+
+                    <div>
+                      <p className="font-semibold text-gray-600 mb-1">Proof of Registered Address:</p>
+                      {selectedApplication.documents?.proofOfRegisteredAddressFile ? (
+                        <a
+                          className="inline-flex items-center text-blue-600 hover:text-blue-800 underline font-medium"
+                          href={getConfig().backendURL + selectedApplication.documents.proofOfRegisteredAddressFile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Proof of Address ({getCleanFileName(selectedApplication.documents.proofOfRegisteredAddressFile)})
+                        </a>
+                      ) : selectedApplication.documents?.proofOfRegisteredAddressEmailLater ? (
+                        <span className="text-amber-600 font-medium">Will email later</span>
+                      ) : (
+                        <span className="text-red-500">Not provided</span>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {selectedApplication.accountType === 'Trust' && (
+                  <div>
+                    <p className="font-semibold text-gray-600 mb-1">Trust Deed:</p>
+                    {selectedApplication.documents?.trustDeedFile ? (
+                      <a
+                        className="inline-flex items-center text-blue-600 hover:text-blue-800 underline font-medium"
+                        href={getConfig().backendURL + selectedApplication.documents.trustDeedFile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Trust Deed ({getCleanFileName(selectedApplication.documents.trustDeedFile)})
+                      </a>
+                    ) : selectedApplication.documents?.trustDeedEmailLater ? (
+                      <span className="text-amber-600 font-medium">Will email later</span>
+                    ) : (
+                      <span className="text-red-500">Not provided</span>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
+
+            {/* Additional Questions */}
+            <div className="border-t pt-4 space-y-2">
+              <h3 className="text-lg font-semibold text-gray-800">Additional Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <p><strong>Financial Adviser:</strong> {selectedApplication.additionalQuestions?.financialAdviser || '—'}</p>
+                <p><strong>Employment Status:</strong> {selectedApplication.additionalQuestions?.employmentStatus || '—'}</p>
+                <p><strong>Occupation:</strong> {selectedApplication.additionalQuestions?.occupation || selectedApplication.occupation || '—'}</p>
+                <p><strong>Employer Name:</strong> {selectedApplication.additionalQuestions?.employerName || '—'}</p>
+                <p><strong>Industry / Sector:</strong> {selectedApplication.additionalQuestions?.industrySector || '—'}</p>
+                <p><strong>Annual Income:</strong> {selectedApplication.additionalQuestions?.annualIncomeRange || '—'}</p>
+                <p><strong>Net Worth:</strong> {selectedApplication.additionalQuestions?.netWorth || '—'}</p>
+                <p><strong>Liquid Assets:</strong> {selectedApplication.additionalQuestions?.liquidAssets || '—'}</p>
+                <p><strong>Expected Investment:</strong> {selectedApplication.additionalQuestions?.expectedInvestmentAmount || '—'}</p>
+                <p><strong>Source of Funds:</strong> {selectedApplication.additionalQuestions?.sourceOfFunds || '—'}</p>
+                <p><strong>PEP (Politically Exposed):</strong> {selectedApplication.additionalQuestions?.pep || '—'}</p>
+                <p><strong>PEP Family:</strong> {selectedApplication.additionalQuestions?.pepFamily || '—'}</p>
+              </div>
+            </div>
+
+            {/* Settlement */}
+            <div className="border-t pt-4 space-y-2">
+              <h3 className="text-lg font-semibold text-gray-800">Settlement Bank Details</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <p><strong>Beneficiary Account Name:</strong> {selectedApplication.settlementDetails?.beneficiaryAccountName || selectedApplication.bankAccountDetails?.accountName || '—'}</p>
+                <p><strong>Bank Name:</strong> {selectedApplication.settlementDetails?.nameOfBank || selectedApplication.bankAccountDetails?.bankName || '—'}</p>
+                <p><strong>Account Number:</strong> {selectedApplication.settlementDetails?.accountNumber || selectedApplication.bankAccountDetails?.accountNumber || '—'}</p>
+                <p><strong>Sort Code:</strong> {selectedApplication.settlementDetails?.sortCode || selectedApplication.bankAccountDetails?.sortCode || '—'}</p>
+              </div>
+            </div>
+
+            {/* Joint Details */}
+            {selectedApplication.accountType === "Joint" && (selectedApplication.jointDetails || selectedApplication.jointHolder) && (
+              <div className="border-t pt-4 space-y-2">
+                <h3 className="text-lg font-semibold text-gray-800">Joint Applicant Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <p><strong>Name:</strong> {selectedApplication.jointDetails ? (
+                    `${selectedApplication.jointDetails.personalDetails.title} ${selectedApplication.jointDetails.personalDetails.firstName} ${selectedApplication.jointDetails.personalDetails.lastName}`
+                  ) : (
+                    `${selectedApplication.jointHolder?.title || ''} ${selectedApplication.jointHolder?.firstName || ''} ${selectedApplication.jointHolder?.lastName || ''}`.trim() || '—'
+                  )}</p>
+                  <p><strong>Date of Birth:</strong> {selectedApplication.jointDetails?.personalDetails.dateOfBirth || selectedApplication.jointHolder?.dateOfBirth || '—'}</p>
+                  <p><strong>Occupation:</strong> {selectedApplication.jointDetails?.personalDetails.occupation || selectedApplication.jointHolder?.occupation || '—'}</p>
+                  <p><strong>Email Address:</strong> {selectedApplication.jointDetails?.contactDetails.emailAddress || '—'}</p>
+                  <p><strong>Mobile:</strong> {selectedApplication.jointDetails ? (
+                    `${selectedApplication.jointDetails.contactDetails.mobilePhoneCode || ''} ${selectedApplication.jointDetails.contactDetails.mobilePhone}`
+                  ) : (
+                    selectedApplication.jointHolder?.mobilePhone || '—'
+                  )}</p>
+                  <p><strong>Address:</strong> {selectedApplication.jointDetails?.residentialAddress ? (
+                    `${selectedApplication.jointDetails.residentialAddress.addressLine1}, ${selectedApplication.jointDetails.residentialAddress.addressLine2 || ''}, ${selectedApplication.jointDetails.residentialAddress.city}, ${selectedApplication.jointDetails.residentialAddress.postcode}, ${selectedApplication.jointDetails.residentialAddress.country}`.replace(/, ,/g, ',').trim()
+                  ) : (
+                    selectedApplication.jointHolder ? (
+                      `${selectedApplication.jointHolder.houseNumberOrName || ''} ${selectedApplication.jointHolder.streetName || ''}, ${selectedApplication.jointHolder.town || ''}, ${selectedApplication.jointHolder.region || ''}, ${selectedApplication.jointHolder.postcode || ''}, ${selectedApplication.jointHolder.country || ''}`.replace(/^[ ,]+|[ ,]+$/g, '').replace(/, ,/g, ',').trim()
+                    ) : '—'
+                  )}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Company Details */}
+            {selectedApplication.accountType === "Company" && (selectedApplication.companyDetails || selectedApplication.company) && (
+              <div className="border-t pt-4 space-y-4">
+                <h3 className="text-lg font-semibold text-gray-800">Company Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <p><strong>Company Name:</strong> {selectedApplication.companyDetails?.companyName || selectedApplication.company?.name || '—'}</p>
+                  <p><strong>Registration Number:</strong> {selectedApplication.companyDetails?.registrationNumber || selectedApplication.company?.companyNumber || '—'}</p>
+                  {((selectedApplication.companyDetails?.vatNumber || selectedApplication.company?.taxCode)) && (
+                    <p><strong>VAT Number:</strong> {selectedApplication.companyDetails?.vatNumber || selectedApplication.company?.taxCode}</p>
+                  )}
+                  <p><strong>Date of Incorporation:</strong> {selectedApplication.companyDetails?.dateOfIncorporation || selectedApplication.company?.dateOfRegistration || '—'}</p>
+                  <p><strong>Nature of Business:</strong> {selectedApplication.companyDetails?.natureOfBusiness || selectedApplication.company?.natureOfBusiness || '—'}</p>
+                  <p><strong>Address:</strong> {selectedApplication.companyDetails?.registeredAddress ? (
+                    `${selectedApplication.companyDetails.registeredAddress.addressLine1}, ${selectedApplication.companyDetails.registeredAddress.addressLine2 || ''}, ${selectedApplication.companyDetails.registeredAddress.city}, ${selectedApplication.companyDetails.registeredAddress.postcode}, ${selectedApplication.companyDetails.registeredAddress.country}`.replace(/, ,/g, ',').trim()
+                  ) : (
+                    selectedApplication.company ? (
+                      `${selectedApplication.company.address || ''} ${selectedApplication.company.streetName || ''}, ${selectedApplication.company.town || ''}, ${selectedApplication.company.region || ''}, ${selectedApplication.company.postcode || ''}, ${selectedApplication.company.country || ''}`.replace(/^[ ,]+|[ ,]+$/g, '').replace(/, ,/g, ',').trim()
+                    ) : '—'
+                  )}</p>
+                  <p><strong>Classification:</strong> {selectedApplication.companyDetails?.companyClassification || selectedApplication.company?.companyType || '—'}</p>
+                  <p><strong>Tax Classification:</strong> {selectedApplication.companyDetails?.taxClassification || selectedApplication.company?.companyTaxInformation || '—'}</p>
+                  <p><strong>Owns 25% or more shares?</strong> {selectedApplication.companyDetails?.owns25Percent || selectedApplication.company?.companyOwnership || '—'}</p>
+                </div>
+
+                {selectedApplication.companyDetails?.officers && selectedApplication.companyDetails.officers.length > 0 && (
+                  <div className="pt-2">
+                    <p className="font-semibold text-gray-700 text-sm mb-2">Officers &amp; Directors:</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {selectedApplication.companyDetails.officers.map((officer, index) => (
+                        <div key={index} className="p-3 bg-slate-50 rounded-lg text-xs">
+                          <p className="font-semibold text-gray-600 mb-1">Officer #{index + 1}</p>
+                          <p><strong>Name:</strong> {`${officer.title} ${officer.firstName} ${officer.lastName}`}</p>
+                          <p><strong>DOB:</strong> {officer.dateOfBirth}</p>
+                          <p><strong>Occupation:</strong> {officer.occupation}</p>
+                          {officer.role && <p><strong>Role:</strong> {officer.role}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Trust Details */}
+            {selectedApplication.accountType === "Trust" && selectedApplication.trustDetails && (
+              <div className="border-t pt-4 space-y-2">
+                <h3 className="text-lg font-semibold text-gray-800">Trust Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <p><strong>Trustee Type:</strong> {selectedApplication.trustDetails.trusteeType}</p>
+                  <p><strong>Trust Name:</strong> {selectedApplication.trustDetails.trustName}</p>
+                  <p><strong>Trust Type:</strong> {selectedApplication.trustDetails.trustType}</p>
+                  {selectedApplication.trustDetails.vatNumber && (
+                    <p><strong>VAT Number:</strong> {selectedApplication.trustDetails.vatNumber}</p>
+                  )}
+                  <p><strong>UTR / Tax Reference:</strong> {selectedApplication.trustDetails.taxReference}</p>
+                  <p><strong>Country Established:</strong> {selectedApplication.trustDetails.countryEstablished}</p>
+                  <p><strong>Nature / Purpose of Trust:</strong> {selectedApplication.trustDetails.natureOfTrust}</p>
+                  <p><strong>Tax Classification:</strong> {selectedApplication.trustDetails.taxClassification}</p>
+                  <p><strong>Has GIIN?</strong> {selectedApplication.trustDetails.hasGIIN}</p>
+                  {selectedApplication.trustDetails.giinValue && (
+                    <p><strong>GIIN Code:</strong> {selectedApplication.trustDetails.giinValue}</p>
+                  )}
+                </div>
+              </div>
+            )}
 
             <div className="border-t pt-4 space-y-2 text-sm text-bakerjonesholdings-black">
               <p>
@@ -557,20 +747,20 @@ export default function ApplicationTable() {
                           "An error occurred. The application could not be deleted. Please try again later.",
                       }
                     );
-                    mutate()
+                    mutate();
                     setSelectedApplication(null);
                   } catch (error) {
                     console.log(error);
                   }
                 }}
-                className="px-4 py-2 text-sm font-medium text-white bg-bakerjonesholdings-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
+                className="px-4 py-2 text-sm font-medium text-white bg-bakerjonesholdings-pink rounded-lg hover:bg-pink-700 transition-colors duration-200 cursor-pointer"
               >
                 Delete
               </button>
 
               <button
                 onClick={() => setSelectedApplication(null)}
-                className="px-4 py-2 text-sm font-medium text-white bg-bakerjonesholdings-pink rounded-lg hover:bg-pink-700 transition-colors duration-200"
+                className="px-4 py-2 text-sm font-medium text-white bg-bakerjonesholdings-pink rounded-lg hover:bg-pink-700 transition-colors duration-200 cursor-pointer"
               >
                 Close
               </button>
