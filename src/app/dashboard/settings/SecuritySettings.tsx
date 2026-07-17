@@ -161,7 +161,7 @@ export default function SecuritySettings() {
       </Card>
 
       {/* Login Activity */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="text-xl">Login Activity</CardTitle>
           <CardDescription>Recent logins to your account.</CardDescription>
@@ -196,7 +196,7 @@ export default function SecuritySettings() {
             </div>
           )}
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   );
 }
