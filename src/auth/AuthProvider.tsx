@@ -4,8 +4,8 @@ import {
   AuthContextInterface,
   UserInterface,
 } from "@/interface/AuthProvider.interface";
-import api, { clearTokens, setTokens } from "@/services/api";
-import React, { useCallback, useEffect,useState } from "react";
+import api, { clearTokens, setTokens, getTokens } from "@/services/api";
+import React, { useCallback, useEffect, useState } from "react";
 
 export const authContext = React.createContext<
   undefined | AuthContextInterface
@@ -22,13 +22,20 @@ export default function AuthProvider({
 
   const verify = useCallback(async (): Promise<void> => {
     setLoading(true);
+    const { accessToken, refreshToken } = getTokens();
+    if (!accessToken && !refreshToken) {
+      setUser(null);
+      setIsAuthenticated(false);
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data } = await api.get("/users/profile");
-      const { _id, email, role, status,name,balance } = data.data;
-      setUser({ id: _id, email, role, status,name,balance });
+      const { _id, email, role, status, name, balance } = data.data;
+      setUser({ id: _id, email, role, status, name, balance });
       setIsAuthenticated(true);
     } catch (error) {
-      console.error("Verification failed, clearing auth session:", error);
       setUser(null);
       setIsAuthenticated(false);
       clearTokens();

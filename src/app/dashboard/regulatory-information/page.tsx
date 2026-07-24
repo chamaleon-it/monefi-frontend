@@ -2,18 +2,22 @@ import React from "react";
 
 export default function RegulatoryInformationPage() {
   return (
-    <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#232323] mb-2">
-          Regulatory Information
+    <div className="space-y-6 font-inter">
+      <div>
+        <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+          Regulatory Disclosures & Oversight
         </h1>
+        <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+          FCA regulatory status, asset protection standards, and client suitability disclosures
+        </p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {/* Regulatory Status */}
-        <section className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-[#232323] mb-4">
-            Regulatory Status
+        <section className="bg-white rounded-3xl p-6 sm:p-8 shadow-[0_15px_35px_rgba(8,35,72,0.04)] border border-slate-200/90 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
+          <h2 className="text-xl font-serif font-bold text-[#082348] mb-4">
+            FCA Regulatory Status (FRN 969487)
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
             Baker Jones Holdings is authorised and regulated by the Financial Conduct

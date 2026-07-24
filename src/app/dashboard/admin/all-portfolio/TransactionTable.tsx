@@ -7,6 +7,8 @@ import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
 
+import { Wallet, TrendingUp, Coins, FileText } from "lucide-react";
+
 export default function TransactionsTable() {
   const { user } = useAuth();
   const {
@@ -25,7 +27,7 @@ export default function TransactionsTable() {
       investmentType: InvestmentType;
       transaction: {
         createdAt: Date;
-          buyBackDate?:Date | null;
+        buyBackDate?: Date | null;
       };
       createdAt: Date;
       buyBack: null | "Yes" | "No";
@@ -70,66 +72,77 @@ export default function TransactionsTable() {
   );
 
   const SkeletonRow = () => (
-    <tr className="animate-pulse">
+    <tr className="animate-pulse border-b border-slate-100 whitespace-nowrap">
       {Array.from({ length: 9 }).map((_, i) => (
-        <td key={i} className="py-3 px-4">
-          <div className="h-4 bg-gray-300 rounded w-20 mx-auto"></div>
+        <td key={i} className="py-4 px-5">
+          <div className="h-4 bg-slate-200 rounded w-full mx-auto"></div>
         </td>
       ))}
     </tr>
   );
 
   return (
-    <div className="w-full space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">All Portfolio</h1>
+    <div className="w-full space-y-8 font-inter">
+      <div>
+        <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+          Master Client Portfolio Control
+        </h1>
+        <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+          Global asset inventory, client bond certificates, coupon management, and asset totals
+        </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <SummaryCard
-          label="Available Balance"
+          icon={Wallet}
+          label="Available Reserves"
           value={fCurrency(user?.balance ?? 0)}
+          highlight={true}
         />
         <SummaryCard
-          label="Stock Value"
+          icon={TrendingUp}
+          label="Total Stock Equity"
           value={fCurrency(stockValue)}
         />
         <SummaryCard
-          label="Crypto Value"
+          icon={Coins}
+          label="Total Crypto Assets"
           value={fCurrency(cryptoValue)}
         />
         <SummaryCard
-          label="Bond Value"
+          icon={FileText}
+          label="Total Bond Value"
           value={fCurrency(bondValue)}
         />
       </div>
-      {bonds.length !== 0 && (
-        <>
-          <h1 className="text-xl font-bold text-bakerjonesholdings-black">Bonds</h1>
 
-          <div className="bg-white rounded-xl shadow overflow-hidden">
+      {bonds.length !== 0 && (
+        <div className="space-y-4 pt-2">
+          <h2 className="text-xl font-serif font-bold text-[#082348]">Bonds</h2>
+
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full whitespace-nowrap">
+              <table className="w-full whitespace-nowrap text-left">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
-                    <th className="py-3 px-4">#</th>
-                    <th className="py-3 px-4">User</th>
-                    <th className="py-3 px-4">Symbol</th>
-                    <th className="py-3 px-4">Quantity</th>
-                    <th className="py-3 px-4">Unit Price</th>
-                    <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Buyback</th>
-                    <th className="py-3 px-4">Buyback Date</th>
-                    <th className="py-3 px-4">Interest</th>
-                    <th className="py-3 px-4">Upload Certificate</th>
-                    <th className="py-3 px-4">Date</th>
-                    <th className="py-3 px-4">Coupon Rate</th>
-                    <th className="py-3 px-4">Coupon Frequency</th>
-                    <th className="py-3 px-4">Coupon Type</th>
-                    <th className="py-3 px-4">Maturity Date</th>
+                  <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                    <th className="py-4 px-5">#</th>
+                    <th className="py-4 px-5">Client Profile</th>
+                    <th className="py-4 px-5">Symbol</th>
+                    <th className="py-4 px-5">Quantity</th>
+                    <th className="py-4 px-5">Unit Price</th>
+                    <th className="py-4 px-5">Total Value</th>
+                    <th className="py-4 px-5">Buyback</th>
+                    <th className="py-4 px-5">Buyback Date</th>
+                    <th className="py-4 px-5">Interest</th>
+                    <th className="py-4 px-5">Upload Certificate</th>
+                    <th className="py-4 px-5">Order Date</th>
+                    <th className="py-4 px-5">Coupon Rate</th>
+                    <th className="py-4 px-5">Frequency</th>
+                    <th className="py-4 px-5">Type</th>
+                    <th className="py-4 px-5">Maturity Date</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-100">
                   {isLoading &&
                     Array.from({ length: 10 }).map((_, i) => (
                       <SkeletonRow key={i} />
@@ -151,10 +164,10 @@ export default function TransactionsTable() {
                   {!isLoading && portfolio.length === 0 && (
                     <tr>
                       <td
-                        colSpan={9}
-                        className="text-center py-10 text-gray-500"
+                        colSpan={15}
+                        className="text-center py-12 text-slate-400 text-sm"
                       >
-                        No transactions found.
+                        No bond holdings found.
                       </td>
                     </tr>
                   )}
@@ -162,28 +175,28 @@ export default function TransactionsTable() {
               </table>
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {stock.length !== 0 && (
-        <>
-          <h1 className="text-xl font-bold text-bakerjonesholdings-black">Stock</h1>
+        <div className="space-y-4 pt-2">
+          <h2 className="text-xl font-serif font-bold text-[#082348]">Equities & Stock Holdings</h2>
 
-          <div className="bg-white rounded-xl shadow overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full whitespace-nowrap text-left">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
-                    <th className="py-3 px-4">#</th>
-                    <th className="py-3 px-4">User</th>
-                    <th className="py-3 px-4">Symbol</th>
-                    <th className="py-3 px-4">Quantity</th>
-                    <th className="py-3 px-4">Unit Price</th>
-                    <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Date</th>
+                  <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                    <th className="py-4 px-5">#</th>
+                    <th className="py-4 px-5">Client Profile</th>
+                    <th className="py-4 px-5">Ticker</th>
+                    <th className="py-4 px-5">Quantity</th>
+                    <th className="py-4 px-5">Unit Price</th>
+                    <th className="py-4 px-5">Total Value</th>
+                    <th className="py-4 px-5">Acquisition Date</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-100">
                   {isLoading &&
                     Array.from({ length: 10 }).map((_, i) => (
                       <SkeletonRow key={i} />
@@ -194,27 +207,26 @@ export default function TransactionsTable() {
                       {stock.map((tx, i) => (
                         <tr
                           key={tx._id}
-                          className="border-b bg-bakerjonesholdings-off-pink"
+                          className="hover:bg-slate-50/80 transition-colors whitespace-nowrap"
                         >
-                          <td className="py-3 px-4 text-sm">{i + 1}</td>
-                          <td className="py-3 px-4 font-medium">
-                            <p className="font-bold">{tx.user.name}</p>
-                            <p className="text-sm">{tx.user.email}</p>
+                          <td className="py-4 px-5 text-xs text-slate-400 font-mono">{i + 1}</td>
+                          <td className="py-4 px-5 text-sm font-semibold">
+                            <p className="font-bold text-[#082348]">{tx.user.name}</p>
+                            <p className="text-xs text-slate-400">{tx.user.email}</p>
                           </td>
-                          <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          <td className="py-4 px-5 text-sm font-bold text-[#082348]">
                             {tx.symbol}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-sm font-semibold text-slate-700">
                             {tx.quantity}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-sm font-medium text-slate-600">
                             {fCurrency(tx.unitPrice)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-sm font-bold text-[#082348]">
                             {fCurrency(tx.totalValue)}
                           </td>
-
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-xs text-slate-500 whitespace-nowrap">
                             {fDate(tx.createdAt)}
                           </td>
                         </tr>
@@ -225,10 +237,10 @@ export default function TransactionsTable() {
                   {!isLoading && portfolio.length === 0 && (
                     <tr>
                       <td
-                        colSpan={9}
-                        className="text-center py-10 text-gray-500"
+                        colSpan={7}
+                        className="text-center py-12 text-slate-400 text-sm"
                       >
-                        No transactions found.
+                        No stock holdings found.
                       </td>
                     </tr>
                   )}
@@ -236,28 +248,28 @@ export default function TransactionsTable() {
               </table>
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {crypto.length !== 0 && (
-        <>
-          <h1 className="text-xl font-bold text-bakerjonesholdings-black"> Crypto</h1>
+        <div className="space-y-4 pt-2">
+          <h2 className="text-xl font-serif font-bold text-[#082348]">Digital Asset & Crypto Holdings</h2>
 
-          <div className="bg-white rounded-xl shadow overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full whitespace-nowrap text-left">
                 <thead>
-                  <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
-                    <th className="py-3 px-4">#</th>
-                    <th className="py-3 px-4">User</th>
-                    <th className="py-3 px-4">Symbol</th>
-                    <th className="py-3 px-4">Quantity</th>
-                    <th className="py-3 px-4">Unit Price</th>
-                    <th className="py-3 px-4">Total Value</th>
-                    <th className="py-3 px-4">Date</th>
+                  <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                    <th className="py-4 px-5">#</th>
+                    <th className="py-4 px-5">Client Profile</th>
+                    <th className="py-4 px-5">Symbol</th>
+                    <th className="py-4 px-5">Quantity</th>
+                    <th className="py-4 px-5">Unit Price</th>
+                    <th className="py-4 px-5">Total Value</th>
+                    <th className="py-4 px-5">Acquisition Date</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-100">
                   {isLoading &&
                     Array.from({ length: 10 }).map((_, i) => (
                       <SkeletonRow key={i} />
@@ -268,26 +280,26 @@ export default function TransactionsTable() {
                       {crypto.map((tx, i) => (
                         <tr
                           key={tx._id}
-                          className="border-b bg-bakerjonesholdings-off-pink"
+                          className="hover:bg-slate-50/80 transition-colors whitespace-nowrap"
                         >
-                          <td className="py-3 px-4 text-sm">{i + 1}</td>
-                          <td className="py-3 px-4 font-medium">
-                            <p className="font-bold">{tx.user.name}</p>
-                            <p className="text-sm">{tx.user.email}</p>
+                          <td className="py-4 px-5 text-xs text-slate-400 font-mono">{i + 1}</td>
+                          <td className="py-4 px-5 text-sm font-semibold">
+                            <p className="font-bold text-[#082348]">{tx.user.name}</p>
+                            <p className="text-xs text-slate-400">{tx.user.email}</p>
                           </td>
-                          <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                          <td className="py-4 px-5 text-sm font-bold text-[#082348]">
                             {tx.symbol}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-sm font-semibold text-slate-700">
                             {tx.quantity}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-sm font-medium text-slate-600">
                             {fCurrency(tx.unitPrice)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-sm font-bold text-[#082348]">
                             {fCurrency(tx.totalValue)}
                           </td>
-                          <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+                          <td className="py-4 px-5 text-xs text-slate-500 whitespace-nowrap">
                             {fDateAndTime(tx.createdAt)}
                           </td>
                         </tr>
@@ -298,10 +310,10 @@ export default function TransactionsTable() {
                   {!isLoading && portfolio.length === 0 && (
                     <tr>
                       <td
-                        colSpan={9}
-                        className="text-center py-10 text-gray-500"
+                        colSpan={7}
+                        className="text-center py-12 text-slate-400 text-sm"
                       >
-                        No transactions found.
+                        No crypto holdings found.
                       </td>
                     </tr>
                   )}
@@ -309,15 +321,43 @@ export default function TransactionsTable() {
               </table>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
 }
 
-const SummaryCard = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-bakerjonesholdings-off-pink rounded-xl p-4 shadow-sm">
-    <p className="text-sm text-bakerjonesholdings-dark-gray font-medium">{label}</p>
-    <p className="text-xl font-semibold text-bakerjonesholdings-black mt-1">{value}</p>
+const SummaryCard = ({
+  icon: IconComponent,
+  label,
+  value,
+  highlight = false,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: string;
+  highlight?: boolean;
+}) => (
+  <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${
+    highlight
+      ? "bg-[#082348] text-white border-[#082348] shadow-lg shadow-[#082348]/15"
+      : "bg-white text-slate-800 border-slate-200/90 shadow-[0_10px_30px_rgba(8,35,72,0.04)]"
+  }`}>
+    {highlight && (
+      <div className="absolute top-0 right-0 h-1 left-0 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
+    )}
+    <div className="flex items-center justify-between mb-4">
+      <span className={`text-[11px] font-bold uppercase tracking-wider ${highlight ? "text-slate-300" : "text-slate-500"}`}>
+        {label}
+      </span>
+      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
+        highlight ? "gold-gradient-bg text-slate-950 shadow-md" : "bg-[#C5A880]/15 text-[#C5A880]"
+      }`}>
+        <IconComponent className="w-5 h-5" />
+      </div>
+    </div>
+    <div className={`text-2xl lg:text-3xl font-serif font-bold ${highlight ? "text-white" : "text-[#082348]"}`}>
+      {value}
+    </div>
   </div>
 );

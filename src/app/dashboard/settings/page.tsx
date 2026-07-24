@@ -8,38 +8,40 @@ export default function SettingPage() {
   const [activeTab, setActiveTab] = useState<"account" | "security">("account");
 
   return (
-    <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#232323] mb-2">Settings</h1>
-        <p className="text-bakerjonesholdings-black">
-          Manage your account settings and preferences
+    <div className="space-y-6 font-inter">
+      <div>
+        <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+          Account & Security Preferences
+        </h1>
+        <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+          Manage entity profile, contact details, authentication methods, and 2FA credentials
         </p>
       </div>
 
-      <div className="flex border-b mb-8 gap-6">
+      <div className="flex border-b border-slate-200/90 gap-6">
         <button
-          className={`pb-3 font-semibold transition-colors ${
+          className={`pb-3 font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
             activeTab === "account"
-              ? "border-b-2 border-emerald-500 text-emerald-600"
-              : "text-gray-500 hover:text-gray-800"
+              ? "border-b-2 border-[#C5A880] text-[#082348]"
+              : "text-slate-500 hover:text-[#082348]"
           }`}
           onClick={() => setActiveTab("account")}
         >
-          Account Information
+          Account Profile & Entity Info
         </button>
         <button
-          className={`pb-3 font-semibold transition-colors ${
+          className={`pb-3 font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
             activeTab === "security"
-              ? "border-b-2 border-emerald-500 text-emerald-600"
-              : "text-gray-500 hover:text-gray-800"
+              ? "border-b-2 border-[#C5A880] text-[#082348]"
+              : "text-slate-500 hover:text-[#082348]"
           }`}
           onClick={() => setActiveTab("security")}
         >
-          Security
+          Password & 2FA Security
         </button>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {activeTab === "account" && <AccountInformation />}
         {activeTab === "security" && <SecuritySettings />}
       </div>

@@ -56,48 +56,47 @@ function IpoRow({ req, mutate }: { req: IpoRequest; mutate: () => void }) {
   );
 
   return (
-    <tr className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+    <tr className="hover:bg-slate-50/80 transition-colors whitespace-nowrap">
+      <td className="py-4 px-5 text-xs text-slate-500 font-mono">
         {fDateAndTime(req.createdAt)}
       </td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{req._id}</td>
-      <td className="py-3 px-4 text-sm">
-        <p className="font-bold">{req.user?.name}</p>
-        <p className="text-sm">{req.user?.email}</p>
+      <td className="py-4 px-5 text-xs font-mono text-slate-400">{req._id.slice(-8).toUpperCase()}</td>
+      <td className="py-4 px-5 text-sm">
+        <p className="font-bold text-[#082348]">{req.user?.name}</p>
+        <p className="text-xs text-slate-400">{req.user?.email}</p>
       </td>
-      <td className="py-3 px-4 text-sm font-bold text-gray-800">
+      <td className="py-4 px-5 text-sm font-bold text-[#082348]">
         {req.ipo.name} ({req.ipo.companyName})
       </td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{req.ipo.stockSymbol}</td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{req.quantity}</td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">
+      <td className="py-4 px-5 text-sm font-bold text-[#082348]">{req.ipo.stockSymbol}</td>
+      <td className="py-4 px-5 text-sm font-semibold text-slate-700">{req.quantity}</td>
+      <td className="py-4 px-5 text-sm font-bold text-[#082348]">
         {fCurrency(req.totalAmount)}
       </td>
-      <td className={`py-3 px-4 text-xs`}>
-        <p
-          className={`
-            ${
-              (req.status === IpoRequestStatus.PENDING && "text-yellow-800 bg-yellow-400") ||
-              (req.status === IpoRequestStatus.APPROVED && "text-green-800 bg-green-400") ||
-              (req.status === IpoRequestStatus.REJECTED && "text-red-800 bg-red-400")
-            }
-            px-2 py-1 rounded-full text-center inline-block
-          `}
+      <td className="py-4 px-5 text-xs">
+        <span
+          className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider text-center ${
+            req.status === IpoRequestStatus.PENDING
+              ? "bg-amber-50 text-amber-700 border border-amber-200"
+              : req.status === IpoRequestStatus.APPROVED
+              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+              : "bg-rose-50 text-rose-700 border border-rose-200"
+          }`}
         >
           {req.status}
-        </p>
+        </span>
       </td>
-      <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+      <td className="py-4 px-5 text-xs">
         {req.status === IpoRequestStatus.PENDING && (
-          <div className="flex gap-2.5">
+          <div className="flex gap-2">
             <button
-              className="px-2 py-1.5 rounded-md text-white bg-green-600"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-2xs transition-colors cursor-pointer"
               onClick={() => updateStatus(req._id, IpoRequestStatus.APPROVED)}
             >
               Approve
             </button>
             <button
-              className="px-2 py-1.5 rounded-md text-white bg-red-600"
+              className="bg-rose-600 hover:bg-rose-700 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-2xs transition-colors cursor-pointer"
               onClick={() => updateStatus(req._id, IpoRequestStatus.REJECTED)}
             >
               Reject
@@ -156,22 +155,22 @@ export default function IpoTable() {
   };
 
   const SkeletonRow = () => (
-    <tr className="animate-pulse border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
+    <tr className="animate-pulse border-b border-slate-100 whitespace-nowrap">
       {Array.from({ length: 9 }).map((_, i) => (
-        <td key={i} className="py-3 px-4">
-          <div className="h-4 bg-gray-300 rounded w-full mx-auto"></div>
+        <td key={i} className="py-4 px-5">
+          <div className="h-4 bg-slate-200 rounded w-full mx-auto"></div>
         </td>
       ))}
     </tr>
   );
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 font-inter">
       <div className="flex justify-end items-center">
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink text-sm"
+          className="px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-[#C5A880] text-xs font-semibold text-slate-700 shadow-2xs"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -179,23 +178,23 @@ export default function IpoTable() {
         </select>
       </div>
 
-      <div className="bg-white rounded-xl shadow overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full whitespace-nowrap">
+          <table className="w-full whitespace-nowrap text-left">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
-                <th className="py-3 px-4">Request Date</th>
-                <th className="py-3 px-4">Request ID</th>
-                <th className="py-3 px-4">User</th>
-                <th className="py-3 px-4">IPO Name</th>
-                <th className="py-3 px-4">Stock Symbol</th>
-                <th className="py-3 px-4">Quantity</th>
-                <th className="py-3 px-4">Total Amount</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4">Actions</th>
+              <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                <th className="py-4 px-5">Request Date</th>
+                <th className="py-4 px-5">Request ID</th>
+                <th className="py-4 px-5">Client Profile</th>
+                <th className="py-4 px-5">IPO Offering</th>
+                <th className="py-4 px-5">Ticker</th>
+                <th className="py-4 px-5">Quantity</th>
+                <th className="py-4 px-5">Total Amount</th>
+                <th className="py-4 px-5">Status</th>
+                <th className="py-4 px-5">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100">
               {isLoading &&
                 Array.from({ length: filter.limit }).map((_, i) => (
                   <SkeletonRow key={i} />
@@ -211,8 +210,8 @@ export default function IpoTable() {
 
               {!isLoading && requests.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="text-center py-10 text-gray-500">
-                    No IPO requests found.
+                  <td colSpan={9} className="text-center py-12 text-slate-400 text-sm">
+                    No IPO allocation requests recorded.
                   </td>
                 </tr>
               )}
@@ -222,17 +221,17 @@ export default function IpoTable() {
       </div>
 
       {pagination && pagination.totalPage > 1 && (
-        <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-bakerjonesholdings-black">
+        <div className="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
+          <p className="text-xs text-slate-500 font-medium">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
             {pagination.total}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={pagination.page === 1}
-              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Previous
             </button>
@@ -240,10 +239,10 @@ export default function IpoTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
                   num === pagination.page
-                    ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-bakerjonesholdings-black hover:bg-gray-100"
+                    ? "bg-[#082348] text-white border-[#082348]"
+                    : "text-slate-700 border-slate-200 hover:bg-slate-50"
                 }`}
               >
                 {num}
@@ -252,7 +251,7 @@ export default function IpoTable() {
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={pagination.page === pagination.totalPage}
-              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Next
             </button>

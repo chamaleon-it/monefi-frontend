@@ -323,11 +323,13 @@ export default function KycPage() {
               type="submit"
               disabled={!addressUpload || !identityUpload}
               className={clsx(
-                "font-semibold text-black",
-                "bg-bakerjonesholdings-off-pink hover:bg-bakerjonesholdings-off-pink"
+                "font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-xl cursor-pointer transition-all duration-200",
+                addressUpload && identityUpload
+                  ? "gold-gradient-bg text-slate-950 shadow-md shadow-[#C5A880]/20"
+                  : "bg-slate-200 text-slate-400 border border-slate-300"
               )}
             >
-              Submit
+              Submit Verification Request
             </Button>
           </div>
         </form>

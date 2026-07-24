@@ -279,23 +279,31 @@ export default function ApplicationTable() {
   };
 
   const SkeletonRow = () => (
-    <tr className="animate-pulse">
+    <tr className="animate-pulse border-b border-slate-100 whitespace-nowrap">
       {Array.from({ length: 5 }).map((_, i) => (
-        <td key={i} className="py-3 px-4">
-          <div className="h-4 bg-gray-300 rounded w-20 mx-auto"></div>
+        <td key={i} className="py-4 px-5">
+          <div className="h-4 bg-slate-200 rounded w-full mx-auto"></div>
         </td>
       ))}
     </tr>
   );
 
   return (
-    <div className="w-full space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Applications</h1>
+    <div className="w-full space-y-6 font-inter">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div>
+          <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+            Account Opening Applications
+          </h1>
+          <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+            Review onboarding submissions, entity documentation, and client application forms
+          </p>
+        </div>
+
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-bakerjonesholdings-pink"
+          className="px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-[#C5A880] text-xs font-semibold text-slate-700 shadow-2xs"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -303,19 +311,19 @@ export default function ApplicationTable() {
         </select>
       </div>
 
-      <div className="bg-white rounded-xl shadow overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full text-left whitespace-nowrap">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
-                <th className="py-3 px-4">#</th>
-                <th className="py-3 px-4">Name</th>
-                <th className="py-3 px-4">Type</th>
-                <th className="py-3 px-4">Application Date</th>
-                <th className="py-3 px-4">View</th>
+              <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                <th className="py-4 px-5">#</th>
+                <th className="py-4 px-5">Applicant Name & Email</th>
+                <th className="py-4 px-5">Account Classification</th>
+                <th className="py-4 px-5">Submission Date</th>
+                <th className="py-4 px-5">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100">
               {isLoading &&
                 Array.from({ length: filter.limit }).map((_, i) => (
                   <SkeletonRow key={i} />
@@ -332,29 +340,31 @@ export default function ApplicationTable() {
                     return (
                       <tr
                         key={application._id}
-                        className="border-b bg-bakerjonesholdings-off-pink"
+                        className="hover:bg-slate-50/80 transition-colors"
                       >
-                        <td className="py-3 px-4 text-sm">
+                        <td className="py-4 px-5 text-xs text-slate-400 font-mono">
                           {(filter.page - 1) * filter.limit + i + 1}
                         </td>
-                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                        <td className="py-4 px-5 text-sm">
                           <div className="flex flex-col">
-                            <p className="font-bold">{fName(name || '—')}</p>
-                            <p className="text-sm">{email}</p>
+                            <p className="font-bold text-[#082348]">{fName(name || '—')}</p>
+                            <p className="text-xs text-slate-400">{email}</p>
                           </div>
                         </td>
-                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
-                          {application.accountType}
+                        <td className="py-4 px-5 text-xs">
+                          <span className="inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider bg-slate-100 text-[#082348] border border-slate-200">
+                            {application.accountType}
+                          </span>
                         </td>
-                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                        <td className="py-4 px-5 text-xs text-slate-500 font-mono">
                           {fDateAndTime(application.createdAt)}
                         </td>
-                        <td className="py-3 px-4 text-sm font-medium text-gray-800">
+                        <td className="py-4 px-5 text-xs">
                           <button
-                            className="text-yellow-600 hover:text-yellow-800 text-sm font-medium cursor-pointer"
                             onClick={() => setSelectedApplication(application)}
+                            className="gold-gradient-bg text-slate-950 font-bold text-[10px] uppercase tracking-wider px-3.5 py-1.5 rounded-lg shadow-2xs cursor-pointer hover:opacity-95 transition-opacity"
                           >
-                            View
+                            Review Details
                           </button>
                         </td>
                       </tr>
@@ -365,8 +375,8 @@ export default function ApplicationTable() {
 
               {!isLoading && applications.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="text-center py-10 text-gray-500">
-                    No applications found.
+                  <td colSpan={5} className="text-center py-12 text-slate-400 text-sm">
+                    No onboarding applications received.
                   </td>
                 </tr>
               )}
@@ -376,17 +386,16 @@ export default function ApplicationTable() {
       </div>
 
       {pagination && pagination.totalPage > 1 && (
-        <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-bakerjonesholdings-black">
+        <div className="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
+          <p className="text-xs text-slate-500 font-medium">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
-            {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
-            {pagination.total}
+            {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={pagination.page === 1}
-              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Previous
             </button>
@@ -395,10 +404,10 @@ export default function ApplicationTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
                   num === pagination.page
-                    ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-bakerjonesholdings-black hover:bg-gray-100"
+                    ? "bg-[#082348] text-white border-[#082348]"
+                    : "text-slate-700 border-slate-200 hover:bg-slate-50"
                 }`}
               >
                 {num}
@@ -408,7 +417,7 @@ export default function ApplicationTable() {
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={pagination.page === pagination.totalPage}
-              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Next
             </button>

@@ -89,32 +89,34 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+    <div className="space-y-6 font-inter">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#232323] mb-2">Support</h1>
-          <p className="text-bakerjonesholdings-black">
-            Manage your support tickets and inquiries.
+          <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+            Advisory & Concierge Support
+          </h1>
+          <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+            24/7 dedicated support desk and ticket inquiries with private client advisors
           </p>
         </div>
 
         {user?.role === UserRoles.USER && (
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-[#1D1D1B] text-white hover:bg-[#333] px-6 py-2 rounded-xl">
-                Create Ticket
+              <Button className="gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl shadow-md shadow-[#C5A880]/20 hover:opacity-95 transition-all cursor-pointer">
+                Submit Inquiry Ticket
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
+            <DialogContent className="sm:max-w-[500px] bg-white rounded-3xl p-6 border border-slate-200">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-[#232323]">
-                  Contact Support
+                <DialogTitle className="text-2xl font-serif font-bold text-[#082348]">
+                  Concierge Support Desk
                 </DialogTitle>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">
-                    Subject
+              <form onSubmit={handleSubmit} className="space-y-5 mt-2">
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                    Inquiry Subject
                   </label>
                   <Select
                     value={subject}
@@ -122,10 +124,10 @@ export default function SupportPage() {
                       setSubject(value as SupportTicketSubject)
                     }
                   >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a subject" />
+                    <SelectTrigger className="w-full h-11 bg-slate-50 border-slate-200 rounded-xl font-medium text-sm text-[#082348]">
+                      <SelectValue placeholder="Select a subject category" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white">
+                    <SelectContent className="bg-white rounded-xl border border-slate-200">
                       {Object.values(SupportTicketSubject).map((sub) => (
                         <SelectItem key={sub} value={sub}>
                           {sub}
@@ -134,29 +136,30 @@ export default function SupportPage() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">
-                    Message
+                <div className="space-y-1.5">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                    Message Details
                   </label>
                   <textarea
-                    className="w-full min-h-[150px] p-3 rounded-md border border-input bg-transparent shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                    placeholder="Describe your issue in detail..."
+                    className="w-full min-h-[140px] p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-[#082348] placeholder:text-slate-400 focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all outline-none"
+                    placeholder="Describe your inquiry or requirement..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
                   />
                 </div>
-                <div className="flex justify-end gap-3">
+                <div className="flex justify-end gap-2.5 pt-2">
                   <Button
                     type="button"
                     variant="outline"
+                    className="rounded-xl border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold text-xs"
                     onClick={() => setIsDialogOpen(false)}
                   >
                     Cancel
                   </Button>
                   <Button
                     type="submit"
-                    className="bg-[#1D1D1B] text-white hover:bg-[#333]"
+                    className="gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl cursor-pointer"
                     disabled={!subject || !message || isSubmitting}
                   >
                     {isSubmitting ? "Submitting..." : "Submit Ticket"}
@@ -168,7 +171,7 @@ export default function SupportPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 overflow-x-auto">
+      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
         {loading ? (
           <p className="text-gray-500 py-8 text-center">Loading tickets...</p>
         ) : tickets.length === 0 ? (

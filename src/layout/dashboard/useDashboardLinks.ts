@@ -69,11 +69,6 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.support,
       icon: "material-symbols:support-agent",
     },
-    {
-      title: "Settings",
-      path: paths.dashboard.settings,
-      icon: "material-symbols:settings-outline",
-    },
   ];
 
   const userLinks: Links[] = [
@@ -112,16 +107,6 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.user.kyc,
       icon: "mingcute:user-search-line",
     },
-    // {
-    //   title: "IPOs",
-    //   path: paths.dashboard.user.ipos,
-    //   icon: "mdi:bank-outline",
-    // },
-    // {
-    //   title: "IPO Requests",
-    //   path: paths.dashboard.user.ipoRequests,
-    //   icon: "mdi:clipboard-text-outline",
-    // },
     {
       title: "Regulatory Information",
       path: paths.dashboard.regulatoryInformation,
@@ -132,15 +117,6 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.support,
       icon: "material-symbols:support-agent",
     },
-    ...(user?.name !== "Demo"
-      ? [
-        {
-          title: "Settings",
-          path: paths.dashboard.settings,
-          icon: "material-symbols:settings-outline",
-        },
-      ]
-      : [])
   ];
 
   return user.role === UserRoles.ADMIN ? adminLinks : userLinks;

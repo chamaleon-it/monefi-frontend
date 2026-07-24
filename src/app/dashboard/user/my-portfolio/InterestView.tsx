@@ -45,42 +45,42 @@ export default function InterestView({ tx }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="px-2.5 py-1 bg-green-500 text-black/70 rounded-md font-semibold cursor-pointer">
+        <Button className="bg-[#082348] text-white hover:bg-[#0B2A54] font-bold text-[10px] uppercase tracking-wider px-3.5 py-1.5 rounded-lg shadow-2xs cursor-pointer transition-colors">
           Payment Schedule
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="!w-[700px] !max-w-[700px] !max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <p className="text-emerald-500 text-xl">£</p>
-            Payment Schedule
+      <DialogContent className="!w-[700px] !max-w-[700px] !max-h-[85vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 font-inter">
+        <DialogHeader className="border-b border-slate-100 pb-4">
+          <DialogTitle className="flex items-center gap-2 font-serif font-bold text-2xl text-[#082348]">
+            <span className="text-[#C5A880] text-2xl font-serif">£</span>
+            Payment & Yield Schedule
           </DialogTitle>
-          <DialogDescription>
-            View your scheduled payments and their current status.
+          <DialogDescription className="text-slate-500 text-xs mt-1">
+            View scheduled coupon distributions, dividend payments, and payout terms.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
-          <div className="border rounded-lg">
+        <div className="space-y-6 pt-2">
+          <div className="border border-slate-200/90 rounded-2xl overflow-hidden shadow-2xs">
             <Table>
               <TableHeader>
-                <TableRow>
-                  <TableHead className="w-24">Payment No.</TableHead>
-                  <TableHead>Payment Type</TableHead>
-                  <TableHead>Due Date</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Status</TableHead>
+                <TableRow className="bg-slate-50/80 border-b border-slate-200/80">
+                  <TableHead className="w-20 text-[11px] font-bold uppercase tracking-wider text-[#082348]">No.</TableHead>
+                  <TableHead className="text-[11px] font-bold uppercase tracking-wider text-[#082348]">Payment Type</TableHead>
+                  <TableHead className="text-[11px] font-bold uppercase tracking-wider text-[#082348]">Due Date</TableHead>
+                  <TableHead className="text-[11px] font-bold uppercase tracking-wider text-[#082348]">Amount</TableHead>
+                  <TableHead className="text-[11px] font-bold uppercase tracking-wider text-[#082348]">Status</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody>
+              <TableBody className="divide-y divide-slate-100">
                 {tx.interest.length === 0 ? (
                   <TableRow>
                     <TableCell
                       colSpan={5}
-                      className="text-center py-8 text-muted-foreground"
+                      className="text-center py-8 text-slate-400 text-sm"
                     >
-                      No payment entries found.
+                      No scheduled payment entries found.
                     </TableCell>
                   </TableRow>
                 ) : (
@@ -89,19 +89,19 @@ export default function InterestView({ tx }: Props) {
                     const paymentType = entry.paymentType || "Interest Payment";
 
                     return (
-                      <TableRow key={entry._id}>
-                        <TableCell className="font-medium">{index + 1}</TableCell>
-                        <TableCell>{paymentType}</TableCell>
-                        <TableCell>{fDate(entry.date)}</TableCell>
-                        <TableCell className="font-semibold text-gray-800">
+                      <TableRow key={entry._id} className="hover:bg-slate-50/80 transition-colors">
+                        <TableCell className="font-mono text-xs text-slate-400">{index + 1}</TableCell>
+                        <TableCell className="text-xs font-semibold text-slate-700">{paymentType}</TableCell>
+                        <TableCell className="text-xs font-mono text-slate-500">{fDate(entry.date)}</TableCell>
+                        <TableCell className="text-sm font-bold text-[#082348]">
                           {fCurrency(entry.amount)}
                         </TableCell>
                         <TableCell>
                           <span
-                            className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                            className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
                               status === "Completed"
-                                ? "bg-green-100 text-green-700"
-                                : "bg-yellow-100 text-yellow-700"
+                                ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                : "bg-amber-50 text-amber-700 border-amber-200"
                             }`}
                           >
                             {status}

@@ -3,14 +3,17 @@ import CreateBond from "./CreateBond";
 
 export default function CreateBondPage() {
   return (
-    <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#232323] mb-2">
-          Create New Bond
+    <div className="space-y-6 font-inter">
+      <div>
+        <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+          Issue Sovereign / Corporate Bond
         </h1>
-        <p className="text-bakerjonesholdings-black">Add new bond details to your platform</p>
+        <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+          Configure yield coupon frequency, ISIN identifier, maturity terms, and public visibility
+        </p>
       </div>
-      <div className="space-y-8">
+
+      <div className="space-y-6">
         <CreateBond />
       </div>
     </div>

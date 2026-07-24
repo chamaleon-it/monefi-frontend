@@ -86,102 +86,102 @@ function SharesRow({ tx, mutate }: { tx: Transaction; mutate: () => void }) {
 
   return (
     <>
-      <tr className="border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+      <tr className="hover:bg-slate-50/80 transition-colors whitespace-nowrap">
+        <td className="py-4 px-5 text-xs text-slate-500 font-mono">
           {fDateAndTime(tx.createdAt)}
         </td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx._id}</td>
-        <td className="py-3 px-4 text-sm">
-          <p className="font-bold">{tx.user?.name}</p>
-          <p className="text-sm">{tx.user?.email}</p>
+        <td className="py-4 px-5 text-xs font-mono text-slate-400">{tx._id.slice(-8).toUpperCase()}</td>
+        <td className="py-4 px-5 text-sm">
+          <p className="font-bold text-[#082348]">{tx.user?.name}</p>
+          <p className="text-xs text-slate-400">{tx.user?.email}</p>
         </td>
-        <td className="py-3 px-4 text-sm font-bold text-gray-800">{tx.symbol}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.name}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.tradeAction}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.unitPrice)}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.fees ?? 0)}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{fCurrency(tx.totalValue)}</td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black font-semibold">{fCurrency(tx.totalValue + (tx.fees ?? 0))}</td>
-        <td className={`py-3 px-4 text-xs`}>
-          <p
-            className={`
-            ${
-              (tx.status === TransactionStatus.PENDING && "text-yellow-800 bg-yellow-400") ||
-              (tx.status === TransactionStatus.COMPLETED && "text-green-800 bg-green-400") ||
-              (tx.status === TransactionStatus.CANCELLED && "text-red-800 bg-red-400")
-            }
-            px-1 py-0.5 rounded-full text-center
-            `}
+        <td className="py-4 px-5 text-sm font-bold text-[#082348]">{tx.symbol}</td>
+        <td className="py-4 px-5 text-sm font-semibold text-slate-700">{tx.name}</td>
+        <td className="py-4 px-5 text-xs font-semibold text-slate-600">{tx.tradeAction}</td>
+        <td className="py-4 px-5 text-sm font-medium text-slate-600">{fCurrency(tx.unitPrice)}</td>
+        <td className="py-4 px-5 text-sm font-semibold text-slate-700">{tx.quantity}</td>
+        <td className="py-4 px-5 text-sm font-medium text-slate-600">{fCurrency(tx.fees ?? 0)}</td>
+        <td className="py-4 px-5 text-sm font-bold text-[#082348]">{fCurrency(tx.totalValue)}</td>
+        <td className="py-4 px-5 text-sm font-bold text-[#082348]">{fCurrency(tx.totalValue + (tx.fees ?? 0))}</td>
+        <td className="py-4 px-5 text-xs">
+          <span
+            className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider text-center ${
+              tx.status === TransactionStatus.PENDING
+                ? "bg-amber-50 text-amber-700 border border-amber-200"
+                : tx.status === TransactionStatus.COMPLETED
+                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                : "bg-rose-50 text-rose-700 border border-rose-200"
+            }`}
           >
             {tx.status}
-          </p>
+          </span>
         </td>
-        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-          <div className="flex gap-2.5">
+        <td className="py-4 px-5 text-xs">
+          <div className="flex gap-2">
             {tx.status === TransactionStatus.PENDING && (
-              <div className="flex gap-2.5">
+              <>
                 <button
-                  className="px-2 py-1.5 rounded-md text-white bg-green-600"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-2xs transition-colors cursor-pointer"
                   onClick={() => setShowFeeModal(true)}
                 >
                   Complete
                 </button>
                 <button
-                  className="px-2 py-1.5 rounded-md text-white bg-red-600"
+                  className="bg-rose-600 hover:bg-rose-700 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-2xs transition-colors cursor-pointer"
                   onClick={() => cancelTransaction(tx._id)}
                 >
                   Cancel
                 </button>
-              </div>
+              </>
             )}
             <button
-              className="px-2 py-1.5 rounded-md text-white bg-green-600"
+              className="border border-slate-200 text-[#082348] hover:bg-slate-50 font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
               onClick={() => setShowDateModal(true)}
             >
               Change Date
             </button>
           </div>
           {showDateModal && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-              <div className="bg-white p-8 rounded-lg shadow-lg min-w-[340px]">
-                <h3 className="mb-3 font-bold text-xl text-gray-800">Change Transaction Date</h3>
-                <p className="mb-5 text-bakerjonesholdings-black">Do you want to change the date of this transaction?</p>
+            <div className="fixed inset-0 flex items-center justify-center bg-[#082348]/40 backdrop-blur-xs z-50 p-4 font-inter">
+              <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-2xl min-w-[340px]">
+                <h3 className="mb-1 font-serif font-bold text-xl text-[#082348]">Change Transaction Date</h3>
+                <p className="mb-5 text-xs text-slate-500">Update execution date timestamp for audit logs</p>
                 <label className="block mb-4">
-                  <span className="text-gray-700 font-medium mb-1 block">Select new date</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 block">Select New Date</span>
                   <input
                     type="date"
-                    className="border px-3 py-2 rounded w-full focus:outline-none focus:ring focus:border-blue-400"
+                    className="w-full h-11 px-4 border border-slate-200 rounded-xl bg-slate-50 text-sm font-semibold text-[#082348] focus:bg-white focus:border-[#C5A880] outline-none"
                     value={selectedDate ?? ""}
                     onChange={(e) => setSelectedDate(e.target.value)}
                   />
                 </label>
-                <div className="flex gap-3 justify-end mt-6">
+                <div className="flex gap-2.5 justify-end mt-6">
                   <button
-                    className="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+                    className="px-4 py-2 bg-slate-100 text-slate-700 font-semibold text-xs rounded-xl hover:bg-slate-200 transition-colors"
                     onClick={() => setShowDateModal(false)}
                   >
                     Cancel
                   </button>
                   <button
-                    className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 transition disabled:opacity-50"
+                    className="px-4 py-2 gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl shadow-md cursor-pointer"
                     onClick={changeDate}
-                    disabled={!selectedDate}
                   >
-                    Submit
+                    Confirm Date
                   </button>
                 </div>
               </div>
             </div>
           )}
+          {showFeeModal && (
+            <TransactionFeeModal
+              open={showFeeModal}
+              onClose={() => setShowFeeModal(false)}
+              transaction={tx}
+              onSuccess={mutate}
+            />
+          )}
         </td>
       </tr>
-      <TransactionFeeModal
-        open={showFeeModal}
-        onClose={() => setShowFeeModal(false)}
-        transaction={tx}
-        onSuccess={mutate}
-      />
     </>
   );
 }
@@ -195,6 +195,7 @@ export default function SharesTable() {
       limit: filter.limit.toString(),
       investmentType: InvestmentType.STOCK,
     });
+
     return `/transactions?${params.toString()}`;
   }, [filter]);
 
@@ -234,22 +235,22 @@ export default function SharesTable() {
   };
 
   const SkeletonRow = () => (
-    <tr className="animate-pulse border-b bg-bakerjonesholdings-off-pink whitespace-nowrap">
+    <tr className="animate-pulse border-b border-slate-100 whitespace-nowrap">
       {Array.from({ length: 13 }).map((_, i) => (
-        <td key={i} className="py-3 px-4">
-          <div className="h-4 bg-gray-300 rounded w-full mx-auto"></div>
+        <td key={i} className="py-4 px-5">
+          <div className="h-4 bg-slate-200 rounded w-full mx-auto"></div>
         </td>
       ))}
     </tr>
   );
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 font-inter">
       <div className="flex justify-end items-center">
         <select
           value={filter.limit}
           onChange={(e) => handleLimitChange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink text-sm"
+          className="px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-[#C5A880] text-xs font-semibold text-slate-700 shadow-2xs"
         >
           <option value={10}>10 per page</option>
           <option value={25}>25 per page</option>
@@ -257,27 +258,27 @@ export default function SharesTable() {
         </select>
       </div>
 
-      <div className="bg-white rounded-xl shadow overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full whitespace-nowrap">
+          <table className="w-full whitespace-nowrap text-left">
             <thead>
-              <tr className="border-b text-left text-sm font-medium text-bakerjonesholdings-black bg-bakerjonesholdings-off-pink">
-                <th className="py-3 px-4">Date</th>
-                <th className="py-3 px-4">Tx ID</th>
-                <th className="py-3 px-4">User</th>
-                <th className="py-3 px-4">Ticker</th>
-                <th className="py-3 px-4">Company Name</th>
-                <th className="py-3 px-4">Type</th>
-                <th className="py-3 px-4">Price</th>
-                <th className="py-3 px-4">Shares</th>
-                <th className="py-3 px-4">Fees</th>
-                <th className="py-3 px-4">Investment Sum</th>
-                <th className="py-3 px-4">Total Amount</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4">Actions</th>
+              <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                <th className="py-4 px-5">Date</th>
+                <th className="py-4 px-5">Tx ID</th>
+                <th className="py-4 px-5">Client Profile</th>
+                <th className="py-4 px-5">Ticker</th>
+                <th className="py-4 px-5">Company Name</th>
+                <th className="py-4 px-5">Type</th>
+                <th className="py-4 px-5">Price</th>
+                <th className="py-4 px-5">Shares</th>
+                <th className="py-4 px-5">Fees</th>
+                <th className="py-4 px-5">Investment Sum</th>
+                <th className="py-4 px-5">Total Amount</th>
+                <th className="py-4 px-5">Status</th>
+                <th className="py-4 px-5">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100">
               {isLoading &&
                 Array.from({ length: filter.limit }).map((_, i) => (
                   <SkeletonRow key={i} />
@@ -293,8 +294,8 @@ export default function SharesTable() {
 
               {!isLoading && transactions.length === 0 && (
                 <tr>
-                  <td colSpan={13} className="text-center py-10 text-gray-500">
-                    No share transactions found.
+                  <td colSpan={13} className="text-center py-12 text-slate-400 text-sm">
+                    No share transactions recorded.
                   </td>
                 </tr>
               )}
@@ -304,17 +305,17 @@ export default function SharesTable() {
       </div>
 
       {pagination && pagination.totalPage > 1 && (
-        <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <p className="text-sm text-bakerjonesholdings-black">
+        <div className="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-200/80 shadow-2xs">
+          <p className="text-xs text-slate-500 font-medium">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
             {pagination.total}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={pagination.page === 1}
-              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Previous
             </button>
@@ -322,10 +323,10 @@ export default function SharesTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
                   num === pagination.page
-                    ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-bakerjonesholdings-black hover:bg-gray-100"
+                    ? "bg-[#082348] text-white border-[#082348]"
+                    : "text-slate-700 border-slate-200 hover:bg-slate-50"
                 }`}
               >
                 {num}
@@ -334,7 +335,7 @@ export default function SharesTable() {
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={pagination.page === pagination.totalPage}
-              className="px-3 py-2 border border-gray-300 text-sm rounded-md disabled:opacity-50"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Next
             </button>

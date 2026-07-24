@@ -215,15 +215,23 @@ export default function UsersPage() {
   }
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-6 font-inter">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-bakerjonesholdings-black">Customers</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div>
+          <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+            Client Roster
+          </h1>
+          <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+            Manage registered investor accounts, deposit capital balances, and approve KYC verification
+          </p>
+        </div>
+
         <div className="flex items-center gap-4">
           <select
             value={filter.limit}
             onChange={(e) => handleLimitChange(Number(e.target.value))}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink"
+            className="px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-[#C5A880] text-xs font-semibold text-slate-700 shadow-2xs"
           >
             <option value={10}>10 per page</option>
             <option value={25}>25 per page</option>
@@ -233,24 +241,24 @@ export default function UsersPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-bakerjonesholdings-off-pink rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full whitespace-nowrap">
+          <table className="w-full whitespace-nowrap text-left">
             <thead>
-              <tr className="font-inter font-medium border-b border-bakerjonesholdings-black">
-                <th className="py-4 px-4 text-left">SL.No</th>
-                <th className="py-4 px-4 text-left">Email Address</th>
-                <th className="py-4 px-4 text-left">Status</th>
-                <th className="py-4 px-4 text-left">Balance</th>
-                <th className="py-4 px-4 text-left">Registration Date</th>
-                <th className="py-4 px-4 text-left">Last Login</th>
-                <th className="py-4 px-4 text-left">KYC Status</th>
-                <th className="py-4 px-4 text-left">KYC</th>
-                <th className="py-4 px-4 text-left">KYC Actions</th>
-                <th className="py-4 px-4 text-left">Actions</th>
+              <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                <th className="py-4 px-5">SL.No</th>
+                <th className="py-4 px-5">Client Profile</th>
+                <th className="py-4 px-5">Status</th>
+                <th className="py-4 px-5">Capital Balance</th>
+                <th className="py-4 px-5">Registration Date</th>
+                <th className="py-4 px-5">Last Activity</th>
+                <th className="py-4 px-5">KYC Status</th>
+                <th className="py-4 px-5">Document Verification</th>
+                <th className="py-4 px-5">KYC Review</th>
+                <th className="py-4 px-5">Account Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100">
               {isLoading &&
                 Array.from({ length: filter.limit }, (_, i) => (
                   <SkeletonRow key={i} />
@@ -261,51 +269,53 @@ export default function UsersPage() {
                 users.map((user, index) => (
                   <tr
                     key={user._id}
-                    className="hover:bg-white/50 border-b border-gray-100 last:border-b-0"
+                    className="hover:bg-slate-50/80 transition-colors"
                   >
-                    <td className="py-3 px-4">
+                    <td className="py-4 px-5 text-xs text-slate-400 font-mono">
                       {(filter.page - 1) * filter.limit + index + 1}
                     </td>
-                    <td className="py-3 px-4 font-medium">
-                      <p className="font-bold">{user.name}</p>
-                      <p className="text-sm">{user.email}</p>
+                    <td className="py-4 px-5 text-sm">
+                      <p className="font-bold text-[#082348]">{user.name}</p>
+                      <p className="text-xs text-slate-400">{user.email}</p>
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-4 px-5 text-xs">
                       <span
-                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full capitalize ${
+                        className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${
                           user.status === UserStatus.ACTIVE
-                            ? "bg-green-100 text-green-800"
+                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                             : user.status === UserStatus.INACTIVE
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-red-100 text-red-800"
+                            ? "bg-amber-50 text-amber-700 border border-amber-200"
+                            : "bg-rose-50 text-rose-700 border border-rose-200"
                         }`}
                       >
                         {user.status}
                       </span>
                     </td>
-                    <td className="py-3 px-4">{fCurrency(user.balance)}</td>
-                    <td className="py-3 px-4">
+                    <td className="py-4 px-5 text-sm font-bold text-[#082348]">
+                      {fCurrency(user.balance)}
+                    </td>
+                    <td className="py-4 px-5 text-xs text-slate-500">
                       {fDateAndTime(user.createdAt)}
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-4 px-5 text-xs text-slate-500 font-medium">
                       {user.lastLogin ? fAgo(user.lastLogin) : "Never"}
                     </td>
-                    <td className="py-3 px-4">
-                      <p className={`px-1 py-0.5 border rounded-md text-xs capitalize text-center 
-                        ${user.kycStatus === "Not submitted" && "bg-yellow-300"} 
-                         ${user.kycStatus === "Pending" && "bg-yellow-300"} 
-                         ${user.kycStatus === "Completed" && "bg-green-400"}
-                          ${user.kycStatus === "Expired" && "bg-red-400"}
-                           ${user.kycStatus === "Rejected" && "bg-red-400"}
+                    <td className="py-4 px-5 text-xs">
+                      <span className={`inline-block px-2.5 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider 
+                        ${user.kycStatus === "Not submitted" && "bg-slate-100 text-slate-600 border border-slate-200"} 
+                         ${user.kycStatus === "Pending" && "bg-amber-50 text-amber-700 border border-amber-200"} 
+                         ${user.kycStatus === "Completed" && "bg-emerald-50 text-emerald-700 border border-emerald-200"}
+                          ${user.kycStatus === "Expired" && "bg-rose-50 text-rose-700 border border-rose-200"}
+                           ${user.kycStatus === "Rejected" && "bg-rose-50 text-rose-700 border border-rose-200"}
                        `}>
                       {user.kycStatus}
-                      </p>
-                      </td>
-                    <td>
-                      <div className="flex gap-2 flex-col">
+                      </span>
+                    </td>
+                    <td className="py-4 px-5 text-xs">
+                      <div className="flex gap-1.5 flex-col">
                         {user?.identityVerification?.file && (
                           <a
-                            className="text-green-600 border rounded-md px-3 py-1 text-sm"
+                            className="text-[#082348] hover:text-[#C5A880] border border-slate-200 bg-slate-50 rounded-lg px-2.5 py-1 font-semibold text-xs transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                             href={
@@ -313,31 +323,29 @@ export default function UsersPage() {
                               user.identityVerification.file
                             }
                           >
-                            {" "}
-                            {user.identityVerification.proof}
+                            📄 {user.identityVerification.proof}
                           </a>
                         )}
                         {user?.proofOfAddress?.file && (
                           <a
-                            className="text-green-600 border rounded-md px-3 py-1 text-sm"
+                            className="text-[#082348] hover:text-[#C5A880] border border-slate-200 bg-slate-50 rounded-lg px-2.5 py-1 font-semibold text-xs transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                             href={
                               getConfig().backendURL + user.proofOfAddress.file
                             }
                           >
-                            {" "}
-                            {user.proofOfAddress.proof}
+                            🏠 {user.proofOfAddress.proof}
                           </a>
                         )}
                       </div>
                     </td>
 
-                    <td className="py-3 px-4">
+                    <td className="py-4 px-5 text-xs">
                       {user.kycStatus === "Pending" && (
-                        <div className="flex gap-2 flex-col">
+                        <div className="flex gap-1.5 flex-row">
                           <button
-                            className="text-green-600 border rounded-md px-3 py-1 text-sm cursor-pointer"
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors cursor-pointer shadow-2xs"
                             onClick={async () => {
                               try {
                                 const payload = {
@@ -348,7 +356,7 @@ export default function UsersPage() {
                                 await toast.promise(
                                   api.post("/users/update_status", payload),
                                   {
-                                    loading: "KYC status is updating...!",
+                                    loading: "Updating KYC status...",
                                     success: ({ data }) => data.message,
                                     error: ({ response }) =>
                                       response.data.message,
@@ -360,11 +368,11 @@ export default function UsersPage() {
                               }
                             }}
                           >
-                            Completed
+                            Approve
                           </button>
 
                           <button
-                            className="text-red-600 border rounded-md px-3 py-1 text-sm cursor-pointer"
+                            className="bg-rose-600 hover:bg-rose-700 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors cursor-pointer shadow-2xs"
                             onClick={async () => {
                               try {
                                 const payload = {
@@ -375,7 +383,7 @@ export default function UsersPage() {
                                 await toast.promise(
                                   api.post("/users/update_status", payload),
                                   {
-                                    loading: "KYC status is updating...!",
+                                    loading: "Updating KYC status...",
                                     success: ({ data }) => data.message,
                                     error: ({ response }) =>
                                       response.data.message,
@@ -387,28 +395,28 @@ export default function UsersPage() {
                               }
                             }}
                           >
-                            Rejected
+                            Reject
                           </button>
                         </div>
                       )}
                     </td>
 
-                    <td className="py-3 px-4">
-                      <div className="flex gap-3">
-                        {user.status !== UserStatus.DELETED && (
-                          <button
-                            className="text-red-600 border rounded-md px-3 py-1 text-sm"
-                            onClick={() => openDeleteConfirmation(user)}
-                          >
-                            Delete
-                          </button>
-                        )}
+                    <td className="py-4 px-5 text-xs">
+                      <div className="flex gap-2">
                         {user.status === UserStatus.ACTIVE && (
                           <button
-                            className="text-green-600 border rounded-md px-3 py-1 text-sm"
+                            className="gold-gradient-bg text-slate-950 font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-2xs cursor-pointer hover:opacity-95 transition-opacity"
                             onClick={() => openDepositModal(user)}
                           >
                             Deposit Cash
+                          </button>
+                        )}
+                        {user.status !== UserStatus.DELETED && (
+                          <button
+                            className="border border-rose-200 text-rose-600 hover:bg-rose-50 font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                            onClick={() => openDeleteConfirmation(user)}
+                          >
+                            Delete
                           </button>
                         )}
                       </div>
@@ -418,14 +426,8 @@ export default function UsersPage() {
 
               {!isLoading && users.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center">
-                    <div className="text-gray-400 text-6xl mb-4">👥</div>
-                    <h3 className="text-lg font-semibold text-bakerjonesholdings-black mb-2">
-                      No Users Found
-                    </h3>
-                    <p className="text-gray-500">
-                      There are no users to display at the moment.
-                    </p>
+                  <td colSpan={10} className="py-12 text-center text-slate-400">
+                    No client records found.
                   </td>
                 </tr>
               )}
@@ -436,17 +438,17 @@ export default function UsersPage() {
 
       {/* Pagination */}
       {pagination && pagination.totalPage > 1 && (
-        <div className="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm">
-          <div className="text-sm text-bakerjonesholdings-black">
+        <div className="flex items-center justify-between bg-white rounded-2xl p-4 border border-slate-200/80 shadow-2xs">
+          <div className="text-xs text-slate-500 font-medium">
             Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
-            {pagination.total} results
+            {pagination.total} clients
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={pagination.page === 1}
-              className="px-3 py-2 text-sm font-medium border rounded-lg"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Previous
             </button>
@@ -454,10 +456,10 @@ export default function UsersPage() {
               <button
                 key={pageNum}
                 onClick={() => handlePageChange(pageNum)}
-                className={`px-3 py-2 text-sm font-medium rounded-lg ${
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
                   pageNum === pagination.page
-                    ? "bg-bakerjonesholdings-pink text-white"
-                    : "border"
+                    ? "bg-[#082348] text-white border-[#082348]"
+                    : "text-slate-700 border-slate-200 hover:bg-slate-50"
                 }`}
               >
                 {pageNum}
@@ -466,7 +468,7 @@ export default function UsersPage() {
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={pagination.page === pagination.totalPage}
-              className="px-3 py-2 text-sm font-medium border rounded-lg"
+              className="px-3 py-1.5 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-50 transition-colors"
             >
               Next
             </button>
@@ -476,28 +478,28 @@ export default function UsersPage() {
 
       {/* Delete Modal */}
       {deleteConfirmation.isOpen && (
-        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
-            <h3 className="text-lg font-semibold mb-4">Delete User</h3>
-            <p className="mb-6">
-              Are you sure you want to delete{" "}
-              <span className="font-medium">
+        <div className="fixed inset-0 bg-[#082348]/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full font-inter">
+            <h3 className="text-xl font-serif font-bold text-[#082348] mb-2">Delete Client Account</h3>
+            <p className="text-slate-600 text-sm mb-6">
+              Are you sure you want to revoke and delete{" "}
+              <span className="font-bold text-[#082348]">
                 {deleteConfirmation.user?.email}
               </span>
-              ? This cannot be undone.
+              ? This action is permanent and cannot be undone.
             </p>
             <div className="flex justify-end gap-3">
               <button
                 onClick={closeDeleteConfirmation}
-                className="px-4 py-2 bg-gray-100 rounded-lg"
+                className="px-4 py-2 bg-slate-100 text-slate-700 font-semibold text-xs rounded-xl hover:bg-slate-200 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={confirmDelete}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg"
+                className="px-4 py-2 bg-rose-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-rose-700 transition-colors"
               >
-                Delete
+                Delete Account
               </button>
             </div>
           </div>
@@ -506,12 +508,11 @@ export default function UsersPage() {
 
       {/* Deposit Modal */}
       {depositModal.isOpen && (
-        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
-            <h3 className="text-lg font-semibold mb-4">Deposit Cash</h3>
-            <p className="mb-3">
-              Enter amount to deposit for{" "}
-              <strong>{depositModal.user?.email}</strong>
+        <div className="fixed inset-0 bg-[#082348]/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full font-inter">
+            <h3 className="text-xl font-serif font-bold text-[#082348] mb-1">Inject Client Capital</h3>
+            <p className="text-slate-500 text-xs mb-4">
+              Specify USD capital deposit for <strong className="text-[#082348]">{depositModal.user?.email}</strong>
             </p>
             <input
               type="number"
@@ -519,21 +520,21 @@ export default function UsersPage() {
               onChange={(e) =>
                 setDepositModal((prev) => ({ ...prev, amount: e.target.value }))
               }
-              placeholder="Enter amount"
-              className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-bakerjonesholdings-pink"
+              placeholder="Enter deposit amount ($)"
+              className="w-full h-11 px-4 mb-5 border border-slate-200 rounded-xl bg-slate-50 text-sm font-semibold text-[#082348] focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 outline-none"
             />
             <div className="flex justify-end gap-3">
               <button
                 onClick={closeDepositModal}
-                className="px-4 py-2 bg-gray-100 rounded-lg"
+                className="px-4 py-2 bg-slate-100 text-slate-700 font-semibold text-xs rounded-xl hover:bg-slate-200 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDeposit}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg"
+                className="px-5 py-2.5 gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl shadow-md cursor-pointer hover:opacity-95 transition-opacity"
               >
-                Deposit
+                Confirm Capital Deposit
               </button>
             </div>
           </div>

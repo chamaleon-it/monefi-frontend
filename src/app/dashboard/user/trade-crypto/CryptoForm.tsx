@@ -61,65 +61,66 @@ export default function CryptoForm({ symbol }: { symbol: string }) {
   }
 
   return (
-    <div className="w-full bg-bakerjonesholdings-off-pink shadow-lg rounded-2xl p-4 space-y-2.5 border border-gray-200 pointer-events-auto">
-      <div className="flex items-center justify-between">
+    <div className="w-full max-w-md mx-auto bg-white shadow-[0_15px_35px_rgba(8,35,72,0.05)] rounded-3xl p-6 space-y-5 border border-slate-200/90 pointer-events-auto relative overflow-hidden font-inter">
+      {/* Top Gold Line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
+
+      <div className="flex items-center justify-between pb-3 border-b border-slate-100">
         <div>
-          <p className="text-sm text-gray-500">Crypto Name</p>
-          <p className="text-lg font-semibold text-gray-800">
-            {crypto?.name ?? "Unknown"}
-          </p>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Crypto Asset</span>
+          <p className="text-lg font-serif font-bold text-[#082348]">{crypto?.name ?? "Unknown"}</p>
         </div>
         <div className="text-right">
-          <p className="text-sm text-gray-500">Symbol</p>
-          <p className="text-lg font-semibold text-gray-800">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Symbol</span>
+          <p className="text-sm font-mono font-bold text-[#C5A880] px-2.5 py-1 rounded-full bg-[#C5A880]/15 inline-block">
             {crypto?.symbol ?? "N/A"}
           </p>
         </div>
       </div>
 
       <div>
-        <label
-          htmlFor="quantity"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Quantity
+        <label htmlFor="quantity" className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+          Asset Quantity
         </label>
         <input
           type="number"
           id="quantity"
-          placeholder="Enter quantity"
-          className="w-full h-10 px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter crypto quantity"
+          className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold"
           onChange={(e) => setQuantity(+e.target.value)}
           value={quantity || ""}
         />
       </div>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center">
-        <p className="text-sm text-gray-500">Trade Minimum</p>
-        <p className="text-xl font-semibold text-gray-800">{fCurrency(5000)}</p>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 text-center">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Live Asset Rate</p>
+          <p className="text-base font-serif font-bold text-[#082348] mt-0.5">
+            {prceLoading ? "Fetching..." : fCurrency(price || 0)}
+          </p>
+        </div>
+
+        <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 text-center">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Trade Minimum</p>
+          <p className="text-base font-serif font-bold text-[#082348] mt-0.5">{fCurrency(5000)}</p>
+        </div>
       </div>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center">
-        <p className="text-sm text-gray-500">Current Price</p>
-        <p className="text-xl font-semibold text-gray-800">
-          {prceLoading ? "Price is fetching.." : fCurrency(price || 0)}
-        </p>
-      </div>
-
-      <div className="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center">
-        <p className="text-sm text-gray-500">Purchase Price</p>
-        <p className="text-xl font-semibold text-gray-800">
+      <div className="p-4 rounded-2xl bg-[#082348] text-white text-center shadow-md relative overflow-hidden">
+        <div className="absolute top-0 right-0 h-0.5 left-0 bg-[#C5A880]"></div>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-300">Total Purchase Capital</p>
+        <p className="text-2xl font-serif font-bold text-white mt-0.5">
           {fCurrency(purchasePrice)}
         </p>
       </div>
 
-      <div className="pt-2">
+      <div className="pt-1">
         <button
           type="button"
-          className="w-full h-11 bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/80 text-white font-medium text-sm rounded-md transition duration-200"
+          className="w-full py-3.5 gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl hover:opacity-95 transition duration-200 shadow-md shadow-[#C5A880]/20 cursor-pointer"
           onClick={buy}
         >
-          Buy Stock
+          Execute Crypto Acquisition
         </button>
       </div>
     </div>

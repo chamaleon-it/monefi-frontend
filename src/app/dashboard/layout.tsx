@@ -25,16 +25,17 @@ export default function DashboardLayout({
   if (!isAuthenticated || loading) return null;
 
   return (
-    <>
-      <Header />
-      <main className="min-h-[calc(100vh-150px)] max-w-[95%] lg:max-w-[95%] mx-auto">
-        <div className="flex flex-col lg:flex-row items-start gap-5 w-full">
-          <Aside />
-          <div className="max-w-full lg:max-w-[calc(100%-400px-40px)] w-full p-2.5">
-            {children}
-          </div>
-        </div>
-      </main>
-    </>
+    <div className="bg-[#F9F9F7] text-slate-800 font-inter antialiased min-h-screen flex flex-col lg:flex-row">
+      {/* Left Column: Full-Height Sidebar starting from left edge top to bottom */}
+      <Aside />
+
+      {/* Right Column: Header starting AFTER sidebar + Main Page Content */}
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen">
+        <Header />
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full">
+          {children}
+        </main>
+      </div>
+    </div>
   );
 }

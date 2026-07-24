@@ -42,49 +42,50 @@ export default function CreateBond() {
   });
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-      <div className="p-6 border-b border-gray-200">
-        <h2 className="text-xl font-semibold text-[#232323] mb-1">New Bond</h2>
-        <p className="text-bakerjonesholdings-black">Add a new bond to the system</p>
+    <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden font-inter">
+      <div className="p-6 border-b border-slate-100 relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
+        <h2 className="text-xl font-serif font-bold text-[#082348] mb-0.5">Bond Offering Terms</h2>
+        <p className="text-slate-500 text-xs">Configure debt security parameters for market issuance</p>
       </div>
       <form onSubmit={submit} className="p-6 space-y-6">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Bond Name
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+              Bond Instrument Name
             </label>
             <input
               {...register("name")}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
-              placeholder="Bond Name"
+              className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold"
+              placeholder="e.g. UK Sovereign Treasury Yield Note 2029"
             />
             {errors.name && (
-              <p className="text-sm text-red-500">{errors.name.message}</p>
+              <p className="text-xs text-rose-500 mt-1 font-medium">{errors.name.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              ISIN
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+              ISIN Code Identifier
             </label>
             <input
               {...register("isin")}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
-              placeholder="ISIN Code"
+              className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-mono font-semibold"
+              placeholder="e.g. GB00BHBFH458"
             />
             {errors.isin && (
-              <p className="text-sm text-red-500">{errors.isin.message}</p>
+              <p className="text-xs text-rose-500 mt-1 font-medium">{errors.isin.message}</p>
             )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                 Coupon Frequency
               </label>
               <select
                 {...register("couponFrequency")}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
               >
                 <option value="">Select Frequency</option>
                 {Object.values(CouponFrequency).map((freq) => (
@@ -94,19 +95,19 @@ export default function CreateBond() {
                 ))}
               </select>
               {errors.couponFrequency && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.couponFrequency.message}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                 Coupon Type
               </label>
               <select
                 {...register("couponType")}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
               >
                 <option value="">Select Type</option>
                 {Object.values(CouponType).map((type) => (
@@ -116,7 +117,7 @@ export default function CreateBond() {
                 ))}
               </select>
               {errors.couponType && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.couponType.message}
                 </p>
               )}
@@ -125,7 +126,7 @@ export default function CreateBond() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                 Annual Coupon Rate (%)
               </label>
               <input
@@ -133,28 +134,28 @@ export default function CreateBond() {
                 type="number"
                 step="0.001"
                 placeholder="e.g., 6.5"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold"
               />
               {errors.annualCouponRate && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.annualCouponRate.message}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Unit Price
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Unit Par Value ($)
               </label>
               <input
                 {...register("unitPrice", { valueAsNumber: true })}
                 type="number"
                 step="0.001"
                 placeholder="e.g., 1000"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold"
               />
               {errors.unitPrice && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.unitPrice.message}
                 </p>
               )}
@@ -162,44 +163,44 @@ export default function CreateBond() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
               Maturity Date
             </label>
             <input
               {...register("meturityDate")}
               type="date"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+              className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
             />
             {errors.meturityDate && (
-              <p className="text-sm text-red-500">
+              <p className="text-xs text-rose-500 mt-1 font-medium">
                 {errors.meturityDate.message}
               </p>
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2.5 pt-2">
             <input
               {...register("isPublic")}
               type="checkbox"
               id="isPublic"
-              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+              className="w-4 h-4 rounded border-slate-300 text-[#082348] focus:ring-[#C5A880]"
             />
-            <label htmlFor="isPublic" className="text-sm text-gray-700">
-              Make bond public
+            <label htmlFor="isPublic" className="text-xs font-semibold text-slate-700 cursor-pointer">
+              Publish publicly to all institutional client catalogs
             </label>
           </div>
         </div>
 
         {errors.root && (
-          <p className="text-sm text-red-500">{errors.root.message}</p>
+          <p className="text-xs text-rose-500 font-medium">{errors.root.message}</p>
         )}
 
         <button
           type="submit"
-          className="px-4 py-2 bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/90 text-white rounded-md"
+          className="gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-md cursor-pointer hover:opacity-95 transition-opacity"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Creating..." : "Create Bond"}
+          {isSubmitting ? "Processing Offering..." : "Publish Bond Offering"}
         </button>
       </form>
     </div>

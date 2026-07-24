@@ -99,25 +99,24 @@ export default function Investment() {
   const quantity = watch("quantity");
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-      <div className="p-6 border-b border-gray-200">
-        <h2 className="text-xl font-semibold text-[#232323] mb-1">
-          New Investment
-        </h2>
-        <p className="text-bakerjonesholdings-black">Add a new investment to the system</p>
+    <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden font-inter">
+      <div className="p-6 border-b border-slate-100 relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
+        <h2 className="text-xl font-serif font-bold text-[#082348] mb-0.5">Capital Placement Terms</h2>
+        <p className="text-slate-500 text-xs">Direct asset placement and client allocation execution</p>
       </div>
       <form onSubmit={submit} className="p-6 space-y-6">
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Investment Type
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Investment Asset Class
               </label>
               <select
                 {...register("investmentType")}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
               >
-                <option value="">Select Investment Type</option>
+                <option value="">Select Asset Class</option>
                 {Object.values(InvestmentType).map((op) => (
                   <option value={op} key={op}>
                     {op}
@@ -125,32 +124,32 @@ export default function Investment() {
                 ))}
               </select>
               {errors.investmentType && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.investmentType.message}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                User
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Target Client Account
               </label>
               <select
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
                 {...register("user")}
               >
-                <option value="">Select user</option>
+                <option value="">Select client account</option>
                 {userData?.data.map(
                   (user) =>
                     user.role === UserRoles.USER && (
                       <option key={user._id} value={user._id}>
-                        {user.name || user?.email}
+                        {user.name || user?.email} ({user.email})
                       </option>
                     )
                 )}
               </select>
               {errors.user && (
-                <p className="text-sm text-red-500">{errors.user.message}</p>
+                <p className="text-xs text-rose-500 mt-1 font-medium">{errors.user.message}</p>
               )}
             </div>
           </div>
@@ -158,11 +157,11 @@ export default function Investment() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {invermentType === InvestmentType.STOCK && (
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Select Stock
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Select Stock Instrument
                 </label>
                 <select
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                  className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
                   onChange={(e) => {
                     const stock = topStock.find(
                       (ts) => ts.name === e.target.value
@@ -171,15 +170,15 @@ export default function Investment() {
                     setValue("name", stock?.name ?? "");
                   }}
                 >
-                  <option value="">Select Stock</option>
+                  <option value="">Select Equity Security</option>
                   {topStock.map((e) => (
                     <option value={e.name} key={e.name}>
-                      {e.name}
+                      {e.name} ({e.symbol})
                     </option>
                   ))}
                 </select>
                 {errors.symbol && (
-                  <p className="text-sm text-red-500">
+                  <p className="text-xs text-rose-500 mt-1 font-medium">
                     {errors.symbol.message}
                   </p>
                 )}
@@ -188,11 +187,11 @@ export default function Investment() {
 
             {invermentType === InvestmentType.CRYPTO && (
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Select Crypto
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Select Digital Asset
                 </label>
                 <select
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                  className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
                   onChange={(e) => {
                     const crypto = topCrypto.find(
                       (ts) => ts.name === e.target.value
@@ -201,15 +200,15 @@ export default function Investment() {
                     setValue("name", crypto?.name ?? "");
                   }}
                 >
-                  <option value="">Select Crypto</option>
+                  <option value="">Select Crypto Asset</option>
                   {topCrypto.map((e) => (
                     <option value={e.name} key={e.name}>
-                      {e.name}
+                      {e.name} ({e.symbol})
                     </option>
                   ))}
                 </select>
                 {errors.symbol && (
-                  <p className="text-sm text-red-500">
+                  <p className="text-xs text-rose-500 mt-1 font-medium">
                     {errors.symbol.message}
                   </p>
                 )}
@@ -218,11 +217,11 @@ export default function Investment() {
 
             {invermentType === InvestmentType.BOND && (
               <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Select Bond
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Select Bond Security
                 </label>
                 <select
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                  className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
                   onChange={(e) => {
                     const bond = bondData?.data.find(
                       (ts) => ts.name === e.target.value
@@ -233,15 +232,15 @@ export default function Investment() {
                     setValue("annualCouponRate", bond?.annualCouponRate ?? 0);
                   }}
                 >
-                  <option value="">Select Bond</option>
+                  <option value="">Select Bond Instrument</option>
                   {bondData?.data.map((e) => (
                     <option value={e.name} key={e.name}>
-                      {e.name}
+                      {e.name} ({e.isin})
                     </option>
                   ))}
                 </select>
                 {errors.symbol && (
-                  <p className="text-sm text-red-500">
+                  <p className="text-xs text-rose-500 mt-1 font-medium">
                     {errors.symbol.message}
                   </p>
                 )}
@@ -249,79 +248,73 @@ export default function Investment() {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Unit Price
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Unit Par Price ($)
               </label>
               <input
                 type="number"
                 placeholder="e.g., 105"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold"
                 {...register("unitPrice")}
               />
               {errors.unitPrice && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.unitPrice.message}
                 </p>
               )}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Quanity
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Units / Quantity
               </label>
               <input
                 type="number"
                 placeholder="e.g., 20"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold"
                 {...register("quantity")}
               />
               {errors.quantity && (
-                <p className="text-sm text-red-500">
+                <p className="text-xs text-rose-500 mt-1 font-medium">
                   {errors.quantity.message}
                 </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Total Value
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Total Transaction Capital
               </label>
-              <div className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]">
-                {fCurrency(((unitPrice as number) * (quantity as number)) as number) ?? ""}
+              <div className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-[#082348] text-[#C5A880] font-serif font-bold text-base flex items-center shadow-2xs">
+                {fCurrency(((unitPrice as number) * (quantity as number)) as number) ?? "$0.00"}
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Buy Back Date
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Optional Buy Back Date
               </label>
               <input
                 type="date"
-                placeholder="e.g., 20"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#86BBD8]"
+                className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
                 {...register("buyBackDate")}
               />
-              {errors.quantity && (
-                <p className="text-sm text-red-500">
-                  {errors.quantity.message}
-                </p>
-              )}
             </div>
           </div>
         </div>
 
         {errors.root && (
-          <p className="text-sm text-red-500">{errors.root.message}</p>
+          <p className="text-xs text-rose-500 font-medium">{errors.root.message}</p>
         )}
 
         <button
           type="submit"
-          className="px-4 py-2 bg-bakerjonesholdings-pink hover:bg-bakerjonesholdings-pink/90 text-white rounded-md"
+          className="gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-md cursor-pointer hover:opacity-95 transition-opacity"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Investing..." : "Invest"}
+          {isSubmitting ? "Executing Capital Placement..." : "Execute Investment Placement"}
         </button>
       </form>
     </div>
