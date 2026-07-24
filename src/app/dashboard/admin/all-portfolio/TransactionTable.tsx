@@ -7,7 +7,7 @@ import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
 
-import { Wallet, TrendingUp, Coins, FileText } from "lucide-react";
+import { Wallet, TrendingUp, Coins, FileText, Rocket } from "lucide-react";
 
 export default function TransactionsTable() {
   const { user } = useAuth();
@@ -30,19 +30,21 @@ export default function TransactionsTable() {
         buyBackDate?: Date | null;
       };
       createdAt: Date;
+      user: {
+        _id: string;
+        name: string;
+        email: string;
+      };
       buyBack: null | "Yes" | "No";
       certificate?: string | null;
       interest: {
         date: Date;
         amount: number;
         _id: string;
+        status?: string;
       }[];
-      user: {
-        name: string;
-        email: string;
-      };
     }[];
-  }>("/portfolio", { revalidateOnFocus: true, revalidateOnMount: true });
+  }>("/portfolio/all", { revalidateOnFocus: true, revalidateOnMount: true });
 
   const portfolio = portfolioData?.data ?? [];
 
@@ -58,6 +60,13 @@ export default function TransactionsTable() {
   );
   const bondValue = portfolio.reduce(
     (a, b) => (b.investmentType === InvestmentType.BOND ? a + b.totalValue : a),
+    0
+  );
+  const ipoValue = portfolio.reduce(
+    (a, b) =>
+      b.investmentType === InvestmentType.IPO || (b.investmentType as string) === "IPO"
+        ? a + b.totalValue
+        : a,
     0
   );
 
@@ -92,7 +101,7 @@ export default function TransactionsTable() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <SummaryCard
           icon={TrendingUp}
           label="Total Stock Equity"
@@ -102,6 +111,11 @@ export default function TransactionsTable() {
           icon={FileText}
           label="Bond Allocation"
           value={fCurrency(bondValue)}
+        />
+        <SummaryCard
+          icon={Rocket}
+          label="IPO Allocation"
+          value={fCurrency(ipoValue)}
         />
       </div>
 

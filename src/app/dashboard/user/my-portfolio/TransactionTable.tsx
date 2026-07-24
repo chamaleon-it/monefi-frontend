@@ -7,7 +7,7 @@ import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
 
-import { Wallet, TrendingUp, Coins, FileText, Percent, Clock } from "lucide-react";
+import { Wallet, TrendingUp, Coins, FileText, Percent, Clock, Rocket, ArrowUp } from "lucide-react";
 
 export default function TransactionsTable() {
   const { user } = useAuth();
@@ -50,6 +50,13 @@ export default function TransactionsTable() {
   );
   const bondValue = portfolio.reduce(
     (a, b) => (b.investmentType === InvestmentType.BOND ? a + b.totalValue : a),
+    0
+  );
+  const ipoValue = portfolio.reduce(
+    (a, b) =>
+      b.investmentType === InvestmentType.IPO || (b.investmentType as string) === "IPO"
+        ? a + b.totalValue
+        : a,
     0
   );
 
@@ -121,18 +128,23 @@ export default function TransactionsTable() {
           value={fCurrency(bondValue)}
         />
         <SummaryCard
-          icon={Clock}
-          label="Accrued Interest"
-          value={fCurrency(accruedInterest)}
+          icon={Rocket}
+          label="IPO Allocation"
+          value={fCurrency(ipoValue)}
         />
         <SummaryCard
-          icon={Percent}
-          label="Daily Interest"
+          icon={Clock}
+          label="Accrued Interest"
           customValue={
-            <div className="flex items-center gap-1 text-emerald-600 text-xl lg:text-2xl font-bold font-sans">
-              <span>↑</span>
-              <span>+{fCurrency(dailyInterest)}</span>
-              <span className="text-xs font-medium text-slate-400 ml-1">today</span>
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <span className="text-2xl lg:text-3xl font-serif font-bold text-[#082348]">
+                {fCurrency(accruedInterest)}
+              </span>
+              <span className="text-xs font-semibold text-emerald-600 flex items-center gap-0.5 font-sans">
+                <ArrowUp className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+                <span>+{fCurrency(dailyInterest)}</span>
+                <span className="font-normal text-slate-400 ml-0.5">today</span>
+              </span>
             </div>
           }
         />
