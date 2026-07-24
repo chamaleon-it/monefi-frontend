@@ -106,26 +106,15 @@ export default function UserDashboard() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          <SummaryCard
-            icon={Wallet}
-            label="Available Balance"
-            value={fCurrency(user?.balance ?? 0)}
-            highlight={true}
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <SummaryCard
             icon={TrendingUp}
             label="Stock Allocation"
             value={fCurrency(stockValue)}
           />
           <SummaryCard
-            icon={Coins}
-            label="Crypto Assets"
-            value={fCurrency(cryptoValue)}
-          />
-          <SummaryCard
             icon={FileText}
-            label="Bonds & Yield Notes"
+            label="Bond Allocation"
             value={fCurrency(bondValue)}
           />
           <SummaryCard
@@ -136,7 +125,13 @@ export default function UserDashboard() {
           <SummaryCard
             icon={Percent}
             label="Daily Interest"
-            value={fCurrency(dailyInterest)}
+            customValue={
+              <div className="flex items-center gap-1 text-emerald-600 text-xl lg:text-2xl font-bold font-sans">
+                <span>↑</span>
+                <span>+{fCurrency(dailyInterest)}</span>
+                <span className="text-xs font-medium text-slate-400 ml-1">today</span>
+              </div>
+            }
           />
         </div>
       </div>
@@ -244,11 +239,13 @@ const SummaryCard = ({
   label,
   value,
   highlight = false,
+  customValue,
 }: {
   icon: React.ElementType;
   label: string;
-  value: string;
+  value?: string;
   highlight?: boolean;
+  customValue?: React.ReactNode;
 }) => (
   <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${highlight
       ? "bg-[#082348] text-white border-[#082348] shadow-lg shadow-[#082348]/15"
@@ -267,7 +264,7 @@ const SummaryCard = ({
       </div>
     </div>
     <div className={`text-2xl lg:text-3xl font-serif font-bold ${highlight ? "text-white" : "text-[#082348]"}`}>
-      {value}
+      {customValue || value}
     </div>
   </div>
 );

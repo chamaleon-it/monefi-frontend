@@ -3,11 +3,10 @@
 import { useState } from "react";
 import SharesTable from "./SharesTable";
 import BondsTable from "./BondsTable";
-import CryptoTable from "./CryptoTable";
 import IpoTable from "./IpoTable";
 
 export default function TransactionsTable() {
-  const [activeTab, setActiveTab] = useState<"shares" | "bonds" | "crypto" | "ipos">("shares");
+  const [activeTab, setActiveTab] = useState<"shares" | "bonds" | "ipos">("shares");
 
   return (
     <div className="w-full space-y-6 font-inter">
@@ -16,7 +15,7 @@ export default function TransactionsTable() {
           Transaction Records
         </h1>
         <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
-          Filtered audit ledger for shares, bonds, digital assets, and capital subscriptions
+          Filtered audit ledger for shares, bonds, and capital subscriptions
         </p>
       </div>
 
@@ -42,16 +41,6 @@ export default function TransactionsTable() {
           Fixed Income Bonds
         </button>
         <button
-          onClick={() => setActiveTab("crypto")}
-          className={`py-3 px-5 font-bold text-xs uppercase tracking-wider transition-all duration-200 border-b-2 cursor-pointer ${
-            activeTab === "crypto"
-              ? "border-[#C5A880] text-[#082348] bg-slate-50/50"
-              : "border-transparent text-slate-500 hover:text-[#082348]"
-          }`}
-        >
-          Crypto Assets
-        </button>
-        <button
           onClick={() => setActiveTab("ipos")}
           className={`py-3 px-5 font-bold text-xs uppercase tracking-wider transition-all duration-200 border-b-2 cursor-pointer ${
             activeTab === "ipos"
@@ -66,7 +55,6 @@ export default function TransactionsTable() {
       <div className="mt-4">
         {activeTab === "shares" && <SharesTable />}
         {activeTab === "bonds" && <BondsTable />}
-        {activeTab === "crypto" && <CryptoTable />}
         {activeTab === "ipos" && <IpoTable />}
       </div>
     </div>

@@ -92,26 +92,15 @@ export default function TransactionsTable() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <SummaryCard
-          icon={Wallet}
-          label="Available Reserves"
-          value={fCurrency(user?.balance ?? 0)}
-          highlight={true}
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <SummaryCard
           icon={TrendingUp}
           label="Total Stock Equity"
           value={fCurrency(stockValue)}
         />
         <SummaryCard
-          icon={Coins}
-          label="Total Crypto Assets"
-          value={fCurrency(cryptoValue)}
-        />
-        <SummaryCard
           icon={FileText}
-          label="Total Bond Value"
+          label="Bond Allocation"
           value={fCurrency(bondValue)}
         />
       </div>
@@ -251,78 +240,6 @@ export default function TransactionsTable() {
         </div>
       )}
 
-      {crypto.length !== 0 && (
-        <div className="space-y-4 pt-2">
-          <h2 className="text-xl font-serif font-bold text-[#082348]">Digital Asset & Crypto Holdings</h2>
-
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full whitespace-nowrap text-left">
-                <thead>
-                  <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
-                    <th className="py-4 px-5">#</th>
-                    <th className="py-4 px-5">Client Profile</th>
-                    <th className="py-4 px-5">Symbol</th>
-                    <th className="py-4 px-5">Quantity</th>
-                    <th className="py-4 px-5">Unit Price</th>
-                    <th className="py-4 px-5">Total Value</th>
-                    <th className="py-4 px-5">Acquisition Date</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {isLoading &&
-                    Array.from({ length: 10 }).map((_, i) => (
-                      <SkeletonRow key={i} />
-                    ))}
-
-                  {!isLoading && portfolio.length > 0 && (
-                    <>
-                      {crypto.map((tx, i) => (
-                        <tr
-                          key={tx._id}
-                          className="hover:bg-slate-50/80 transition-colors whitespace-nowrap"
-                        >
-                          <td className="py-4 px-5 text-xs text-slate-400 font-mono">{i + 1}</td>
-                          <td className="py-4 px-5 text-sm font-semibold">
-                            <p className="font-bold text-[#082348]">{tx.user.name}</p>
-                            <p className="text-xs text-slate-400">{tx.user.email}</p>
-                          </td>
-                          <td className="py-4 px-5 text-sm font-bold text-[#082348]">
-                            {tx.symbol}
-                          </td>
-                          <td className="py-4 px-5 text-sm font-semibold text-slate-700">
-                            {tx.quantity}
-                          </td>
-                          <td className="py-4 px-5 text-sm font-medium text-slate-600">
-                            {fCurrency(tx.unitPrice)}
-                          </td>
-                          <td className="py-4 px-5 text-sm font-bold text-[#082348]">
-                            {fCurrency(tx.totalValue)}
-                          </td>
-                          <td className="py-4 px-5 text-xs text-slate-500 whitespace-nowrap">
-                            {fDateAndTime(tx.createdAt)}
-                          </td>
-                        </tr>
-                      ))}
-                    </>
-                  )}
-
-                  {!isLoading && portfolio.length === 0 && (
-                    <tr>
-                      <td
-                        colSpan={7}
-                        className="text-center py-12 text-slate-400 text-sm"
-                      >
-                        No crypto holdings found.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

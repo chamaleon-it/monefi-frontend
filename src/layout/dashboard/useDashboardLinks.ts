@@ -88,11 +88,6 @@ export default function useDashboardLinks(): Links[] {
       icon: "mingcute:stock-line",
     },
     {
-      title: "Crypto",
-      path: paths.dashboard.user.tradeCrypto,
-      icon: "bx:bitcoin",
-    },
-    {
       title: "Bonds",
       path: paths.dashboard.user.bonds,
       icon: "mingcute:paper-line",
