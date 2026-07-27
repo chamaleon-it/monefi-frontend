@@ -97,11 +97,11 @@ export default function useDashboardLinks(): Links[] {
       path: paths.dashboard.user.ipos,
       icon: "mdi:bank-outline",
     },
-    {
-      title: "July Recommendation",
-      path: "/july-bond-recommendation-summary",
-      icon: "mingcute:file-certificate-line",
-    },
+    // {
+    //   title: "July Recommendation",
+    //   path: "/july-bond-recommendation-summary",
+    //   icon: "mingcute:file-certificate-line",
+    // },
     {
       title: "My Portfolio",
       path: paths.dashboard.user.myPortfolio,
