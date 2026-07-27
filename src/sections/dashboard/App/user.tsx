@@ -72,30 +72,27 @@ export default function UserDashboard() {
     (b) => b.investmentType === InvestmentType.BOND
   );
 
-  const totalScheduledInterest = bondHoldings.reduce((total, bond) => {
-    const bondInterestSum = bond.interest?.reduce((sum, item) => sum + (item.amount || 0), 0) || 0;
-    return total + bondInterestSum;
-  }, 0);
-
-  const dailyInterest = totalScheduledInterest > 0
-    ? totalScheduledInterest / 365
-    : bondValue > 0
-    ? (bondValue * 0.08) / 365
-    : 0;
-
   const now = new Date();
-  const accruedInterest = bondHoldings.reduce((acc, bond) => {
-    const startDate = new Date(bond.createdAt || bond.transaction?.createdAt || Date.now());
+  let dailyInterest = 0;
+  let accruedInterest = 0;
+
+  bondHoldings.forEach((bond) => {
+    const startDate = new Date(bond.transaction?.createdAt || bond.createdAt || Date.now());
     const diffTime = Math.max(0, now.getTime() - startDate.getTime());
-    const daysElapsed = Math.max(1, Math.floor(diffTime / (1000 * 60 * 60 * 24)));
+    const daysElapsed = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
+    const couponRate = (bond.transaction as any)?.annualCouponRate || (bond as any).annualCouponRate || 8.5;
     const bondInterestSum = bond.interest?.reduce((sum, item) => sum + (item.amount || 0), 0) || 0;
-    const bondDailyInterest = bondInterestSum > 0
-      ? bondInterestSum / 365
-      : (bond.totalValue * 0.08) / 365;
+    const bondAnnualInterest = bondInterestSum > 0
+      ? bondInterestSum
+      : (bond.totalValue * (couponRate / 100));
 
-    return acc + (bondDailyInterest * daysElapsed);
-  }, 0);
+    const bondDailyInterest = bondAnnualInterest / 365;
+    const bondAccruedInterest = bondDailyInterest * daysElapsed;
+
+    dailyInterest += bondDailyInterest;
+    accruedInterest += bondAccruedInterest;
+  });
 
   return (
     <div className="space-y-8 font-inter">
