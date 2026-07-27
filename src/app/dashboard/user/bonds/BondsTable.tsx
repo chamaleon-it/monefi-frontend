@@ -119,7 +119,7 @@ const FEATURED_CURATED_BONDS: CuratedBond[] = [
     issuer: "HM Treasury / Debt Management Office",
     coupon: "4.375%",
     annualCouponRate: 4.375,
-    maturity: "1 year",
+    maturity: "1 year rolling",
     isin: "GB00BPSNBB36",
     type: "Sovereign Debt | Government Backed",
     whySelected: "Provides absolute capital security backed directly by the taxing power of the United Kingdom HM Treasury DMO.",
@@ -264,7 +264,7 @@ export default function BondsPage() {
   return (
     <div className="w-full space-y-8 font-inter pb-16">
       {/* Header Hero Banner */}
-      <div className="relative rounded-3xl bg-gradient-to-r from-[#082348] via-[#0B2A54] to-[#082348] p-8 md:p-10 text-white shadow-xl overflow-hidden">
+      {/* <div className="relative rounded-3xl bg-gradient-to-r from-[#082348] via-[#0B2A54] to-[#082348] p-8 md:p-10 text-white shadow-xl overflow-hidden">
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 bg-[#C5A880]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 max-w-3xl space-y-3">
           <div className="flex items-center gap-2">
@@ -308,7 +308,7 @@ export default function BondsPage() {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* View Controller Toolbar */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
@@ -320,22 +320,20 @@ export default function BondsPage() {
         <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200/80">
           <button
             onClick={() => setViewMode("cards")}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              viewMode === "cards"
-                ? "bg-[#082348] text-white shadow-xs"
-                : "text-slate-600 hover:text-[#082348]"
-            }`}
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === "cards"
+              ? "bg-[#082348] text-white shadow-xs"
+              : "text-slate-600 hover:text-[#082348]"
+              }`}
           >
             <LayoutGrid className="w-3.5 h-3.5" />
             <span>Opportunities Showcase</span>
           </button>
           <button
             onClick={() => setViewMode("table")}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              viewMode === "table"
-                ? "bg-[#082348] text-white shadow-xs"
-                : "text-slate-600 hover:text-[#082348]"
-            }`}
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === "table"
+              ? "bg-[#082348] text-white shadow-xs"
+              : "text-slate-600 hover:text-[#082348]"
+              }`}
           >
             <TableIcon className="w-3.5 h-3.5" />
             <span>Data Table</span>
@@ -354,11 +352,10 @@ export default function BondsPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className={`bg-white rounded-3xl border-2 transition-all duration-300 overflow-hidden relative ${
-                  bond.recommended
-                    ? "border-[#C5A880] shadow-[0_20px_40px_rgba(197,168,128,0.12)]"
-                    : "border-slate-200/90 shadow-md hover:shadow-lg"
-                }`}
+                className={`bg-white rounded-3xl border-2 transition-all duration-300 overflow-hidden relative ${bond.recommended
+                  ? "border-[#C5A880] shadow-[0_20px_40px_rgba(197,168,128,0.12)]"
+                  : "border-slate-200/90 shadow-md hover:shadow-lg"
+                  }`}
               >
                 {/* Top Badge Ribbon */}
                 <div className="bg-slate-50 px-6 py-2.5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2">
@@ -456,7 +453,7 @@ export default function BondsPage() {
                           rel="noopener noreferrer"
                           className="py-2 px-2.5 rounded-xl border border-slate-200 hover:border-[#082348] hover:bg-slate-50 text-slate-700 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all text-center"
                         >
-                          <span>LSE Info</span>
+                          <span>Verify</span>
                           <ExternalLink className="w-3 h-3 text-slate-400" />
                         </a>
                       </div>
@@ -578,12 +575,24 @@ export default function BondsPage() {
                     <td className="py-4 px-5 text-xs font-semibold text-slate-600">{bond.frequency}</td>
                     <td className="py-4 px-5 text-xs font-bold text-[#082348]">{bond.minDeposit}</td>
                     <td className="py-4 px-5 text-right">
-                      <button
-                        onClick={() => handleOpenRequestModal(bond)}
-                        className="py-1.5 px-3 rounded-lg bg-[#082348] text-white font-bold text-xs hover:bg-[#0B2A54] transition-colors cursor-pointer"
-                      >
-                        Request
-                      </button>
+                      <div className="flex items-center justify-end gap-2">
+                        <a
+                          href={bond.lseUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="py-1.5 px-2.5 rounded-lg border border-slate-200 hover:border-[#082348] text-slate-700 font-bold text-xs inline-flex items-center gap-1 transition-colors"
+                          title="Verify on London Stock Exchange"
+                        >
+                          <span>Verify</span>
+                          <ExternalLink className="w-3 h-3 text-slate-400" />
+                        </a>
+                        <button
+                          onClick={() => handleOpenRequestModal(bond)}
+                          className="py-1.5 px-3 rounded-lg bg-[#082348] text-white font-bold text-xs hover:bg-[#0B2A54] transition-colors cursor-pointer"
+                        >
+                          Request
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

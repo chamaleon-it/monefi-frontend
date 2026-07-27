@@ -220,7 +220,7 @@ export default function IPOList() {
   return (
     <div className="w-full space-y-8 font-inter pb-16">
       {/* Header Hero Banner */}
-      <div className="relative rounded-3xl bg-gradient-to-r from-[#082348] via-[#0B2A54] to-[#082348] p-8 md:p-10 text-white shadow-xl overflow-hidden">
+      {/* <div className="relative rounded-3xl bg-gradient-to-r from-[#082348] via-[#0B2A54] to-[#082348] p-8 md:p-10 text-white shadow-xl overflow-hidden">
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 bg-[#C5A880]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 max-w-3xl space-y-3">
           <div className="flex items-center gap-2">
@@ -254,7 +254,7 @@ export default function IPOList() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* View Toolbar */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-2xs">
@@ -266,22 +266,20 @@ export default function IPOList() {
         <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200/80">
           <button
             onClick={() => setViewMode("cards")}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              viewMode === "cards"
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === "cards"
                 ? "bg-[#082348] text-white shadow-xs"
                 : "text-slate-600 hover:text-[#082348]"
-            }`}
+              }`}
           >
             <LayoutGrid className="w-3.5 h-3.5" />
             <span>Opportunities Showcase</span>
           </button>
           <button
             onClick={() => setViewMode("table")}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              viewMode === "table"
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === "table"
                 ? "bg-[#082348] text-white shadow-xs"
                 : "text-slate-600 hover:text-[#082348]"
-            }`}
+              }`}
           >
             <TableIcon className="w-3.5 h-3.5" />
             <span>Data Table</span>
@@ -300,11 +298,10 @@ export default function IPOList() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className={`bg-white rounded-3xl border-2 transition-all duration-300 overflow-hidden relative ${
-                  ipo.recommended
+                className={`bg-white rounded-3xl border-2 transition-all duration-300 overflow-hidden relative ${ipo.recommended
                     ? "border-[#C5A880] shadow-[0_20px_40px_rgba(197,168,128,0.12)]"
                     : "border-slate-200/90 shadow-md hover:shadow-lg"
-                }`}
+                  }`}
               >
                 {/* Top Badge Ribbon */}
                 <div className="bg-slate-50 px-6 py-2.5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2">

@@ -290,7 +290,7 @@ export default function BondClientPage() {
       case "HSBC Holdings":
         return (
           <svg className="w-full h-full text-[#db0011] p-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="m24 12.007-5.996 5.997V5.996L24 12.007zm-5.996-6.01H6.01l5.996 6.01 5.997-6.01zM0 12.006l6.01 5.997V5.996L0 12.007zm6.01 5.997h11.994l-5.997-5.997-5.996 5.997z"/>
+            <path d="m24 12.007-5.996 5.997V5.996L24 12.007zm-5.996-6.01H6.01l5.996 6.01 5.997-6.01zM0 12.006l6.01 5.997V5.996L0 12.007zm6.01 5.997h11.994l-5.997-5.997-5.996 5.997z" />
           </svg>
         );
       case "Lloyds Bank":
@@ -340,7 +340,7 @@ export default function BondClientPage() {
               <i className="fa-solid fa-shield-halved text-[#C5A880]" />
             </div>
             <div>
-              <span className="text-xs text-[#F3E5AB] font-bold uppercase tracking-wider block">Monefi Platform Portfolio</span>
+              <span className="text-xs text-[#F3E5AB] font-bold uppercase tracking-wider block">Baker Jones Holdings Platform Portfolio</span>
               <p className="text-xs text-slate-300">Viewing Tailored July Bond Recommendation Proposal</p>
             </div>
           </div>
