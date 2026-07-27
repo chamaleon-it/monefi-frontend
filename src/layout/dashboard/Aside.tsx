@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/auth/useAuth";
-import { User, ShieldCheck, Sparkles, LogOut } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
@@ -54,17 +54,12 @@ export default function Aside() {
             </div>
 
             <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-[#F3E5AB]">
-                <Sparkles className="w-2.5 h-2.5 text-[#C5A880]" />
-                <span>Verified Client</span>
-              </div>
+              <p className="text-[10px] font-semibold text-[#F3E5AB] tracking-wider uppercase">
+                Welcome back,
+              </p>
               <h2 className="font-serif font-bold text-sm text-white truncate capitalize mt-0.5">
-                {user?.name || user?.email.split("@")[0]}
+                {user?.name || user?.email?.split("@")[0]}
               </h2>
-              <div className="flex items-center gap-1 text-[9px] text-slate-300 font-medium mt-0.5">
-                <ShieldCheck className="w-2.5 h-2.5 text-emerald-400" />
-                <span>Verified Account</span>
-              </div>
             </div>
           </div>
         </div>
