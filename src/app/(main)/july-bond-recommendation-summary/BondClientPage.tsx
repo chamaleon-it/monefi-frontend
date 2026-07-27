@@ -331,7 +331,40 @@ export default function BondClientPage() {
       />
 
       {/* --- CONTENT CONTAINER --- */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-12 md:pt-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 md:pt-12">
+
+        {/* Top Platform Navigation Banner */}
+        <div className="mb-8 p-4 rounded-2xl bg-[#082348] text-white flex flex-wrap items-center justify-between gap-4 shadow-md">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#C5A880]/20 flex items-center justify-center">
+              <i className="fa-solid fa-shield-halved text-[#C5A880]" />
+            </div>
+            <div>
+              <span className="text-xs text-[#F3E5AB] font-bold uppercase tracking-wider block">Monefi Platform Portfolio</span>
+              <p className="text-xs text-slate-300">Viewing Tailored July Bond Recommendation Proposal</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/dashboard/user/bonds"
+              className="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-all"
+            >
+              Platform Bonds
+            </Link>
+            <Link
+              href="/dashboard/user/ipos"
+              className="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-all"
+            >
+              Pre-IPOs
+            </Link>
+            <Link
+              href="/dashboard/user/my-portfolio"
+              className="px-3.5 py-1.5 rounded-xl bg-[#C5A880] text-[#082348] font-bold text-xs hover:bg-[#b0926b] transition-all shadow-xs"
+            >
+              My Portfolio
+            </Link>
+          </div>
+        </div>
 
         {/* Brand/Header Section */}
         <div className="mb-12 max-w-4xl border-b border-black/5 pb-8">

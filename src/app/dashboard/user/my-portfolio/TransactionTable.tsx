@@ -6,11 +6,14 @@ import { fDateAndTime } from "@/utility/dateFormatters.ts";
 import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
+import Link from "next/link";
+import usePaths from "@/hooks/usePaths";
 
-import { Wallet, TrendingUp, Coins, FileText, Percent, Clock, Rocket, ArrowUp } from "lucide-react";
+import { Wallet, TrendingUp, Coins, FileText, Percent, Clock, Rocket, ArrowUp, Sparkles, Plus, ExternalLink } from "lucide-react";
 
 export default function TransactionsTable() {
   const { user } = useAuth();
+  const paths = usePaths();
   const { data: portfolioData, isLoading } = useSWR<{
     message: string;
     data: {
@@ -150,62 +153,88 @@ export default function TransactionsTable() {
         />
       </div>
 
-      {bonds.length !== 0 && (
-        <div className="space-y-4 pt-2">
-          <h2 className="text-xl font-serif font-bold text-[#082348]">Bonds</h2>
+      {/* Bond Holdings Section */}
+      <div className="space-y-4 pt-2">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-serif font-bold text-[#082348]">Fixed Income & Bond Holdings</h2>
+            <p className="text-xs text-slate-500">Active debt securities, ISIN codes, annual coupon yields, and certificate documents</p>
+          </div>
+          <Link
+            href={paths.dashboard.user.bonds}
+            className="px-3.5 py-2 rounded-xl bg-[#082348] hover:bg-[#0B2A54] text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-all"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
+            <span>Explore Current Opportunities</span>
+          </Link>
+        </div>
 
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full whitespace-nowrap text-left">
-                <thead>
-                  <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
-                    <th className="py-4 px-5">#</th>
-                    <th className="py-4 px-5">ISIN</th>
-                    <th className="py-4 px-5">Issuer</th>
-                    <th className="py-4 px-5">Quantity</th>
-                    <th className="py-4 px-5">Unit Price</th>
-                    <th className="py-4 px-5">Total Value</th>
-                    <th className="py-4 px-5">Start Date</th>
-                    <th className="py-4 px-5">Buyback</th>
-                    <th className="py-4 px-5">Buyback Date</th>
-                    <th className="py-4 px-5">Coupon Rate</th>
-                    <th className="py-4 px-5">Frequency</th>
-                    <th className="py-4 px-5">Type</th>
-                    <th className="py-4 px-5">Maturity Date</th>
-                    <th className="py-4 px-5">Payment Schedule</th>
-                    <th className="py-4 px-5">Certificate</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {isLoading &&
-                    Array.from({ length: 10 }).map((_, i) => (
-                      <SkeletonRow key={i} />
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-[0_15px_35px_rgba(8,35,72,0.04)] overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full whitespace-nowrap text-left">
+              <thead>
+                <tr className="border-b border-slate-200/80 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-[#082348]">
+                  <th className="py-4 px-5">#</th>
+                  <th className="py-4 px-5">ISIN Code</th>
+                  <th className="py-4 px-5">Issuer Entity</th>
+                  <th className="py-4 px-5">Quantity</th>
+                  <th className="py-4 px-5">Unit Price</th>
+                  <th className="py-4 px-5">Total Principal</th>
+                  <th className="py-4 px-5">Start Date</th>
+                  <th className="py-4 px-5">Buyback Status</th>
+                  <th className="py-4 px-5">Buyback Window</th>
+                  <th className="py-4 px-5">Coupon Rate</th>
+                  <th className="py-4 px-5">Frequency</th>
+                  <th className="py-4 px-5">Type</th>
+                  <th className="py-4 px-5">Maturity Date</th>
+                  <th className="py-4 px-5">Payment Schedule</th>
+                  <th className="py-4 px-5">Certificate</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {isLoading &&
+                  Array.from({ length: 5 }).map((_, i) => (
+                    <SkeletonRow key={i} />
+                  ))}
+
+                {!isLoading && bonds.length > 0 && (
+                  <>
+                    {bonds.map((tx, i) => (
+                      <BondsRow key={tx._id} i={i} tx={tx} />
                     ))}
+                  </>
+                )}
 
-                  {!isLoading && portfolio.length > 0 && (
-                    <>
-                      {bonds.map((tx, i) => (
-                        <BondsRow key={tx._id} i={i} tx={tx} />
-                      ))}
-                    </>
-                  )}
-
-                  {!isLoading && portfolio.length === 0 && (
-                    <tr>
-                      <td
-                        colSpan={15}
-                        className="text-center py-12 text-slate-400 text-sm"
-                      >
-                        No bond holdings found.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                {!isLoading && bonds.length === 0 && (
+                  <tr>
+                    <td
+                      colSpan={15}
+                      className="text-center py-12 text-slate-500 text-xs"
+                    >
+                      <div className="max-w-md mx-auto space-y-3">
+                        <FileText className="w-8 h-8 text-[#C5A880] mx-auto" />
+                        <p className="font-bold text-sm text-[#082348]">No Active Bond Allocations Yet</p>
+                        <p className="text-slate-400">
+                          Secure guaranteed fixed coupon yields up to 7.00% p.a. from tier-1 UK banks and sovereign gilts.
+                        </p>
+                        <div className="pt-1">
+                          <Link
+                            href={paths.dashboard.user.bonds}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#082348] text-white font-bold text-xs hover:bg-[#0B2A54] transition-all shadow-xs"
+                          >
+                            <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
+                            <span>View Current Bond Opportunities</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
-      )}
+      </div>
 
       {stock.length !== 0 && (
         <div className="space-y-4 pt-2">
