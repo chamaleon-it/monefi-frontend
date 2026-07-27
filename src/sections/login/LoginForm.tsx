@@ -42,18 +42,18 @@ export default function LoginForm() {
 
   return (
     <div className="relative min-h-[calc(100vh-80px)] lg:h-[calc(100vh-80px)] bg-[#F9F9F7] flex items-center justify-center p-4 lg:p-6 font-inter overflow-hidden">
-      
+
       {/* Outer Executive Split Container */}
       <div className="w-full max-w-md lg:max-w-6xl h-full lg:max-h-[640px] bg-white rounded-3xl border border-slate-200/90 shadow-[0_25px_60px_rgba(8,35,72,0.09)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 relative z-10">
-        
+
         {/* LEFT COLUMN: Institutional Showcase & Accolades (Hidden on Mobile, Visible on Desktop lg) */}
         <div className="hidden lg:flex lg:col-span-5 bg-[#082348] text-white p-8 lg:p-10 relative overflow-hidden flex-col justify-between">
-          
+
           {/* Background Photography & Radial Lighting */}
           <div className="absolute inset-0 pointer-events-none">
-            <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-              alt="Financial District" 
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+              alt="Financial District"
               className="w-full h-full object-cover opacity-15 scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#082348]/95 via-[#082348]/90 to-[#082348]"></div>
@@ -137,14 +137,14 @@ export default function LoginForm() {
                 <Building2 className="w-3.5 h-3.5" />
                 Baker Jones Holdings
               </div>
-              
+
               <h1 className="text-2xl lg:text-3xl font-serif font-bold text-[#082348] tracking-tight mb-1">
                 {requires2FA ? "Two-Factor Verification" : "Investor Portal Sign In"}
               </h1>
               <p className="text-slate-500 text-xs sm:text-sm">
                 {requires2FA
                   ? "Enter your 6-digit authenticator code below to continue"
-                  : "Enter your corporate credentials to access your account"}
+                  : "Enter your credentials to access your account"}
               </p>
             </div>
 
@@ -158,7 +158,7 @@ export default function LoginForm() {
                     transition={{ duration: 0.3 }}
                   >
                     <label htmlFor="email" className="block text-[11px] uppercase font-bold tracking-wider text-slate-700 mb-1.5">
-                      Corporate Email Address
+                      Email Address
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -257,7 +257,7 @@ export default function LoginForm() {
 
               {/* Root / General Error */}
               {errors.root && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs text-center font-medium"

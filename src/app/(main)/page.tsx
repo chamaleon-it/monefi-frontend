@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, CheckCircle2, Building2, Shield, Clock, Users, Globe, FileText, ChevronDown } from 'lucide-react';
 import { ScrollAnimation } from '@/components/ScrollAnimation';
 import { Metadata } from 'next';
+import { faqs } from '@/sections/home/faqsData';
 
 export const metadata: Metadata = {
   title: "Institutional Investments | Baker Jones Holdings",
@@ -125,7 +126,7 @@ export default function HomePage() {
               </div>
               <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-corporate-gold/10 rounded-full blur-3xl z-0"></div>
             </div>
-            
+
             <div>
               {/* Desktop Header (Hidden on Mobile) */}
               <div className="hidden lg:block">
@@ -440,21 +441,16 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-0 border-t border-slate-200">
-            {[
-              { q: "What types of investments do you offer?", a: "We focus on institutional-grade opportunities including private equity, structured notes, digital assets, and select capital market instruments." },
-              { q: "Who is eligible to open an account?", a: "Our services are designed for corporate entities, trusts, and high-net-worth individuals seeking sophisticated wealth management solutions." },
-              { q: "How secure is the online portal?", a: "Our platform employs bank-grade 256-bit encryption, strict access controls, and regular security audits to ensure your data and assets remain completely secure." },
-              { q: "What is the minimum investment requirement?", a: "Minimum investment amounts vary depending on the specific product and asset class. Please contact our advisory team for detailed information." }
-            ].map((faq, i) => (
+            {faqs.map((item, i) => (
               <details key={i} className="group border-b border-slate-200">
                 <summary className="flex justify-between items-center font-semibold cursor-pointer list-none text-[15px] text-[#082348] py-6 hover:text-corporate-gold transition-colors">
-                  {faq.q}
+                  {item.question}
                   <span className="transition group-open:rotate-180">
                     <ChevronDown className="w-4 h-4 text-slate-400" />
                   </span>
                 </summary>
                 <p className="text-slate-500 pb-6 text-[14px] leading-relaxed">
-                  {faq.a}
+                  {item.answer}
                 </p>
               </details>
             ))}
