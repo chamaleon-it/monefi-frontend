@@ -10,6 +10,12 @@ import { useState, useMemo } from "react";
 import toast from "react-hot-toast";
 import useSWR from "swr";
 
+interface LoginActivityItem {
+  ip: string;
+  device: string;
+  time: Date | string;
+}
+
 interface User {
   _id: string;
   email: string;
@@ -28,6 +34,7 @@ interface User {
     file: string;
   };
   kycStatus: "Not submitted" | "Pending" | "Completed" | "Expired" | "Rejected";
+  loginActivity?: LoginActivityItem[];
 }
 
 interface Pagination {
@@ -73,6 +80,73 @@ export default function UsersPage() {
     user: null,
     amount: "",
   });
+
+  const [loginActivityModal, setLoginActivityModal] = useState<{
+    isOpen: boolean;
+    user: User | null;
+    activity: LoginActivityItem[];
+    page: number;
+    isLoading: boolean;
+  }>({
+    isOpen: false,
+    user: null,
+    activity: [],
+    page: 1,
+    isLoading: false,
+  });
+
+  const openLoginActivityModal = async (user: User) => {
+    setLoginActivityModal({
+      isOpen: true,
+      user,
+      activity: user.loginActivity
+        ? [...user.loginActivity].sort(
+            (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+          )
+        : [],
+      page: 1,
+      isLoading: true,
+    });
+
+    try {
+      const res = await api.get(`/users/${user._id}`);
+      const fetchedUser: User = res.data?.data;
+      const rawActivity: LoginActivityItem[] =
+        fetchedUser?.loginActivity || user?.loginActivity || [];
+
+      // Sort descending by time (last/most recent login details first, first login details on last page)
+      const sortedActivity = [...rawActivity].sort(
+        (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+      );
+
+      setLoginActivityModal((prev) => ({
+        ...prev,
+        activity: sortedActivity,
+        isLoading: false,
+      }));
+    } catch (err) {
+      console.error("Failed to fetch user login activity", err);
+      const rawActivity: LoginActivityItem[] = user?.loginActivity || [];
+      const sortedActivity = [...rawActivity].sort(
+        (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+      );
+      setLoginActivityModal((prev) => ({
+        ...prev,
+        activity: sortedActivity,
+        isLoading: false,
+      }));
+    }
+  };
+
+  const closeLoginActivityModal = () => {
+    setLoginActivityModal({
+      isOpen: false,
+      user: null,
+      activity: [],
+      page: 1,
+      isLoading: false,
+    });
+  };
 
   const apiUrl = useMemo(() => {
     const params = new URLSearchParams({
@@ -419,6 +493,12 @@ export default function UsersPage() {
                             Delete
                           </button>
                         )}
+                        <button
+                          className="border border-[#082348]/20 text-[#082348] hover:bg-slate-100 font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                          onClick={() => openLoginActivityModal(user)}
+                        >
+                          Login Activity
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -535,6 +615,167 @@ export default function UsersPage() {
                 className="px-5 py-2.5 gold-gradient-bg text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl shadow-md cursor-pointer hover:opacity-95 transition-opacity"
               >
                 Confirm Capital Deposit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Login Activity Modal */}
+      {loginActivityModal.isOpen && (
+        <div className="fixed inset-0 bg-[#082348]/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-2xl max-w-2xl w-full font-inter">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-xl font-serif font-bold text-[#082348]">
+                  Login Activity Log
+                </h3>
+                <p className="text-slate-500 text-xs mt-0.5">
+                  Historical access logs for{" "}
+                  <strong className="text-[#082348]">
+                    {loginActivityModal.user?.name || loginActivityModal.user?.email}
+                  </strong>{" "}
+                  ({loginActivityModal.user?.email})
+                </p>
+              </div>
+              <button
+                onClick={closeLoginActivityModal}
+                className="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors text-sm font-bold cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {loginActivityModal.isLoading ? (
+              <div className="py-12 text-center text-slate-400 text-sm">
+                <div className="animate-spin inline-block w-6 h-6 border-2 border-[#082348] border-t-transparent rounded-full mb-2"></div>
+                <p>Loading login logs...</p>
+              </div>
+            ) : loginActivityModal.activity.length === 0 ? (
+              <div className="py-12 text-center text-slate-400 text-sm bg-slate-50 rounded-2xl border border-slate-100">
+                No recorded login activity found for this user.
+              </div>
+            ) : (
+              <>
+                <div className="overflow-x-auto rounded-2xl border border-slate-200/80 mb-4">
+                  <table className="w-full text-left text-xs">
+                    <thead>
+                      <tr className="bg-slate-50 border-b border-slate-200 text-[#082348] font-bold uppercase tracking-wider text-[10px]">
+                        <th className="py-3 px-4">#</th>
+                        <th className="py-3 px-4">Device / Browser</th>
+                        <th className="py-3 px-4">Time & Date</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 text-slate-700">
+                      {loginActivityModal.activity
+                        .slice(
+                          (loginActivityModal.page - 1) * 5,
+                          loginActivityModal.page * 5
+                        )
+                        .map((log, index) => {
+                          const recordIndex =
+                            (loginActivityModal.page - 1) * 5 + index + 1;
+                          return (
+                            <tr key={index} className="hover:bg-slate-50/60">
+                              <td className="py-3 px-4 font-mono text-slate-400">
+                                {recordIndex}
+                              </td>
+                              <td className="py-3 px-4 max-w-[200px] truncate text-slate-600 font-medium">
+                                {log.device || "Unknown Device"}
+                              </td>
+                              <td className="py-3 px-4 text-slate-500 font-medium">
+                                {fDateAndTime(log.time)}
+                                <span className="text-[10px] text-slate-400 ml-1.5">
+                                  ({fAgo(new Date(log.time))})
+                                </span>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Modal Pagination */}
+                {Math.ceil(loginActivityModal.activity.length / 5) > 1 && (
+                  <div className="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-200/80">
+                    <div className="text-xs text-slate-500 font-medium">
+                      Showing{" "}
+                      {(loginActivityModal.page - 1) * 5 + 1} to{" "}
+                      {Math.min(
+                        loginActivityModal.page * 5,
+                        loginActivityModal.activity.length
+                      )}{" "}
+                      of {loginActivityModal.activity.length} entries
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() =>
+                          setLoginActivityModal((prev) => ({
+                            ...prev,
+                            page: prev.page - 1,
+                          }))
+                        }
+                        disabled={loginActivityModal.page === 1}
+                        className="px-3 py-1 border border-slate-200 text-xs font-semibold text-slate-700 rounded-lg disabled:opacity-40 hover:bg-white transition-colors cursor-pointer"
+                      >
+                        Previous
+                      </button>
+
+                      {Array.from(
+                        {
+                          length: Math.ceil(
+                            loginActivityModal.activity.length / 5
+                          ),
+                        },
+                        (_, i) => i + 1
+                      ).map((pageNum) => (
+                        <button
+                          key={pageNum}
+                          onClick={() =>
+                            setLoginActivityModal((prev) => ({
+                              ...prev,
+                              page: pageNum,
+                            }))
+                          }
+                          className={`px-2.5 py-1 text-xs font-bold rounded-lg border transition-colors cursor-pointer ${
+                            pageNum === loginActivityModal.page
+                              ? "bg-[#082348] text-white border-[#082348]"
+                              : "text-slate-700 border-slate-200 bg-white hover:bg-slate-100"
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      ))}
+
+                      <button
+                        onClick={() =>
+                          setLoginActivityModal((prev) => ({
+                            ...prev,
+                            page: prev.page + 1,
+                          }))
+                        }
+                        disabled={
+                          loginActivityModal.page ===
+                          Math.ceil(loginActivityModal.activity.length / 5)
+                        }
+                        className="px-3 py-1 border border-slate-200 text-xs font-semibold text-slate-700 rounded-lg disabled:opacity-40 hover:bg-white transition-colors cursor-pointer"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            <div className="mt-5 flex justify-end">
+              <button
+                onClick={closeLoginActivityModal}
+                className="px-4 py-2 bg-slate-100 text-slate-700 font-semibold text-xs rounded-xl hover:bg-slate-200 transition-colors cursor-pointer"
+              >
+                Close
               </button>
             </div>
           </div>
