@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import useSWR from "swr";
 import { fCurrency } from "@/utility/numberFormatters";
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDateAndTime } from "@/utility/dateFormatters";
 import { InvestmentType } from "@/enum/investment-type.enum";
 
 interface Transaction {
@@ -197,11 +197,10 @@ export default function BondsTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
-                  num === pagination.page
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${num === pagination.page
                     ? "bg-[#082348] text-white border-[#082348]"
                     : "text-slate-700 border-slate-200 hover:bg-slate-50"
-                }`}
+                  }`}
               >
                 {num}
               </button>

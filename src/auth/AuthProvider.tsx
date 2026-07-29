@@ -65,7 +65,7 @@ export default function AuthProvider({
         setTokens(res.data.data.accessToken, res.data.data.refreshToken);
         return {
           status: "success",
-          message: "Login successfull",
+          message: "Login successful",
         };
       } catch (error) {
         const { message } = (

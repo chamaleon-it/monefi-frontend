@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/auth/useAuth";
 import { InvestmentType } from "@/enum/investment-type.enum";
-import { fDate, fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDate, fDateAndTime } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import useSWR from "swr";
 import BondsRow from "./BondsRow";
@@ -269,11 +269,10 @@ const SummaryCard = ({
   value: string;
   highlight?: boolean;
 }) => (
-  <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${
-    highlight
+  <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${highlight
       ? "bg-[#082348] text-white border-[#082348] shadow-lg shadow-[#082348]/15"
       : "bg-white text-slate-800 border-slate-200/90 shadow-[0_10px_30px_rgba(8,35,72,0.04)]"
-  }`}>
+    }`}>
     {highlight && (
       <div className="absolute top-0 right-0 h-1 left-0 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
     )}
@@ -281,9 +280,8 @@ const SummaryCard = ({
       <span className={`text-[11px] font-bold uppercase tracking-wider ${highlight ? "text-slate-300" : "text-slate-500"}`}>
         {label}
       </span>
-      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
-        highlight ? "gold-gradient-bg text-slate-950 shadow-md" : "bg-[#C5A880]/15 text-[#C5A880]"
-      }`}>
+      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${highlight ? "gold-gradient-bg text-slate-950 shadow-md" : "bg-[#C5A880]/15 text-[#C5A880]"
+        }`}>
         <IconComponent className="w-5 h-5" />
       </div>
     </div>

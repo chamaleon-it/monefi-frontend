@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import useSWR from "swr"
-import { fDate } from "@/utility/dateFormatters.ts"
+import { fDate } from "@/utility/dateFormatters"
 import { CouponFrequency } from "@/enum/coupon-frequency.enum"
 import { CouponType } from "@/enum/coupon-type.enum"
 import { fCurrency } from "@/utility/numberFormatters"
@@ -14,11 +14,11 @@ interface Bond {
   isin: string
   unitPrice: number
   couponType: CouponType
-annualCouponRate:number
+  annualCouponRate: number
   couponFrequency: CouponFrequency
   meturityDate: string
   createdAt: string
-  isPublic:boolean
+  isPublic: boolean
 }
 
 interface Pagination {
@@ -150,11 +150,10 @@ export default function BondsPage() {
                       <td className="py-4 px-5 text-xs font-semibold text-slate-600">{bond.couponFrequency}</td>
                       <td className="py-4 px-5 text-xs text-slate-500">{bond?.meturityDate && fDate(bond.meturityDate)}</td>
                       <td className="py-4 px-5 text-xs">
-                        <span className={`inline-block px-2.5 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${
-                          bond.isPublic
+                        <span className={`inline-block px-2.5 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${bond.isPublic
                             ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                             : "bg-blue-50 text-blue-700 border border-blue-200"
-                        }`}>
+                          }`}>
                           {fBoolean(bond.isPublic, "Public", "Private")}
                         </span>
                       </td>
@@ -194,11 +193,10 @@ export default function BondsPage() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
-                  num === pagination.page
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${num === pagination.page
                     ? "bg-[#082348] text-white border-[#082348]"
                     : "text-slate-700 border-slate-200 hover:bg-slate-50"
-                }`}
+                  }`}
               >
                 {num}
               </button>

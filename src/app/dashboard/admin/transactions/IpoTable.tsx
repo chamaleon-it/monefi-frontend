@@ -3,7 +3,7 @@
 import { useMemo, useState, useCallback } from "react";
 import useSWR from "swr";
 import { fCurrency } from "@/utility/numberFormatters";
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDateAndTime } from "@/utility/dateFormatters";
 import { IpoRequestStatus } from "@/enum/ipo-request-status.enum";
 import api from "@/services/api";
 import toast from "react-hot-toast";
@@ -75,13 +75,12 @@ function IpoRow({ req, mutate }: { req: IpoRequest; mutate: () => void }) {
       </td>
       <td className="py-4 px-5 text-xs">
         <span
-          className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider text-center ${
-            req.status === IpoRequestStatus.PENDING
+          className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider text-center ${req.status === IpoRequestStatus.PENDING
               ? "bg-amber-50 text-amber-700 border border-amber-200"
               : req.status === IpoRequestStatus.APPROVED
-              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-              : "bg-rose-50 text-rose-700 border border-rose-200"
-          }`}
+                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                : "bg-rose-50 text-rose-700 border border-rose-200"
+            }`}
         >
           {req.status}
         </span>
@@ -239,11 +238,10 @@ export default function IpoTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
-                  num === pagination.page
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${num === pagination.page
                     ? "bg-[#082348] text-white border-[#082348]"
                     : "text-slate-700 border-slate-200 hover:bg-slate-50"
-                }`}
+                  }`}
               >
                 {num}
               </button>

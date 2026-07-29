@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import useSWR, { useSWRConfig } from "swr"
-import { fDate } from "@/utility/dateFormatters.ts"
+import { fDate } from "@/utility/dateFormatters"
 import { fCurrency } from "@/utility/numberFormatters"
 import toast from "react-hot-toast"
 import api from "@/services/api"
@@ -289,8 +289,8 @@ export default function IPOList() {
                 key={num}
                 onClick={() => handlePageChange(num)}
                 className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page
-                    ? "bg-bakerjonesholdings-pink text-white"
-                    : "text-bakerjonesholdings-black hover:bg-gray-100"
+                  ? "bg-bakerjonesholdings-pink text-white"
+                  : "text-bakerjonesholdings-black hover:bg-gray-100"
                   }`}
               >
                 {num}

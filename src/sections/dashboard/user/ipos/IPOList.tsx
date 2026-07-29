@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import useSWR from "swr";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import toast from "react-hot-toast";
 import api from "@/services/api";
@@ -267,8 +267,8 @@ export default function IPOList() {
           <button
             onClick={() => setViewMode("cards")}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === "cards"
-                ? "bg-[#082348] text-white shadow-xs"
-                : "text-slate-600 hover:text-[#082348]"
+              ? "bg-[#082348] text-white shadow-xs"
+              : "text-slate-600 hover:text-[#082348]"
               }`}
           >
             <LayoutGrid className="w-3.5 h-3.5" />
@@ -277,8 +277,8 @@ export default function IPOList() {
           <button
             onClick={() => setViewMode("table")}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${viewMode === "table"
-                ? "bg-[#082348] text-white shadow-xs"
-                : "text-slate-600 hover:text-[#082348]"
+              ? "bg-[#082348] text-white shadow-xs"
+              : "text-slate-600 hover:text-[#082348]"
               }`}
           >
             <TableIcon className="w-3.5 h-3.5" />
@@ -299,8 +299,8 @@ export default function IPOList() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
                 className={`bg-white rounded-3xl border-2 transition-all duration-300 overflow-hidden relative ${ipo.recommended
-                    ? "border-[#C5A880] shadow-[0_20px_40px_rgba(197,168,128,0.12)]"
-                    : "border-slate-200/90 shadow-md hover:shadow-lg"
+                  ? "border-[#C5A880] shadow-[0_20px_40px_rgba(197,168,128,0.12)]"
+                  : "border-slate-200/90 shadow-md hover:shadow-lg"
                   }`}
               >
                 {/* Top Badge Ribbon */}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import api from "@/services/api";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import {
   Dialog,

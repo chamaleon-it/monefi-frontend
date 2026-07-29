@@ -2,7 +2,7 @@ import { InvestmentType } from "@/enum/investment-type.enum";
 import { TradeAction } from "@/enum/trade-action.enum";
 import { TransactionStatus } from "@/enum/transaction-status.enum";
 import api from "@/services/api";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import React, { useCallback, useState } from "react";
 import toast from "react-hot-toast";
@@ -24,7 +24,7 @@ interface Transaction {
   investmentType: InvestmentType;
   status: TransactionStatus;
   createdAt: string;
-  annualCouponRate?:number;
+  annualCouponRate?: number;
   fees?: number;
 }
 
@@ -76,14 +76,14 @@ export default function TransactionRow({
       await toast.promise(api.patch("/transactions/update_date", payload), {
         loading: "Updating the transaction date...",
         success: ({ data }) => data.message,
-        error: ({response}) => response.data.message,
+        error: ({ response }) => response.data.message,
       });
       setShowDateModal(false);
       mutate()
     } catch (error) {
       console.log(error);
     }
-  }, [selectedDate,mutate,tx._id]);
+  }, [selectedDate, mutate, tx._id]);
 
   return (
     <>
@@ -100,9 +100,9 @@ export default function TransactionRow({
           <p className="text-sm">{tx.symbol}</p>
         </td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">{tx.quantity}</td>
-         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
-                        {tx.annualCouponRate ? `${tx.annualCouponRate} %` : "-"}
-                      </td>
+        <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
+          {tx.annualCouponRate ? `${tx.annualCouponRate} %` : "-"}
+        </td>
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           {fCurrency(tx.unitPrice)}
         </td>
@@ -123,14 +123,13 @@ export default function TransactionRow({
         <td className={`py-3 px-4 text-xs`}>
           <p
             className={`
-            ${
-              (tx.status === TransactionStatus.PENDING &&
+            ${(tx.status === TransactionStatus.PENDING &&
                 "text-yellow-800 bg-yellow-400") ||
               (tx.status === TransactionStatus.COMPLETED &&
                 "text-green-800 bg-green-400") ||
               (tx.status === TransactionStatus.CANCELLED &&
                 "text-red-800 bg-red-400")
-            }
+              }
             px-1 py-0.5 rounded-full
             text-center
                 `}
@@ -141,31 +140,31 @@ export default function TransactionRow({
         <td className="py-3 px-4 text-sm text-bakerjonesholdings-black">
           <div className="flex gap-2.5">
 
-          {tx.status === TransactionStatus.PENDING && (
-            <div className="flex gap-2.5">
-              <button
-                className="px-2 py-1.5 rounded-md text-white bg-green-600"
-                onClick={() => setShowFeeModal(true)}
+            {tx.status === TransactionStatus.PENDING && (
+              <div className="flex gap-2.5">
+                <button
+                  className="px-2 py-1.5 rounded-md text-white bg-green-600"
+                  onClick={() => setShowFeeModal(true)}
                 >
-                Complete
-              </button>
-              <button
-                className="px-2 py-1.5 rounded-md text-white bg-red-600"
-                onClick={() =>
-                  cancelTransaction(tx._id)
-                }
+                  Complete
+                </button>
+                <button
+                  className="px-2 py-1.5 rounded-md text-white bg-red-600"
+                  onClick={() =>
+                    cancelTransaction(tx._id)
+                  }
                 >
-                Cancel
-              </button>
-            </div>
-          )}
-          <button
-            className="px-2 py-1.5 rounded-md text-white bg-green-600"
-            onClick={() => setShowDateModal(true)}
+                  Cancel
+                </button>
+              </div>
+            )}
+            <button
+              className="px-2 py-1.5 rounded-md text-white bg-green-600"
+              onClick={() => setShowDateModal(true)}
             >
-            Change Transaction Date
-          </button>
-            </div>
+              Change Transaction Date
+            </button>
+          </div>
           {showDateModal && (
             <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
               <div className="bg-white p-8 rounded-lg shadow-lg min-w-[340px]">

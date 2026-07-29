@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import useSWR from "swr"
-import { fDate } from "@/utility/dateFormatters.ts"
+import { fDate } from "@/utility/dateFormatters"
 
 interface Ipo {
   _id: string
@@ -179,11 +179,10 @@ export default function IPORequests() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-2 text-sm rounded-md border ${
-                  num === pagination.page
+                className={`px-3 py-2 text-sm rounded-md border ${num === pagination.page
                     ? "bg-bakerjonesholdings-pink text-white"
                     : "text-bakerjonesholdings-black hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 {num}
               </button>

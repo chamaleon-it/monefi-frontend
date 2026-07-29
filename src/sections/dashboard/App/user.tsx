@@ -2,7 +2,7 @@ import { useAuth } from "@/auth/useAuth";
 import { InvestmentType } from "@/enum/investment-type.enum";
 import { TradeAction } from "@/enum/trade-action.enum";
 import { TransactionStatus } from "@/enum/transaction-status.enum";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import { Wallet, TrendingUp, Coins, FileText, ArrowUpRight, ArrowDownRight, Clock, ShieldCheck, Percent, Rocket, ArrowUp } from "lucide-react";
 import React from "react";
@@ -195,8 +195,8 @@ export default function UserDashboard() {
                         </td>
                         <td className="py-4 px-5 text-xs">
                           <span className={`inline-flex items-center gap-1 font-bold px-2.5 py-1 rounded-full ${tx.tradeAction === TradeAction.BUY
-                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                              : "bg-blue-50 text-blue-700 border border-blue-200"
+                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                            : "bg-blue-50 text-blue-700 border border-blue-200"
                             }`}>
                             {tx.tradeAction === TradeAction.BUY ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                             {tx.tradeAction}
@@ -211,10 +211,10 @@ export default function UserDashboard() {
                         <td className="py-4 px-5 text-xs">
                           <span
                             className={`inline-block px-3 py-1 rounded-full font-bold text-[11px] uppercase tracking-wider text-center ${tx.status === TransactionStatus.PENDING
-                                ? "bg-amber-50 text-amber-700 border border-amber-200"
-                                : tx.status === TransactionStatus.COMPLETED
-                                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                                  : "bg-rose-50 text-rose-700 border border-rose-200"
+                              ? "bg-amber-50 text-amber-700 border border-amber-200"
+                              : tx.status === TransactionStatus.COMPLETED
+                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                : "bg-rose-50 text-rose-700 border border-rose-200"
                               }`}
                           >
                             {tx.status}
@@ -257,8 +257,8 @@ const SummaryCard = ({
   customValue?: React.ReactNode;
 }) => (
   <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${highlight
-      ? "bg-[#082348] text-white border-[#082348] shadow-lg shadow-[#082348]/15"
-      : "bg-white text-slate-800 border-slate-200/90 shadow-[0_10px_30px_rgba(8,35,72,0.04)]"
+    ? "bg-[#082348] text-white border-[#082348] shadow-lg shadow-[#082348]/15"
+    : "bg-white text-slate-800 border-slate-200/90 shadow-[0_10px_30px_rgba(8,35,72,0.04)]"
     }`}>
     {highlight && (
       <div className="absolute top-0 right-0 h-1 left-0 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>

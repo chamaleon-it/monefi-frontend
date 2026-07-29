@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import useSWR from "swr";
-import { fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fDateAndTime } from "@/utility/dateFormatters";
 import { fName } from "@/utility/fName";
 import toast from "react-hot-toast";
 import api from "@/services/api";
@@ -404,11 +404,10 @@ export default function ApplicationTable() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
-                  num === pagination.page
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${num === pagination.page
                     ? "bg-[#082348] text-white border-[#082348]"
                     : "text-slate-700 border-slate-200 hover:bg-slate-50"
-                }`}
+                  }`}
               >
                 {num}
               </button>

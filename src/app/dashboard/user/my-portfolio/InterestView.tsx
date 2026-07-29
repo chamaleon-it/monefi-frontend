@@ -18,7 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { fCurrency } from "@/utility/numberFormatters";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 
 interface Props {
   tx: {
@@ -98,11 +98,10 @@ export default function InterestView({ tx }: Props) {
                         </TableCell>
                         <TableCell>
                           <span
-                            className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
-                              status === "Completed"
+                            className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${status === "Completed"
                                 ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                                 : "bg-amber-50 text-amber-700 border-amber-200"
-                            }`}
+                              }`}
                           >
                             {status}
                           </span>

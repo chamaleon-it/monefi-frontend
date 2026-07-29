@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import useSWR, { useSWRConfig } from "swr"
-import { fDate } from "@/utility/dateFormatters.ts"
+import { fDate } from "@/utility/dateFormatters"
 import toast from "react-hot-toast"
 import api from "@/services/api"
 

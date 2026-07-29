@@ -3,7 +3,7 @@ import { TradeAction } from "@/enum/trade-action.enum";
 import { TransactionStatus } from "@/enum/transaction-status.enum";
 import { UserStatus } from "@/enum/user-status.enum";
 import { UserRoles } from "@/enum/user.enum";
-import { fAgo, fDate, fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fAgo, fDate, fDateAndTime } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import { Wallet, TrendingUp, Coins, FileText, ArrowUpRight, ArrowDownRight, Users, ShieldCheck, Clock } from "lucide-react";
 import React from "react";
@@ -149,11 +149,10 @@ export default function AdminDashboard() {
                           {fCurrency(tx.totalValue)}
                         </td>
                         <td className="py-4 px-5 text-xs">
-                          <span className={`inline-flex items-center gap-1 font-bold px-2.5 py-1 rounded-full ${
-                            tx.tradeAction === TradeAction.BUY 
-                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200" 
+                          <span className={`inline-flex items-center gap-1 font-bold px-2.5 py-1 rounded-full ${tx.tradeAction === TradeAction.BUY
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                               : "bg-blue-50 text-blue-700 border border-blue-200"
-                          }`}>
+                            }`}>
                             {tx.tradeAction === TradeAction.BUY ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
                             {tx.tradeAction}
                           </span>
@@ -166,13 +165,12 @@ export default function AdminDashboard() {
                         </td>
                         <td className="py-4 px-5 text-xs">
                           <span
-                            className={`inline-block px-3 py-1 rounded-full font-bold text-[11px] uppercase tracking-wider text-center ${
-                              tx.status === TransactionStatus.PENDING
+                            className={`inline-block px-3 py-1 rounded-full font-bold text-[11px] uppercase tracking-wider text-center ${tx.status === TransactionStatus.PENDING
                                 ? "bg-amber-50 text-amber-700 border border-amber-200"
                                 : tx.status === TransactionStatus.COMPLETED
-                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                                : "bg-rose-50 text-rose-700 border border-rose-200"
-                            }`}
+                                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                  : "bg-rose-50 text-rose-700 border border-rose-200"
+                              }`}
                           >
                             {tx.status}
                           </span>
@@ -236,13 +234,12 @@ export default function AdminDashboard() {
 
                     <td className="py-4 px-5 text-xs">
                       <span
-                        className={`inline-block px-3 py-1 rounded-full font-bold text-[11px] uppercase tracking-wider text-center ${
-                          user.status === UserStatus.ACTIVE
+                        className={`inline-block px-3 py-1 rounded-full font-bold text-[11px] uppercase tracking-wider text-center ${user.status === UserStatus.ACTIVE
                             ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                             : user.status === UserStatus.INACTIVE
-                            ? "bg-amber-50 text-amber-700 border border-amber-200"
-                            : "bg-rose-50 text-rose-700 border border-rose-200"
-                        }`}
+                              ? "bg-amber-50 text-amber-700 border border-amber-200"
+                              : "bg-rose-50 text-rose-700 border border-rose-200"
+                          }`}
                       >
                         {user.status}
                       </span>
@@ -286,11 +283,10 @@ const SummaryCard = ({
   value: string;
   highlight?: boolean;
 }) => (
-  <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${
-    highlight
+  <div className={`rounded-3xl p-6 border transition-all duration-300 relative overflow-hidden ${highlight
       ? "bg-[#082348] text-white border-[#082348] shadow-lg shadow-[#082348]/15"
       : "bg-white text-slate-800 border-slate-200/90 shadow-[0_10px_30px_rgba(8,35,72,0.04)]"
-  }`}>
+    }`}>
     {highlight && (
       <div className="absolute top-0 right-0 h-1 left-0 bg-gradient-to-r from-transparent via-[#C5A880] to-transparent"></div>
     )}
@@ -298,9 +294,8 @@ const SummaryCard = ({
       <span className={`text-[11px] font-bold uppercase tracking-wider ${highlight ? "text-slate-300" : "text-slate-500"}`}>
         {label}
       </span>
-      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
-        highlight ? "gold-gradient-bg text-slate-950 shadow-md" : "bg-[#C5A880]/15 text-[#C5A880]"
-      }`}>
+      <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${highlight ? "gold-gradient-bg text-slate-950 shadow-md" : "bg-[#C5A880]/15 text-[#C5A880]"
+        }`}>
         <IconComponent className="w-5 h-5" />
       </div>
     </div>

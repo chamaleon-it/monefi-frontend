@@ -4,7 +4,7 @@ import getConfig from "@/config/configuration";
 import { UserStatus } from "@/enum/user-status.enum";
 import type { UserRoles } from "@/enum/user.enum";
 import api from "@/services/api";
-import { fAgo, fDateAndTime } from "@/utility/dateFormatters.ts";
+import { fAgo, fDateAndTime } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import { useState, useMemo } from "react";
 import toast from "react-hot-toast";
@@ -101,8 +101,8 @@ export default function UsersPage() {
       user,
       activity: user.loginActivity
         ? [...user.loginActivity].sort(
-            (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
-          )
+          (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+        )
         : [],
       page: 1,
       isLoading: true,
@@ -165,7 +165,6 @@ export default function UsersPage() {
 
   const users = data?.data ?? [];
 
-  console.log(users);
 
   const pagination = data?.pagination;
 
@@ -354,13 +353,12 @@ export default function UsersPage() {
                     </td>
                     <td className="py-4 px-5 text-xs">
                       <span
-                        className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${
-                          user.status === UserStatus.ACTIVE
-                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                            : user.status === UserStatus.INACTIVE
+                        className={`inline-block px-3 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${user.status === UserStatus.ACTIVE
+                          ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                          : user.status === UserStatus.INACTIVE
                             ? "bg-amber-50 text-amber-700 border border-amber-200"
                             : "bg-rose-50 text-rose-700 border border-rose-200"
-                        }`}
+                          }`}
                       >
                         {user.status}
                       </span>
@@ -382,7 +380,7 @@ export default function UsersPage() {
                           ${user.kycStatus === "Expired" && "bg-rose-50 text-rose-700 border border-rose-200"}
                            ${user.kycStatus === "Rejected" && "bg-rose-50 text-rose-700 border border-rose-200"}
                        `}>
-                      {user.kycStatus}
+                        {user.kycStatus}
                       </span>
                     </td>
                     <td className="py-4 px-5 text-xs">
@@ -536,11 +534,10 @@ export default function UsersPage() {
               <button
                 key={pageNum}
                 onClick={() => handlePageChange(pageNum)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${
-                  pageNum === pagination.page
-                    ? "bg-[#082348] text-white border-[#082348]"
-                    : "text-slate-700 border-slate-200 hover:bg-slate-50"
-                }`}
+                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-colors ${pageNum === pagination.page
+                  ? "bg-[#082348] text-white border-[#082348]"
+                  : "text-slate-700 border-slate-200 hover:bg-slate-50"
+                  }`}
               >
                 {pageNum}
               </button>
@@ -739,11 +736,10 @@ export default function UsersPage() {
                               page: pageNum,
                             }))
                           }
-                          className={`px-2.5 py-1 text-xs font-bold rounded-lg border transition-colors cursor-pointer ${
-                            pageNum === loginActivityModal.page
-                              ? "bg-[#082348] text-white border-[#082348]"
-                              : "text-slate-700 border-slate-200 bg-white hover:bg-slate-100"
-                          }`}
+                          className={`px-2.5 py-1 text-xs font-bold rounded-lg border transition-colors cursor-pointer ${pageNum === loginActivityModal.page
+                            ? "bg-[#082348] text-white border-[#082348]"
+                            : "text-slate-700 border-slate-200 bg-white hover:bg-slate-100"
+                            }`}
                         >
                           {pageNum}
                         </button>

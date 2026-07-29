@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import getConfig from "@/config/configuration";
 import api from "@/services/api";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import React from "react";
 import toast from "react-hot-toast";
@@ -16,9 +16,9 @@ interface Props {
     quantity: number;
     unitPrice: number;
     totalValue: number;
-     transaction:{
-      createdAt:Date
-      buyBackDate?:Date | null
+    transaction: {
+      createdAt: Date
+      buyBackDate?: Date | null
     },
     investmentType: string;
     createdAt: Date;
@@ -28,11 +28,11 @@ interface Props {
       name: string;
     };
     certificate?: string | null;
-     interest:{
-        date:Date,
-        amount:number,
-        _id:string,
-      }[];
+    interest: {
+      date: Date,
+      amount: number,
+      _id: string,
+    }[];
   };
   i: number;
   portfolioMutate: () => void;

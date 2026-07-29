@@ -41,7 +41,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { fCurrency } from "@/utility/numberFormatters";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import toast from "react-hot-toast";
 import api from "@/services/api";
 
@@ -197,11 +197,10 @@ export default function InterestUpdate({ tx, portfolioMutate }: Props) {
                         </TableCell>
                         <TableCell>
                           <span
-                            className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider cursor-pointer border transition-colors ${
-                              status === "Completed"
+                            className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider cursor-pointer border transition-colors ${status === "Completed"
                                 ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                                 : "bg-amber-50 text-amber-700 border-amber-200"
-                            }`}
+                              }`}
                             onClick={() => toggleStatus(entry._id, status)}
                             title="Click to toggle status"
                           >

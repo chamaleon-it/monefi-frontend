@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import useSWR from "swr";
 import Link from "next/link";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { CouponFrequency } from "@/enum/coupon-frequency.enum";
 import { CouponType } from "@/enum/coupon-type.enum";
 import { motion, AnimatePresence } from "framer-motion";

@@ -1,7 +1,7 @@
 "use client";
 
 import getConfig from "@/config/configuration";
-import { fDate } from "@/utility/dateFormatters.ts";
+import { fDate } from "@/utility/dateFormatters";
 import { fCurrency } from "@/utility/numberFormatters";
 import React, { useState } from "react";
 import useSWR from "swr";
@@ -114,11 +114,10 @@ export default function BondsRow({ tx, i }: Props) {
       {/* Buy-Back Guarantee Status */}
       <td className="py-4 px-5 text-xs">
         <span
-          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${
-            tx.buyBack === "Yes" || true
+          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${tx.buyBack === "Yes" || true
               ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
               : "bg-slate-100 text-slate-600 border border-slate-200"
-          }`}
+            }`}
         >
           <ShieldCheck className="w-3 h-3 text-emerald-600" />
           <span>{tx.buyBack === "Yes" ? "1-Yr Buyback Active" : "Annual Option"}</span>
