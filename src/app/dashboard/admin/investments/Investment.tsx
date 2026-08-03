@@ -117,7 +117,7 @@ export default function Investment() {
                 className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
               >
                 <option value="">Select Asset Class</option>
-                {Object.values(InvestmentType).map((op) => (
+                {Object.values(InvestmentType).filter((op) => op !== InvestmentType.CRYPTO).map((op) => (
                   <option value={op} key={op}>
                     {op}
                   </option>
@@ -172,36 +172,6 @@ export default function Investment() {
                 >
                   <option value="">Select Equity Security</option>
                   {topStock.map((e) => (
-                    <option value={e.name} key={e.name}>
-                      {e.name} ({e.symbol})
-                    </option>
-                  ))}
-                </select>
-                {errors.symbol && (
-                  <p className="text-xs text-rose-500 mt-1 font-medium">
-                    {errors.symbol.message}
-                  </p>
-                )}
-              </div>
-            )}
-
-            {invermentType === InvestmentType.CRYPTO && (
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                  Select Digital Asset
-                </label>
-                <select
-                  className="w-full h-11 px-4 rounded-xl border border-slate-200 bg-slate-50 text-[#082348] text-sm focus:outline-none focus:bg-white focus:border-[#C5A880] focus:ring-2 focus:ring-[#C5A880]/20 transition-all font-semibold cursor-pointer"
-                  onChange={(e) => {
-                    const crypto = topCrypto.find(
-                      (ts) => ts.name === e.target.value
-                    );
-                    setValue("symbol", crypto?.symbol ?? "");
-                    setValue("name", crypto?.name ?? "");
-                  }}
-                >
-                  <option value="">Select Crypto Asset</option>
-                  {topCrypto.map((e) => (
                     <option value={e.name} key={e.name}>
                       {e.name} ({e.symbol})
                     </option>

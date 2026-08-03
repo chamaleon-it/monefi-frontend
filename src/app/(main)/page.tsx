@@ -258,7 +258,7 @@ export default function HomePage() {
             <p className="text-[16px] text-slate-500 max-w-2xl mx-auto">Explore our comprehensive range of investment vehicles tailored to match your specific risk appetite and time horizon.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1 */}
             <Link href="/capital-markets" className="group relative block h-[380px] rounded-2xl overflow-hidden shadow-lg">
               <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop" alt="Capital Markets" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -287,17 +287,6 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-[#082348]/40 to-transparent opacity-90 transition-opacity group-hover:opacity-100"></div>
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <h3 className="text-xl font-serif font-bold text-white mb-2">Structured Holdings</h3>
-                <span className="text-corporate-gold text-[13px] font-bold uppercase tracking-wider flex items-center group-hover:underline">
-                  Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
-            {/* Card 4 */}
-            <Link href="/digital-assets" className="group relative block h-[380px] rounded-2xl overflow-hidden shadow-lg">
-              <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1969&auto=format&fit=crop" alt="Digital Assets" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#082348] via-[#082348]/40 to-transparent opacity-90 transition-opacity group-hover:opacity-100"></div>
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <h3 className="text-xl font-serif font-bold text-white mb-2">Digital Assets</h3>
                 <span className="text-corporate-gold text-[13px] font-bold uppercase tracking-wider flex items-center group-hover:underline">
                   Explore <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                 </span>

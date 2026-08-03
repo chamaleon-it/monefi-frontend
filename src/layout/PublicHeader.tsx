@@ -38,8 +38,7 @@ export default function PublicHeader() {
   const productPaths = [
     '/capital-markets',
     '/private-equity',
-    '/structured-holdings',
-    '/digital-assets'
+    '/structured-holdings'
   ];
   const isProductsActive = productPaths.some(path => pathname.startsWith(path));
 
@@ -66,7 +65,7 @@ export default function PublicHeader() {
               </button>
               
               {isDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-60 bg-white rounded-2xl shadow-xl border border-slate-100 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute left-0 mt-2 w-60 bg-[#fff] rounded-2xl shadow-xl border border-slate-100 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <Link href="/capital-markets" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/capital-markets' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
                     Capital Markets
                   </Link>
@@ -75,9 +74,6 @@ export default function PublicHeader() {
                   </Link>
                   <Link href="/structured-holdings" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/structured-holdings' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
                     Structured Holdings
-                  </Link>
-                  <Link href="/digital-assets" className={`block px-5 py-2.5 text-[14px] transition-colors hover:bg-slate-50 ${pathname === '/digital-assets' ? 'text-[#082348] font-semibold bg-slate-50/50' : 'text-slate-600 hover:text-[#082348]'}`}>
-                    Digital Assets
                   </Link>
                 </div>
               )}
@@ -127,9 +123,6 @@ export default function PublicHeader() {
                 </Link>
                 <Link href="/structured-holdings" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium ${pathname === '/structured-holdings' ? 'text-[#082348] font-bold' : 'text-slate-500'}`}>
                   Structured Holdings
-                </Link>
-                <Link href="/digital-assets" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium ${pathname === '/digital-assets' ? 'text-[#082348] font-bold' : 'text-slate-500'}`}>
-                  Digital Assets
                 </Link>
               </div>
             </div>

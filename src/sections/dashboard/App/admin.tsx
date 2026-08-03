@@ -75,7 +75,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <SummaryCard
             icon={Wallet}
             label="Total Platform Liquidity"
@@ -86,11 +86,6 @@ export default function AdminDashboard() {
             icon={TrendingUp}
             label="Total Stock Equity"
             value={fCurrency(portfolioStatistics?.data.stockValue ?? 0)}
-          />
-          <SummaryCard
-            icon={Coins}
-            label="Total Crypto Reserves"
-            value={fCurrency(portfolioStatistics?.data.cryptoValue ?? 0)}
           />
           <SummaryCard
             icon={FileText}
@@ -108,7 +103,7 @@ export default function AdminDashboard() {
               Platform Execution Ledger
             </h2>
             <p className="text-slate-500 text-xs">
-              Live audit of orders placed by clients across equities, bonds, and crypto
+              Live audit of orders placed by clients across equities, bonds, and IPOs
             </p>
           </div>
         </div>

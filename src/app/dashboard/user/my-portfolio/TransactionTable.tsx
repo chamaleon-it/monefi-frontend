@@ -113,7 +113,7 @@ export default function TransactionsTable() {
           Portfolio Asset Allocation
         </h1>
         <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
-          Consolidated holdings statement, yield coupons, equity certificates, and digital reserves
+          Consolidated holdings statement, yield coupons, and equity certificates
         </p>
       </div>
 

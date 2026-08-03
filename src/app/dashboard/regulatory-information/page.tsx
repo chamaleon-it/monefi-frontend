@@ -26,8 +26,7 @@ export default function RegulatoryInformationPage() {
           <p className="text-gray-700 leading-relaxed">
             We are authorised to provide investment advice and arrange and
             execute transactions in relation to a range of financial
-            instruments, including equities, bonds, IPOs, and digital assets
-            (where applicable).
+            instruments, including equities, bonds, and IPOs.
           </p>
         </section>
 
@@ -108,7 +107,6 @@ export default function RegulatoryInformationPage() {
             <li>Unregulated collective investment schemes</li>
             <li>Certain alternative investments</li>
             <li>Private market opportunities</li>
-            <li>Crypto-related assets (where applicable)</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mb-4">
             may not be covered by FSCS.

@@ -23,7 +23,6 @@ export default function PublicFooter() {
               <li><Link href="/capital-markets" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Capital Markets</Link></li>
               <li><Link href="/private-equity" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Private Equity</Link></li>
               <li><Link href="/structured-holdings" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Structured Holdings</Link></li>
-              <li><Link href="/digital-assets" className="text-[12px] font-medium text-slate-500 hover:text-[#082348]">Digital Assets</Link></li>
             </ul>
           </div>
           <div className="md:col-span-2 lg:col-span-2">

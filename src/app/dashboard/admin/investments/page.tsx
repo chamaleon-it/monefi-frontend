@@ -9,7 +9,7 @@ export default function InvestmentsPage() {
           Direct Client Capital Allocation
         </h1>
         <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
-          Execute manual investment placements for registered accounts across stocks, bonds, and crypto
+          Execute manual investment placements for registered accounts across stocks, bonds, and IPOs
         </p>
       </div>
 

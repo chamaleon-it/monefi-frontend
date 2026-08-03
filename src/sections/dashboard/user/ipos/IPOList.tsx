@@ -140,7 +140,7 @@ const FEATURED_CURATED_IPOS: CuratedIpo[] = [
     highlights: [
       "UK Banking license approval finalized",
       "Annual revenue growth exceeding 95% YoY",
-      "Expanding global wealth and crypto trading product suites",
+      "Expanding global wealth and trading product suites",
       "Potential London (LSE) and Nasdaq dual-listing"
     ],
     logo: "https://upload.wikimedia.org/wikipedia/commons/7/70/Revolut_logo.svg",
