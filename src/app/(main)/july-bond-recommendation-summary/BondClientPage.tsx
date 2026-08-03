@@ -64,6 +64,10 @@ export default function BondClientPage() {
       answer: "As a specialised firm, we ensure your transactions carry institutional-grade security. All financial transfers are routed exclusively through FCA-regulated UK banks, brokerages, or secure escrow services utilising household institutions like Barclays, Lloyds, or HSBC. To eliminate any settlement risk, your investment funds are only released once you hold the full, official bond certificate in your name. You can track all of this in real-time via your secure, 24/7 online operational platform."
     },
     {
+      question: "How do I make a payment?",
+      answer: "Once you apply for your chosen investment product and sign the product agreement, we will provide you with the sort code and account number for an FCA approved bank, escrow, or custodian. You can then complete this transfer, which includes all relevant fees, either online through your banking app, over the phone via your provider's telephone banking service, or in person at your local bank branch."
+    },
+    {
       question: "How does Baker Jones earn money and how do you fit into the process?",
       answer: "We act strictly as your broker, using our wide network of banks, financial institutions, and family offices to bring all these different options together onto one page. Bonds are just one part of our broader business; we also generate revenue when our clients use us for other services like new company launches (pre-IPOs), managed funds, and other investments.\n\nBecause we run a diversified business, we do not need to charge you high setup costs or ongoing management fees for your bonds. Depending on the specific option you choose, we are either paid a small fee by the institution providing the bond or we earn a tiny transaction cost from the trade. What matters to you is that the interest rate you see on this page is exactly what you get. The only direct trading costs you will ever see from us are our standard flat £7.95 dealing fee, or a 0.5% penalty fee if you choose to exit a bond early using our annual buy-back option."
     }
