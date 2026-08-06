@@ -110,7 +110,7 @@ export default function BondClientPage() {
       }
 
       const cleanParam = advisorParam?.toLowerCase() || hash;
-      const isJS = (cleanParam === "js" || cleanParam === "sterling" || cleanParam === "sterling-2");
+      const isJS = (cleanParam === "js" || cleanParam === "sterling" || cleanParam === "sterling-2" || cleanParam === "sterling-3");
       const isPC = (cleanParam === "pc" || cleanParam === "cooke" || cleanParam === "peter");
 
       if (isJS) {
@@ -172,19 +172,24 @@ export default function BondClientPage() {
   }, [activeProceedModal, lenis]);
 
   const isSterling2 = currentAdvisorParam.toLowerCase() === "sterling-2";
+  const isSterling3 = currentAdvisorParam.toLowerCase() === "sterling-3";
 
   // Detailed bond data with configurable factsheet URLs
   const bondData: BondDetails[] = [
     {
       id: "bond-featured",
-      companyName: isSterling2 ? "HSBC Holdings" : "Lloyds Bank",
-      issuer: isSterling2 ? "HSBC Holdings plc" : "Lloyds Bank",
-      coupon: isSterling2 ? "7.00%" : "6.625%",
+      companyName: isSterling3 ? "Barclays Bank" : isSterling2 ? "HSBC Holdings" : "Lloyds Bank",
+      issuer: isSterling3 ? "Barclays Bank plc" : isSterling2 ? "HSBC Holdings plc" : "Lloyds Bank",
+      coupon: isSterling3 ? "8.50%" : isSterling2 ? "7.00%" : "6.625%",
       maturity: "1 year",
-      isin: isSterling2 ? "XS0356452929" : "XS2591847970",
+      isin: isSterling3 ? "XS2813323503" : isSterling2 ? "XS0356452929" : "XS2591847970",
       type: "Fixed Rate",
-      whySelected: "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
-      aboutIssuer: isSterling2
+      whySelected: isSterling3
+        ? "This option aligns with a high-yield fixed-income strategy with capital protection, providing steady income backed by a Tier 1 UK banking institution based on the objectives discussed during your consultation."
+        : "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
+      aboutIssuer: isSterling3
+        ? "Barclays Bank plc is one of the UK's premier global financial services providers, offering retail, corporate, and investment banking services with a history spanning over 300 years."
+        : isSterling2
         ? "HSBC Holdings plc is one of the world's largest banking and financial services organisations with a deeply established history of global financial strength."
         : "Lloyds Bank is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
       keyConsiderations: [
@@ -193,10 +198,16 @@ export default function BondClientPage() {
         "Tier 1 banking institution"
       ],
       recommended: true,
-      lseUrl: isSterling2
+      lseUrl: isSterling3
+        ? "https://www.londonstockexchange.com/stock/XS2813323503/barclays-bank-plc/analysis"
+        : isSterling2
         ? "https://www.londonstockexchange.com/stock/XS0356452929/hsbc-holdings-plc/analysis"
         : "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
-      factSheetUrl: isSterling2 ? "/fact-sheet-pdf/HSBC_7___bakerjones.pdf" : "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
+      factSheetUrl: isSterling3
+        ? "/fact-sheet-pdf/Barclays 8.5__bakerjones.pdf"
+        : isSterling2
+        ? "/fact-sheet-pdf/HSBC_7___bakerjones.pdf"
+        : "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
       minDeposit: "£10,000"
     },
     {
@@ -291,6 +302,11 @@ export default function BondClientPage() {
   // Logo Renderers
   const renderLogo = (companyName: string) => {
     switch (companyName) {
+      case "Barclays Bank":
+      case "Barclays Bank plc":
+        return (
+          <img src="/bank logos/barclays-logo.svg" alt="Barclays Bank logo" className="w-full h-full object-contain" />
+        );
       case "HSBC Holdings":
         return (
           <svg className="w-full h-full text-[#db0011] p-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

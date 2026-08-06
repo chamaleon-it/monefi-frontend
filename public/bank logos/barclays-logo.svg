@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250" fill="none">
+  <g fill="#00AEEF">
+    <!-- Eagle Logo -->
+    <path d="M250 15C233 38 205 44 177 38C172 60 183 82 205 94C183 94 166 82 155 65C144 100 161 135 194 152C172 146 155 135 144 117C144 152 172 181 211 187C194 193 177 187 166 175C188 198 222 204 250 191C278 204 312 198 334 175C323 187 306 193 289 187C328 181 356 152 356 117C345 135 328 146 306 152C339 135 356 100 345 65C334 82 317 94 295 94C317 82 328 60 323 38C295 44 267 38 250 15Z"/>
+    <!-- Barclays Text -->
+    <text x="250" y="235" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" text-anchor="middle" letter-spacing="4">BARCLAYS</text>
+  </g>
+</svg>
