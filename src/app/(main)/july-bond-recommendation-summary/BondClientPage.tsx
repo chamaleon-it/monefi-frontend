@@ -204,7 +204,7 @@ export default function BondClientPage() {
         ? "https://www.londonstockexchange.com/stock/XS0356452929/hsbc-holdings-plc/analysis"
         : "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
       factSheetUrl: isSterling3
-        ? "/fact-sheet-pdf/Barclays 8.5__bakerjones.pdf"
+        ? "/fact-sheet-pdf/Barclays_8.5__bakerjones.pdf"
         : isSterling2
         ? "/fact-sheet-pdf/HSBC_7___bakerjones.pdf"
         : "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
@@ -305,7 +305,7 @@ export default function BondClientPage() {
       case "Barclays Bank":
       case "Barclays Bank plc":
         return (
-          <img src="/bank logos/barclays-logo.svg" alt="Barclays Bank logo" className="w-full h-full object-contain" />
+          <img src="/bank logos/Barclays-Bank-logo.png" alt="Barclays Bank logo" className="w-full h-full object-contain" />
         );
       case "HSBC Holdings":
         return (
