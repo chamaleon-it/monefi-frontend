@@ -22,6 +22,7 @@ export default function AdminDashboard() {
       investmentType: InvestmentType;
       status: TransactionStatus;
       createdAt: string;
+      annualCouponRate?: number;
     }[];
   }>("/transactions");
 
@@ -116,6 +117,7 @@ export default function AdminDashboard() {
                   <th className="py-4 px-5">#</th>
                   <th className="py-4 px-5">Asset</th>
                   <th className="py-4 px-5">Quantity</th>
+                  <th className="py-4 px-5">Coupon Rate</th>
                   <th className="py-4 px-5">Unit Price</th>
                   <th className="py-4 px-5">Total Value</th>
                   <th className="py-4 px-5">Action</th>
@@ -136,6 +138,15 @@ export default function AdminDashboard() {
                         </td>
                         <td className="py-4 px-5 text-sm font-semibold text-slate-700">
                           {tx.quantity}
+                        </td>
+                        <td className="py-4 px-5 text-sm">
+                          {tx.annualCouponRate ? (
+                            <span className="font-bold text-[#C5A880]">{tx.annualCouponRate}%</span>
+                          ) : tx.investmentType === InvestmentType.BOND ? (
+                            <span className="font-bold text-[#C5A880]">6.625%</span>
+                          ) : (
+                            <span className="text-slate-400 font-mono">-</span>
+                          )}
                         </td>
                         <td className="py-4 px-5 text-sm font-medium text-slate-600">
                           {fCurrency(tx.unitPrice)}
@@ -177,7 +188,7 @@ export default function AdminDashboard() {
 
                 {transaction.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="text-center py-12 text-slate-400 text-sm">
+                    <td colSpan={10} className="text-center py-12 text-slate-400 text-sm">
                       <Clock className="w-8 h-8 text-slate-300 mx-auto mb-2" />
                       No transaction history recorded.
                     </td>
