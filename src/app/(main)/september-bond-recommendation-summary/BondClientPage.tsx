@@ -73,15 +73,6 @@ export default function BondClientPage() {
     }
   ];
 
-  // Downloading factsheet animation states
-  const [downloadingId, setDownloadingId] = useState<string | null>(null);
-
-  // Redesigned card details expand/collapse state
-  const [expandedBonds, setExpandedBonds] = useState<Record<string, boolean>>({});
-  const toggleExpand = (id: string) => {
-    setExpandedBonds(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
   // DOM refs to bypass Lenis scroll interception for proceed modal
   const modalScrollRef = React.useRef<HTMLDivElement>(null);
   const modalBackdropRef = React.useRef<HTMLDivElement>(null);
@@ -110,8 +101,8 @@ export default function BondClientPage() {
       }
 
       const cleanParam = advisorParam?.toLowerCase() || hash;
-      const isJS = (cleanParam === "js" || cleanParam === "sterling" || cleanParam === "sterling-2" || cleanParam === "sterling-3");
-      const isPC = (cleanParam === "pc" || cleanParam === "cooke" || cleanParam === "peter");
+      const isJS = cleanParam.includes("sterling") || cleanParam === "js" || cleanParam.startsWith("js-");
+      const isPC = cleanParam.includes("peter") || cleanParam.includes("cooke") || cleanParam === "pc" || cleanParam.startsWith("pc-");
 
       if (isJS) {
         setAdviser({
@@ -130,7 +121,7 @@ export default function BondClientPage() {
           photo: "/peter_cooke.png"
         });
       } else {
-        // Default is John Sinclair
+        // Default is John Sinclair (matches "sinclair", "sinclair-2", "sinclair-3", "jsi", or unset)
         setAdviser({
           name: "John Sinclair",
           title: "Wealth Advisor",
@@ -144,7 +135,6 @@ export default function BondClientPage() {
 
   const lenis = useLenis();
 
-  // Control scrolling with Lenis when proceed modal is active
   useEffect(() => {
     if (lenis) {
       if (activeProceedModal) {
@@ -171,25 +161,26 @@ export default function BondClientPage() {
     };
   }, [activeProceedModal, lenis]);
 
-  const isSterling2 = currentAdvisorParam.toLowerCase() === "sterling-2";
-  const isSterling3 = currentAdvisorParam.toLowerCase() === "sterling-3";
+  const cleanAdvisor = currentAdvisorParam.toLowerCase();
+  const isVariant3 = cleanAdvisor.endsWith("-3") || cleanAdvisor.endsWith("_3");
+  const isVariant2 = cleanAdvisor.endsWith("-2") || cleanAdvisor.endsWith("_2");
 
   // Detailed bond data with configurable factsheet URLs
   const bondData: BondDetails[] = [
     {
       id: "bond-featured",
-      companyName: isSterling3 ? "Barclays Bank" : isSterling2 ? "HSBC Holdings" : "Lloyds Bank",
-      issuer: isSterling3 ? "Barclays Bank plc" : isSterling2 ? "HSBC Holdings plc" : "Lloyds Bank",
-      coupon: isSterling3 ? "8.50%" : isSterling2 ? "7.00%" : "6.625%",
+      companyName: isVariant3 ? "Barclays Bank" : isVariant2 ? "HSBC Holdings" : "Lloyds Bank",
+      issuer: isVariant3 ? "Barclays Bank plc" : isVariant2 ? "HSBC Holdings plc" : "Lloyds Bank",
+      coupon: isVariant3 ? "8.50%" : isVariant2 ? "7.00%" : "6.625%",
       maturity: "1 year",
-      isin: isSterling3 ? "XS2813323503" : isSterling2 ? "XS0356452929" : "XS2591847970",
+      isin: isVariant3 ? "XS2813323503" : isVariant2 ? "XS0356452929" : "XS2591847970",
       type: "Fixed Rate",
-      whySelected: isSterling3
+      whySelected: isVariant3
         ? "This option aligns with a high-yield fixed-income strategy with capital protection, providing steady income backed by a Tier 1 UK banking institution based on the objectives discussed during your consultation."
         : "This option aligns with a balanced approach to income generation and capital stability based on the objectives discussed during your consultation.",
-      aboutIssuer: isSterling3
+      aboutIssuer: isVariant3
         ? "Barclays Bank plc is one of the UK's premier global financial services providers, offering retail, corporate, and investment banking services with a history spanning over 300 years."
-        : isSterling2
+        : isVariant2
         ? "HSBC Holdings plc is one of the world's largest banking and financial services organisations with a deeply established history of global financial strength."
         : "Lloyds Bank is one of the UK's largest retail and commercial banking groups with an established history of financial strength.",
       keyConsiderations: [
@@ -198,14 +189,14 @@ export default function BondClientPage() {
         "Tier 1 banking institution"
       ],
       recommended: true,
-      lseUrl: isSterling3
+      lseUrl: isVariant3
         ? "https://www.londonstockexchange.com/stock/XS2813323503/barclays-bank-plc/analysis"
-        : isSterling2
+        : isVariant2
         ? "https://www.londonstockexchange.com/stock/XS0356452929/hsbc-holdings-plc/analysis"
         : "https://www.londonstockexchange.com/stock/XS2591847970/lloyds-bank-plc/analysis",
-      factSheetUrl: isSterling3
+      factSheetUrl: isVariant3
         ? "/fact-sheet-pdf/Barclays_8.5__bakerjones.pdf"
-        : isSterling2
+        : isVariant2
         ? "/fact-sheet-pdf/HSBC_7___bakerjones.pdf"
         : "/fact-sheet-pdf/Lloyds 6.625__bakerjones.pdf",
       minDeposit: "£10,000"
@@ -252,7 +243,7 @@ export default function BondClientPage() {
     }
   ];
 
-  // Configurable factsheet downloader using fetch and blob to force download
+
   const handleDownloadFactsheet = async (bond: BondDetails) => {
     if (!bond.factSheetUrl) {
       toast.error("Fact sheet URL is not configured for this bond.");
